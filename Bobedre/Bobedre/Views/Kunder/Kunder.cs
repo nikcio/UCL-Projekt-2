@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Bobedre
+namespace Bobedre.Views.Kunder
 {
-    public partial class Form1 : Form
+    public partial class Kunder : Form
     {
-        public Form1()
+        public Kunder(Models.Action action, Baseform baseform)
         {
             InitializeComponent();
         }
-
     }
 }
