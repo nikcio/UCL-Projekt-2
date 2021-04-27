@@ -41,7 +41,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             this.Mæglerfirmalabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.Opretknap = new System.Windows.Forms.Button();
-            this.lukknap = new System.Windows.Forms.Button();
+            this.Gemknap = new System.Windows.Forms.Button();
             this.Sletknap = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +55,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             // 
             // NavnBox
             // 
-            this.NavnBox.Location = new System.Drawing.Point(132, 198);
+            this.NavnBox.Location = new System.Drawing.Point(414, 33);
             this.NavnBox.Name = "NavnBox";
             this.NavnBox.Size = new System.Drawing.Size(100, 23);
             this.NavnBox.TabIndex = 3;
@@ -72,7 +72,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             // Navnlabel
             // 
             this.Navnlabel.AutoSize = true;
-            this.Navnlabel.Location = new System.Drawing.Point(24, 198);
+            this.Navnlabel.Location = new System.Drawing.Point(306, 33);
             this.Navnlabel.Name = "Navnlabel";
             this.Navnlabel.Size = new System.Drawing.Size(35, 15);
             this.Navnlabel.TabIndex = 3;
@@ -81,7 +81,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             // Emaillabel
             // 
             this.Emaillabel.AutoSize = true;
-            this.Emaillabel.Location = new System.Drawing.Point(24, 257);
+            this.Emaillabel.Location = new System.Drawing.Point(306, 92);
             this.Emaillabel.Name = "Emaillabel";
             this.Emaillabel.Size = new System.Drawing.Size(36, 15);
             this.Emaillabel.TabIndex = 4;
@@ -89,7 +89,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             // 
             // Emailbox
             // 
-            this.Emailbox.Location = new System.Drawing.Point(132, 257);
+            this.Emailbox.Location = new System.Drawing.Point(414, 92);
             this.Emailbox.Name = "Emailbox";
             this.Emailbox.Size = new System.Drawing.Size(100, 23);
             this.Emailbox.TabIndex = 4;
@@ -130,36 +130,36 @@ namespace Bobedre.Views.Ejendomsmæglere
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.Opretknap);
-            this.flowLayoutPanel1.Controls.Add(this.lukknap);
+            this.flowLayoutPanel1.Controls.Add(this.Gemknap);
             this.flowLayoutPanel1.Controls.Add(this.Sletknap);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(368, 12);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(37, 290);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(343, 320);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(532, 98);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
             // Opretknap
             // 
             this.Opretknap.Location = new System.Drawing.Point(3, 3);
             this.Opretknap.Name = "Opretknap";
-            this.Opretknap.Size = new System.Drawing.Size(75, 23);
+            this.Opretknap.Size = new System.Drawing.Size(168, 49);
             this.Opretknap.TabIndex = 0;
             this.Opretknap.Text = "Opret";
             this.Opretknap.UseVisualStyleBackColor = true;
             // 
-            // lukknap
+            // Gemknap
             // 
-            this.lukknap.Location = new System.Drawing.Point(84, 3);
-            this.lukknap.Name = "lukknap";
-            this.lukknap.Size = new System.Drawing.Size(75, 23);
-            this.lukknap.TabIndex = 1;
-            this.lukknap.Text = "Luk";
-            this.lukknap.UseVisualStyleBackColor = true;
+            this.Gemknap.Location = new System.Drawing.Point(177, 3);
+            this.Gemknap.Name = "Gemknap";
+            this.Gemknap.Size = new System.Drawing.Size(168, 49);
+            this.Gemknap.TabIndex = 1;
+            this.Gemknap.Text = "Gem";
+            this.Gemknap.UseVisualStyleBackColor = true;
             // 
             // Sletknap
             // 
-            this.Sletknap.Location = new System.Drawing.Point(165, 3);
+            this.Sletknap.Location = new System.Drawing.Point(351, 3);
             this.Sletknap.Name = "Sletknap";
-            this.Sletknap.Size = new System.Drawing.Size(75, 23);
+            this.Sletknap.Size = new System.Drawing.Size(168, 49);
             this.Sletknap.TabIndex = 2;
             this.Sletknap.Text = "Slet";
             this.Sletknap.UseVisualStyleBackColor = true;
@@ -204,7 +204,7 @@ namespace Bobedre.Views.Ejendomsmæglere
         private System.Windows.Forms.Label Mæglerfirmalabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button Opretknap;
-        private System.Windows.Forms.Button lukknap;
+        private System.Windows.Forms.Button Gemknap;
         private System.Windows.Forms.Button Sletknap;
     }
 }
