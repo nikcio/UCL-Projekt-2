@@ -70,10 +70,9 @@ namespace BoBedre.Infrastructure
 
             using (DbDataReader reader = await sqlCommand.ExecuteReaderAsync())
             {
-                values = new object[reader.FieldCount];
-
                 while (await reader.ReadAsync())
                 {
+                    values = new object[reader.FieldCount];
                     reader.GetValues(values);
                 }
             }
