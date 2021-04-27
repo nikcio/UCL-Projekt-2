@@ -117,7 +117,6 @@ namespace Bobedre.Views.Ejendomme
             this.PrisTextBox.Name = "PrisTextBox";
             this.PrisTextBox.Size = new System.Drawing.Size(150, 31);
             this.PrisTextBox.TabIndex = 5;
-            this.PrisTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // BoligAreal
             // 
@@ -277,7 +276,6 @@ namespace Bobedre.Views.Ejendomme
             this.RenoveringsIdBolig.Size = new System.Drawing.Size(125, 25);
             this.RenoveringsIdBolig.TabIndex = 26;
             this.RenoveringsIdBolig.Text = "RenoveringsId";
-            this.RenoveringsIdBolig.Click += new System.EventHandler(this.label6_Click);
             // 
             // KøkkenCheckbox
             // 
@@ -406,7 +404,6 @@ namespace Bobedre.Views.Ejendomme
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Ejendomme";
             this.Text = "GrundAreal";
-            this.Load += new System.EventHandler(this.Ejendomme_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
