@@ -63,9 +63,11 @@ namespace Bobedre.Views.Ejendomme
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.SletButtonBolig = new System.Windows.Forms.Button();
             this.OpdaterBoligKnap = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             EtagerBolig = new System.Windows.Forms.Label();
             OmbygningsårBolig = new System.Windows.Forms.Label();
             OpretBoligKnap = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Bolignr
@@ -327,7 +329,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // SletButtonBolig
             // 
-            this.SletButtonBolig.Location = new System.Drawing.Point(319, 331);
+            this.SletButtonBolig.Location = new System.Drawing.Point(152, 3);
             this.SletButtonBolig.Name = "SletButtonBolig";
             this.SletButtonBolig.Size = new System.Drawing.Size(148, 34);
             this.SletButtonBolig.TabIndex = 33;
@@ -336,7 +338,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // OpretBoligKnap
             // 
-            OpretBoligKnap.Location = new System.Drawing.Point(12, 331);
+            OpretBoligKnap.Location = new System.Drawing.Point(3, 3);
             OpretBoligKnap.Name = "OpretBoligKnap";
             OpretBoligKnap.Size = new System.Drawing.Size(143, 34);
             OpretBoligKnap.TabIndex = 34;
@@ -345,12 +347,22 @@ namespace Bobedre.Views.Ejendomme
             // 
             // OpdaterBoligKnap
             // 
-            this.OpdaterBoligKnap.Location = new System.Drawing.Point(161, 331);
+            this.OpdaterBoligKnap.Location = new System.Drawing.Point(306, 3);
             this.OpdaterBoligKnap.Name = "OpdaterBoligKnap";
             this.OpdaterBoligKnap.Size = new System.Drawing.Size(152, 34);
             this.OpdaterBoligKnap.TabIndex = 35;
             this.OpdaterBoligKnap.Text = "Opdater Bolig";
             this.OpdaterBoligKnap.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(OpretBoligKnap);
+            this.flowLayoutPanel1.Controls.Add(this.SletButtonBolig);
+            this.flowLayoutPanel1.Controls.Add(this.OpdaterBoligKnap);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 273);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(499, 150);
+            this.flowLayoutPanel1.TabIndex = 36;
             // 
             // Ejendomme
             // 
@@ -358,9 +370,7 @@ namespace Bobedre.Views.Ejendomme
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1462, 770);
-            this.Controls.Add(this.OpdaterBoligKnap);
-            this.Controls.Add(OpretBoligKnap);
-            this.Controls.Add(this.SletButtonBolig);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -397,6 +407,7 @@ namespace Bobedre.Views.Ejendomme
             this.Name = "Ejendomme";
             this.Text = "GrundAreal";
             this.Load += new System.EventHandler(this.Ejendomme_Load);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -435,5 +446,6 @@ namespace Bobedre.Views.Ejendomme
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button SletButtonBolig;
         private System.Windows.Forms.Button OpdaterBoligKnap;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
