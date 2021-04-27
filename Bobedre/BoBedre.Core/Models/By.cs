@@ -8,6 +8,12 @@ namespace BoBedre.Core.Models
 {
     public class By
     {
+        public By(int postNr, string byNavn)
+        {
+            PostNr = postNr;
+            ByNavn = byNavn;
+        }
+
         public int PostNr { get; set; }
         public string ByNavn { get; set; }
     }

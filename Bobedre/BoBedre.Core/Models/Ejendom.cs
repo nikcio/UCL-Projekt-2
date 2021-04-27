@@ -8,6 +8,21 @@ namespace BoBedre.Core.Models
 {
     public class Ejendom
     {
+        public Ejendom(int boligNr, string adresse, int pris, int boligAreal, int? grundAreal, int værelser, int? etager, int byggeår, bool have, string type, int postNr)
+        {
+            BoligNr = boligNr;
+            Adresse = adresse;
+            Pris = pris;
+            BoligAreal = boligAreal;
+            GrundAreal = grundAreal;
+            Værelser = værelser;
+            Etager = etager;
+            Byggeår = byggeår;
+            Have = have;
+            Type = type;
+            PostNr = postNr;
+        }
+
         public int BoligNr { get; set; }
         public string Adresse { get; set; }
         public int Pris { get; set; }
