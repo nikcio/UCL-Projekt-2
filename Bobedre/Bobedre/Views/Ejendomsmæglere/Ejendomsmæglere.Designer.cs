@@ -146,6 +146,15 @@ namespace Bobedre.Views.Ejendomsmæglere
             this.Opretknap.Text = "Opret";
             this.Opretknap.UseVisualStyleBackColor = true;
             // 
+            // lukknap
+            // 
+            this.lukknap.Location = new System.Drawing.Point(84, 3);
+            this.lukknap.Name = "lukknap";
+            this.lukknap.Size = new System.Drawing.Size(75, 23);
+            this.lukknap.TabIndex = 1;
+            this.lukknap.Text = "Luk";
+            this.lukknap.UseVisualStyleBackColor = true;
+            // 
             // Sletknap
             // 
             this.Sletknap.Location = new System.Drawing.Point(165, 3);
