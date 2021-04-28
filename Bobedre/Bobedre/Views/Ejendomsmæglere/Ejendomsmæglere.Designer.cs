@@ -48,14 +48,15 @@ namespace Bobedre.Views.Ejendomsmæglere
             // 
             // MedarbejderNrBox
             // 
-            this.MedarbejderNrBox.Location = new System.Drawing.Point(132, 30);
+            this.MedarbejderNrBox.Location = new System.Drawing.Point(131, 30);
             this.MedarbejderNrBox.Name = "MedarbejderNrBox";
+            this.MedarbejderNrBox.ReadOnly = true;
             this.MedarbejderNrBox.Size = new System.Drawing.Size(100, 23);
             this.MedarbejderNrBox.TabIndex = 0;
             // 
             // NavnBox
             // 
-            this.NavnBox.Location = new System.Drawing.Point(414, 33);
+            this.NavnBox.Location = new System.Drawing.Point(372, 30);
             this.NavnBox.Name = "NavnBox";
             this.NavnBox.Size = new System.Drawing.Size(100, 23);
             this.NavnBox.TabIndex = 3;
@@ -89,7 +90,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             // 
             // Emailbox
             // 
-            this.Emailbox.Location = new System.Drawing.Point(414, 92);
+            this.Emailbox.Location = new System.Drawing.Point(372, 89);
             this.Emailbox.Name = "Emailbox";
             this.Emailbox.Size = new System.Drawing.Size(100, 23);
             this.Emailbox.TabIndex = 4;
@@ -105,7 +106,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             // 
             // Afdelingbox
             // 
-            this.Afdelingbox.Location = new System.Drawing.Point(132, 87);
+            this.Afdelingbox.Location = new System.Drawing.Point(131, 87);
             this.Afdelingbox.Name = "Afdelingbox";
             this.Afdelingbox.Size = new System.Drawing.Size(100, 23);
             this.Afdelingbox.TabIndex = 1;
@@ -113,7 +114,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             // Mæglerfirmabox
             // 
             this.Mæglerfirmabox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Mæglerfirmabox.Location = new System.Drawing.Point(133, 142);
+            this.Mæglerfirmabox.Location = new System.Drawing.Point(131, 139);
             this.Mæglerfirmabox.Name = "Mæglerfirmabox";
             this.Mæglerfirmabox.Size = new System.Drawing.Size(100, 23);
             this.Mæglerfirmabox.TabIndex = 2;
@@ -134,7 +135,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             this.flowLayoutPanel1.Controls.Add(this.Sletknap);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(37, 290);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(532, 98);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(523, 110);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
             // Opretknap
@@ -145,6 +146,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             this.Opretknap.TabIndex = 0;
             this.Opretknap.Text = "Opret";
             this.Opretknap.UseVisualStyleBackColor = true;
+            this.Opretknap.Click += new System.EventHandler(this.Opretknap_Click);
             // 
             // Gemknap
             // 
@@ -154,6 +156,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             this.Gemknap.TabIndex = 1;
             this.Gemknap.Text = "Gem";
             this.Gemknap.UseVisualStyleBackColor = true;
+            this.Gemknap.Click += new System.EventHandler(this.Gemknap_Click);
             // 
             // Sletknap
             // 
@@ -163,6 +166,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             this.Sletknap.TabIndex = 2;
             this.Sletknap.Text = "Slet";
             this.Sletknap.UseVisualStyleBackColor = true;
+            this.Sletknap.Click += new System.EventHandler(this.Sletknap_Click);
             // 
             // Ejendomsmæglere
             // 

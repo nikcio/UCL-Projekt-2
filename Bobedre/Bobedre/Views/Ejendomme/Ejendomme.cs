@@ -90,7 +90,7 @@ namespace Bobedre.Views.Ejendomme
             BolignrLabel.ResetText();
 
             cmd.ExecuteNonQuery();
-            
+
 
         }
 
