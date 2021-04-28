@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,7 +40,7 @@ namespace Bobedre.Views.Ejendomme
 
             if (Regex.IsMatch((BolignrLabel.Text) + (AdresseBolig.Text) + (PrisTextBox.Text) + (BoligArealTextBox.Text)
                 + (GrundArealBoligTextBox.Text) + (HaveBoligTextBox.Text) + (VæreslerBoligTextBox.Text) + (TypeBoligTextBox.Text)
-                + ByggeårBoligTextBox.Text) + (ByggeårBoligTextBox.Text) + (RenoveretBoligCheckBox), @"^[a-z A-Z]+$")
+                + (ByggeårBoligTextBox.Text) + (ByggeårBoligTextBox.Text) + (RenoveretBoligCheckBox), @"^[a-z A-Z]+$"))
             {
 
             }
