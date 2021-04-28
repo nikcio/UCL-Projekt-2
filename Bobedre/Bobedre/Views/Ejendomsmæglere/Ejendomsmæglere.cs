@@ -15,9 +15,6 @@ namespace Bobedre.Views.Ejendomsmæglere
             InitializeComponent();
         }
 
-
-      
-
         /// <summary>
         /// Create an ejendomsmægler to the database
         /// </summary>
@@ -28,7 +25,7 @@ namespace Bobedre.Views.Ejendomsmæglere
         {
             if (TextCheck(Afdelingbox.Text) && TextCheck(Mæglerfirmabox.Text) && TextCheck(NavnBox.Text) && EmailCheck(Emailbox.Text))
             {
-                var message = await NonQuery.Createejendomsmægler(Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text);
+                var message = await NonQuery.CreateEjendomsmægler(Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text);
                 ClearForm.CleanForm(Controls);
                 
 
@@ -94,8 +91,6 @@ namespace Bobedre.Views.Ejendomsmæglere
             }
 
         }
-
-
 
         private bool TextCheck(string textToCheck)
         {

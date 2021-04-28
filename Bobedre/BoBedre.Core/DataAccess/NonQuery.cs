@@ -16,7 +16,7 @@ namespace BoBedre.Core.DataAccess
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("UPDATE Ejendomsmægler set Afdeling=@Afdeling, Mæglerfirma=@Mæglerfirma, Navn=@Navn, Email=@Email WHERE MedarbejderId = @MedarbejderId");
+                SqlCommand cmd = new("UPDATE Ejendomsmægler set Afdeling=@Afdeling, Mæglerfirma=@Mæglerfirma, Navn=@Navn, Email=@Email WHERE MedarbejderId = @MedarbejderId");
                 cmd.Parameters.AddWithValue("@MedarbejderId", medarbejderNr);
                 cmd.Parameters.AddWithValue("@Afdeling", afdeling);
                 cmd.Parameters.AddWithValue("@Mæglerfirma", mæglerfirma);
@@ -38,7 +38,7 @@ namespace BoBedre.Core.DataAccess
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("DELETE from Ejendomsmægler WHERE MedarbejderNr = @MedarbejderNr ");
+                SqlCommand cmd = new("DELETE from Ejendomsmægler WHERE MedarbejderNr = @MedarbejderNr ");
                 cmd.Parameters.AddWithValue("@MedarbejderNr", medarbejderNr);
                                 
                 await DBConnection.ExecuteNonQuery(cmd);
@@ -49,18 +49,17 @@ namespace BoBedre.Core.DataAccess
 
             catch (Exception ex)
             {
-
                 return ex.Message;
             }
 
         }
 
 
-        public static async Task<string> Createejendomsmægler(string afdeling, string mæglerfirma, string navn, string email)
+        public static async Task<string> CreateEjendomsmægler(string afdeling, string mæglerfirma, string navn, string email)
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("INSERT into Ejendomsmægler(Afdeling, Mæglerfirma, Navn, Email) VALUES (@Afdeling, @Mæglerfirma, @Navn, @Email)");
+                SqlCommand cmd = new("INSERT into Ejendomsmægler(Afdeling, Mæglerfirma, Navn, Email) VALUES (@Afdeling, @Mæglerfirma, @Navn, @Email)");
 
                 cmd.Parameters.AddWithValue("@Afdeling", afdeling);
                 cmd.Parameters.AddWithValue("@Mæglerfirma", mæglerfirma);
@@ -71,7 +70,6 @@ namespace BoBedre.Core.DataAccess
 
                 return "Ejendomsmægleren er netop blevet tilføjet";
 
-               
             }
             catch (Exception ex)
             {
@@ -79,17 +77,7 @@ namespace BoBedre.Core.DataAccess
                 return ex.Message;
             }
         }
-
-
-
-
-
-
-
         #endregion
-
-
-
 
         #region Ejendomme
 
