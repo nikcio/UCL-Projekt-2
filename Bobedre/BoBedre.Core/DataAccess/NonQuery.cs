@@ -10,6 +10,7 @@ namespace BoBedre.Core.DataAccess
 {
     public static class NonQuery
     {
+        
         #region Ejendomsmægler
         public static async Task<string> UpdateEjendomsmægler(int medarbejderNr, string afdeling, string mæglerfirma, string navn, string email)
         {
@@ -82,6 +83,15 @@ namespace BoBedre.Core.DataAccess
 
 
 
+
+
+
+        #endregion
+
+
+
+
+        #region Ejendomme
 
 
 
