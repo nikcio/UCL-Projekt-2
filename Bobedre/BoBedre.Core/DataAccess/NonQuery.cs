@@ -33,7 +33,6 @@ namespace BoBedre.Core.DataAccess
             }
         }
 
-
         public static async Task <string> DeleteEjendomsmægler (int medarbejderNr)
         {
             try
@@ -84,5 +83,68 @@ namespace BoBedre.Core.DataAccess
 
 
         #endregion
+
+        #region Kunde
+        public static async Task<string> CreateKunde(string navn, string email)
+        {
+            try
+            {
+                SqlCommand cmd = new("INSERT into Kunde(Navn, Email) VALUES (@Navn, @Email)");
+
+                cmd.Parameters.AddWithValue("@Navn", navn);
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                await DBConnection.ExecuteNonQuery(cmd);
+
+                return "Kunden er netop blevet tilføjet";
+
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
+        }
+        public static async Task<string> DeleteKunde(int KundeNr)
+        {
+            try
+            {
+                SqlCommand cmd = new("DELETE from Kunde WHERE KundeNr = @KundeNr ");
+                cmd.Parameters.AddWithValue("@KundeNr", KundeNr);
+
+                await DBConnection.ExecuteNonQuery(cmd);
+
+                return "Kunden er netop blevet slettet";
+
+            }
+
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+        public static async Task<string> UpdateKunde(int KundeNr, string navn, string email)
+        {
+            try
+            {
+                SqlCommand cmd = new("UPDATE Kunde set Navn=@Navn, Email=@Email WHERE KundeNr = @KundeNr");
+                cmd.Parameters.AddWithValue("@kundeNr", KundeNr);
+                cmd.Parameters.AddWithValue("@Navn", navn);
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                await DBConnection.ExecuteNonQuery(cmd);
+
+                return "Kunden er netop blevet opdateret";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        #endregion
+
+
     }
 }
