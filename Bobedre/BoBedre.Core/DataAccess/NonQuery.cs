@@ -92,8 +92,8 @@ namespace BoBedre.Core.DataAccess
         /// </summary>
         /// <param name="zipcode"></param>
         /// <param name="cityName"></param>
-        /// <returns></returns>
-        public static async Task CreateBy(int zipcode, string cityName)
+        /// <returns>Success</returns>
+        public static async Task<bool> CreateBy(int zipcode, string cityName)
         {
             try
             {
@@ -103,8 +103,13 @@ namespace BoBedre.Core.DataAccess
                 cmd.Parameters.AddWithValue("@cityname", cityName);
 
                 await DBConnection.ExecuteNonQuery(cmd);
+
+                return true;
             }
-            catch { }
+            catch 
+            {
+                return false;
+            }
         }
         #endregion
     }
