@@ -63,17 +63,16 @@ namespace BoBedre.Infrastructure
         public static async Task<object[]> ReadElement(SqlCommand sqlCommand)
         {
             SqlConnection Connection = new(ConnectionString);
-            await Connection.OpenAsync();
-
             object[] values = null;
             sqlCommand.Connection = Connection;
 
+            await Connection.OpenAsync();
+
             using (DbDataReader reader = await sqlCommand.ExecuteReaderAsync())
             {
-                values = new object[reader.FieldCount];
-
                 while (await reader.ReadAsync())
                 {
+                    values = new object[reader.FieldCount];
                     reader.GetValues(values);
                 }
             }
@@ -91,9 +90,10 @@ namespace BoBedre.Infrastructure
         public static async Task<List<object[]>> ReadElements(SqlCommand sqlCommand)
         {
             SqlConnection Connection = new(ConnectionString);
-            await Connection.OpenAsync();
-
+            sqlCommand.Connection = Connection;
             var valueList = new List<object[]>();
+
+            await Connection.OpenAsync();
 
             using (DbDataReader reader = await sqlCommand.ExecuteReaderAsync())
             {
@@ -103,7 +103,6 @@ namespace BoBedre.Infrastructure
                     reader.GetValues(values);
                     valueList.Add(values);
                 }
-                
             }
 
             await Connection.CloseAsync();

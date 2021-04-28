@@ -49,7 +49,7 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         public static async Task<Ejendomsmægler> GetEjendomsmæglerByMedarbjederNr(int medarbejderNr)
         {
-            var sqlCommand = new SqlCommand("SELECT * FROM Ejendommægler WHERE MedarbjederNr=@medarbejderNr");
+            var sqlCommand = new SqlCommand("SELECT * FROM Ejendomsmægler WHERE MedarbejderNr=@medarbejderNr");
             sqlCommand.Parameters.AddWithValue("@medarbejderNr", medarbejderNr);
             return CreateEjendomsmæglerFromData(await DBConnection.ReadElement(sqlCommand));
         }
@@ -79,7 +79,7 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         public static async Task<By> GetByByPostNr(int postNr)
         {
-            var sqlCommand = new SqlCommand("SELECT * FROM By WHERE PostNr=@postNr");
+            var sqlCommand = new SqlCommand("SELECT * FROM [By] WHERE PostNr=@postNr");
             sqlCommand.Parameters.AddWithValue("@postNr", postNr);
             return CreateByFromData(await DBConnection.ReadElement(sqlCommand));
         }
@@ -90,7 +90,7 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         public static async Task<By[]> GetByAll()
         {
-            var sqlCpmmand = new SqlCommand("SELECT * FROM By");
+            var sqlCpmmand = new SqlCommand("SELECT * FROM [By]");
             var byer = await DBConnection.ReadElements(sqlCpmmand);
             var output = new List<By>();
             foreach (var by in byer)
@@ -133,14 +133,14 @@ namespace BoBedre.Core.DataAccess
 
         #region Renorvering
         /// <summary>
-        /// Gets a renorvering based on the RenorveringsNr
+        /// Gets a renorvering based on the RenorveringsId
         /// </summary>
-        /// <param name="renorveringsNr"></param>
+        /// <param name="renorveringsId"></param>
         /// <returns></returns>
-        public static async Task<Renorvering> GetRenorveringByRenorveringsNr(int renorveringsNr)
+        public static async Task<Renorvering> GetRenorveringByRenorveringsId(int renorveringsId)
         {
-            var sqlCommand = new SqlCommand("SELECT * FROM Renorvering WHERE RenorveringsNr=@renorveringsNr");
-            sqlCommand.Parameters.AddWithValue("@renorveringsNr", renorveringsNr);
+            var sqlCommand = new SqlCommand("SELECT * FROM Renorvering WHERE RenorveringsId=@renorveringsId");
+            sqlCommand.Parameters.AddWithValue("@renorveringsId", renorveringsId);
             return CreateRenorveringFromData(await DBConnection.ReadElement(sqlCommand));
         }
 
@@ -199,19 +199,30 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         private static Ejendom CreateEjendomFromData(object[] values)
         {
-            return new Ejendom(
-                (int)values[0],
-                (string)values[1],
-                (int)values[2],
-                (int)values[3],
-                (int?)values[4],
-                (int)values[5],
-                (int?)values[6],
-                (int)values[7],
-                (bool)values[8],
-                (string)values[9],
-                (int)values[10]
-                );
+            if(values == null)
+            {
+                return null;
+            }
+            else if(values.Length == typeof(Ejendom).GetProperties().Length)
+            {
+                return new Ejendom(
+                                (int)values[0],
+                                (string)values[1],
+                                (int)values[2],
+                                (int)values[3],
+                                (int?)values[4],
+                                (int)values[5],
+                                (int?)values[6],
+                                (int)values[7],
+                                (bool)values[8],
+                                (string)values[9],
+                                (int)values[10]
+                                );
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("values", "values datapoints don't match model");
+            }
         }
 
         /// <summary>
@@ -221,10 +232,22 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         private static By CreateByFromData(object[] values)
         {
-            return new By(
+            if(values == null)
+            {
+                return null;
+            }
+            else if(values.Length == typeof(By).GetProperties().Length)
+            {
+                return new By(
                 (int)values[0],
                 (string)values[1]
                 );
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("values", "values datapoints don't match model");
+            }
+
         }
 
         /// <summary>
@@ -234,13 +257,25 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         private static Ejendomsmægler CreateEjendomsmæglerFromData(object[] values)
         {
-            return new Ejendomsmægler(
-                (int)values[0],
-                (string)values[1],
-                (string)values[2],
-                (string)values[3],
-                (string)values[4]
-                );
+            if(values == null)
+            {
+                return null;
+            }
+            else if(values.Length == typeof(Ejendomsmægler).GetProperties().Length)
+            {
+                return new Ejendomsmægler(
+                                (int)values[0],
+                                (string)values[1],
+                                (string)values[2],
+                                (string)values[3],
+                                (string)values[4]
+                                );
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("values", "values datapoints don't match model");
+            }
+            
         }
 
         /// <summary>
@@ -250,12 +285,23 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         private static Kunde CreateKundeFromData(object[] values)
         {
-            return new Kunde(
+            if(values == null)
+            {
+                return null;
+            }
+            else if(values.Length == typeof(Kunde).GetProperties().Length)
+            {
+                return new Kunde(
                 (int)values[0],
                 (string)values[1],
                 (string)values[2],
                 (string)values[3]
                 );
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("values", "values datapoints don't match model");
+            }
         }
 
         /// <summary>
@@ -265,7 +311,13 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         private static Renorvering CreateRenorveringFromData(object[] values)
         {
-            return new Renorvering(
+            if(values == null)
+            {
+                return null;
+            }
+            else if(values.Length == typeof(Renorvering).GetProperties().Length)
+            {
+                return new Renorvering(
                 (int)values[0],
                 (bool)values[1],
                 (bool)values[2],
@@ -274,6 +326,11 @@ namespace BoBedre.Core.DataAccess
                 (string)values[5],
                 (int)values[6]
                 );
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("values", "values datapoints don't match model");
+            }
         }
 
         /// <summary>
@@ -283,13 +340,24 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         private static Sag CreateSagFromData(object[] values)
         {
-            return new Sag(
-                (int)values[0],
-                (int)values[1],
-                (int)values[2],
-                (int)values[3],
-                (int)values[4]
-                );
+            if(values == null)
+            {
+                return null;
+            }
+            else if(values.Length == typeof(Sag).GetProperties().Length)
+            {
+                return new Sag(
+                                (int)values[0],
+                                (int)values[1],
+                                (int)values[2],
+                                (int)values[3],
+                                (int)values[4]
+                                );
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("values", "values datapoints don't match model");
+            }
         }
         #endregion
     }
