@@ -21,10 +21,10 @@ namespace Bobedre.Views.Ejendomme
 
         private void OpretBoligKnap_Click(object sender, EventArgs e)
         {
-           
+
             String sSQL = "INSERT INTO Ejendome VALUES (@Bolignr, @Adresse, @Pris, @Boligareal, @Grundareal, @have, @værelser, @Etager, @Type, @Byggeår, @Renoveret, @Køkken, @Badeværelse, @Andet, @Ombygningsår, @Detaljier, @RenoveringsId)";
             SqlCommand cmd = new SqlCommand(sSQL);
-            
+
             cmd.Parameters.AddWithValue("@Bolignr", int.Parse(BolignrLabel.Text));
             cmd.Parameters.AddWithValue("@Adresse", (AdresseBolig.Text));
             cmd.Parameters.AddWithValue("@Pris", int.Parse(PrisTextBox.Text));
@@ -60,13 +60,13 @@ namespace Bobedre.Views.Ejendomme
             BolignrLabel.ResetText();
 
             cmd.ExecuteNonQuery();
-            
+
 
         }
 
         private void OpdaterBoligKnap_Click(object sender, EventArgs e)
         {
-            
+
             string sSQL = "UPDATE Ejendome set (Bolingnr=@Bolignr, Adresse=@Adresse, Pris=@Pris, Boligareal=@Boligareal, Grundareal=@Grundareal, Have=@Have, Værelser=@værelser, Etager=@Etager, Type=@Type, Byggeår=@Byggeår, Renoveret=@Renoveret, Køkken=@Køkken, Badeværelse=@Badeværelse, Andet=@Andet, Ombygningsår=@Ombygningsår, Detalijer=@Detaljier, RenoveringsId=@RenoveringsId)";
             SqlCommand cmd = new SqlCommand(sSQL);
 
