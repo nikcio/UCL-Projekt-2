@@ -84,5 +84,33 @@ namespace BoBedre.Core.DataAccess
 
 
         #endregion
+
+        #region By
+
+        /// <summary>
+        /// Creates a by
+        /// </summary>
+        /// <param name="zipcode"></param>
+        /// <param name="cityName"></param>
+        /// <returns>Success</returns>
+        public static async Task<bool> CreateBy(int zipcode, string cityName)
+        {
+            try
+            {
+                SqlCommand cmd = new("INSERT into [By] VALUES (@zipcode, @cityName)");
+
+                cmd.Parameters.AddWithValue("@zipcode", zipcode);
+                cmd.Parameters.AddWithValue("@cityname", cityName);
+
+                await DBConnection.ExecuteNonQuery(cmd);
+
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+        }
+        #endregion
     }
 }
