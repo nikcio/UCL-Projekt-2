@@ -8,6 +8,8 @@ namespace Bobedre.Views.Ejendomsmæglere
 {
     public partial class Ejendomsmæglere : Form
     {
+        private readonly string BasicTextRegex = @"^[a-å A-Å]+$";
+
         public Ejendomsmæglere(Models.Action action, Baseform baseform)
         {
             InitializeComponent();
@@ -19,11 +21,11 @@ namespace Bobedre.Views.Ejendomsmæglere
         /// </summary>
         private void CleanForm()
         {
-            foreach (var c in this.Controls)
+            foreach (var control in Controls)
             {
-                if (c is TextBox)
+                if (control is TextBox box)
                 {
-                    ((TextBox)c).Text = String.Empty;
+                    box.Text = String.Empty;
                 }
             }
 
@@ -37,38 +39,33 @@ namespace Bobedre.Views.Ejendomsmæglere
         /// <returns></returns>
         private async void Opretknap_Click(object sender, EventArgs e)
         {
-
-            try
+            if (Regex.IsMatch((Afdelingbox.Text) + (Mæglerfirmabox.Text) + (NavnBox.Text), BasicTextRegex))
             {
-                SqlCommand cmd = new SqlCommand("INSERT into Ejendomsmægler(Afdeling, Mæglerfirma, Navn, Email) VALUES (@Afdeling, @Mæglerfirma, @Navn, @Email)");
-
-                cmd.Parameters.AddWithValue("@Afdeling", Afdelingbox.Text);
-                cmd.Parameters.AddWithValue("@Mæglerfirma", Mæglerfirmabox.Text);
-                cmd.Parameters.AddWithValue("@Navn", NavnBox.Text);
-                cmd.Parameters.AddWithValue("@Email", Emailbox.Text);
-
-                if (Regex.IsMatch((Afdelingbox.Text) + (Mæglerfirmabox.Text) + (NavnBox.Text), @"^[a-å A-Å]+$"))
+                try
                 {
+                    SqlCommand cmd = new SqlCommand("INSERT into Ejendomsmægler(Afdeling, Mæglerfirma, Navn, Email) VALUES (@Afdeling, @Mæglerfirma, @Navn, @Email)");
+
+                    cmd.Parameters.AddWithValue("@Afdeling", Afdelingbox.Text);
+                    cmd.Parameters.AddWithValue("@Mæglerfirma", Mæglerfirmabox.Text);
+                    cmd.Parameters.AddWithValue("@Navn", NavnBox.Text);
+                    cmd.Parameters.AddWithValue("@Email", Emailbox.Text);
+
                     await DBConnection.ExecuteNonQuery(cmd);
-                    int.TryParse(MedarbejderNrBox.Text, out int x);
                     MessageBox.Show("Ejendomsmægleren er netop tilføjet");
 
+                    CleanForm();
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Ejendomsmægler er ikke oprettet pga. brug af forkerte tegn");
 
+                    MessageBox.Show(ex.Message);
                 }
-                CleanForm();
-
-
             }
-            catch (Exception ex)
+            else
             {
+                MessageBox.Show("Ejendomsmægler er ikke oprettet pga. brug af forkerte tegn");
 
-                MessageBox.Show(ex.Message);
             }
-
         }
 
 
@@ -80,24 +77,31 @@ namespace Bobedre.Views.Ejendomsmæglere
         /// <returns></returns>
         private async void Sletknap_Click(object sender, EventArgs e)
         {
-            try
+            if(int.TryParse(MedarbejderNrBox.Text, out int medarbejderNr))
             {
-                SqlCommand cmd = new SqlCommand("Delete from Ejendomsmægler WHERE MedarbejderNr = @MedarbejderNr ");
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("DELETE from Ejendomsmægler WHERE MedarbejderNr = @MedarbejderNr ");
 
-                cmd.Parameters.AddWithValue("@MedarbejderNr", int.Parse(MedarbejderNrBox.Text));
+                    cmd.Parameters.AddWithValue("@MedarbejderNr", medarbejderNr);
 
-                MessageBox.Show("Ejendomsmægleren er nu slettet");
-                await DBConnection.ExecuteNonQuery(cmd);
+                    MessageBox.Show("Ejendomsmægleren er nu slettet");
+                    await DBConnection.ExecuteNonQuery(cmd);
 
-                CleanForm();
+                    CleanForm();
 
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-
-                MessageBox.Show(ex.Message);
+                MedarbejderNrBox.ResetText();
+                MessageBox.Show("MedarbejderNr skal være et nummer");
             }
-
         }
 
         /// <summary>
@@ -108,35 +112,41 @@ namespace Bobedre.Views.Ejendomsmæglere
         /// <returns></returns>
         private async void Gemknap_Click(object sender, EventArgs e)
         {
-            try
+            if (Regex.IsMatch((Afdelingbox.Text) + (Mæglerfirmabox.Text) + (NavnBox.Text), BasicTextRegex))
             {
-                SqlCommand cmd = new SqlCommand("UPDATE Ejendomsmægler set Afdeling=@Afdeling, Mæglerfirma= @Mæglerfirma, Navn=@Navn, Email=@Email WHERE MedarbejderId = @MedarbejderId");
-                cmd.Parameters.AddWithValue("@MedarbejderId", int.Parse(MedarbejderNrBox.Text));
-                cmd.Parameters.AddWithValue("@Afdeling", Afdelingbox.Text);
-                cmd.Parameters.AddWithValue("@Mæglerfirma", Mæglerfirmabox.Text);
-                cmd.Parameters.AddWithValue("@Navn", NavnBox.Text);
-                cmd.Parameters.AddWithValue("@Email", Emailbox.Text);
-
-                if (Regex.IsMatch((Afdelingbox.Text) + (Mæglerfirmabox.Text) + (NavnBox.Text), @"^[a-å A-Å]+$"))
+                if (int.TryParse(MedarbejderNrBox.Text, out int medarbejderNr))
                 {
-                    await DBConnection.ExecuteNonQuery(cmd);
-                    MessageBox.Show("Ejendomsmægleren er netop blevet opdateret");
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("UPDATE Ejendomsmægler set Afdeling=@Afdeling, Mæglerfirma=@Mæglerfirma, Navn=@Navn, Email=@Email WHERE MedarbejderId = @MedarbejderId");
+                        cmd.Parameters.AddWithValue("@MedarbejderId", medarbejderNr);
+                        cmd.Parameters.AddWithValue("@Afdeling", Afdelingbox.Text);
+                        cmd.Parameters.AddWithValue("@Mæglerfirma", Mæglerfirmabox.Text);
+                        cmd.Parameters.AddWithValue("@Navn", NavnBox.Text);
+                        cmd.Parameters.AddWithValue("@Email", Emailbox.Text);
 
+                        await DBConnection.ExecuteNonQuery(cmd);
+                        MessageBox.Show("Ejendomsmægleren er netop blevet opdateret");
+
+                        CleanForm();
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Ejendomsmægler er ikke blevet opdateret pga. brug af forkerte tegn");
-
+                    MedarbejderNrBox.ResetText();
+                    MessageBox.Show("MedarbejderNr skal være et nummer");
                 }
-                CleanForm();
             }
-            catch (Exception ex)
+            else
             {
-
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Ejendomsmægler er ikke blevet opdateret pga. brug af forkerte tegn");
             }
-
-
+            
         }
     }
 }
