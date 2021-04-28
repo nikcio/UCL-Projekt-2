@@ -45,7 +45,7 @@ namespace Bobedre.Views.Ejendomme
             cmd.Parameters.AddWithValue("@Renoveret", (RenoveretBoligCheckBox.Checked));
             cmd.Parameters.AddWithValue("@Køkken", (KøkkenCheckbox.Checked));
             cmd.Parameters.AddWithValue("@Badeværelse", (Badeværelsecheckbox.Checked));
-            cmd.Parameters.AddWithValue("@Andet", (Andetboligtjekbox.Checked));
+            cmd.Parameters.AddWithValue("@Andet", (Andetcheckbox.Checked));
             cmd.Parameters.AddWithValue("@Ombygningsår", int.Parse(OmbygningsårLabel.Text));
             cmd.Parameters.AddWithValue("@Detaljier", (DetalijerLabel.Text));
             cmd.Parameters.AddWithValue("@Renoveringsid", int.Parse(RenoveringsIdLabel.Text));
@@ -118,7 +118,7 @@ namespace Bobedre.Views.Ejendomme
             cmd.Parameters.AddWithValue("@Renoveret", (RenoveretBoligCheckBox.Checked));
             cmd.Parameters.AddWithValue("@Køkken", (KøkkenCheckbox.Checked));
             cmd.Parameters.AddWithValue("@Badeværelse", (Badeværelsecheckbox.Checked));
-            cmd.Parameters.AddWithValue("@Andet", (Andetboligtjekbox.Checked));
+            cmd.Parameters.AddWithValue("@Andet", (Andetcheckbox.Checked));
             cmd.Parameters.AddWithValue("@Ombygningsår", int.Parse(OmbygningsårLabel.Text));
             cmd.Parameters.AddWithValue("@Detaljier", (DetalijerLabel.Text));
             cmd.Parameters.AddWithValue("@Renoveringsid", (RenoveringsIdLabel.Text));
@@ -164,7 +164,7 @@ namespace Bobedre.Views.Ejendomme
 
         private void Andetboligtjekbox_CheckEnabling()
         {
-            Andetboligtjekbox.Enabled = RenoveretBoligCheckBox.Checked;
+            Andetcheckbox.Enabled = RenoveretBoligCheckBox.Checked;
         }
 
 
@@ -199,41 +199,6 @@ namespace Bobedre.Views.Ejendomme
         }
 
 
-
-        private void RenoveretBoligCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            Andetcheckbox_CheckEnabling();
-            KøkkenCheckbox_checkEnabling();
-            Badeværelsecheckbox_CheckEnabling();
-            OmbygningsårLabel_Enabled();
-            DetalijerLabel_Enabled();
-            RenoveringsIdLabel_Enabled();
-        }
-        private void Andetcheckbox_CheckEnabling()
-        {
-            Andetcheckbox.Enabled = RenoveretBoligCheckBox.Checked;
-        }
-        private void KøkkenCheckbox_checkEnabling()
-        {
-            KøkkenCheckbox.Enabled = RenoveretBoligCheckBox.Checked;
-        }
-        private void Badeværelsecheckbox_CheckEnabling()
-        {
-            Badeværelsecheckbox.Enabled = RenoveretBoligCheckBox.Checked;
-        }
-        private void OmbygningsårLabel_Enabled()
-        {
-            OmbygningsårLabel.Enabled = RenoveretBoligCheckBox.Checked;
-
-        }
-        private void DetalijerLabel_Enabled()
-        {
-            DetalijerLabel.Enabled = RenoveretBoligCheckBox.Checked;
-        }
-        private void RenoveringsIdLabel_Enabled()
-        {
-            RenoveringsIdLabel.Enabled = RenoveretBoligCheckBox.Checked;
-        }
 
 
 

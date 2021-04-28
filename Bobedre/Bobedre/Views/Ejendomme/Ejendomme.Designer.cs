@@ -286,7 +286,7 @@ namespace Bobedre.Views.Ejendomme
             this.RenoveretBoligCheckBox.TabIndex = 20;
             this.RenoveretBoligCheckBox.Text = "Renoveret";
             this.RenoveretBoligCheckBox.UseVisualStyleBackColor = true;
-            this.RenoveretBoligCheckBox.CheckedChanged += new System.EventHandler(this.RenoveretBoligCheckBox_CheckedChanged);
+            
             // 
             // DetaljerBolig
             // 
