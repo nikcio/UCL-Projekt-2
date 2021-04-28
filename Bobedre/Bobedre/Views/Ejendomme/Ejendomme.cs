@@ -27,7 +27,7 @@ namespace Bobedre.Views.Ejendomme
            
 
 
-            String sSQL = "INSERT INTO Ejendome(Adresse, Pris, Boligareal, Grundareal, have, værelser, Etager, Type, Byggeår, Renoveret, Køkken, Badeværelse, " +
+            string sSQL = "INSERT INTO Ejendome(Adresse, Pris, Boligareal, Grundareal, have, værelser, Etager, Type, Byggeår, Renoveret, Køkken, Badeværelse, " +
                 "Andet, Ombygningsår, Detaljier, RenoveringsId) VALUES (@Adresse, @Pris, @Boligareal, @Grundareal, @have, @værelser, @Etager, @Type, @Byggeår, @Renoveret, @Køkken, @Badeværelse, " +
                 "@Andet, @Ombygningsår, @Detaljier, @RenoveringsId)";
             SqlCommand cmd = new SqlCommand(sSQL);
@@ -56,7 +56,8 @@ namespace Bobedre.Views.Ejendomme
             if ((TextCheck(AdresseBolig.Text) && TalCheck(PrisTextBox.Text) && TalCheck(BoligArealTextBox.Text) && TalCheck(GrundArealBoligTextBox.Text) && TextCheck(HaveBoligTextBox.Text)
              && TalCheck(VæreslerBoligTextBox.Text) && TextCheck(TypeBoligTextBox.Text) && TalCheck(ByggeårBoligTextBox.Text)))
             {      
-                if (TalCheck(OmbygningsårLabel.Text) && TextCheck(DetalijerLabel.Text) && TalCheck(RenoveringsIdLabel.Text))
+                if (RenoveretBoligCheckBox.Checked && 
+                    (TalCheck(OmbygningsårLabel.Text) && TextCheck(DetalijerLabel.Text) && TalCheck(RenoveringsIdLabel.Text)))
                 {
 
                     cmd.ExecuteNonQuery();
