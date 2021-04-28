@@ -31,6 +31,60 @@ namespace BoBedre.Core.DataAccess
                 return ex.Message;
             }
         }
+
+
+        public static async Task <string> DeleteEjendomsmægler (int medarbejderNr)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("DELETE from Ejendomsmægler WHERE MedarbejderNr = @MedarbejderNr ");
+                cmd.Parameters.AddWithValue("@MedarbejderNr", medarbejderNr);
+                                
+                await DBConnection.ExecuteNonQuery(cmd);
+
+                return "Ejendomsmægleren er netop blevet slettet";
+
+            }
+
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
+
+        }
+
+
+        public static async Task<string> Createejendomsmægler(string afdeling, string mæglerfirma, string navn, string email)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("INSERT into Ejendomsmægler(Afdeling, Mæglerfirma, Navn, Email) VALUES (@Afdeling, @Mæglerfirma, @Navn, @Email)");
+
+                cmd.Parameters.AddWithValue("@Afdeling", afdeling);
+                cmd.Parameters.AddWithValue("@Mæglerfirma", mæglerfirma);
+                cmd.Parameters.AddWithValue("@Navn", navn);
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                await DBConnection.ExecuteNonQuery(cmd);
+
+                return "Ejendomsmægleren er netop blevet tilføjet";
+
+               
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
+        }
+
+
+
+
+
+
+
         #endregion
     }
 }

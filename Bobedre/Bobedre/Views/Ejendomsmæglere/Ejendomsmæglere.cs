@@ -1,9 +1,6 @@
 ﻿using BoBedre.Core.DataAccess;
-using BoBedre.Infrastructure;
 using System;
-using System.Data.SqlClient;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Bobedre.Views.Ejendomsmæglere
@@ -19,20 +16,7 @@ namespace Bobedre.Views.Ejendomsmæglere
         }
 
 
-        /// <summary>
-        /// Clears all textboxes in the specific form window
-        /// </summary>
-        private void CleanForm()
-        {
-            foreach (var control in Controls)
-            {
-                if (control is TextBox box)
-                {
-                    box.Text = String.Empty;
-                }
-            }
-
-        }
+      
 
         /// <summary>
         /// Create an ejendomsmægler to the database
@@ -44,30 +28,16 @@ namespace Bobedre.Views.Ejendomsmæglere
         {
             if (TextCheck(Afdelingbox.Text) && TextCheck(Mæglerfirmabox.Text) && TextCheck(NavnBox.Text) && EmailCheck(Emailbox.Text))
             {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("INSERT into Ejendomsmægler(Afdeling, Mæglerfirma, Navn, Email) VALUES (@Afdeling, @Mæglerfirma, @Navn, @Email)");
+                var message = await NonQuery.Createejendomsmægler(Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text);
+                ClearForm.CleanForm(Controls);
+                
 
-                    cmd.Parameters.AddWithValue("@Afdeling", Afdelingbox.Text);
-                    cmd.Parameters.AddWithValue("@Mæglerfirma", Mæglerfirmabox.Text);
-                    cmd.Parameters.AddWithValue("@Navn", NavnBox.Text);
-                    cmd.Parameters.AddWithValue("@Email", Emailbox.Text);
+                MessageBox.Show(message);
 
-                    await DBConnection.ExecuteNonQuery(cmd);
-                    MessageBox.Show("Ejendomsmægleren er netop tilføjet");
-
-                    CleanForm();
-                }
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show(ex.Message);
-                }
             }
             else
             {
-                MessageBox.Show("Ejendomsmægler er ikke oprettet pga. brug af forkerte tegn");
-
+                MessageBox.Show("Ejendomsmægler er ikke blevet oprettet pga. brug af forkerte tegn og alle felter skal udfyldes");
             }
         }
 
@@ -80,25 +50,14 @@ namespace Bobedre.Views.Ejendomsmæglere
         /// <returns></returns>
         private async void Sletknap_Click(object sender, EventArgs e)
         {
-            if(int.TryParse(MedarbejderNrBox.Text, out int medarbejderNr))
+
+            if (int.TryParse(MedarbejderNrBox.Text, out int medarbejderNr))
             {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("DELETE from Ejendomsmægler WHERE MedarbejderNr = @MedarbejderNr ");
+                var message = await NonQuery.DeleteEjendomsmægler(medarbejderNr);
 
-                    cmd.Parameters.AddWithValue("@MedarbejderNr", medarbejderNr);
+                ClearForm.CleanForm(Controls);
+                MessageBox.Show(message);
 
-                    MessageBox.Show("Ejendomsmægleren er nu slettet");
-                    await DBConnection.ExecuteNonQuery(cmd);
-
-                    CleanForm();
-
-                }
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show(ex.Message);
-                }
             }
             else
             {
@@ -120,7 +79,7 @@ namespace Bobedre.Views.Ejendomsmæglere
                 if (int.TryParse(MedarbejderNrBox.Text, out int medarbejderNr))
                 {
                     var message = await NonQuery.UpdateEjendomsmægler(medarbejderNr, Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text);
-                    CleanForm();
+                    ClearForm.CleanForm(Controls);
                     MessageBox.Show(message);
                 }
                 else
@@ -135,6 +94,8 @@ namespace Bobedre.Views.Ejendomsmæglere
             }
 
         }
+
+
 
         private bool TextCheck(string textToCheck)
         {
