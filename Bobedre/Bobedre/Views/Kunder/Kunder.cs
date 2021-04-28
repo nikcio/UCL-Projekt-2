@@ -22,6 +22,11 @@ namespace Bobedre.Views.Kunder
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Create an Kunde to the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void KundeOpretKnap_Click(object sender, EventArgs e)
         {
             if ((TextCheck(KundeNavnBox.Text)) && EmailCheck(KundeEmailBox.Text))
@@ -37,16 +42,76 @@ namespace Bobedre.Views.Kunder
             }
         }
 
+        /// <summary>
+        /// Deletes a specefic Kunde from the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void KundeSletKnap_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(KundeNrBox.Text, out int KundeNr))
+            {
+                var message = await NonQuery.DeleteKunde(KundeNr);
+                ClearForm.CleanForm(Controls);
+
+                MessageBox.Show(message);
+            }
+            else
+            {
+                KundeNrBox.ResetText();
+                MessageBox.Show("KundeNr skal være et tal");
+            }
+
+        }
+
+        /// <summary>
+        /// Updates a specefic Kunde from the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void KundeGemKnap_Click(object sender, EventArgs e)
+        {
+            if(TextCheck(KundeNavnBox.Text) && EmailCheck(KundeEmailBox.Text))
+            {
+                if (int.TryParse(KundeNrBox.Text, out int KundeNr))
+                {
+                    var message = await NonQuery.UpdateKunde(KundeNr, KundeNavnBox.Text, KundeEmailBox.Text);
+                    ClearForm.CleanForm(Controls);
+
+                    MessageBox.Show(message);
+                }
+                else
+                {
+                    KundeNrBox.ResetText();
+                    MessageBox.Show("KundeNr skal være et tal");
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Kunden er ikke blevet opdateret pga. brug af forkerte tegn og alle felter skal udfyldes");
+            }
+        }
+
+        /// <summary>
+        /// Checking text requirements
+        /// </summary>
+        /// <param name="textToCheck"></param>
+        /// <returns></returns>
         private bool TextCheck(string textToCheck)
         {
             return Regex.IsMatch(textToCheck, BasicTextRegex);
         }
 
+        /// <summary>
+        /// Checking emailtextbox requirements
+        /// </summary>
+        /// <param name="textToCheck"></param>
+        /// <returns></returns>
         private bool EmailCheck(string textToCheck)
         {
             return Regex.IsMatch(textToCheck, EmailRegex);
         }
-
 
     }
 
