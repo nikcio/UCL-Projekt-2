@@ -90,7 +90,7 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         public static async Task<By[]> GetByAll()
         {
-            var sqlCpmmand = new SqlCommand("SELECT * FROM By");
+            var sqlCpmmand = new SqlCommand("SELECT * FROM [By]");
             var byer = await DBConnection.ReadElements(sqlCpmmand);
             var output = new List<By>();
             foreach (var by in byer)

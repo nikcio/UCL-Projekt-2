@@ -1,10 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using BoBedre.Core.DataAccess;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
-using BoBedre.Core.DataAccess;
 
 namespace BoBedre.Core.Test.DataAccess
 {
@@ -19,6 +15,12 @@ namespace BoBedre.Core.Test.DataAccess
 
             Assert.IsNull(await Fetch.GetEjendomByBoligNr(boligNr), "Ejendom does not exist and should return null");
         }
+
+        [TestMethod]
+        public async Task GetEjendomAll_NotNull()
+        {
+            Assert.IsNotNull(await Fetch.GetEjendomAll(), "GetEjendomAll should not return null but a empty array if no elements are in the database");
+        }
         #endregion
 
         #region Ejendomsmægler
@@ -28,6 +30,12 @@ namespace BoBedre.Core.Test.DataAccess
             int medarbejderNr = int.MaxValue;
 
             Assert.IsNull(await Fetch.GetEjendomsmæglerByMedarbjederNr(medarbejderNr), "Ejendomsmægler does not exist and should return null");
+        }
+
+        [TestMethod]
+        public async Task GetEjendomsmæglerAll_NotNull()
+        {
+            Assert.IsNotNull(await Fetch.GetEjendomsmæglerAll(), "GetEjendomsmæglerAll should not return null but a empty array if no elements are in the database");
         }
         #endregion
 
@@ -39,6 +47,12 @@ namespace BoBedre.Core.Test.DataAccess
 
             Assert.IsNull(await Fetch.GetByByPostNr(postNr), "By does not exist and should return null");
         }
+
+        [TestMethod]
+        public async Task GetByAll_NotNull()
+        {
+            Assert.IsNotNull(await Fetch.GetByAll(), "GetByAll should not return null but a empty array if no elements are in the database");
+        }
         #endregion
 
         #region Kunde
@@ -48,6 +62,12 @@ namespace BoBedre.Core.Test.DataAccess
             int kundeNr = int.MaxValue;
 
             Assert.IsNull(await Fetch.GetKundeByKundeNr(kundeNr), "Kunde does not exist and should return null");
+        }
+
+        [TestMethod]
+        public async Task GetKundeAll_NotNull()
+        {
+            Assert.IsNotNull(await Fetch.GetKundeAll(), "GetKundeAll should not return null but a empty array if no element are in the database");
         }
         #endregion
 
@@ -59,6 +79,12 @@ namespace BoBedre.Core.Test.DataAccess
 
             Assert.IsNull(await Fetch.GetRenorveringByRenorveringsId(renorveringsId), "Renorvering does not exist and should return null");
         }
+
+        [TestMethod]
+        public async Task GetRenorveringAll_NotNull()
+        {
+            Assert.IsNotNull(await Fetch.GetRenorveringAll(), "GetRenorveringAll should not return null but a empty array if no elements are in the database");
+        }
         #endregion
 
         #region Sag
@@ -68,6 +94,12 @@ namespace BoBedre.Core.Test.DataAccess
             int sagNr = int.MaxValue;
 
             Assert.IsNull(await Fetch.GetSagBySagNr(sagNr), "Sag does not exist and should return null");
+        }
+
+        [TestMethod]
+        public async Task GetSagAll_NotNull()
+        {
+            Assert.IsNotNull(await Fetch.GetSagAll(), "GetSagAll Should not return null but a empty array if no elements are in the database");
         }
         #endregion
     }
