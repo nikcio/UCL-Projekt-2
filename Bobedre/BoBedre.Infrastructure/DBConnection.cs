@@ -64,16 +64,19 @@ namespace BoBedre.Infrastructure
         {
             SqlConnection Connection = new(ConnectionString);
             await Connection.OpenAsync();
-            var reader = await sqlCommand.ExecuteReaderAsync();
 
-            object[] values = new object[reader.FieldCount];
+            object[] values = null;
+            sqlCommand.Connection = Connection;
 
-            while (await reader.ReadAsync())
+            using (DbDataReader reader = await sqlCommand.ExecuteReaderAsync())
             {
-                reader.GetValues(values);
-            }
+                values = new object[reader.FieldCount];
 
-            await reader.CloseAsync();
+                while (await reader.ReadAsync())
+                {
+                    reader.GetValues(values);
+                }
+            }
 
             await Connection.CloseAsync();
 
@@ -89,18 +92,19 @@ namespace BoBedre.Infrastructure
         {
             SqlConnection Connection = new(ConnectionString);
             await Connection.OpenAsync();
-            var reader = await sqlCommand.ExecuteReaderAsync();
 
             var valueList = new List<object[]>();
 
-            while (await reader.ReadAsync())
+            using (DbDataReader reader = await sqlCommand.ExecuteReaderAsync())
             {
-                object[] values = new object[reader.FieldCount];
-                reader.GetValues(values);
-                valueList.Add(values);
+                while (await reader.ReadAsync())
+                {
+                    object[] values = new object[reader.FieldCount];
+                    reader.GetValues(values);
+                    valueList.Add(values);
+                }
+                
             }
-
-            await reader.CloseAsync();
 
             await Connection.CloseAsync();
 
