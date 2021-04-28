@@ -53,6 +53,7 @@ namespace Bobedre.Views.Ejendomme
 
 
 
+
             if ((TextCheck(AdresseBolig.Text) && TalCheck(PrisTextBox.Text) && TalCheck(BoligArealTextBox.Text) && TalCheck(GrundArealBoligTextBox.Text) && TextCheck(HaveBoligTextBox.Text)
              && TalCheck(VæreslerBoligTextBox.Text) && TextCheck(TypeBoligTextBox.Text) && TalCheck(ByggeårBoligTextBox.Text)))
             {      
@@ -67,6 +68,9 @@ namespace Bobedre.Views.Ejendomme
 
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Boligen er nu gemt2");
+
+
+            
 
 
             }
@@ -193,6 +197,47 @@ namespace Bobedre.Views.Ejendomme
         {
 
         }
+
+
+
+        private void RenoveretBoligCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Andetcheckbox_CheckEnabling();
+            KøkkenCheckbox_checkEnabling();
+            Badeværelsecheckbox_CheckEnabling();
+            OmbygningsårLabel_Enabled();
+            DetalijerLabel_Enabled();
+            RenoveringsIdLabel_Enabled();
+        }
+        private void Andetcheckbox_CheckEnabling()
+        {
+            Andetcheckbox.Enabled = RenoveretBoligCheckBox.Checked;
+        }
+        private void KøkkenCheckbox_checkEnabling()
+        {
+            KøkkenCheckbox.Enabled = RenoveretBoligCheckBox.Checked;
+        }
+        private void Badeværelsecheckbox_CheckEnabling()
+        {
+            Badeværelsecheckbox.Enabled = RenoveretBoligCheckBox.Checked;
+        }
+        private void OmbygningsårLabel_Enabled()
+        {
+            OmbygningsårLabel.Enabled = RenoveretBoligCheckBox.Checked;
+
+        }
+        private void DetalijerLabel_Enabled()
+        {
+            DetalijerLabel.Enabled = RenoveretBoligCheckBox.Checked;
+        }
+        private void RenoveringsIdLabel_Enabled()
+        {
+            RenoveringsIdLabel.Enabled = RenoveretBoligCheckBox.Checked;
+        }
+
+
+
+
     }
 
 }
