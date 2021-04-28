@@ -1,14 +1,17 @@
-﻿using BoBedre.Infrastructure;
+﻿using BoBedre.Core.DataAccess;
+using BoBedre.Infrastructure;
 using System;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Bobedre.Views.Ejendomsmæglere
 {
     public partial class Ejendomsmæglere : Form
     {
-        private readonly string BasicTextRegex = @"^[a-å A-Å]+$";
+        private readonly string BasicTextRegex = @"^[a-z A-ZåæøÅÆØ]+$";
+        private readonly string EmailRegex = "^(?(\")(\".+?(?<!\\)\"@)|(([0 - 9a - z]((\\.(?!\\.))|[-!#\\$%&'\\*\\+/=\\?\\^`\\{\\}\\|~\\w])*)(?<=[0-9a-z])@))(?(\\[)(\\[(\\d{1,3}\\.){3}\\d{1,3}\\])|(([0-9a-z][-\\w]*[0-9a-z]*\\.)+[a-z0-9][\\-a-z0-9]{0,22}[a-z0-9]))$"; // Taken from: https://emailregex.com/
 
         public Ejendomsmæglere(Models.Action action, Baseform baseform)
         {
@@ -39,7 +42,7 @@ namespace Bobedre.Views.Ejendomsmæglere
         /// <returns></returns>
         private async void Opretknap_Click(object sender, EventArgs e)
         {
-            if (Regex.IsMatch((Afdelingbox.Text) + (Mæglerfirmabox.Text) + (NavnBox.Text), BasicTextRegex))
+            if (TextCheck(Afdelingbox.Text) && TextCheck(Mæglerfirmabox.Text) && TextCheck(NavnBox.Text) && EmailCheck(Emailbox.Text))
             {
                 try
                 {
@@ -112,29 +115,13 @@ namespace Bobedre.Views.Ejendomsmæglere
         /// <returns></returns>
         private async void Gemknap_Click(object sender, EventArgs e)
         {
-            if (Regex.IsMatch((Afdelingbox.Text) + (Mæglerfirmabox.Text) + (NavnBox.Text), BasicTextRegex))
+            if (TextCheck(Afdelingbox.Text) && TextCheck(Mæglerfirmabox.Text) && TextCheck(NavnBox.Text) && EmailCheck(Emailbox.Text))
             {
                 if (int.TryParse(MedarbejderNrBox.Text, out int medarbejderNr))
                 {
-                    try
-                    {
-                        SqlCommand cmd = new SqlCommand("UPDATE Ejendomsmægler set Afdeling=@Afdeling, Mæglerfirma=@Mæglerfirma, Navn=@Navn, Email=@Email WHERE MedarbejderId = @MedarbejderId");
-                        cmd.Parameters.AddWithValue("@MedarbejderId", medarbejderNr);
-                        cmd.Parameters.AddWithValue("@Afdeling", Afdelingbox.Text);
-                        cmd.Parameters.AddWithValue("@Mæglerfirma", Mæglerfirmabox.Text);
-                        cmd.Parameters.AddWithValue("@Navn", NavnBox.Text);
-                        cmd.Parameters.AddWithValue("@Email", Emailbox.Text);
-
-                        await DBConnection.ExecuteNonQuery(cmd);
-                        MessageBox.Show("Ejendomsmægleren er netop blevet opdateret");
-
-                        CleanForm();
-                    }
-                    catch (Exception ex)
-                    {
-
-                        MessageBox.Show(ex.Message);
-                    }
+                    var message = await NonQuery.UpdateEjendomsmægler(medarbejderNr, Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text);
+                    CleanForm();
+                    MessageBox.Show(message);
                 }
                 else
                 {
@@ -144,9 +131,19 @@ namespace Bobedre.Views.Ejendomsmæglere
             }
             else
             {
-                MessageBox.Show("Ejendomsmægler er ikke blevet opdateret pga. brug af forkerte tegn");
+                MessageBox.Show("Ejendomsmægler er ikke blevet opdateret pga. brug af forkerte tegn og alle felter skal udfyldes");
             }
-            
+
+        }
+
+        private bool TextCheck(string textToCheck)
+        {
+            return Regex.IsMatch(textToCheck, BasicTextRegex);
+        }
+
+        private bool EmailCheck(string textToCheck)
+        {
+            return Regex.IsMatch(textToCheck, EmailRegex);
         }
     }
 }
