@@ -26,9 +26,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             if (TextCheck(Afdelingbox.Text) && TextCheck(Mæglerfirmabox.Text) && TextCheck(NavnBox.Text) && EmailCheck(Emailbox.Text))
             {
                 var message = await NonQuery.CreateEjendomsmægler(Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text);
-                ClearForm.CleanForm(Controls);
-                
-
+                ClearForm.CleanForm(Controls);               
                 MessageBox.Show(message);
 
             }
@@ -91,12 +89,20 @@ namespace Bobedre.Views.Ejendomsmæglere
             }
 
         }
-
+        /// <summary>
+        /// Checking textbox requirements
+        /// </summary>
+        /// <param name="textToCheck"></param>
+        /// <returns></returns>
         private bool TextCheck(string textToCheck)
         {
             return Regex.IsMatch(textToCheck, BasicTextRegex);
         }
-
+        /// <summary>
+        /// Checking emailtextbox requirements
+        /// </summary>
+        /// <param name="textToCheck"></param>
+        /// <returns></returns>
         private bool EmailCheck(string textToCheck)
         {
             return Regex.IsMatch(textToCheck, EmailRegex);
