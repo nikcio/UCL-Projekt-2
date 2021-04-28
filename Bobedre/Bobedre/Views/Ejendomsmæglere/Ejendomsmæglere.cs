@@ -8,7 +8,7 @@ namespace Bobedre.Views.Ejendomsmæglere
     public partial class Ejendomsmæglere : Form
     {
         private readonly string BasicTextRegex = @"^[a-z A-ZåæøÅÆØ]+$";
-        private readonly string EmailRegex = "^(?(\")(\".+?(?<!\\)\"@)|(([0 - 9a - z]((\\.(?!\\.))|[-!#\\$%&'\\*\\+/=\\?\\^`\\{\\}\\|~\\w])*)(?<=[0-9a-z])@))(?(\\[)(\\[(\\d{1,3}\\.){3}\\d{1,3}\\])|(([0-9a-z][-\\w]*[0-9a-z]*\\.)+[a-z0-9][\\-a-z0-9]{0,22}[a-z0-9]))$"; // Taken from: https://emailregex.com/
+        private readonly string EmailRegex = "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$"; // Taken from: https://emailregex.com/
 
         public Ejendomsmæglere(Models.Action action, Baseform baseform)
         {
