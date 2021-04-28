@@ -25,9 +25,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             if (RegexCheck.TextCheck(Afdelingbox.Text) && RegexCheck.TextCheck(Mæglerfirmabox.Text) && RegexCheck.TextCheck(NavnBox.Text) && RegexCheck.EmailCheck(Emailbox.Text))
             {
                 var message = await NonQuery.CreateEjendomsmægler(Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text);
-                ClearForm.CleanForm(Controls);
-                
-
+                ClearForm.CleanForm(Controls);               
                 MessageBox.Show(message);
 
             }
@@ -90,5 +88,6 @@ namespace Bobedre.Views.Ejendomsmæglere
             }
 
         }
+
     }
 }
