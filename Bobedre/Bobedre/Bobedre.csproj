@@ -10,4 +10,10 @@
     <ProjectReference Include="..\BoBedre.Core\BoBedre.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Assets\DKZipcodes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
