@@ -17,8 +17,8 @@ namespace BoBedre.Core.DataAccess
         {
             try
             {
-                SqlCommand cmd = new("UPDATE Ejendomsmægler set Afdeling=@Afdeling, Mæglerfirma=@Mæglerfirma, Navn=@Navn, Email=@Email WHERE MedarbejderId = @MedarbejderId");
-                cmd.Parameters.AddWithValue("@MedarbejderId", medarbejderNr);
+                SqlCommand cmd = new("UPDATE Ejendomsmægler set Afdeling=@Afdeling, Mæglerfirma=@Mæglerfirma, Navn=@Navn, Email=@Email WHERE MedarbejderNr = @MedarbejderNr");
+                cmd.Parameters.AddWithValue("@MedarbejderNr", medarbejderNr);
                 cmd.Parameters.AddWithValue("@Afdeling", afdeling);
                 cmd.Parameters.AddWithValue("@Mæglerfirma", mæglerfirma);
                 cmd.Parameters.AddWithValue("@Navn", navn);
