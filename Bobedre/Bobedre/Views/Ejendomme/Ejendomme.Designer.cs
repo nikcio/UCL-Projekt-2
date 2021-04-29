@@ -52,17 +52,19 @@ namespace Bobedre.Views.Ejendomme
             this.TypeBoligTextBox = new System.Windows.Forms.TextBox();
             this.ByggeårBoligTextBox = new System.Windows.Forms.TextBox();
             this.RenoveretBoligCheckBox = new System.Windows.Forms.CheckBox();
-            this.DetaljerBolig = new System.Windows.Forms.Label();
+            this.DetaljerLabel = new System.Windows.Forms.Label();
             this.RenoveringsIdBolig = new System.Windows.Forms.Label();
             this.KøkkenCheckbox = new System.Windows.Forms.CheckBox();
             this.Badeværelsecheckbox = new System.Windows.Forms.CheckBox();
-            this.OmbygningsårLabel = new System.Windows.Forms.TextBox();
-            this.DetalijerLabel = new System.Windows.Forms.TextBox();
+            this.OmbygningsårTextbox = new System.Windows.Forms.TextBox();
+            this.DetalijerTextbox = new System.Windows.Forms.TextBox();
             this.RenoveringsIdLabel = new System.Windows.Forms.TextBox();
             this.SletButtonBolig = new System.Windows.Forms.Button();
             this.OpdaterBoligKnap = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.Andetboligtjekbox = new System.Windows.Forms.CheckBox();
+
+            this.Andetcheckbox = new System.Windows.Forms.CheckBox();
+
             OpretBoligKnap = new System.Windows.Forms.Button();
             EtagerBolig = new System.Windows.Forms.Label();
             OmbygningsårBolig = new System.Windows.Forms.Label();
@@ -115,7 +117,9 @@ namespace Bobedre.Views.Ejendomme
             this.BolignrLabel.Location = new System.Drawing.Point(76, 19);
             this.BolignrLabel.Margin = new System.Windows.Forms.Padding(2);
             this.BolignrLabel.Name = "BolignrLabel";
+
             this.BolignrLabel.ReadOnly = true;
+
             this.BolignrLabel.Size = new System.Drawing.Size(106, 23);
             this.BolignrLabel.TabIndex = 1;
             // 
@@ -286,18 +290,22 @@ namespace Bobedre.Views.Ejendomme
             // 
             // DetaljerBolig
             // 
-            this.DetaljerBolig.AutoSize = true;
-            this.DetaljerBolig.Location = new System.Drawing.Point(762, 69);
-            this.DetaljerBolig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.DetaljerBolig.Name = "DetaljerBolig";
-            this.DetaljerBolig.Size = new System.Drawing.Size(47, 15);
-            this.DetaljerBolig.TabIndex = 25;
-            this.DetaljerBolig.Text = "Detaljer";
+            this.DetaljerLabel.AutoSize = true;
+
+            this.DetaljerLabel.Location = new System.Drawing.Point(762, 68);
+
+            this.DetaljerLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.DetaljerLabel.Name = "DetaljerBolig";
+            this.DetaljerLabel.Size = new System.Drawing.Size(47, 15);
+            this.DetaljerLabel.TabIndex = 25;
+            this.DetaljerLabel.Text = "Detaljer";
             // 
             // RenoveringsIdBolig
             // 
             this.RenoveringsIdBolig.AutoSize = true;
-            this.RenoveringsIdBolig.Location = new System.Drawing.Point(762, 101);
+
+            this.RenoveringsIdBolig.Location = new System.Drawing.Point(762, 95);
+
             this.RenoveringsIdBolig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.RenoveringsIdBolig.Name = "RenoveringsIdBolig";
             this.RenoveringsIdBolig.Size = new System.Drawing.Size(82, 15);
@@ -330,21 +338,25 @@ namespace Bobedre.Views.Ejendomme
             // 
             // OmbygningsårLabel
             // 
-            this.OmbygningsårLabel.Enabled = false;
-            this.OmbygningsårLabel.Location = new System.Drawing.Point(865, 36);
-            this.OmbygningsårLabel.Margin = new System.Windows.Forms.Padding(2);
-            this.OmbygningsårLabel.Name = "OmbygningsårLabel";
-            this.OmbygningsårLabel.Size = new System.Drawing.Size(67, 23);
-            this.OmbygningsårLabel.TabIndex = 30;
+            this.OmbygningsårTextbox.Enabled = false;
+
+            this.OmbygningsårTextbox.Location = new System.Drawing.Point(865, 44);
+
+            this.OmbygningsårTextbox.Margin = new System.Windows.Forms.Padding(2);
+            this.OmbygningsårTextbox.Name = "OmbygningsårLabel";
+            this.OmbygningsårTextbox.Size = new System.Drawing.Size(67, 23);
+            this.OmbygningsårTextbox.TabIndex = 30;
             // 
             // DetalijerLabel
             // 
-            this.DetalijerLabel.Enabled = false;
-            this.DetalijerLabel.Location = new System.Drawing.Point(865, 66);
-            this.DetalijerLabel.Margin = new System.Windows.Forms.Padding(2);
-            this.DetalijerLabel.Name = "DetalijerLabel";
-            this.DetalijerLabel.Size = new System.Drawing.Size(67, 23);
-            this.DetalijerLabel.TabIndex = 31;
+            this.DetalijerTextbox.Enabled = false;
+
+            this.DetalijerTextbox.Location = new System.Drawing.Point(865, 68);
+
+            this.DetalijerTextbox.Margin = new System.Windows.Forms.Padding(2);
+            this.DetalijerTextbox.Name = "DetalijerLabel";
+            this.DetalijerTextbox.Size = new System.Drawing.Size(67, 23);
+            this.DetalijerTextbox.TabIndex = 31;
             // 
             // RenoveringsIdLabel
             // 
@@ -388,16 +400,18 @@ namespace Bobedre.Views.Ejendomme
             this.flowLayoutPanel1.Size = new System.Drawing.Size(349, 90);
             this.flowLayoutPanel1.TabIndex = 36;
             // 
-            // Andetboligtjekbox
+
+            // Andetcheckbox
             // 
-            this.Andetboligtjekbox.AutoSize = true;
-            this.Andetboligtjekbox.Enabled = false;
-            this.Andetboligtjekbox.Location = new System.Drawing.Point(645, 97);
-            this.Andetboligtjekbox.Name = "Andetboligtjekbox";
-            this.Andetboligtjekbox.Size = new System.Drawing.Size(58, 19);
-            this.Andetboligtjekbox.TabIndex = 37;
-            this.Andetboligtjekbox.Text = "Andet";
-            this.Andetboligtjekbox.UseVisualStyleBackColor = true;
+            this.Andetcheckbox.AutoSize = true;
+            this.Andetcheckbox.Enabled = false;
+            this.Andetcheckbox.Location = new System.Drawing.Point(645, 90);
+            this.Andetcheckbox.Name = "Andetcheckbox";
+            this.Andetcheckbox.Size = new System.Drawing.Size(58, 19);
+            this.Andetcheckbox.TabIndex = 37;
+            this.Andetcheckbox.Text = "Andet";
+            this.Andetcheckbox.UseVisualStyleBackColor = true;
+
             // 
             // Ejendomme
             // 
@@ -405,15 +419,17 @@ namespace Bobedre.Views.Ejendomme
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1023, 462);
-            this.Controls.Add(this.Andetboligtjekbox);
+
+            this.Controls.Add(this.Andetcheckbox);
+
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.RenoveringsIdLabel);
-            this.Controls.Add(this.DetalijerLabel);
-            this.Controls.Add(this.OmbygningsårLabel);
+            this.Controls.Add(this.DetalijerTextbox);
+            this.Controls.Add(this.OmbygningsårTextbox);
             this.Controls.Add(this.Badeværelsecheckbox);
             this.Controls.Add(this.KøkkenCheckbox);
             this.Controls.Add(this.RenoveringsIdBolig);
-            this.Controls.Add(this.DetaljerBolig);
+            this.Controls.Add(this.DetaljerLabel);
             this.Controls.Add(OmbygningsårBolig);
             this.Controls.Add(this.RenoveretBoligCheckBox);
             this.Controls.Add(this.ByggeårBoligTextBox);
@@ -449,7 +465,7 @@ namespace Bobedre.Views.Ejendomme
         #endregion
         
         private System.Windows.Forms.Label EtagerBolig;
-        private System.Windows.Forms.Label OmbygningsårBolig;
+        private System.Windows.Forms.Label OmbygningsårLabel;
         private System.Windows.Forms.Button OpretBoligKnap;
         private System.Windows.Forms.Label Bolignr;
         private System.Windows.Forms.TextBox BolignrLabel;
@@ -471,16 +487,17 @@ namespace Bobedre.Views.Ejendomme
         private System.Windows.Forms.TextBox TypeBoligTextBox;
         private System.Windows.Forms.TextBox ByggeårBoligTextBox;
         private System.Windows.Forms.CheckBox RenoveretBoligCheckBox;
-        private System.Windows.Forms.Label DetaljerBolig;
+        private System.Windows.Forms.Label DetaljerLabel;
         private System.Windows.Forms.Label RenoveringsIdBolig;
         private System.Windows.Forms.CheckBox KøkkenCheckbox;
         private System.Windows.Forms.CheckBox Badeværelsecheckbox;
-        private System.Windows.Forms.TextBox OmbygningsårLabel;
-        private System.Windows.Forms.TextBox DetalijerLabel;
+        private System.Windows.Forms.TextBox OmbygningsårTextbox;
+        private System.Windows.Forms.TextBox DetalijerTextbox;
         private System.Windows.Forms.TextBox RenoveringsIdLabel;
         private System.Windows.Forms.Button SletButtonBolig;
         private System.Windows.Forms.Button OpdaterBoligKnap;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.CheckBox Andetboligtjekbox;
+        private System.Windows.Forms.CheckBox Andetcheckbox;
+
     }
 }
