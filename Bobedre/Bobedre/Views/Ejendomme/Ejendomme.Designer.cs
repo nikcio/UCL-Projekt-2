@@ -52,12 +52,12 @@ namespace Bobedre.Views.Ejendomme
             this.TypeBoligTextBox = new System.Windows.Forms.TextBox();
             this.ByggeårBoligTextBox = new System.Windows.Forms.TextBox();
             this.RenoveretBoligCheckBox = new System.Windows.Forms.CheckBox();
-            this.DetaljerBolig = new System.Windows.Forms.Label();
+            this.DetaljerLabel = new System.Windows.Forms.Label();
             this.RenoveringsIdBolig = new System.Windows.Forms.Label();
             this.KøkkenCheckbox = new System.Windows.Forms.CheckBox();
             this.Badeværelsecheckbox = new System.Windows.Forms.CheckBox();
-            this.OmbygningsårLabel = new System.Windows.Forms.TextBox();
-            this.DetalijerLabel = new System.Windows.Forms.TextBox();
+            this.OmbygningsårTextbox = new System.Windows.Forms.TextBox();
+            this.DetalijerTextbox = new System.Windows.Forms.TextBox();
             this.RenoveringsIdLabel = new System.Windows.Forms.TextBox();
             this.SletButtonBolig = new System.Windows.Forms.Button();
             this.OpdaterBoligKnap = new System.Windows.Forms.Button();
@@ -286,19 +286,19 @@ namespace Bobedre.Views.Ejendomme
             this.RenoveretBoligCheckBox.TabIndex = 20;
             this.RenoveretBoligCheckBox.Text = "Renoveret";
             this.RenoveretBoligCheckBox.UseVisualStyleBackColor = true;
-            
+            this.RenoveretBoligCheckBox.CheckedChanged += new System.EventHandler(this.RenoveretBoligCheckBox_CheckedChanged);
             // 
             // DetaljerBolig
             // 
-            this.DetaljerBolig.AutoSize = true;
+            this.DetaljerLabel.AutoSize = true;
 
-            this.DetaljerBolig.Location = new System.Drawing.Point(762, 68);
+            this.DetaljerLabel.Location = new System.Drawing.Point(762, 68);
 
-            this.DetaljerBolig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.DetaljerBolig.Name = "DetaljerBolig";
-            this.DetaljerBolig.Size = new System.Drawing.Size(47, 15);
-            this.DetaljerBolig.TabIndex = 25;
-            this.DetaljerBolig.Text = "Detaljer";
+            this.DetaljerLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.DetaljerLabel.Name = "DetaljerBolig";
+            this.DetaljerLabel.Size = new System.Drawing.Size(47, 15);
+            this.DetaljerLabel.TabIndex = 25;
+            this.DetaljerLabel.Text = "Detaljer";
             // 
             // RenoveringsIdBolig
             // 
@@ -338,25 +338,25 @@ namespace Bobedre.Views.Ejendomme
             // 
             // OmbygningsårLabel
             // 
-            this.OmbygningsårLabel.Enabled = false;
+            this.OmbygningsårTextbox.Enabled = false;
 
-            this.OmbygningsårLabel.Location = new System.Drawing.Point(865, 44);
+            this.OmbygningsårTextbox.Location = new System.Drawing.Point(865, 44);
 
-            this.OmbygningsårLabel.Margin = new System.Windows.Forms.Padding(2);
-            this.OmbygningsårLabel.Name = "OmbygningsårLabel";
-            this.OmbygningsårLabel.Size = new System.Drawing.Size(67, 23);
-            this.OmbygningsårLabel.TabIndex = 30;
+            this.OmbygningsårTextbox.Margin = new System.Windows.Forms.Padding(2);
+            this.OmbygningsårTextbox.Name = "OmbygningsårLabel";
+            this.OmbygningsårTextbox.Size = new System.Drawing.Size(67, 23);
+            this.OmbygningsårTextbox.TabIndex = 30;
             // 
             // DetalijerLabel
             // 
-            this.DetalijerLabel.Enabled = false;
+            this.DetalijerTextbox.Enabled = false;
 
-            this.DetalijerLabel.Location = new System.Drawing.Point(865, 68);
+            this.DetalijerTextbox.Location = new System.Drawing.Point(865, 68);
 
-            this.DetalijerLabel.Margin = new System.Windows.Forms.Padding(2);
-            this.DetalijerLabel.Name = "DetalijerLabel";
-            this.DetalijerLabel.Size = new System.Drawing.Size(67, 23);
-            this.DetalijerLabel.TabIndex = 31;
+            this.DetalijerTextbox.Margin = new System.Windows.Forms.Padding(2);
+            this.DetalijerTextbox.Name = "DetalijerLabel";
+            this.DetalijerTextbox.Size = new System.Drawing.Size(67, 23);
+            this.DetalijerTextbox.TabIndex = 31;
             // 
             // RenoveringsIdLabel
             // 
@@ -424,12 +424,12 @@ namespace Bobedre.Views.Ejendomme
 
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.RenoveringsIdLabel);
-            this.Controls.Add(this.DetalijerLabel);
-            this.Controls.Add(this.OmbygningsårLabel);
+            this.Controls.Add(this.DetalijerTextbox);
+            this.Controls.Add(this.OmbygningsårTextbox);
             this.Controls.Add(this.Badeværelsecheckbox);
             this.Controls.Add(this.KøkkenCheckbox);
             this.Controls.Add(this.RenoveringsIdBolig);
-            this.Controls.Add(this.DetaljerBolig);
+            this.Controls.Add(this.DetaljerLabel);
             this.Controls.Add(OmbygningsårBolig);
             this.Controls.Add(this.RenoveretBoligCheckBox);
             this.Controls.Add(this.ByggeårBoligTextBox);
@@ -465,7 +465,7 @@ namespace Bobedre.Views.Ejendomme
         #endregion
         
         private System.Windows.Forms.Label EtagerBolig;
-        private System.Windows.Forms.Label OmbygningsårBolig;
+        private System.Windows.Forms.Label OmbygningsårLabel;
         private System.Windows.Forms.Button OpretBoligKnap;
         private System.Windows.Forms.Label Bolignr;
         private System.Windows.Forms.TextBox BolignrLabel;
@@ -487,12 +487,12 @@ namespace Bobedre.Views.Ejendomme
         private System.Windows.Forms.TextBox TypeBoligTextBox;
         private System.Windows.Forms.TextBox ByggeårBoligTextBox;
         private System.Windows.Forms.CheckBox RenoveretBoligCheckBox;
-        private System.Windows.Forms.Label DetaljerBolig;
+        private System.Windows.Forms.Label DetaljerLabel;
         private System.Windows.Forms.Label RenoveringsIdBolig;
         private System.Windows.Forms.CheckBox KøkkenCheckbox;
         private System.Windows.Forms.CheckBox Badeværelsecheckbox;
-        private System.Windows.Forms.TextBox OmbygningsårLabel;
-        private System.Windows.Forms.TextBox DetalijerLabel;
+        private System.Windows.Forms.TextBox OmbygningsårTextbox;
+        private System.Windows.Forms.TextBox DetalijerTextbox;
         private System.Windows.Forms.TextBox RenoveringsIdLabel;
         private System.Windows.Forms.Button SletButtonBolig;
         private System.Windows.Forms.Button OpdaterBoligKnap;

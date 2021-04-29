@@ -28,6 +28,22 @@ namespace BoBedre.Infrastructure
         }
 
         /// <summary>
+        /// Executes a scalar on the database
+        /// </summary>
+        /// <param name="sqlCommand"></param>
+        /// <returns></returns>
+        public static async Task<object> ExecuteScalar(SqlCommand sqlCommand)
+        {
+            SqlConnection Connection = new(ConnectionString);
+            sqlCommand.Connection = Connection;
+            await Connection.OpenAsync();
+            object value = await sqlCommand.ExecuteScalarAsync();
+            await Connection.CloseAsync();
+
+            return value;
+        }
+
+        /// <summary>
         /// Executes a transation consisting of one or more sql commands
         /// </summary>
         /// <param name="sqlCommands"></param>

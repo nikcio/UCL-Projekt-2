@@ -24,7 +24,7 @@ namespace Bobedre.Views.Ejendomsmæglere
         {
             if (RegexCheck.TextCheck(Afdelingbox.Text) && RegexCheck.TextCheck(Mæglerfirmabox.Text) && RegexCheck.TextCheck(NavnBox.Text) && RegexCheck.EmailCheck(Emailbox.Text))
             {
-                var message = await NonQuery.CreateEjendomsmægler(Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text);
+                var message = await EntryManagement.CreateEjendomsmægler(Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text);
                 ClearForm.CleanForm(Controls);
                 
 
@@ -49,7 +49,7 @@ namespace Bobedre.Views.Ejendomsmæglere
 
             if (int.TryParse(MedarbejderNrBox.Text, out int medarbejderNr))
             {
-                var message = await NonQuery.DeleteEjendomsmægler(medarbejderNr);
+                var message = await EntryManagement.DeleteEjendomsmægler(medarbejderNr);
 
                 ClearForm.CleanForm(Controls);
                 MessageBox.Show(message);
@@ -74,7 +74,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             {
                 if (int.TryParse(MedarbejderNrBox.Text, out int medarbejderNr))
                 {
-                    var message = await NonQuery.UpdateEjendomsmægler(medarbejderNr, Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text);
+                    var message = await EntryManagement.UpdateEjendomsmægler(medarbejderNr, Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text);
                     ClearForm.CleanForm(Controls);
                     MessageBox.Show(message);
                 }
