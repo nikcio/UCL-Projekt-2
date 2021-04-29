@@ -140,6 +140,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             // 
             // Opretknap
             // 
+            this.Opretknap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Opretknap.Location = new System.Drawing.Point(3, 3);
             this.Opretknap.Name = "Opretknap";
             this.Opretknap.Size = new System.Drawing.Size(168, 49);
@@ -150,6 +151,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             // 
             // Gemknap
             // 
+            this.Gemknap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Gemknap.Location = new System.Drawing.Point(177, 3);
             this.Gemknap.Name = "Gemknap";
             this.Gemknap.Size = new System.Drawing.Size(168, 49);
@@ -160,6 +162,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             // 
             // Sletknap
             // 
+            this.Sletknap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Sletknap.Location = new System.Drawing.Point(351, 3);
             this.Sletknap.Name = "Sletknap";
             this.Sletknap.Size = new System.Drawing.Size(168, 49);
