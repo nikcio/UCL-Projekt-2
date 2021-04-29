@@ -209,14 +209,15 @@ namespace BoBedre.Core.DataAccess
 
 
         #region Kunde
-        public static async Task<string> CreateKunde(string navn, string email)
+        public static async Task<string> CreateKunde(string navn, string email, string KundeType)
         {
             try
             {
-                SqlCommand cmd = new("INSERT into Kunde(Navn, Email) VALUES (@Navn, @Email)");
+                SqlCommand cmd = new("INSERT into Kunde(Navn, Email, Type) VALUES (@Navn, @Email, @Type)");
 
                 cmd.Parameters.AddWithValue("@Navn", navn);
                 cmd.Parameters.AddWithValue("@Email", email);
+               cmd.Parameters.AddWithValue("@Type", KundeType );
 
                 await DBConnection.ExecuteNonQuery(cmd);
 
@@ -248,14 +249,16 @@ namespace BoBedre.Core.DataAccess
             }
 
         }
-        public static async Task<string> UpdateKunde(int KundeNr, string navn, string email)
+        public static async Task<string> UpdateKunde(int KundeNr, string navn, string email, string KundeType)
         {
             try
             {
-                SqlCommand cmd = new("UPDATE Kunde set Navn=@Navn, Email=@Email WHERE KundeNr = @KundeNr");
+                SqlCommand cmd = new("UPDATE Kunde set Navn=@Navn, Email=@Email, Type=@Type WHERE KundeNr = @KundeNr");
                 cmd.Parameters.AddWithValue("@kundeNr", KundeNr);
                 cmd.Parameters.AddWithValue("@Navn", navn);
                 cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Type", KundeType);
+
 
                 await DBConnection.ExecuteNonQuery(cmd);
 
