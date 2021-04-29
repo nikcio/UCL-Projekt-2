@@ -98,28 +98,6 @@ namespace Bobedre.Views.Kunder
         {
 
         }
-
-        /*
-       /// <summary>
-       /// Checking text requirements
-       /// </summary>
-       /// <param name="textToCheck"></param>
-       /// <returns></returns>
-       private bool TextCheck(string textToCheck)
-       {
-           return Regex.IsMatch(textToCheck, BasicTextRegex);
-       }
-
-       /// <summary>
-       /// Checking emailtextbox requirements
-       /// </summary>
-       /// <param name="textToCheck"></param>
-       /// <returns></returns>
-       private bool EmailCheck(string textToCheck)
-       {
-           return Regex.IsMatch(textToCheck, EmailRegex);
-       }
-*/
     }
 
 }
