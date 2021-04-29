@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Bobedre.Utility
+namespace Bobedre.Views
 {
     public static class ClearForm
     {
@@ -15,7 +15,7 @@ namespace Bobedre.Utility
             {
                 if (control is TextBox box)
                 {
-                    box.Text = string.Empty;
+                    box.Text = String.Empty;
                 }
             }
 

@@ -14,9 +14,6 @@ namespace Bobedre.Views.Ejendomme
 {
     public partial class Ejendomme : Form
     {
-        private readonly string BaisctalRegex = @"^[0-9]+$";
-        private readonly string BaiscTestRegex = @"^[a-z A-ZøæåØÆÅ]+$";
-
         public Ejendomme(Models.Action action, Baseform baseform)
         {
             InitializeComponent();
@@ -24,16 +21,11 @@ namespace Bobedre.Views.Ejendomme
 
         private void OpretBoligKnap_Click(object sender, EventArgs e)
         {
-           
 
-
-            string sSQL = "INSERT INTO Ejendome(Adresse, Pris, Boligareal, Grundareal, have, værelser, Etager, Type, Byggeår, Renoveret, Køkken, Badeværelse, " +
-                "Andet, Ombygningsår, Detaljier, RenoveringsId) VALUES (@Adresse, @Pris, @Boligareal, @Grundareal, @have, @værelser, @Etager, @Type, @Byggeår, @Renoveret, @Køkken, @Badeværelse, " +
-                "@Andet, @Ombygningsår, @Detaljier, @RenoveringsId)";
+            String sSQL = "INSERT INTO Ejendome VALUES (@Bolignr, @Adresse, @Pris, @Boligareal, @Grundareal, @have, @værelser, @Etager, @Type, @Byggeår, @Renoveret, @Køkken, @Badeværelse, @Andet, @Ombygningsår, @Detaljier, @RenoveringsId)";
             SqlCommand cmd = new SqlCommand(sSQL);
-            
-            
-            
+
+            cmd.Parameters.AddWithValue("@Bolignr", int.Parse(BolignrLabel.Text));
             cmd.Parameters.AddWithValue("@Adresse", (AdresseBolig.Text));
             cmd.Parameters.AddWithValue("@Pris", int.Parse(PrisTextBox.Text));
             cmd.Parameters.AddWithValue("@Boligareal", int.Parse(BoligArealTextBox.Text));
@@ -42,39 +34,16 @@ namespace Bobedre.Views.Ejendomme
             cmd.Parameters.AddWithValue("@Værelser", int.Parse(VæreslerBoligTextBox.Text));
             cmd.Parameters.AddWithValue("@Typebolig", (TypeBoligTextBox.Text));
             cmd.Parameters.AddWithValue("@Byggeår", int.Parse(ByggeårBoligTextBox.Text));
-            cmd.Parameters.AddWithValue("@Renoveret", (RenoveretBoligCheckBox.Checked));
-            cmd.Parameters.AddWithValue("@Køkken", (KøkkenCheckbox.Checked));
-            cmd.Parameters.AddWithValue("@Badeværelse", (Badeværelsecheckbox.Checked));
-            cmd.Parameters.AddWithValue("@Andet", (Andetboligtjekbox.Checked));
-            cmd.Parameters.AddWithValue("@Ombygningsår", int.Parse(OmbygningsårLabel.Text));
-            cmd.Parameters.AddWithValue("@Detaljier", (DetalijerLabel.Text));
-            cmd.Parameters.AddWithValue("@Renoveringsid", int.Parse(RenoveringsIdLabel.Text));
+            cmd.Parameters.AddWithValue("@Bolignr", int.Parse(RenoveretBoligCheckBox.Text));
 
 
 
-
-            if ((TextCheck(AdresseBolig.Text) && TalCheck(PrisTextBox.Text) && TalCheck(BoligArealTextBox.Text) && TalCheck(GrundArealBoligTextBox.Text) && TextCheck(HaveBoligTextBox.Text)
-             && TalCheck(VæreslerBoligTextBox.Text) && TextCheck(TypeBoligTextBox.Text) && TalCheck(ByggeårBoligTextBox.Text)))
-            {      
-                if (RenoveretBoligCheckBox.Checked && 
-                    (TalCheck(OmbygningsårLabel.Text) && TextCheck(DetalijerLabel.Text) && TalCheck(RenoveringsIdLabel.Text)))
-                {
-
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Boligen er nu gemt1111");
-                }
-
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Boligen er nu gemt2");
-
-
-            }
-            else
+            if (Regex.IsMatch((BolignrLabel.Text) + (AdresseBolig.Text) + (PrisTextBox.Text) + (BoligArealTextBox.Text)
+                + (GrundArealBoligTextBox.Text) + (HaveBoligTextBox.Text) + (VæreslerBoligTextBox.Text) + (TypeBoligTextBox.Text)
+                + (ByggeårBoligTextBox.Text) + (ByggeårBoligTextBox.Text) + (RenoveretBoligCheckBox), @"^[a-z A-Z]+$"))
             {
-                MessageBox.Show("Boligen er ikke blevet gemt, forkert indtastning");
-            }
 
+            }
 
 
 
@@ -97,9 +66,8 @@ namespace Bobedre.Views.Ejendomme
 
         private void OpdaterBoligKnap_Click(object sender, EventArgs e)
         {
-            
-            string sSQL = "UPDATE Ejendome set (Bolingnr=@Bolignr, Adresse=@Adresse, Pris=@Pris, Boligareal=@Boligareal, Grundareal=@Grundareal, Have=@Have, Værelser=@værelser, Etager=@Etager, " +
-                "Type=@Type, Byggeår=@Byggeår, Renoveret=@Renoveret, Køkken=@Køkken, Badeværelse=@Badeværelse, Andet=@Andet, Ombygningsår=@Ombygningsår, Detalijer=@Detaljier, RenoveringsId=@RenoveringsId)";
+
+            string sSQL = "UPDATE Ejendome set (Bolingnr=@Bolignr, Adresse=@Adresse, Pris=@Pris, Boligareal=@Boligareal, Grundareal=@Grundareal, Have=@Have, Værelser=@værelser, Etager=@Etager, Type=@Type, Byggeår=@Byggeår, Renoveret=@Renoveret, Køkken=@Køkken, Badeværelse=@Badeværelse, Andet=@Andet, Ombygningsår=@Ombygningsår, Detalijer=@Detaljier, RenoveringsId=@RenoveringsId)";
             SqlCommand cmd = new SqlCommand(sSQL);
 
             cmd.Parameters.AddWithValue("@Bolignr", int.Parse(BolignrLabel.Text));
@@ -111,88 +79,7 @@ namespace Bobedre.Views.Ejendomme
             cmd.Parameters.AddWithValue("@Værelser", (VæreslerBoligTextBox.Text));
             cmd.Parameters.AddWithValue("@Typebolig", (TypeBoligTextBox.Text));
             cmd.Parameters.AddWithValue("@Byggeår", int.Parse(ByggeårBoligTextBox.Text));
-            cmd.Parameters.AddWithValue("@Renoveret", (RenoveretBoligCheckBox.Checked));
-            cmd.Parameters.AddWithValue("@Køkken", (KøkkenCheckbox.Checked));
-            cmd.Parameters.AddWithValue("@Badeværelse", (Badeværelsecheckbox.Checked));
-            cmd.Parameters.AddWithValue("@Andet", (Andetboligtjekbox.Checked));
-            cmd.Parameters.AddWithValue("@Ombygningsår", int.Parse(OmbygningsårLabel.Text));
-            cmd.Parameters.AddWithValue("@Detaljier", (DetalijerLabel.Text));
-            cmd.Parameters.AddWithValue("@Renoveringsid", (RenoveringsIdLabel.Text));
-
-
-            if (TalCheck(BolignrLabel.Text) && TextCheck(AdresseBolig.Text) && TalCheck(PrisTextBox.Text) && TalCheck(BoligArealTextBox.Text) && TalCheck(GrundArealBoligTextBox.Text) && TextCheck(HaveBoligTextBox.Text)
-             && TalCheck(VæreslerBoligTextBox.Text) && TextCheck(TypeBoligTextBox.Text) && TalCheck(ByggeårBoligTextBox.Text) && RenoveretBoligCheckBox.Checked && KøkkenCheckbox.Checked &&
-                Badeværelsecheckbox.Checked &&  TalCheck(OmbygningsårLabel.Text) &&TextCheck(DetalijerLabel.Text) && TalCheck(RenoveringsIdLabel.Text))
-            {
-
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Boligens oplysninger er nu opdateret");
-            }
-            else
-            {
-                MessageBox.Show("Boligens oplysninger blev ikke opdateret pgf. forkerte oplysninger");
-            }
-
-
-
-        }
-
-        private void RenoveretBoligCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            KøkkenCheckbox_CheckEnabling();
-            Badeværelsecheckbox_CheckEnabling();
-            Andetboligtjekbox_CheckEnabling();
-            OmbygningsårLabel_CheckEnabling();
-            DetalijerLabel_checkEnabling();
-            RenoveringsIdLabel_checkEnabling();
-        }
-
-        private void KøkkenCheckbox_CheckEnabling()
-        {
-            KøkkenCheckbox.Enabled = RenoveretBoligCheckBox.Checked;
-        }
-
-        private void Badeværelsecheckbox_CheckEnabling()
-        {
-            Badeværelsecheckbox.Enabled = RenoveretBoligCheckBox.Checked;
-        }
-
-        private void Andetboligtjekbox_CheckEnabling()
-        {
-            Andetboligtjekbox.Enabled = RenoveretBoligCheckBox.Checked;
-        }
-
-
-        private void OmbygningsårLabel_CheckEnabling()
-        {
-            OmbygningsårLabel.Enabled = RenoveretBoligCheckBox.Checked;
-        }
-        private void DetalijerLabel_checkEnabling()
-        {
-            DetalijerLabel.Enabled = RenoveretBoligCheckBox.Checked;
-        }
-        private void RenoveringsIdLabel_checkEnabling()
-        {
-            RenoveringsIdLabel.Enabled = RenoveretBoligCheckBox.Checked;
-        }
-
-        private bool TextCheck(string textToCheck)
-        {
-            return Regex.IsMatch(textToCheck, BaiscTestRegex);
-        }
-
-        private bool TalCheck(string textToCheck)
-        {
-            return Regex.IsMatch(textToCheck, BaisctalRegex);
-        }
-
-
-
-        private void BoligAndet_Click(object sender, EventArgs e)
-        {
-
+            cmd.Parameters.AddWithValue("@Bolignr", int.Parse(RenoveretBoligCheckBox.Text));
         }
     }
-
 }
