@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Text.RegularExpressions;
+﻿using Bobedre.Utility;
 using BoBedre.Core.DataAccess;
-using Bobedre.Utility;
+using BoBedre.Core.TextChecking;
+using System;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Bobedre.Views.Kunder
 {
     public partial class Kunder : Form
     {
-        private readonly string BasicTextRegex = @"^[a-z A-ZåæøÅÆØ]+$";
-        private readonly string EmailRegex = "^(?(\")(\".+?(?<!\\)\"@)|(([0 - 9a - z]((\\.(?!\\.))|[-!#\\$%&'\\*\\+/=\\?\\^`\\{\\}\\|~\\w])*)(?<=[0-9a-z])@))(?(\\[)(\\[(\\d{1,3}\\.){3}\\d{1,3}\\])|(([0-9a-z][-\\w]*[0-9a-z]*\\.)+[a-z0-9][\\-a-z0-9]{0,22}[a-z0-9]))$"; // Taken from: https://emailregex.com/
-
+       
         public Kunder(Models.Action action, Baseform baseform)
         {
             InitializeComponent();
@@ -30,16 +22,18 @@ namespace Bobedre.Views.Kunder
         /// <param name="e"></param>
         private async void KundeOpretKnap_Click(object sender, EventArgs e)
         {
-            if ((TextCheck(KundeNavnBox.Text)) && EmailCheck(KundeEmailBox.Text))
+            
+            if ((RegexCheck.TextCheck(KundeNavnBox.Text)) && RegexCheck.EmailCheck(KundeEmailBox.Text) && KundeTypeComboBox.SelectedItem != null)
             {
-                var message = await EntryManagement.CreateKunde(KundeNavnBox.Text, KundeEmailBox.Text);
+                var KundeType = KundeTypeComboBox.SelectedItem.ToString();
+                var message = await EntryManagement.CreateKunde(KundeNavnBox.Text, KundeEmailBox.Text, KundeType);
                 ClearForm.CleanForm(Controls);
 
                 MessageBox.Show(message);
             }
             else
             {
-                MessageBox.Show("Kunden er ikke blevet oprettet pga. brug af forkerte tegn");
+                MessageBox.Show("Kunden er ikke blevet oprettet pga. brug af forkerte tegn eller tomme felter.");
             }
         }
 
@@ -72,11 +66,12 @@ namespace Bobedre.Views.Kunder
         /// <param name="e"></param>
         private async void KundeGemKnap_Click(object sender, EventArgs e)
         {
-            if(TextCheck(KundeNavnBox.Text) && EmailCheck(KundeEmailBox.Text))
+            var KundeType = KundeTypeComboBox.SelectedItem.ToString();
+            if ((RegexCheck.TextCheck(KundeNavnBox.Text)) && RegexCheck.EmailCheck(KundeEmailBox.Text))
             {
                 if (int.TryParse(KundeNrBox.Text, out int KundeNr))
                 {
-                    var message = await EntryManagement.UpdateKunde(KundeNr, KundeNavnBox.Text, KundeEmailBox.Text);
+                    var message = await EntryManagement.UpdateKunde(KundeNr, KundeNavnBox.Text, KundeEmailBox.Text, KundeType);
                     ClearForm.CleanForm(Controls);
 
                     MessageBox.Show(message);
@@ -94,26 +89,37 @@ namespace Bobedre.Views.Kunder
             }
         }
 
-        /// <summary>
-        /// Checking text requirements
-        /// </summary>
-        /// <param name="textToCheck"></param>
-        /// <returns></returns>
-        private bool TextCheck(string textToCheck)
+        private void KundeTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return Regex.IsMatch(textToCheck, BasicTextRegex);
+            
         }
 
-        /// <summary>
-        /// Checking emailtextbox requirements
-        /// </summary>
-        /// <param name="textToCheck"></param>
-        /// <returns></returns>
-        private bool EmailCheck(string textToCheck)
+        private void KundeNrBox_TextChanged(object sender, EventArgs e)
         {
-            return Regex.IsMatch(textToCheck, EmailRegex);
+
         }
 
+        /*
+       /// <summary>
+       /// Checking text requirements
+       /// </summary>
+       /// <param name="textToCheck"></param>
+       /// <returns></returns>
+       private bool TextCheck(string textToCheck)
+       {
+           return Regex.IsMatch(textToCheck, BasicTextRegex);
+       }
+
+       /// <summary>
+       /// Checking emailtextbox requirements
+       /// </summary>
+       /// <param name="textToCheck"></param>
+       /// <returns></returns>
+       private bool EmailCheck(string textToCheck)
+       {
+           return Regex.IsMatch(textToCheck, EmailRegex);
+       }
+*/
     }
 
 }
