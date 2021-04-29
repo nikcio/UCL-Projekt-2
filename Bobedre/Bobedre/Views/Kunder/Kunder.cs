@@ -32,7 +32,7 @@ namespace Bobedre.Views.Kunder
         {
             if ((TextCheck(KundeNavnBox.Text)) && EmailCheck(KundeEmailBox.Text))
             {
-                var message = await NonQuery.CreateKunde(KundeNavnBox.Text, KundeEmailBox.Text);
+                var message = await EntryManagement.CreateKunde(KundeNavnBox.Text, KundeEmailBox.Text);
                 ClearForm.CleanForm(Controls);
 
                 MessageBox.Show(message);
@@ -52,7 +52,7 @@ namespace Bobedre.Views.Kunder
         {
             if (int.TryParse(KundeNrBox.Text, out int KundeNr))
             {
-                var message = await NonQuery.DeleteKunde(KundeNr);
+                var message = await EntryManagement.DeleteKunde(KundeNr);
                 ClearForm.CleanForm(Controls);
 
                 MessageBox.Show(message);
@@ -76,7 +76,7 @@ namespace Bobedre.Views.Kunder
             {
                 if (int.TryParse(KundeNrBox.Text, out int KundeNr))
                 {
-                    var message = await NonQuery.UpdateKunde(KundeNr, KundeNavnBox.Text, KundeEmailBox.Text);
+                    var message = await EntryManagement.UpdateKunde(KundeNr, KundeNavnBox.Text, KundeEmailBox.Text);
                     ClearForm.CleanForm(Controls);
 
                     MessageBox.Show(message);
