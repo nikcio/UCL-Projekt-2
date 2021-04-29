@@ -1,17 +1,14 @@
 ﻿using BoBedre.Core.AssetLoaders;
 using BoBedre.Infrastructure;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BoBedre.Core.DataAccess
 {
     public static class EntryManagement
     {
-        
+
         #region Ejendomsmægler
         public static async Task<string> UpdateEjendomsmægler(int medarbejderNr, string afdeling, string mæglerfirma, string navn, string email)
         {
@@ -35,13 +32,13 @@ namespace BoBedre.Core.DataAccess
         }
 
 
-        public static async Task <string> DeleteEjendomsmægler (int medarbejderNr)
+        public static async Task<string> DeleteEjendomsmægler(int medarbejderNr)
         {
             try
             {
                 SqlCommand cmd = new("DELETE from Ejendomsmægler WHERE MedarbejderNr = @MedarbejderNr ");
                 cmd.Parameters.AddWithValue("@MedarbejderNr", medarbejderNr);
-                                
+
                 await DBConnection.ExecuteNonQuery(cmd);
 
                 return "Ejendomsmægleren er netop blevet slettet";
@@ -82,14 +79,14 @@ namespace BoBedre.Core.DataAccess
 
         #region Ejendomme
         public static async Task CreateEjendom(
-            string adresse, 
-            int pris, 
-            int boligAreal, 
-            int grundAreal, 
-            bool have, 
+            string adresse,
+            int pris,
+            int boligAreal,
+            int grundAreal,
+            bool have,
             int værelser,
             int etager,
-            string typeBolig, 
+            string typeBolig,
             int byggeår,
             int postNr,
             bool renorvert,
@@ -154,8 +151,80 @@ namespace BoBedre.Core.DataAccess
             cmd.Parameters.AddWithValue("@PostNr", postNr);
             return cmd;
         }
+        public static async Task<string> SletBolig(int Bolignr)
+        {
+            try
+            {
+                SqlCommand cmd = new("DELETE from Ejendom WHERE Bolignr = @Bolignr ");
+                cmd.Parameters.AddWithValue("@Bolignr", Bolignr);
+
+                await DBConnection.ExecuteNonQuery(cmd);
+
+                return "Boligen er nu slettet";
+
+            }
+
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+
+        public static async Task OpdaterEjendom(
+            string adresse,
+            int pris,
+            int boligAreal,
+            int grundAreal,
+            bool have,
+            int værelser,
+            int etager,
+            string typeBolig,
+            int byggeår,
+            int postNr,
+            int bolignr
+            
+            )
+        {
+            try
+            {
+                SqlCommand cmd = new("UPDATE Ejendom set Adresse=@Adresse, Pris=@Pris, Boligareal=@Boligareal, Grundareal=@Grundareal," +
+                    "Have=@Have, Værelser=@Værelser, Etager=@Etager, Type=@Type, Byggeår=@Byggeår, Postnr=@Postnr WHERE Bolignr = @Bolignr");
+
+                cmd.Parameters.AddWithValue("@Adresse", adresse);
+                cmd.Parameters.AddWithValue("@Pris", pris);
+                cmd.Parameters.AddWithValue("@Boligareal", boligAreal);
+                cmd.Parameters.AddWithValue("@Grundareal", grundAreal);
+                cmd.Parameters.AddWithValue("@Have", have);
+                cmd.Parameters.AddWithValue("@Værelser", værelser);
+                cmd.Parameters.AddWithValue("@Etager", etager);
+                cmd.Parameters.AddWithValue("@Type", typeBolig);
+                cmd.Parameters.AddWithValue("@Byggeår", byggeår);
+                cmd.Parameters.AddWithValue("@Postnr", postNr);
+                cmd.Parameters.AddWithValue("Bolignr", bolignr);
+
+                if (await Fetch.GetByByPostNr(postNr) == null)
+                {
+                    string cityName = await CityLoader.FindCityName(postNr.ToString());
+                    await CreateBy(postNr, cityName);
+                }
+
+                await DBConnection.ExecuteNonQuery(cmd);
+
+
+
+               
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
 
         #endregion
+
+
 
         #region Renorvering
         public static async Task CreateRenorvering(
@@ -167,7 +236,7 @@ namespace BoBedre.Core.DataAccess
             int boligNr)
         {
             SqlCommand cmd = new SqlCommand("INSERT INTO Renorvering (Køkken, Badeværelse, Andet, OmbygningsÅr, Detaljer, BoligNr) VALUES (@køkken, @badeværelse, @andet, @ombygningsÅr, @detaljer, @boligNr)");
-            
+
             cmd.Parameters.AddWithValue("@køkken", køkken);
             cmd.Parameters.AddWithValue("@badeværelse", badeværelse);
             cmd.Parameters.AddWithValue("@andet", andet);
@@ -200,7 +269,7 @@ namespace BoBedre.Core.DataAccess
 
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }
