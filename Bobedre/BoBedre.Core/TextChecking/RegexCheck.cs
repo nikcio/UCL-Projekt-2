@@ -6,6 +6,7 @@ namespace BoBedre.Core.TextChecking
     {
         private static readonly string BasicTextRegex = @"^[a-z A-ZåæøÅÆØ]+$";
         private static readonly string EmailRegex = "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$"; // Taken from: https://emailregex.com/
+        private static readonly string BaiscTalRegex = @"^[0-9]+$";
 
         public static bool TextCheck(string textToCheck)
         {
@@ -15,6 +16,11 @@ namespace BoBedre.Core.TextChecking
         public static bool EmailCheck(string textToCheck)
         {
             return Regex.IsMatch(textToCheck, EmailRegex);
+        }
+
+        public static bool TalCheck(string textToCheck)
+        {
+            return Regex.IsMatch(textToCheck, BaiscTalRegex);
         }
     }
 }
