@@ -72,6 +72,7 @@ namespace Bobedre.Views.Kunder
             this.KundeGemKnap.TabIndex = 1;
             this.KundeGemKnap.Text = "Gem";
             this.KundeGemKnap.UseVisualStyleBackColor = true;
+            this.KundeGemKnap.Click += new System.EventHandler(this.KundeGemKnap_Click);
             // 
             // KundeSletKnap
             // 
@@ -81,6 +82,7 @@ namespace Bobedre.Views.Kunder
             this.KundeSletKnap.TabIndex = 2;
             this.KundeSletKnap.Text = "Slet";
             this.KundeSletKnap.UseVisualStyleBackColor = true;
+            this.KundeSletKnap.Click += new System.EventHandler(this.KundeSletKnap_Click);
             // 
             // KundeNr
             // 
