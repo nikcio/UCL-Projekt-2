@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using BoBedre.Core.DataAccess;
+using Bobedre.Utility;
 
 namespace Bobedre.Views.Kunder
 {
