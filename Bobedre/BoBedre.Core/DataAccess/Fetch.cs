@@ -118,14 +118,14 @@ namespace BoBedre.Core.DataAccess
         /// Gets all kunder
         /// </summary>
         /// <returns></returns>
-        public static async Task<By[]> GetKundeAll()
+        public static async Task<Kunde[]> GetKundeAll()
         {
             var sqlCpmmand = new SqlCommand("SELECT * FROM Kunde");
             var kunder = await DBConnection.ReadElements(sqlCpmmand);
-            var output = new List<By>();
+            var output = new List<Kunde>();
             foreach (var kunde in kunder)
             {
-                output.Add(CreateByFromData(kunde));
+                output.Add(CreateKundeFromData(kunde));
             }
             return output.ToArray();
         }
