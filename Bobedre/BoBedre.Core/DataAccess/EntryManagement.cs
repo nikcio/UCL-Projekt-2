@@ -67,9 +67,9 @@ namespace BoBedre.Core.DataAccess
                 cmd.Parameters.AddWithValue("@Navn", navn);
                 cmd.Parameters.AddWithValue("@Email", email);
 
-                int boligNr = (int)await DBConnection.ExecuteScalar(cmd);
+                int medarbejderNr = (int)await DBConnection.ExecuteScalar(cmd);
 
-                return boligNr;
+                return medarbejderNr;
 
             }
             catch
