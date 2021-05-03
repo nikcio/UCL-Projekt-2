@@ -26,10 +26,10 @@ namespace Bobedre.Views.Kunder
             if ((RegexCheck.TextCheck(KundeNavnBox.Text)) && RegexCheck.EmailCheck(KundeEmailBox.Text) && KundeTypeComboBox.SelectedItem != null)
             {
                 var KundeType = KundeTypeComboBox.SelectedItem.ToString();
-                var message = await EntryManagement.CreateKunde(KundeNavnBox.Text, KundeEmailBox.Text, KundeType);
+                await EntryManagement.CreateKunde(KundeNavnBox.Text, KundeEmailBox.Text, KundeType);
                 ClearForm.CleanForm(Controls);
 
-                MessageBox.Show(message);
+                MessageBox.Show("Kunden er netop blevet tilføjet");
             }
             else
             {
