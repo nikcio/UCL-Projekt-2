@@ -28,7 +28,7 @@ namespace Bobedre.Views.Ejendomsmæglere
                 ClearForm.CleanForm(Controls);
                 
 
-                MessageBox.Show(message);
+                MessageBox.Show("Ejendomsmægleren er oprettet");
 
             }
             else

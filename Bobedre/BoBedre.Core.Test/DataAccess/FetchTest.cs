@@ -21,6 +21,8 @@ namespace BoBedre.Core.Test.DataAccess
         {
             Assert.IsNotNull(await Fetch.GetEjendomAll(), "GetEjendomAll should not return null but a empty array if no elements are in the database");
         }
+
+
         #endregion
 
         #region Ejendomsmægler
@@ -37,6 +39,8 @@ namespace BoBedre.Core.Test.DataAccess
         {
             Assert.IsNotNull(await Fetch.GetEjendomsmæglerAll(), "GetEjendomsmæglerAll should not return null but a empty array if no elements are in the database");
         }
+        [TestMethod]
+    
         #endregion
 
         #region By

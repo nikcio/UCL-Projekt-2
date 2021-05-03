@@ -56,26 +56,26 @@ namespace BoBedre.Core.DataAccess
         }
 
 
-        public static async Task<string> CreateEjendomsmægler(string afdeling, string mæglerfirma, string navn, string email)
+        public static async Task<int> CreateEjendomsmægler(string afdeling, string mæglerfirma, string navn, string email)
         {
             try
             {
-                SqlCommand cmd = new("INSERT into Ejendomsmægler(Afdeling, Mæglerfirma, Navn, Email) VALUES (@Afdeling, @Mæglerfirma, @Navn, @Email)");
+                SqlCommand cmd = new("INSERT into Ejendomsmægler(Afdeling, Mæglerfirma, Navn, Email) OUTPUT INSERTED.MedarbejderNr VALUES (@Afdeling, @Mæglerfirma, @Navn, @Email)");
 
                 cmd.Parameters.AddWithValue("@Afdeling", afdeling);
                 cmd.Parameters.AddWithValue("@Mæglerfirma", mæglerfirma);
                 cmd.Parameters.AddWithValue("@Navn", navn);
                 cmd.Parameters.AddWithValue("@Email", email);
 
-                await DBConnection.ExecuteNonQuery(cmd);
+                int boligNr = (int)await DBConnection.ExecuteScalar(cmd);
 
-                return "Ejendomsmægleren er netop blevet tilføjet";
+                return boligNr;
 
             }
-            catch (Exception ex)
+            catch
             {
 
-                return ex.Message;
+                return -1;
             }
         }
         #endregion
