@@ -12,9 +12,38 @@ namespace Bobedre.Views.Renorvering
 {
     public partial class Renorvering : Form
     {
-        public Renorvering()
+        public Baseform baseform { get; set; }
+
+        public Renorvering(Models.Action action, Baseform _baseform)
         {
             InitializeComponent();
+
+            baseform = _baseform;
+
+            switch (action)
+            {
+                case Models.Action.create:
+                    SletButton.Visible = false;
+                    GemButton.Visible = false;
+                    break;
+
+                case Models.Action.delete:
+                    OpretButton.Visible = false;
+                    GemButton.Visible = false;
+                    break;
+
+                case Models.Action.edit:
+                    SletButton.Visible = false;
+                    OpretButton.Visible = false;
+                    break;
+
+                case Models.Action.view:
+                    SletButton.Visible = false;
+                    OpretButton.Visible = false;
+                    GemButton.Visible = false;
+                    break;
+            }
         }
+
     }
 }
