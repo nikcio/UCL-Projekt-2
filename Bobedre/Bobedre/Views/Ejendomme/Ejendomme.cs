@@ -13,14 +13,69 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BoBedre.Core.Models;
 
 namespace Bobedre.Views.Ejendomme
 {
     public partial class Ejendomme : Form
     {
-        public Ejendomme(Models.Action action, Baseform baseform)
+        public Baseform baseform { get; set; }
+
+        public Ejendomme(Models.Action action, Baseform _baseform, int boligNr = -1)
         {
             InitializeComponent();
+
+            baseform = _baseform;
+
+            switch (action)
+            {
+                case Models.Action.create:
+                    RenorveringerFlow.Visible = false;
+                    AddRenorveringButton.Visible = false;
+                    break;
+
+                case Models.Action.edit:
+                    LoadData(boligNr);
+                    break;
+
+                case Models.Action.delete:
+                    LoadData(boligNr);
+                    break;
+
+                case Models.Action.view:
+                    LoadData(boligNr);
+                    break;
+            }
+        }
+
+        private async void LoadData(int boligNr)
+        {
+            if(boligNr < 0)
+            {
+                throw new ArgumentOutOfRangeException("boligNr", "boligNr can not be under 0");
+            }
+
+            var ejendom = await Fetch.GetEjendomByBoligNr(boligNr);
+
+            BolignrTextbox.Text = ejendom.BoligNr.ToString();
+            AdresseBolig.Text = ejendom.Adresse;
+            PrisTextBox.Text = ejendom.Pris.ToString();
+            BoligArealTextBox.Text = ejendom.BoligAreal.ToString();
+            GrundArealBoligTextBox.Text = ejendom.GrundAreal.ToString();
+            HaveCheckBox.Checked = ejendom.Have;
+            VæreslerBoligTextBox.Text = ejendom.Værelser.ToString();
+            EtagerBoligTextbox.Text = ejendom.Etager.ToString();
+            TypeBoligTextBox.Text = ejendom.Type;
+            ByggeårBoligTextBox.Text = ejendom.Byggeår.ToString();
+            PostNrTextBox.Text = ejendom.PostNr.ToString();
+
+            // Load renorveringer:
+            var renorveringer = await Fetch.GetRenorveringAll();
+
+            foreach(var renorvering in renorveringer)
+            {
+                ShowRenorvering(renorvering);
+            }
         }
 
         private async void OpretBoligKnap_Click(object sender, EventArgs e)
@@ -28,31 +83,7 @@ namespace Bobedre.Views.Ejendomme
             if ((RegexCheck.TextCheck(AdresseBolig.Text) && RegexCheck.TalCheck(PrisTextBox.Text) && RegexCheck.TalCheck(BoligArealTextBox.Text) && RegexCheck.TalCheck(GrundArealBoligTextBox.Text) && (HaveCheckBox.Checked)
              && RegexCheck.TalCheck(VæreslerBoligTextBox.Text) && RegexCheck.TextCheck(TypeBoligTextBox.Text) && RegexCheck.TalCheck(ByggeårBoligTextBox.Text)))
             {
-                if (RenoveretBoligCheckBox.Checked &&
-                    (RegexCheck.TalCheck(OmbygningsårTextbox.Text) && RegexCheck.TextCheck(DetalijerTextbox.Text) && RegexCheck.TalCheck(RenoveringsIdLabel.Text)))
-                {
-                    await EntryManagement.CreateEjendom(
-                        AdresseBolig.Text, 
-                        int.Parse(PrisTextBox.Text), 
-                        int.Parse(BoligArealTextBox.Text), 
-                        int.Parse(GrundArealBoligTextBox.Text), 
-                        HaveCheckBox.Checked, 
-                        int.Parse(VæreslerBoligTextBox.Text), 
-                        int.Parse(EtagerBoligTextbox.Text), 
-                        TypeBoligTextBox.Text, 
-                        int.Parse(ByggeårBoligTextBox.Text), 
-                        int.Parse(PostNrTextBox.Text),
-                        RenoveretBoligCheckBox.Checked, 
-                        KøkkenCheckbox.Checked, 
-                        Badeværelsecheckbox.Checked, 
-                        Andetcheckbox.Checked, 
-                        int.Parse(OmbygningsårTextbox.Text), 
-                        DetalijerTextbox.Text);
-                    MessageBox.Show("Boligen er nu gemt");
-                }
-                else
-                {
-                    await EntryManagement.CreateEjendom(
+                await EntryManagement.CreateEjendom(
                         AdresseBolig.Text,
                         int.Parse(PrisTextBox.Text),
                         int.Parse(BoligArealTextBox.Text),
@@ -62,8 +93,7 @@ namespace Bobedre.Views.Ejendomme
                         int.Parse(EtagerBoligTextbox.Text),
                         TypeBoligTextBox.Text,
                         int.Parse(ByggeårBoligTextBox.Text),
-                        int.Parse(PostNrTextBox.Text)); 
-                }
+                        int.Parse(PostNrTextBox.Text));
                 MessageBox.Show("Boligen er nu gemt2");
             }
             else
@@ -74,7 +104,7 @@ namespace Bobedre.Views.Ejendomme
 
         private async void SletButtonBolig_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(BolignrLabel.Text, out int Bolignr))
+            if (int.TryParse(BolignrTextbox.Text, out int Bolignr))
             {
                 var message = await EntryManagement.SletBolig(Bolignr);
 
@@ -87,20 +117,11 @@ namespace Bobedre.Views.Ejendomme
                 
                 MessageBox.Show("fejl skal være et Nr");
             }
-
-
-
-
-
         }
 
         private async void OpdaterBoligKnap_Click(object sender, EventArgs e)
         {
-
-           
-
-
-            if (RegexCheck.TalCheck(BolignrLabel.Text) && RegexCheck.TextCheck(AdresseBolig.Text) && RegexCheck.TalCheck(PrisTextBox.Text) && RegexCheck.TalCheck(BoligArealTextBox.Text) && RegexCheck.TalCheck(GrundArealBoligTextBox.Text) && (HaveCheckBox.Checked)
+            if (RegexCheck.TalCheck(BolignrTextbox.Text) && RegexCheck.TextCheck(AdresseBolig.Text) && RegexCheck.TalCheck(PrisTextBox.Text) && RegexCheck.TalCheck(BoligArealTextBox.Text) && RegexCheck.TalCheck(GrundArealBoligTextBox.Text) && (HaveCheckBox.Checked)
              && RegexCheck.TalCheck(VæreslerBoligTextBox.Text) && RegexCheck.TextCheck(TypeBoligTextBox.Text) && RegexCheck.TalCheck(ByggeårBoligTextBox.Text))
             {
                 await EntryManagement.OpdaterEjendom(
@@ -114,7 +135,7 @@ namespace Bobedre.Views.Ejendomme
                 TypeBoligTextBox.Text,
                 int.Parse(ByggeårBoligTextBox.Text),
                 int.Parse(PostNrTextBox.Text),
-                int.Parse(BolignrLabel.Text));
+                int.Parse(BolignrTextbox.Text));
                 
 
 
@@ -124,31 +145,135 @@ namespace Bobedre.Views.Ejendomme
             {
                 MessageBox.Show("Boligens oplysninger blev ikke opdateret pgf. forkerte oplysninger");
             }
-
-
-
         }
 
-        private void RenoveretBoligCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void AddRenorveringButton_Click(object sender, EventArgs e)
         {
-            KøkkenCheckbox.Enabled = RenoveretBoligCheckBox.Checked;
-            Badeværelsecheckbox.Enabled = RenoveretBoligCheckBox.Checked;
-            Andetcheckbox.Enabled = RenoveretBoligCheckBox.Checked;
-            OmbygningsårTextbox.Enabled = RenoveretBoligCheckBox.Checked;
-            DetalijerTextbox.Enabled = RenoveretBoligCheckBox.Checked;
-            RenoveringsIdLabel.Enabled = RenoveretBoligCheckBox.Checked;
+            if (RegexCheck.TalCheck(BolignrTextbox.Text))
+            {
+                baseform.ShowForm(new Renorvering.Renorvering(Models.Action.create, baseform, this, -1, int.Parse(BolignrTextbox.Text)));
+            }
         }
 
-        private void BoligAndet_Click(object sender, EventArgs e)
+        private void ShowRenorvering(BoBedre.Core.Models.Renorvering renorvering)
         {
-
+            Panel ItemPanel = new System.Windows.Forms.Panel();
+            Button SletButton = new System.Windows.Forms.Button();
+            Button RedigerButton = new System.Windows.Forms.Button();
+            Label RenorveringsId = new System.Windows.Forms.Label();
+            Label OmbygningsÅr = new System.Windows.Forms.Label();
+            CheckBox KøkkenCheckBox = new System.Windows.Forms.CheckBox();
+            FlowLayoutPanel Checkboxes = new System.Windows.Forms.FlowLayoutPanel();
+            CheckBox BadeværelseCheckBox = new System.Windows.Forms.CheckBox();
+            CheckBox AndetCheckBox = new System.Windows.Forms.CheckBox();
+            // 
+            // ItemPanel
+            // 
+            ItemPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            ItemPanel.Controls.Add(Checkboxes);
+            ItemPanel.Controls.Add(OmbygningsÅr);
+            ItemPanel.Controls.Add(RenorveringsId);
+            ItemPanel.Controls.Add(RedigerButton);
+            ItemPanel.Controls.Add(SletButton);
+            ItemPanel.Location = new System.Drawing.Point(12, 12);
+            ItemPanel.Name = "ItemPanel";
+            ItemPanel.Size = new System.Drawing.Size(373, 125);
+            ItemPanel.TabIndex = 0;
+            // 
+            // SletButton
+            // 
+            SletButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SletButton.Location = new System.Drawing.Point(265, 82);
+            SletButton.Name = "SletButton";
+            SletButton.Size = new System.Drawing.Size(94, 29);
+            SletButton.TabIndex = 0;
+            SletButton.Text = "Slet";
+            SletButton.UseVisualStyleBackColor = true;
+            SletButton.Click += new System.EventHandler((object sender, EventArgs e) => SletButton_Click(renorvering.RenorveringsId));
+            // 
+            // RedigerButton
+            // 
+            RedigerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RedigerButton.Location = new System.Drawing.Point(165, 82);
+            RedigerButton.Name = "RedigerButton";
+            RedigerButton.Size = new System.Drawing.Size(94, 29);
+            RedigerButton.TabIndex = 1;
+            RedigerButton.Text = "Rediger";
+            RedigerButton.UseVisualStyleBackColor = true;
+            RedigerButton.Click += new System.EventHandler((object sender, EventArgs e) => RedigerButton_Click(renorvering.RenorveringsId));
+            // 
+            // RenorveringsId
+            // 
+            RenorveringsId.AutoSize = true;
+            RenorveringsId.Location = new System.Drawing.Point(9, 13);
+            RenorveringsId.Name = "RenorveringsId";
+            RenorveringsId.Size = new System.Drawing.Size(37, 20);
+            RenorveringsId.TabIndex = 2;
+            RenorveringsId.Text = "Id: 1";
+            // 
+            // OmbygningsÅr
+            // 
+            OmbygningsÅr.AutoSize = true;
+            OmbygningsÅr.Location = new System.Drawing.Point(9, 37);
+            OmbygningsÅr.Name = "OmbygningsÅr";
+            OmbygningsÅr.Size = new System.Drawing.Size(63, 20);
+            OmbygningsÅr.TabIndex = 3;
+            OmbygningsÅr.Text = "År: 2020";
+            // 
+            // KøkkenCheckBox
+            // 
+            KøkkenCheckBox.AutoSize = true;
+            KøkkenCheckBox.Enabled = false;
+            KøkkenCheckBox.Location = new System.Drawing.Point(199, 3);
+            KøkkenCheckBox.Name = "KøkkenCheckBox";
+            KøkkenCheckBox.Size = new System.Drawing.Size(79, 24);
+            KøkkenCheckBox.TabIndex = 4;
+            KøkkenCheckBox.Text = "Køkken";
+            KøkkenCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // Checkboxes
+            // 
+            Checkboxes.Controls.Add(KøkkenCheckBox);
+            Checkboxes.Controls.Add(BadeværelseCheckBox);
+            Checkboxes.Controls.Add(AndetCheckBox);
+            Checkboxes.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            Checkboxes.Location = new System.Drawing.Point(78, 13);
+            Checkboxes.Name = "Checkboxes";
+            Checkboxes.Size = new System.Drawing.Size(281, 63);
+            Checkboxes.TabIndex = 5;
+            // 
+            // BadeværelseCheckBox
+            // 
+            BadeværelseCheckBox.AutoSize = true;
+            BadeværelseCheckBox.Enabled = false;
+            BadeværelseCheckBox.Location = new System.Drawing.Point(78, 3);
+            BadeværelseCheckBox.Name = "BadeværelseCheckBox";
+            BadeværelseCheckBox.Size = new System.Drawing.Size(115, 24);
+            BadeværelseCheckBox.TabIndex = 5;
+            BadeværelseCheckBox.Text = "Badeværelse";
+            BadeværelseCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // AndetCheckBox
+            // 
+            AndetCheckBox.AutoSize = true;
+            AndetCheckBox.Enabled = false;
+            AndetCheckBox.Location = new System.Drawing.Point(207, 33);
+            AndetCheckBox.Name = "AndetCheckBox";
+            AndetCheckBox.Size = new System.Drawing.Size(71, 24);
+            AndetCheckBox.TabIndex = 6;
+            AndetCheckBox.Text = "Andet";
+            AndetCheckBox.UseVisualStyleBackColor = true;
         }
 
+        private void RedigerButton_Click(int renorveringsId)
+        {
+            baseform.ShowForm(new Renorvering.Renorvering(Models.Action.edit, baseform, this, renorveringsId));
+        }
 
-
-
-
-
+        private void SletButton_Click(int renorveringsId)
+        {
+            baseform.ShowForm(new Renorvering.Renorvering(Models.Action.delete, baseform, this, renorveringsId));
+        }
     }
 
 }
