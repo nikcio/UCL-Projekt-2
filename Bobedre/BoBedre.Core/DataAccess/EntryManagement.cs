@@ -226,8 +226,6 @@ namespace BoBedre.Core.DataAccess
 
         #endregion
 
-
-
         #region Renorvering
         public static async Task<int> CreateRenorvering(
             bool køkken,
@@ -237,7 +235,7 @@ namespace BoBedre.Core.DataAccess
             string detaljer,
             int boligNr)
         {
-            SqlCommand cmd = new SqlCommand("INSERT INTO Renorvering (Køkken, Badeværelse, Andet, OmbygningsÅr, Detaljer, BoligNr) " +
+            SqlCommand cmd = new("INSERT INTO Renorvering (Køkken, Badeværelse, Andet, OmbygningsÅr, Detaljer, BoligNr) " +
                 "OUTPUT INSERTED.RenorveringsId" +
                 "VALUES (@køkken, @badeværelse, @andet, @ombygningsÅr, @detaljer, @boligNr)");
 
@@ -249,6 +247,37 @@ namespace BoBedre.Core.DataAccess
             cmd.Parameters.AddWithValue("@boligNr", boligNr);
 
             return (int)await DBConnection.ExecuteScalar(cmd);
+        }
+
+        public static async Task UpdateRenorvering(
+            bool køkken,
+            bool badeværelse,
+            bool andet,
+            int ombygningsÅr,
+            string detaljer,
+            int renorveringId)
+        {
+            SqlCommand cmd = new("UPDATE Renorvering " +
+                "SET Køkken=@køkken, Badeværelse=@badeværelse, Andet=@andet, OmbygningsÅr=@ombygningsÅr, Detaljer=@detaljer " +
+                "WHERE RenorveringsId=@renorveringsId");
+
+            cmd.Parameters.AddWithValue("@køkken", køkken);
+            cmd.Parameters.AddWithValue("@badeværelse", badeværelse);
+            cmd.Parameters.AddWithValue("@andet", andet);
+            cmd.Parameters.AddWithValue("@ombygningsÅr", ombygningsÅr);
+            cmd.Parameters.AddWithValue("@detaljer", detaljer);
+            cmd.Parameters.AddWithValue("@renorveringsId", renorveringId);
+
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
+
+        public static async Task DeleteRenorvering(int renorveringsId)
+        {
+            SqlCommand cmd = new("DELETE FROM Renorvering WHERE RenorveringsId=@renorveringsId");
+
+            cmd.Parameters.AddWithValue("@renorveringsId", renorveringsId);
+
+            await DBConnection.ExecuteNonQuery(cmd);
         }
         #endregion
 

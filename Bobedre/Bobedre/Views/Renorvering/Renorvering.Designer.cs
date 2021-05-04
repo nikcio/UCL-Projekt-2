@@ -41,11 +41,22 @@ namespace Bobedre.Views.Renorvering
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.OpretButton = new System.Windows.Forms.Button();
             this.GemButton = new System.Windows.Forms.Button();
-            this.LukButton = new System.Windows.Forms.Button();
             this.SletButton = new System.Windows.Forms.Button();
+            this.LukButton = new System.Windows.Forms.Button();
             OmbygningsårBolig = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // OmbygningsårBolig
+            // 
+            OmbygningsårBolig.AutoSize = true;
+            OmbygningsårBolig.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            OmbygningsårBolig.Location = new System.Drawing.Point(11, 102);
+            OmbygningsårBolig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            OmbygningsårBolig.Name = "OmbygningsårBolig";
+            OmbygningsårBolig.Size = new System.Drawing.Size(142, 28);
+            OmbygningsårBolig.TabIndex = 38;
+            OmbygningsårBolig.Text = "Ombygningsår";
             // 
             // Andetcheckbox
             // 
@@ -141,17 +152,6 @@ namespace Bobedre.Views.Renorvering
             this.DetaljerLabel.TabIndex = 39;
             this.DetaljerLabel.Text = "Detaljer";
             // 
-            // OmbygningsårBolig
-            // 
-            OmbygningsårBolig.AutoSize = true;
-            OmbygningsårBolig.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            OmbygningsårBolig.Location = new System.Drawing.Point(11, 102);
-            OmbygningsårBolig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            OmbygningsårBolig.Name = "OmbygningsårBolig";
-            OmbygningsårBolig.Size = new System.Drawing.Size(142, 28);
-            OmbygningsårBolig.TabIndex = 38;
-            OmbygningsårBolig.Text = "Ombygningsår";
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.OpretButton);
@@ -174,6 +174,7 @@ namespace Bobedre.Views.Renorvering
             this.OpretButton.TabIndex = 0;
             this.OpretButton.Text = "Opret";
             this.OpretButton.UseVisualStyleBackColor = true;
+            this.OpretButton.Click += new System.EventHandler(this.OpretButton_Click);
             // 
             // GemButton
             // 
@@ -186,18 +187,7 @@ namespace Bobedre.Views.Renorvering
             this.GemButton.TabIndex = 1;
             this.GemButton.Text = "Gem";
             this.GemButton.UseVisualStyleBackColor = true;
-            // 
-            // LukButton
-            // 
-            this.LukButton.AutoSize = true;
-            this.LukButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LukButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LukButton.Location = new System.Drawing.Point(303, 3);
-            this.LukButton.Name = "LukButton";
-            this.LukButton.Size = new System.Drawing.Size(94, 40);
-            this.LukButton.TabIndex = 2;
-            this.LukButton.Text = "Luk";
-            this.LukButton.UseVisualStyleBackColor = true;
+            this.GemButton.Click += new System.EventHandler(this.GemButton_Click);
             // 
             // SletButton
             // 
@@ -210,6 +200,20 @@ namespace Bobedre.Views.Renorvering
             this.SletButton.TabIndex = 3;
             this.SletButton.Text = "Slet";
             this.SletButton.UseVisualStyleBackColor = true;
+            this.SletButton.Click += new System.EventHandler(this.SletButton_Click);
+            // 
+            // LukButton
+            // 
+            this.LukButton.AutoSize = true;
+            this.LukButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LukButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LukButton.Location = new System.Drawing.Point(303, 3);
+            this.LukButton.Name = "LukButton";
+            this.LukButton.Size = new System.Drawing.Size(94, 40);
+            this.LukButton.TabIndex = 2;
+            this.LukButton.Text = "Luk";
+            this.LukButton.UseVisualStyleBackColor = true;
+            this.LukButton.Click += new System.EventHandler(this.LukButton_Click);
             // 
             // Renorvering
             // 
