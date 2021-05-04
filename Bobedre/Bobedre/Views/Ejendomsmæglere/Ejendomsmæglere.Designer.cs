@@ -191,6 +191,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Ejendomsmæglere";
             this.Text = "Ejendomsmæglere";
+            this.Load += new System.EventHandler(this.Ejendomsmæglere_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

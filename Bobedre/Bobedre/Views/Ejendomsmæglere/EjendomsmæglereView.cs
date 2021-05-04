@@ -33,12 +33,14 @@ namespace Bobedre.Views.Ejendomsmæglere
                 M1(ejendomsmægler);
             }
         } 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(int medarbejderNr)
         {
-            baseform.ShowForm(new Ejendomsmæglere(Models.Action.edit, baseform));
+            baseform.ShowForm(new Ejendomsmæglere(Models.Action.edit, baseform, medarbejderNr));
+            
              
 
         }
+    
         private void M1(Ejendomsmægler ejendomsmægler) 
         {
             Panel panel1 = new System.Windows.Forms.Panel();
@@ -150,9 +152,11 @@ namespace Bobedre.Views.Ejendomsmæglere
             RedigereKnap.TabIndex = 8;
             RedigereKnap.Text = "Redigere";
             RedigereKnap.UseVisualStyleBackColor = true;
-            RedigereKnap.Click += new System.EventHandler(button1_Click);
+            RedigereKnap.Click += new System.EventHandler((object sender, EventArgs e) => button1_Click(ejendomsmægler.MedarbejderNr));
 
             flowLayoutPanel1.Controls.Add(panel1);
         }
+
+        
     }
 }

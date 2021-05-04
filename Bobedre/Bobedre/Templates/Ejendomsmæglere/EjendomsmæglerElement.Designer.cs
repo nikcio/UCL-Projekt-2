@@ -39,11 +39,13 @@ namespace Bobedre.Templates.Ejendomsmæglere
             this.MæglerFirmaLabel = new System.Windows.Forms.Label();
             this.AfdelingSvar = new System.Windows.Forms.Label();
             this.AfdelingLabel = new System.Windows.Forms.Label();
+            this.VisKnap = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.VisKnap);
             this.panel1.Controls.Add(this.RedigereKnap);
             this.panel1.Controls.Add(this.EmailSvar);
             this.panel1.Controls.Add(this.EmailLabel);
@@ -113,7 +115,6 @@ namespace Bobedre.Templates.Ejendomsmæglere
             this.Mæglerfirmasvar.Size = new System.Drawing.Size(13, 15);
             this.Mæglerfirmasvar.TabIndex = 3;
             this.Mæglerfirmasvar.Text = "1";
-           
             // 
             // MæglerFirmaLabel
             // 
@@ -141,6 +142,16 @@ namespace Bobedre.Templates.Ejendomsmæglere
             this.AfdelingLabel.Size = new System.Drawing.Size(52, 15);
             this.AfdelingLabel.TabIndex = 0;
             this.AfdelingLabel.Text = "Afdeling";
+            // 
+            // VisKnap
+            // 
+            this.VisKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.VisKnap.Location = new System.Drawing.Point(245, 45);
+            this.VisKnap.Name = "VisKnap";
+            this.VisKnap.Size = new System.Drawing.Size(75, 23);
+            this.VisKnap.TabIndex = 9;
+            this.VisKnap.Text = "Vis";
+            this.VisKnap.UseVisualStyleBackColor = true;
             // 
             // EjendomsmæglerElement
             // 
@@ -170,5 +181,6 @@ namespace Bobedre.Templates.Ejendomsmæglere
         private System.Windows.Forms.Button RedigereKnap;
         private System.Windows.Forms.Label EmailSvar;
         private System.Windows.Forms.Label EmailLabel;
+        private System.Windows.Forms.Button VisKnap;
     }
 }
