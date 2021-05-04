@@ -30,6 +30,9 @@ namespace Bobedre.Templates.Ejendomsmæglere
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.MedarbejderNrSvar = new System.Windows.Forms.Label();
+            this.MedarbejderNrLabel = new System.Windows.Forms.Label();
+            this.VisKnap = new System.Windows.Forms.Button();
             this.RedigereKnap = new System.Windows.Forms.Button();
             this.EmailSvar = new System.Windows.Forms.Label();
             this.EmailLabel = new System.Windows.Forms.Label();
@@ -39,12 +42,13 @@ namespace Bobedre.Templates.Ejendomsmæglere
             this.MæglerFirmaLabel = new System.Windows.Forms.Label();
             this.AfdelingSvar = new System.Windows.Forms.Label();
             this.AfdelingLabel = new System.Windows.Forms.Label();
-            this.VisKnap = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.MedarbejderNrSvar);
+            this.panel1.Controls.Add(this.MedarbejderNrLabel);
             this.panel1.Controls.Add(this.VisKnap);
             this.panel1.Controls.Add(this.RedigereKnap);
             this.panel1.Controls.Add(this.EmailSvar);
@@ -55,15 +59,44 @@ namespace Bobedre.Templates.Ejendomsmæglere
             this.panel1.Controls.Add(this.MæglerFirmaLabel);
             this.panel1.Controls.Add(this.AfdelingSvar);
             this.panel1.Controls.Add(this.AfdelingLabel);
-            this.panel1.Location = new System.Drawing.Point(44, 38);
+            this.panel1.Location = new System.Drawing.Point(12, 23);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(360, 144);
+            this.panel1.Size = new System.Drawing.Size(377, 189);
             this.panel1.TabIndex = 0;
+            // 
+            // MedarbejderNrSvar
+            // 
+            this.MedarbejderNrSvar.AutoSize = true;
+            this.MedarbejderNrSvar.Location = new System.Drawing.Point(132, 25);
+            this.MedarbejderNrSvar.Name = "MedarbejderNrSvar";
+            this.MedarbejderNrSvar.Size = new System.Drawing.Size(13, 15);
+            this.MedarbejderNrSvar.TabIndex = 11;
+            this.MedarbejderNrSvar.Text = "1";
+            // 
+            // MedarbejderNrLabel
+            // 
+            this.MedarbejderNrLabel.AutoSize = true;
+            this.MedarbejderNrLabel.Location = new System.Drawing.Point(21, 25);
+            this.MedarbejderNrLabel.Name = "MedarbejderNrLabel";
+            this.MedarbejderNrLabel.Size = new System.Drawing.Size(87, 15);
+            this.MedarbejderNrLabel.TabIndex = 10;
+            this.MedarbejderNrLabel.Text = "MedarbejderNr";
+            // 
+            // VisKnap
+            // 
+            this.VisKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.VisKnap.Location = new System.Drawing.Point(269, 57);
+            this.VisKnap.Name = "VisKnap";
+            this.VisKnap.Size = new System.Drawing.Size(75, 23);
+            this.VisKnap.TabIndex = 9;
+            this.VisKnap.Text = "Vis";
+            this.VisKnap.UseVisualStyleBackColor = true;
+            this.VisKnap.Click += new System.EventHandler(this.VisKnap_Click);
             // 
             // RedigereKnap
             // 
             this.RedigereKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RedigereKnap.Location = new System.Drawing.Point(245, 13);
+            this.RedigereKnap.Location = new System.Drawing.Point(269, 25);
             this.RedigereKnap.Name = "RedigereKnap";
             this.RedigereKnap.Size = new System.Drawing.Size(75, 23);
             this.RedigereKnap.TabIndex = 8;
@@ -74,7 +107,7 @@ namespace Bobedre.Templates.Ejendomsmæglere
             // EmailSvar
             // 
             this.EmailSvar.AutoSize = true;
-            this.EmailSvar.Location = new System.Drawing.Point(123, 107);
+            this.EmailSvar.Location = new System.Drawing.Point(132, 155);
             this.EmailSvar.Name = "EmailSvar";
             this.EmailSvar.Size = new System.Drawing.Size(13, 15);
             this.EmailSvar.TabIndex = 7;
@@ -83,7 +116,7 @@ namespace Bobedre.Templates.Ejendomsmæglere
             // EmailLabel
             // 
             this.EmailLabel.AutoSize = true;
-            this.EmailLabel.Location = new System.Drawing.Point(12, 107);
+            this.EmailLabel.Location = new System.Drawing.Point(21, 155);
             this.EmailLabel.Name = "EmailLabel";
             this.EmailLabel.Size = new System.Drawing.Size(36, 15);
             this.EmailLabel.TabIndex = 6;
@@ -92,7 +125,7 @@ namespace Bobedre.Templates.Ejendomsmæglere
             // NavnSvar
             // 
             this.NavnSvar.AutoSize = true;
-            this.NavnSvar.Location = new System.Drawing.Point(123, 76);
+            this.NavnSvar.Location = new System.Drawing.Point(132, 124);
             this.NavnSvar.Name = "NavnSvar";
             this.NavnSvar.Size = new System.Drawing.Size(13, 15);
             this.NavnSvar.TabIndex = 5;
@@ -101,7 +134,7 @@ namespace Bobedre.Templates.Ejendomsmæglere
             // NavnLabel
             // 
             this.NavnLabel.AutoSize = true;
-            this.NavnLabel.Location = new System.Drawing.Point(12, 76);
+            this.NavnLabel.Location = new System.Drawing.Point(21, 124);
             this.NavnLabel.Name = "NavnLabel";
             this.NavnLabel.Size = new System.Drawing.Size(35, 15);
             this.NavnLabel.TabIndex = 4;
@@ -110,7 +143,7 @@ namespace Bobedre.Templates.Ejendomsmæglere
             // Mæglerfirmasvar
             // 
             this.Mæglerfirmasvar.AutoSize = true;
-            this.Mæglerfirmasvar.Location = new System.Drawing.Point(123, 45);
+            this.Mæglerfirmasvar.Location = new System.Drawing.Point(132, 93);
             this.Mæglerfirmasvar.Name = "Mæglerfirmasvar";
             this.Mæglerfirmasvar.Size = new System.Drawing.Size(13, 15);
             this.Mæglerfirmasvar.TabIndex = 3;
@@ -119,7 +152,7 @@ namespace Bobedre.Templates.Ejendomsmæglere
             // MæglerFirmaLabel
             // 
             this.MæglerFirmaLabel.AutoSize = true;
-            this.MæglerFirmaLabel.Location = new System.Drawing.Point(12, 45);
+            this.MæglerFirmaLabel.Location = new System.Drawing.Point(21, 93);
             this.MæglerFirmaLabel.Name = "MæglerFirmaLabel";
             this.MæglerFirmaLabel.Size = new System.Drawing.Size(78, 15);
             this.MæglerFirmaLabel.TabIndex = 2;
@@ -128,7 +161,7 @@ namespace Bobedre.Templates.Ejendomsmæglere
             // AfdelingSvar
             // 
             this.AfdelingSvar.AutoSize = true;
-            this.AfdelingSvar.Location = new System.Drawing.Point(123, 13);
+            this.AfdelingSvar.Location = new System.Drawing.Point(132, 61);
             this.AfdelingSvar.Name = "AfdelingSvar";
             this.AfdelingSvar.Size = new System.Drawing.Size(13, 15);
             this.AfdelingSvar.TabIndex = 1;
@@ -137,22 +170,11 @@ namespace Bobedre.Templates.Ejendomsmæglere
             // AfdelingLabel
             // 
             this.AfdelingLabel.AutoSize = true;
-            this.AfdelingLabel.Location = new System.Drawing.Point(12, 13);
+            this.AfdelingLabel.Location = new System.Drawing.Point(21, 61);
             this.AfdelingLabel.Name = "AfdelingLabel";
             this.AfdelingLabel.Size = new System.Drawing.Size(52, 15);
             this.AfdelingLabel.TabIndex = 0;
             this.AfdelingLabel.Text = "Afdeling";
-            // 
-            // VisKnap
-            // 
-            this.VisKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VisKnap.Location = new System.Drawing.Point(245, 45);
-            this.VisKnap.Name = "VisKnap";
-            this.VisKnap.Size = new System.Drawing.Size(75, 23);
-            this.VisKnap.TabIndex = 9;
-            this.VisKnap.Text = "Vis";
-            this.VisKnap.UseVisualStyleBackColor = true;
-            this.VisKnap.Click += new System.EventHandler(this.VisKnap_Click);
             // 
             // EjendomsmæglerElement
             // 
@@ -183,5 +205,7 @@ namespace Bobedre.Templates.Ejendomsmæglere
         private System.Windows.Forms.Label EmailSvar;
         private System.Windows.Forms.Label EmailLabel;
         private System.Windows.Forms.Button VisKnap;
+        private System.Windows.Forms.Label MedarbejderNrSvar;
+        private System.Windows.Forms.Label MedarbejderNrLabel;
     }
 }

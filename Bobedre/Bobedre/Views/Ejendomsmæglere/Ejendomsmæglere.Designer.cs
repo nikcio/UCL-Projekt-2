@@ -66,9 +66,9 @@ namespace Bobedre.Views.Ejendomsmæglere
             this.MedarbejderIdlabel.AutoSize = true;
             this.MedarbejderIdlabel.Location = new System.Drawing.Point(24, 33);
             this.MedarbejderIdlabel.Name = "MedarbejderIdlabel";
-            this.MedarbejderIdlabel.Size = new System.Drawing.Size(87, 15);
+            this.MedarbejderIdlabel.Size = new System.Drawing.Size(90, 15);
             this.MedarbejderIdlabel.TabIndex = 2;
-            this.MedarbejderIdlabel.Text = "MedarbejderId.";
+            this.MedarbejderIdlabel.Text = "MedarbejderNr.";
             // 
             // Navnlabel
             // 
