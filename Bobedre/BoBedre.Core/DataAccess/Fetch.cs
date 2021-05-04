@@ -159,6 +159,25 @@ namespace BoBedre.Core.DataAccess
             }
             return output.ToArray();
         }
+
+        /// <summary>
+        /// Gets all renorvering
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<Renorvering[]> GetRenorveringerByBoligNr(int boligNr)
+        {
+            var sqlCommand = new SqlCommand("SELECT * FROM Renorvering WHERE BoligNr=@boligNr");
+
+            sqlCommand.Parameters.AddWithValue("@boligNr", boligNr);
+
+            var renorveringer = await DBConnection.ReadElements(sqlCommand);
+            var output = new List<Renorvering>();
+            foreach (var renorvering in renorveringer)
+            {
+                output.Add(CreateRenorveringFromData(renorvering));
+            }
+            return output.ToArray();
+        }
         #endregion
 
         #region Sag

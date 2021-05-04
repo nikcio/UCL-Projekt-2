@@ -236,7 +236,7 @@ namespace BoBedre.Core.DataAccess
             int boligNr)
         {
             SqlCommand cmd = new("INSERT INTO Renorvering (Køkken, Badeværelse, Andet, OmbygningsÅr, Detaljer, BoligNr) " +
-                "OUTPUT INSERTED.RenorveringsId" +
+                "OUTPUT INSERTED.RenorveringsId " +
                 "VALUES (@køkken, @badeværelse, @andet, @ombygningsÅr, @detaljer, @boligNr)");
 
             cmd.Parameters.AddWithValue("@køkken", køkken);

@@ -14,10 +14,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BoBedre.Core.Models;
+using Bobedre.Models;
 
 namespace Bobedre.Views.Ejendomme
 {
-    public partial class Ejendomme : Form
+    public partial class Ejendomme : DataForm
     {
         public Baseform baseform { get; set; }
 
@@ -48,7 +49,7 @@ namespace Bobedre.Views.Ejendomme
             }
         }
 
-        private async void LoadData(int boligNr)
+        public override async void LoadData(int boligNr)
         {
             if(boligNr < 0)
             {
@@ -70,7 +71,7 @@ namespace Bobedre.Views.Ejendomme
             PostNrTextBox.Text = ejendom.PostNr.ToString();
 
             // Load renorveringer:
-            var renorveringer = await Fetch.GetRenorveringAll();
+            var renorveringer = await Fetch.GetRenorveringerByBoligNr(ejendom.BoligNr);
 
             foreach(var renorvering in renorveringer)
             {
@@ -151,7 +152,8 @@ namespace Bobedre.Views.Ejendomme
         {
             if (RegexCheck.TalCheck(BolignrTextbox.Text))
             {
-                baseform.ShowForm(new Renorvering.Renorvering(Models.Action.create, baseform, this, -1, int.Parse(BolignrTextbox.Text)));
+                var boligNr = int.Parse(BolignrTextbox.Text);
+                baseform.ShowForm(new Renorvering.Renorvering(Models.Action.create, baseform, new Ejendomme(Models.Action.edit, baseform, boligNr), -1, boligNr));
             }
         }
 
@@ -209,7 +211,7 @@ namespace Bobedre.Views.Ejendomme
             RenorveringsId.Name = "RenorveringsId";
             RenorveringsId.Size = new System.Drawing.Size(37, 20);
             RenorveringsId.TabIndex = 2;
-            RenorveringsId.Text = "Id: 1";
+            RenorveringsId.Text = $"Id: {renorvering.RenorveringsId}";
             // 
             // OmbygningsÅr
             // 
@@ -218,7 +220,7 @@ namespace Bobedre.Views.Ejendomme
             OmbygningsÅr.Name = "OmbygningsÅr";
             OmbygningsÅr.Size = new System.Drawing.Size(63, 20);
             OmbygningsÅr.TabIndex = 3;
-            OmbygningsÅr.Text = "År: 2020";
+            OmbygningsÅr.Text = $"OmbygningsÅr: {renorvering.Ombygningsår}";
             // 
             // KøkkenCheckBox
             // 
@@ -229,6 +231,7 @@ namespace Bobedre.Views.Ejendomme
             KøkkenCheckBox.Size = new System.Drawing.Size(79, 24);
             KøkkenCheckBox.TabIndex = 4;
             KøkkenCheckBox.Text = "Køkken";
+            KøkkenCheckBox.Checked = renorvering.Køkken;
             KøkkenCheckBox.UseVisualStyleBackColor = true;
             // 
             // Checkboxes
@@ -251,6 +254,7 @@ namespace Bobedre.Views.Ejendomme
             BadeværelseCheckBox.Size = new System.Drawing.Size(115, 24);
             BadeværelseCheckBox.TabIndex = 5;
             BadeværelseCheckBox.Text = "Badeværelse";
+            BadeværelseCheckBox.Checked = renorvering.Badeværelse;
             BadeværelseCheckBox.UseVisualStyleBackColor = true;
             // 
             // AndetCheckBox
@@ -262,17 +266,20 @@ namespace Bobedre.Views.Ejendomme
             AndetCheckBox.Size = new System.Drawing.Size(71, 24);
             AndetCheckBox.TabIndex = 6;
             AndetCheckBox.Text = "Andet";
+            AndetCheckBox.Checked = renorvering.Andet;
             AndetCheckBox.UseVisualStyleBackColor = true;
+
+            RenorveringerFlow.Controls.Add(ItemPanel);
         }
 
         private void RedigerButton_Click(int renorveringsId)
         {
-            baseform.ShowForm(new Renorvering.Renorvering(Models.Action.edit, baseform, this, renorveringsId));
+            baseform.ShowForm(new Renorvering.Renorvering(Models.Action.edit, baseform, new Ejendomme(Models.Action.edit, baseform, int.Parse(BolignrTextbox.Text)), renorveringsId));
         }
 
         private void SletButton_Click(int renorveringsId)
         {
-            baseform.ShowForm(new Renorvering.Renorvering(Models.Action.delete, baseform, this, renorveringsId));
+            baseform.ShowForm(new Renorvering.Renorvering(Models.Action.delete, baseform, new Ejendomme(Models.Action.edit, baseform, int.Parse(BolignrTextbox.Text)), renorveringsId));
         }
     }
 
