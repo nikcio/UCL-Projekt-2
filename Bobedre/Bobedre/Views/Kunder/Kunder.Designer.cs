@@ -40,7 +40,7 @@ namespace Bobedre.Views.Kunder
             this.KundeEmail = new System.Windows.Forms.Label();
             this.KundeEmailBox = new System.Windows.Forms.TextBox();
             this.KundeType = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.KundeTypeComboBox = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,9 +97,9 @@ namespace Bobedre.Views.Kunder
             // 
             this.KundeNrBox.Location = new System.Drawing.Point(83, 25);
             this.KundeNrBox.Name = "KundeNrBox";
-            this.KundeNrBox.ReadOnly = true;
             this.KundeNrBox.Size = new System.Drawing.Size(100, 23);
             this.KundeNrBox.TabIndex = 12;
+            this.KundeNrBox.TextChanged += new System.EventHandler(this.KundeNrBox_TextChanged);
             // 
             // KundeNavn
             // 
@@ -142,13 +142,17 @@ namespace Bobedre.Views.Kunder
             this.KundeType.TabIndex = 17;
             this.KundeType.Text = "Kunde Type";
             // 
-            // comboBox1
+            // KundeTypeComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(363, 25);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 18;
+            this.KundeTypeComboBox.FormattingEnabled = true;
+            this.KundeTypeComboBox.Items.AddRange(new object[] {
+            "Køber",
+            "Sælger"});
+            this.KundeTypeComboBox.Location = new System.Drawing.Point(363, 25);
+            this.KundeTypeComboBox.Name = "KundeTypeComboBox";
+            this.KundeTypeComboBox.Size = new System.Drawing.Size(121, 23);
+            this.KundeTypeComboBox.TabIndex = 18;
+            this.KundeTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.KundeTypeComboBox_SelectedIndexChanged);
             // 
             // Kunder
             // 
@@ -156,7 +160,7 @@ namespace Bobedre.Views.Kunder
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1029, 462);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.KundeTypeComboBox);
             this.Controls.Add(this.KundeType);
             this.Controls.Add(this.KundeEmailBox);
             this.Controls.Add(this.KundeEmail);
@@ -188,6 +192,6 @@ namespace Bobedre.Views.Kunder
         private System.Windows.Forms.Label KundeEmail;
         private System.Windows.Forms.TextBox KundeEmailBox;
         private System.Windows.Forms.Label KundeType;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox KundeTypeComboBox;
     }
 }
