@@ -1,17 +1,18 @@
-﻿using BoBedre.Core.DataAccess;
+﻿using Bobedre.Models;
+using BoBedre.Core.DataAccess;
 using BoBedre.Core.TextChecking;
 using System;
 using System.Windows.Forms;
 
 namespace Bobedre.Views.Renorvering
 {
-    public partial class Renorvering : Form
+    public partial class Renorvering : DataForm
     {
         private Baseform baseform { get; set; }
-        private Form prevForm { get; set; }
+        private DataForm prevForm { get; set; }
         private int boligNr { get; set; }
 
-        public Renorvering(Models.Action action, Baseform _baseform, Form _prevForm, int renorveringsId = -1, int _boligNr = -1)
+        public Renorvering(Models.Action action, Baseform _baseform, DataForm _prevForm, int renorveringsId = -1, int _boligNr = -1)
         {
             InitializeComponent();
 
@@ -49,7 +50,7 @@ namespace Bobedre.Views.Renorvering
             
         }
 
-        private async void LoadData(int id)
+        public override async void LoadData(int id)
         {
             if(id < 0)
             {
@@ -71,6 +72,7 @@ namespace Bobedre.Views.Renorvering
             if (RegexCheck.TalCheck(OmbygningsårTextbox.Text))
             {
                 await EntryManagement.CreateRenorvering(KøkkenCheckbox.Checked, Badeværelsecheckbox.Checked, Andetcheckbox.Checked, int.Parse(OmbygningsårTextbox.Text), DetalijerTextbox.Text, boligNr);
+                prevForm.LoadData(boligNr);
                 baseform.ShowForm(prevForm);
             }
         }
@@ -80,6 +82,7 @@ namespace Bobedre.Views.Renorvering
             if (RegexCheck.TalCheck(OmbygningsårTextbox.Text) && RegexCheck.TalCheck(RenorveringsIdTextbox.Text))
             {
                 await EntryManagement.UpdateRenorvering(KøkkenCheckbox.Checked, Badeværelsecheckbox.Checked, Andetcheckbox.Checked, int.Parse(OmbygningsårTextbox.Text), DetalijerTextbox.Text, int.Parse(RenorveringsIdTextbox.Text));
+                prevForm.LoadData(boligNr);
                 baseform.ShowForm(prevForm);
             }
         }
@@ -89,6 +92,7 @@ namespace Bobedre.Views.Renorvering
             if (RegexCheck.TalCheck(RenorveringsIdTextbox.Text))
             {
                 await EntryManagement.DeleteRenorvering(int.Parse(RenorveringsIdTextbox.Text));
+                prevForm.LoadData(boligNr);
                 baseform.ShowForm(prevForm);
             }
         }

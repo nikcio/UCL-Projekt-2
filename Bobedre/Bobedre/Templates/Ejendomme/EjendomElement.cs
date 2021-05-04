@@ -16,5 +16,15 @@ namespace Bobedre.Templates.Ejendomme
         {
             InitializeComponent();
         }
+
+        private void OpdaterBoligoplsyninger_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SletBoligKnap_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
