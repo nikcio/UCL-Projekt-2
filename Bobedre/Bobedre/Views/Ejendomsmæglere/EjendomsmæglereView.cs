@@ -86,7 +86,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             MedarbejderNrSvar.Name = "MedarbejderNrSvar";
             MedarbejderNrSvar.Size = new System.Drawing.Size(13, 15);
             MedarbejderNrSvar.TabIndex = 11;
-            MedarbejderNrSvar.Text = "1";
+            MedarbejderNrSvar.Text = ejendomsmægler.MedarbejderNr.ToString();
             // 
             // MedarbejderNrLabel
             // 
@@ -126,7 +126,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             EmailSvar.Name = "EmailSvar";
             EmailSvar.Size = new System.Drawing.Size(13, 15);
             EmailSvar.TabIndex = 7;
-            EmailSvar.Text = "1";
+            EmailSvar.Text = ejendomsmægler.Email.ToString();
             // 
             // EmailLabel
             // 
@@ -144,7 +144,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             NavnSvar.Name = "NavnSvar";
             NavnSvar.Size = new System.Drawing.Size(13, 15);
             NavnSvar.TabIndex = 5;
-            NavnSvar.Text = "1";
+            NavnSvar.Text = ejendomsmægler.Navn.ToString();
             // 
             // NavnLabel
             // 
@@ -162,7 +162,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             Mæglerfirmasvar.Name = "Mæglerfirmasvar";
             Mæglerfirmasvar.Size = new System.Drawing.Size(13, 15);
             Mæglerfirmasvar.TabIndex = 3;
-            Mæglerfirmasvar.Text = "1";
+            Mæglerfirmasvar.Text = ejendomsmægler.Mæglerfirma.ToString();
             // 
             // MæglerFirmaLabel
             // 
@@ -180,7 +180,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             AfdelingSvar.Name = "AfdelingSvar";
             AfdelingSvar.Size = new System.Drawing.Size(13, 15);
             AfdelingSvar.TabIndex = 1;
-            AfdelingSvar.Text = "1";
+            AfdelingSvar.Text = ejendomsmægler.Afdeling.ToString() ;
             // 
             // AfdelingLabel
             // 
