@@ -31,6 +31,23 @@ namespace BoBedre.Core.Test.DataAccess
             Assert.AreEqual(email, Ejendomsmægler.Email, "the value is not equal to the expected");
 
 
+            //update
+            afdeling = "Updateny";
+            mæglerFirma = "Update";
+            navn = "Update";
+            email = "Update";
+
+            await EntryManagement.UpdateEjendomsmægler(medarbejderNr, afdeling, mæglerFirma, navn, email);
+            Ejendomsmægler = await Fetch.GetEjendomsmæglerByMedarbjederNr(medarbejderNr);
+
+            Assert.AreEqual(medarbejderNr, Ejendomsmægler.MedarbejderNr);
+            Assert.AreEqual(afdeling, Ejendomsmægler.Afdeling, "the value is not equal to the expected");
+            Assert.AreEqual(mæglerFirma, Ejendomsmægler.Mæglerfirma, "the value is not equal to the expected");
+            Assert.AreEqual(navn, Ejendomsmægler.Navn, "the value is not equal to the expected");
+            Assert.AreEqual(email, Ejendomsmægler.Email, "the value is not equal to the expected");
+
+            
+
             //delete
             await EntryManagement.DeleteEjendomsmægler(medarbejderNr);
             Assert.IsNull(await Fetch.GetEjendomsmæglerByMedarbjederNr(medarbejderNr));
