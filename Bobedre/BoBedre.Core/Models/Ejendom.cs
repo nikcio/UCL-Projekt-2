@@ -34,5 +34,38 @@ namespace BoBedre.Core.Models
         public bool Have { get; set; }
         public string Type { get; set; }
         public int PostNr { get; set; }
+
+        /// <summary>
+        /// Creates a ejendoms object from object data
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static Ejendom CreateEjendomFromData(object[] values)
+        {
+            if (values == null)
+            {
+                return null;
+            }
+            else if (values.Length == typeof(Ejendom).GetProperties().Length)
+            {
+                return new Ejendom(
+                                (int)values[0],
+                                (string)values[1],
+                                (int)values[2],
+                                (int)values[3],
+                                (int?)values[4],
+                                (int)values[5],
+                                (int?)values[6],
+                                (int)values[7],
+                                (bool)values[8],
+                                (string)values[9],
+                                (int)values[10]
+                                );
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("values", "values datapoints don't match model");
+            }
+        }
     }
 }

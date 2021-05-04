@@ -20,5 +20,31 @@ namespace BoBedre.Core.Models
         public string Navn { get; set; }
         public string Email { get; set; }
         public string Type { get; set; }
+
+        /// <summary>
+        /// Create a kunde object from object data
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static Kunde CreateKundeFromData(object[] values)
+        {
+            if (values == null)
+            {
+                return null;
+            }
+            else if (values.Length == typeof(Kunde).GetProperties().Length)
+            {
+                return new Kunde(
+                (int)values[0],
+                (string)values[1],
+                (string)values[2],
+                (string)values[3]
+                );
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("values", "values datapoints don't match model");
+            }
+        }
     }
 }
