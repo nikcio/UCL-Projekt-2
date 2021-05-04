@@ -172,11 +172,11 @@ namespace Bobedre.Views.Ejendomme
             // ItemPanel
             // 
             ItemPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            ItemPanel.Controls.Add(Checkboxes);
             ItemPanel.Controls.Add(OmbygningsÅr);
             ItemPanel.Controls.Add(RenorveringsId);
             ItemPanel.Controls.Add(RedigerButton);
             ItemPanel.Controls.Add(SletButton);
+            ItemPanel.Controls.Add(Checkboxes);
             ItemPanel.Location = new System.Drawing.Point(12, 12);
             ItemPanel.Name = "ItemPanel";
             ItemPanel.Size = new System.Drawing.Size(373, 125);
@@ -184,6 +184,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // SletButton
             // 
+            SletButton.AutoSize = true;
             SletButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             SletButton.Location = new System.Drawing.Point(265, 82);
             SletButton.Name = "SletButton";
@@ -195,6 +196,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // RedigerButton
             // 
+            RedigerButton.AutoSize = true;
             RedigerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             RedigerButton.Location = new System.Drawing.Point(165, 82);
             RedigerButton.Name = "RedigerButton";
@@ -236,6 +238,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // Checkboxes
             // 
+            Checkboxes.AutoSize = true;
             Checkboxes.Controls.Add(KøkkenCheckBox);
             Checkboxes.Controls.Add(BadeværelseCheckBox);
             Checkboxes.Controls.Add(AndetCheckBox);
