@@ -144,11 +144,15 @@ namespace Bobedre.Views.Ejendomme
 
         }
 
+        private void HaveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
 
+        }
 
+        private void Ejendomme_Load(object sender, EventArgs e)
+        {
 
-
-
+        }
     }
 
 }
