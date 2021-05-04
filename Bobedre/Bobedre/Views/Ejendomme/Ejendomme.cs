@@ -18,38 +18,24 @@ using Bobedre.Models;
 
 namespace Bobedre.Views.Ejendomme
 {
-    public partial class Ejendomme : DataForm
+    public partial class Ejendomme : Form
     {
         public Baseform baseform { get; set; }
 
-        public Ejendomme(Models.Action action, Baseform _baseform, int boligNr = -1)
+        public Models.Action action { get; set; }
+
+        public int boligNr { get; set; }
+
+        public Ejendomme(Models.Action _action, Baseform _baseform, int _boligNr = -1)
         {
             InitializeComponent();
 
             baseform = _baseform;
-
-            switch (action)
-            {
-                case Models.Action.create:
-                    RenorveringerFlow.Visible = false;
-                    AddRenorveringButton.Visible = false;
-                    break;
-
-                case Models.Action.edit:
-                    LoadData(boligNr);
-                    break;
-
-                case Models.Action.delete:
-                    LoadData(boligNr);
-                    break;
-
-                case Models.Action.view:
-                    LoadData(boligNr);
-                    break;
-            }
+            boligNr = _boligNr;
+            action = _action;
         }
 
-        public override async void LoadData(int boligNr)
+        public async void LoadData(int boligNr)
         {
             if(boligNr < 0)
             {
@@ -283,6 +269,29 @@ namespace Bobedre.Views.Ejendomme
         private void SletButton_Click(int renorveringsId)
         {
             baseform.ShowForm(new Renorvering.Renorvering(Models.Action.delete, baseform, new Ejendomme(Models.Action.edit, baseform, int.Parse(BolignrTextbox.Text)), renorveringsId));
+        }
+
+        private void Ejendomme_Load(object sender, EventArgs e)
+        {
+            switch (action)
+            {
+                case Models.Action.create:
+                    RenorveringerFlow.Visible = false;
+                    AddRenorveringButton.Visible = false;
+                    break;
+
+                case Models.Action.edit:
+                    LoadData(boligNr);
+                    break;
+
+                case Models.Action.delete:
+                    LoadData(boligNr);
+                    break;
+
+                case Models.Action.view:
+                    LoadData(boligNr);
+                    break;
+            }
         }
     }
 
