@@ -31,7 +31,6 @@ namespace Bobedre.Views.Ejendomme
         {
             System.Windows.Forms.Button OpretBoligKnap;
             System.Windows.Forms.Label EtagerBolig;
-            System.Windows.Forms.Label OmbygningsårBolig;
             this.Bolignr = new System.Windows.Forms.Label();
             this.BolignrLabel = new System.Windows.Forms.TextBox();
             this.BoligAdresse = new System.Windows.Forms.Label();
@@ -49,32 +48,23 @@ namespace Bobedre.Views.Ejendomme
             this.ByggeÅrBolig = new System.Windows.Forms.Label();
             this.TypeBoligTextBox = new System.Windows.Forms.TextBox();
             this.ByggeårBoligTextBox = new System.Windows.Forms.TextBox();
-            this.RenoveretBoligCheckBox = new System.Windows.Forms.CheckBox();
-            this.DetaljerLabel = new System.Windows.Forms.Label();
-            this.RenoveringsIdBolig = new System.Windows.Forms.Label();
-            this.KøkkenCheckbox = new System.Windows.Forms.CheckBox();
-            this.Badeværelsecheckbox = new System.Windows.Forms.CheckBox();
-            this.OmbygningsårTextbox = new System.Windows.Forms.TextBox();
-            this.DetalijerTextbox = new System.Windows.Forms.TextBox();
-            this.RenoveringsIdLabel = new System.Windows.Forms.TextBox();
             this.SletButtonBolig = new System.Windows.Forms.Button();
             this.OpdaterBoligKnap = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.Andetcheckbox = new System.Windows.Forms.CheckBox();
             this.HaveCheckBox = new System.Windows.Forms.CheckBox();
             this.PostNrLabel = new System.Windows.Forms.Label();
             this.PostNrTextBox = new System.Windows.Forms.TextBox();
             OpretBoligKnap = new System.Windows.Forms.Button();
             EtagerBolig = new System.Windows.Forms.Label();
-            OmbygningsårBolig = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpretBoligKnap
             // 
+            OpretBoligKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             OpretBoligKnap.Location = new System.Drawing.Point(3, 3);
             OpretBoligKnap.Name = "OpretBoligKnap";
-            OpretBoligKnap.Size = new System.Drawing.Size(143, 33);
+            OpretBoligKnap.Size = new System.Drawing.Size(250, 50);
             OpretBoligKnap.TabIndex = 34;
             OpretBoligKnap.Text = "Opret Bolig";
             OpretBoligKnap.UseVisualStyleBackColor = true;
@@ -88,15 +78,6 @@ namespace Bobedre.Views.Ejendomme
             EtagerBolig.Size = new System.Drawing.Size(62, 25);
             EtagerBolig.TabIndex = 15;
             EtagerBolig.Text = "Etager";
-            // 
-            // OmbygningsårBolig
-            // 
-            OmbygningsårBolig.AutoSize = true;
-            OmbygningsårBolig.Location = new System.Drawing.Point(1089, 73);
-            OmbygningsårBolig.Name = "OmbygningsårBolig";
-            OmbygningsårBolig.Size = new System.Drawing.Size(131, 25);
-            OmbygningsårBolig.TabIndex = 24;
-            OmbygningsårBolig.Text = "Ombygningsår";
             // 
             // Bolignr
             // 
@@ -117,7 +98,7 @@ namespace Bobedre.Views.Ejendomme
             // BoligAdresse
             // 
             this.BoligAdresse.AutoSize = true;
-            this.BoligAdresse.Location = new System.Drawing.Point(11, 83);
+            this.BoligAdresse.Location = new System.Drawing.Point(11, 96);
             this.BoligAdresse.Name = "BoligAdresse";
             this.BoligAdresse.Size = new System.Drawing.Size(75, 25);
             this.BoligAdresse.TabIndex = 2;
@@ -126,7 +107,7 @@ namespace Bobedre.Views.Ejendomme
             // PrisBolig
             // 
             this.PrisBolig.AutoSize = true;
-            this.PrisBolig.Location = new System.Drawing.Point(11, 137);
+            this.PrisBolig.Location = new System.Drawing.Point(14, 143);
             this.PrisBolig.Name = "PrisBolig";
             this.PrisBolig.Size = new System.Drawing.Size(40, 25);
             this.PrisBolig.TabIndex = 3;
@@ -134,7 +115,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // AdresseBolig
             // 
-            this.AdresseBolig.Location = new System.Drawing.Point(109, 78);
+            this.AdresseBolig.Location = new System.Drawing.Point(109, 87);
             this.AdresseBolig.Name = "AdresseBolig";
             this.AdresseBolig.Size = new System.Drawing.Size(150, 31);
             this.AdresseBolig.TabIndex = 4;
@@ -180,14 +161,14 @@ namespace Bobedre.Views.Ejendomme
             // 
             // VæreslerBoligTextBox
             // 
-            this.VæreslerBoligTextBox.Location = new System.Drawing.Point(441, 130);
+            this.VæreslerBoligTextBox.Location = new System.Drawing.Point(441, 137);
             this.VæreslerBoligTextBox.Name = "VæreslerBoligTextBox";
             this.VæreslerBoligTextBox.Size = new System.Drawing.Size(150, 31);
             this.VæreslerBoligTextBox.TabIndex = 11;
             // 
             // EtagerBoligTextbox
             // 
-            this.EtagerBoligTextbox.Location = new System.Drawing.Point(441, 197);
+            this.EtagerBoligTextbox.Location = new System.Drawing.Point(441, 194);
             this.EtagerBoligTextbox.Name = "EtagerBoligTextbox";
             this.EtagerBoligTextbox.Size = new System.Drawing.Size(150, 31);
             this.EtagerBoligTextbox.TabIndex = 12;
@@ -195,7 +176,7 @@ namespace Bobedre.Views.Ejendomme
             // VærelserBolig
             // 
             this.VærelserBolig.AutoSize = true;
-            this.VærelserBolig.Location = new System.Drawing.Point(319, 128);
+            this.VærelserBolig.Location = new System.Drawing.Point(319, 140);
             this.VærelserBolig.Name = "VærelserBolig";
             this.VærelserBolig.Size = new System.Drawing.Size(79, 25);
             this.VærelserBolig.TabIndex = 14;
@@ -234,86 +215,12 @@ namespace Bobedre.Views.Ejendomme
             this.ByggeårBoligTextBox.Size = new System.Drawing.Size(150, 31);
             this.ByggeårBoligTextBox.TabIndex = 19;
             // 
-            // RenoveretBoligCheckBox
-            // 
-            this.RenoveretBoligCheckBox.AutoSize = true;
-            this.RenoveretBoligCheckBox.Location = new System.Drawing.Point(921, 33);
-            this.RenoveretBoligCheckBox.Name = "RenoveretBoligCheckBox";
-            this.RenoveretBoligCheckBox.Size = new System.Drawing.Size(117, 29);
-            this.RenoveretBoligCheckBox.TabIndex = 20;
-            this.RenoveretBoligCheckBox.Text = "Renoveret";
-            this.RenoveretBoligCheckBox.UseVisualStyleBackColor = true;
-            this.RenoveretBoligCheckBox.CheckedChanged += new System.EventHandler(this.RenoveretBoligCheckBox_CheckedChanged);
-            // 
-            // DetaljerLabel
-            // 
-            this.DetaljerLabel.AutoSize = true;
-            this.DetaljerLabel.Location = new System.Drawing.Point(1089, 113);
-            this.DetaljerLabel.Name = "DetaljerLabel";
-            this.DetaljerLabel.Size = new System.Drawing.Size(72, 25);
-            this.DetaljerLabel.TabIndex = 25;
-            this.DetaljerLabel.Text = "Detaljer";
-            // 
-            // RenoveringsIdBolig
-            // 
-            this.RenoveringsIdBolig.AutoSize = true;
-            this.RenoveringsIdBolig.Location = new System.Drawing.Point(1089, 158);
-            this.RenoveringsIdBolig.Name = "RenoveringsIdBolig";
-            this.RenoveringsIdBolig.Size = new System.Drawing.Size(125, 25);
-            this.RenoveringsIdBolig.TabIndex = 26;
-            this.RenoveringsIdBolig.Text = "RenoveringsId";
-            // 
-            // KøkkenCheckbox
-            // 
-            this.KøkkenCheckbox.AutoSize = true;
-            this.KøkkenCheckbox.Enabled = false;
-            this.KøkkenCheckbox.Location = new System.Drawing.Point(921, 77);
-            this.KøkkenCheckbox.Name = "KøkkenCheckbox";
-            this.KøkkenCheckbox.Size = new System.Drawing.Size(96, 29);
-            this.KøkkenCheckbox.TabIndex = 27;
-            this.KøkkenCheckbox.Text = "Køkken";
-            this.KøkkenCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // Badeværelsecheckbox
-            // 
-            this.Badeværelsecheckbox.AutoSize = true;
-            this.Badeværelsecheckbox.Enabled = false;
-            this.Badeværelsecheckbox.Location = new System.Drawing.Point(921, 113);
-            this.Badeværelsecheckbox.Name = "Badeværelsecheckbox";
-            this.Badeværelsecheckbox.Size = new System.Drawing.Size(137, 29);
-            this.Badeværelsecheckbox.TabIndex = 28;
-            this.Badeværelsecheckbox.Text = "Badeværelse";
-            this.Badeværelsecheckbox.UseVisualStyleBackColor = true;
-            // 
-            // OmbygningsårTextbox
-            // 
-            this.OmbygningsårTextbox.Enabled = false;
-            this.OmbygningsårTextbox.Location = new System.Drawing.Point(1236, 73);
-            this.OmbygningsårTextbox.Name = "OmbygningsårTextbox";
-            this.OmbygningsårTextbox.Size = new System.Drawing.Size(94, 31);
-            this.OmbygningsårTextbox.TabIndex = 30;
-            // 
-            // DetalijerTextbox
-            // 
-            this.DetalijerTextbox.Enabled = false;
-            this.DetalijerTextbox.Location = new System.Drawing.Point(1236, 113);
-            this.DetalijerTextbox.Name = "DetalijerTextbox";
-            this.DetalijerTextbox.Size = new System.Drawing.Size(94, 31);
-            this.DetalijerTextbox.TabIndex = 31;
-            // 
-            // RenoveringsIdLabel
-            // 
-            this.RenoveringsIdLabel.Enabled = false;
-            this.RenoveringsIdLabel.Location = new System.Drawing.Point(1236, 158);
-            this.RenoveringsIdLabel.Name = "RenoveringsIdLabel";
-            this.RenoveringsIdLabel.Size = new System.Drawing.Size(94, 31);
-            this.RenoveringsIdLabel.TabIndex = 32;
-            // 
             // SletButtonBolig
             // 
-            this.SletButtonBolig.Location = new System.Drawing.Point(152, 3);
+            this.SletButtonBolig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SletButtonBolig.Location = new System.Drawing.Point(259, 3);
             this.SletButtonBolig.Name = "SletButtonBolig";
-            this.SletButtonBolig.Size = new System.Drawing.Size(149, 33);
+            this.SletButtonBolig.Size = new System.Drawing.Size(250, 50);
             this.SletButtonBolig.TabIndex = 33;
             this.SletButtonBolig.Text = "Slet Bolig";
             this.SletButtonBolig.UseVisualStyleBackColor = true;
@@ -321,9 +228,10 @@ namespace Bobedre.Views.Ejendomme
             // 
             // OpdaterBoligKnap
             // 
-            this.OpdaterBoligKnap.Location = new System.Drawing.Point(307, 3);
+            this.OpdaterBoligKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpdaterBoligKnap.Location = new System.Drawing.Point(515, 3);
             this.OpdaterBoligKnap.Name = "OpdaterBoligKnap";
-            this.OpdaterBoligKnap.Size = new System.Drawing.Size(151, 33);
+            this.OpdaterBoligKnap.Size = new System.Drawing.Size(250, 50);
             this.OpdaterBoligKnap.TabIndex = 35;
             this.OpdaterBoligKnap.Text = "Opdater Bolig";
             this.OpdaterBoligKnap.UseVisualStyleBackColor = true;
@@ -334,27 +242,15 @@ namespace Bobedre.Views.Ejendomme
             this.flowLayoutPanel1.Controls.Add(OpretBoligKnap);
             this.flowLayoutPanel1.Controls.Add(this.SletButtonBolig);
             this.flowLayoutPanel1.Controls.Add(this.OpdaterBoligKnap);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 273);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 577);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(499, 150);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1177, 150);
             this.flowLayoutPanel1.TabIndex = 36;
-            // 
-            // Andetcheckbox
-            // 
-            this.Andetcheckbox.AutoSize = true;
-            this.Andetcheckbox.Enabled = false;
-            this.Andetcheckbox.Location = new System.Drawing.Point(921, 150);
-            this.Andetcheckbox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Andetcheckbox.Name = "Andetcheckbox";
-            this.Andetcheckbox.Size = new System.Drawing.Size(86, 29);
-            this.Andetcheckbox.TabIndex = 37;
-            this.Andetcheckbox.Text = "Andet";
-            this.Andetcheckbox.UseVisualStyleBackColor = true;
             // 
             // HaveCheckBox
             // 
             this.HaveCheckBox.AutoSize = true;
-            this.HaveCheckBox.Location = new System.Drawing.Point(720, 150);
+            this.HaveCheckBox.Location = new System.Drawing.Point(624, 136);
             this.HaveCheckBox.Name = "HaveCheckBox";
             this.HaveCheckBox.Size = new System.Drawing.Size(78, 29);
             this.HaveCheckBox.TabIndex = 38;
@@ -362,6 +258,7 @@ namespace Bobedre.Views.Ejendomme
             this.HaveCheckBox.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.HaveCheckBox.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.HaveCheckBox.UseVisualStyleBackColor = true;
+            this.HaveCheckBox.CheckedChanged += new System.EventHandler(this.HaveCheckBox_CheckedChanged);
             // 
             // PostNrLabel
             // 
@@ -388,17 +285,7 @@ namespace Bobedre.Views.Ejendomme
             this.Controls.Add(this.PostNrTextBox);
             this.Controls.Add(this.PostNrLabel);
             this.Controls.Add(this.HaveCheckBox);
-            this.Controls.Add(this.Andetcheckbox);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.RenoveringsIdLabel);
-            this.Controls.Add(this.DetalijerTextbox);
-            this.Controls.Add(this.OmbygningsårTextbox);
-            this.Controls.Add(this.Badeværelsecheckbox);
-            this.Controls.Add(this.KøkkenCheckbox);
-            this.Controls.Add(this.RenoveringsIdBolig);
-            this.Controls.Add(this.DetaljerLabel);
-            this.Controls.Add(OmbygningsårBolig);
-            this.Controls.Add(this.RenoveretBoligCheckBox);
             this.Controls.Add(this.ByggeårBoligTextBox);
             this.Controls.Add(this.TypeBoligTextBox);
             this.Controls.Add(this.ByggeÅrBolig);
@@ -421,6 +308,7 @@ namespace Bobedre.Views.Ejendomme
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Ejendomme";
             this.Text = "GrundAreal";
+            this.Load += new System.EventHandler(this.Ejendomme_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -449,18 +337,9 @@ namespace Bobedre.Views.Ejendomme
         private System.Windows.Forms.Label ByggeÅrBolig;
         private System.Windows.Forms.TextBox TypeBoligTextBox;
         private System.Windows.Forms.TextBox ByggeårBoligTextBox;
-        private System.Windows.Forms.CheckBox RenoveretBoligCheckBox;
-        private System.Windows.Forms.Label DetaljerLabel;
-        private System.Windows.Forms.Label RenoveringsIdBolig;
-        private System.Windows.Forms.CheckBox KøkkenCheckbox;
-        private System.Windows.Forms.CheckBox Badeværelsecheckbox;
-        private System.Windows.Forms.TextBox OmbygningsårTextbox;
-        private System.Windows.Forms.TextBox DetalijerTextbox;
-        private System.Windows.Forms.TextBox RenoveringsIdLabel;
         private System.Windows.Forms.Button SletButtonBolig;
         private System.Windows.Forms.Button OpdaterBoligKnap;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.CheckBox Andetcheckbox;
         private System.Windows.Forms.CheckBox HaveCheckBox;
         private System.Windows.Forms.Label PostNrLabel;
         private System.Windows.Forms.TextBox PostNrTextBox;
