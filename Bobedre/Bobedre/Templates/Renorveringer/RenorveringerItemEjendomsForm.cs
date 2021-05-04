@@ -8,21 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Bobedre.Templates.Ejendomme
+namespace Bobedre.Templates.Renorveringer
 {
-    public partial class EjendomElement : Form
+    public partial class RenorveringerItemEjendomsForm : Form
     {
-        public EjendomElement()
+        public RenorveringerItemEjendomsForm()
         {
             InitializeComponent();
         }
 
-        private void OpdaterBoligoplsyninger_Click(object sender, EventArgs e)
+        private void RedigerButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void SletBoligKnap_Click(object sender, EventArgs e)
+        private void SletButton_Click(object sender, EventArgs e)
         {
 
         }
