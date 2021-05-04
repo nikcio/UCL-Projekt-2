@@ -141,10 +141,21 @@ namespace Bobedre.Views.Ejendomsmæglere
 
                 case Models.Action.delete:
                     LoadData(medarbejderNr);
+                    Afdelingbox.ReadOnly = true;
+                    Mæglerfirmabox.ReadOnly = true;
+                    NavnBox.ReadOnly = true;
+                    Emailbox.ReadOnly = true;
                     break;
 
                 case Models.Action.view:
                     LoadData(medarbejderNr);
+                    Afdelingbox.ReadOnly = true;
+                    Mæglerfirmabox.ReadOnly = true;
+                    NavnBox.ReadOnly = true;
+                    Emailbox.ReadOnly = true;
+                    Opretknap.Visible = false;
+                    Gemknap.Visible = false;
+                    Sletknap.Visible = false;
                     break;
             }
         }

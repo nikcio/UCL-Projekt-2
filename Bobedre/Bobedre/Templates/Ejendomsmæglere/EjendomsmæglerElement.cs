@@ -21,5 +21,10 @@ namespace Bobedre.Templates.Ejendomsmæglere
         {
 
         }
+
+        private void VisKnap_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

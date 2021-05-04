@@ -35,12 +35,14 @@ namespace Bobedre.Views.Ejendomsmæglere
         } 
         private void button1_Click(int medarbejderNr)
         {
-            baseform.ShowForm(new Ejendomsmæglere(Models.Action.edit, baseform, medarbejderNr));
-            
-             
+            baseform.ShowForm(new Ejendomsmæglere(Models.Action.edit, baseform, medarbejderNr));          
 
         }
-    
+        private void VisKnap_Click(int medarbejderNr)
+        {
+            baseform.ShowForm(new Ejendomsmæglere(Models.Action.view, baseform, medarbejderNr));
+        }
+
         private void M1(Ejendomsmægler ejendomsmægler) 
         {
             Panel panel1 = new System.Windows.Forms.Panel();
@@ -53,11 +55,13 @@ namespace Bobedre.Views.Ejendomsmæglere
             Label EmailSvar = new System.Windows.Forms.Label();
             Label EmailLabel = new System.Windows.Forms.Label();
             Button  RedigereKnap = new System.Windows.Forms.Button();
-          
+            Button VisKnap = new System.Windows.Forms.Button();
+
             // 
             // panel1
             // 
             panel1.Controls.Add(RedigereKnap);
+            panel1.Controls.Add(VisKnap);
             panel1.Controls.Add(EmailSvar);
             panel1.Controls.Add(EmailLabel);
             panel1.Controls.Add(NavnSvar);
@@ -153,10 +157,23 @@ namespace Bobedre.Views.Ejendomsmæglere
             RedigereKnap.Text = "Redigere";
             RedigereKnap.UseVisualStyleBackColor = true;
             RedigereKnap.Click += new System.EventHandler((object sender, EventArgs e) => button1_Click(ejendomsmægler.MedarbejderNr));
+            // 
+            // VisKnap
+            // 
+            VisKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            VisKnap.Location = new System.Drawing.Point(245, 45);
+            VisKnap.Name = "VisKnap";
+            VisKnap.Size = new System.Drawing.Size(75, 23);
+            VisKnap.TabIndex = 9;
+            VisKnap.Text = "Vis";
+            VisKnap.UseVisualStyleBackColor = true;
+            VisKnap.Click += new System.EventHandler((object sender, EventArgs e) => VisKnap_Click(ejendomsmægler.MedarbejderNr));
+
 
             flowLayoutPanel1.Controls.Add(panel1);
         }
+      
+       
 
-        
     }
 }

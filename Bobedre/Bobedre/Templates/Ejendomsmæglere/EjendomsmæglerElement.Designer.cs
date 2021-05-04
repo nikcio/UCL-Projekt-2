@@ -152,6 +152,7 @@ namespace Bobedre.Templates.Ejendomsmæglere
             this.VisKnap.TabIndex = 9;
             this.VisKnap.Text = "Vis";
             this.VisKnap.UseVisualStyleBackColor = true;
+            this.VisKnap.Click += new System.EventHandler(this.VisKnap_Click);
             // 
             // EjendomsmæglerElement
             // 
