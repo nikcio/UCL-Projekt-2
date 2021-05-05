@@ -24,6 +24,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             medarbejderNr = _medarbejderNr;
 
         }
+        
 
 
 
@@ -138,14 +139,7 @@ namespace Bobedre.Views.Ejendomsmæglere
                 case Models.Action.edit:
                     LoadData(medarbejderNr);
                     break;
-
-                case Models.Action.delete:
-                    LoadData(medarbejderNr);
-                    Afdelingbox.ReadOnly = true;
-                    Mæglerfirmabox.ReadOnly = true;
-                    NavnBox.ReadOnly = true;
-                    Emailbox.ReadOnly = true;
-                    break;
+                                    
 
                 case Models.Action.view:
                     LoadData(medarbejderNr);
@@ -159,5 +153,12 @@ namespace Bobedre.Views.Ejendomsmæglere
                     break;
             }
         }
+
+        private void GåtilbageKnap_Click(object sender, EventArgs e)
+        {
+            baseform.ShowForm(new EjendomsmæglereView(baseform));
+        }
+
+
     }
 }

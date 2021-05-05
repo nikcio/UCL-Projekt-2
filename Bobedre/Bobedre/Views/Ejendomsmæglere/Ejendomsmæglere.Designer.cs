@@ -43,6 +43,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             this.Opretknap = new System.Windows.Forms.Button();
             this.Gemknap = new System.Windows.Forms.Button();
             this.Sletknap = new System.Windows.Forms.Button();
+            this.GåtilbageKnap = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -171,11 +172,23 @@ namespace Bobedre.Views.Ejendomsmæglere
             this.Sletknap.UseVisualStyleBackColor = true;
             this.Sletknap.Click += new System.EventHandler(this.Sletknap_Click);
             // 
+            // GåtilbageKnap
+            // 
+            this.GåtilbageKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.GåtilbageKnap.Location = new System.Drawing.Point(840, 30);
+            this.GåtilbageKnap.Name = "GåtilbageKnap";
+            this.GåtilbageKnap.Size = new System.Drawing.Size(75, 23);
+            this.GåtilbageKnap.TabIndex = 10;
+            this.GåtilbageKnap.Text = "Gå tilbage";
+            this.GåtilbageKnap.UseVisualStyleBackColor = true;
+            this.GåtilbageKnap.Click += new System.EventHandler(this.GåtilbageKnap_Click);
+            // 
             // Ejendomsmæglere
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 427);
+            this.Controls.Add(this.GåtilbageKnap);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.Mæglerfirmabox);
             this.Controls.Add(this.Mæglerfirmalabel);
@@ -214,5 +227,6 @@ namespace Bobedre.Views.Ejendomsmæglere
         private System.Windows.Forms.Button Opretknap;
         private System.Windows.Forms.Button Gemknap;
         private System.Windows.Forms.Button Sletknap;
+        private System.Windows.Forms.Button GåtilbageKnap;
     }
 }

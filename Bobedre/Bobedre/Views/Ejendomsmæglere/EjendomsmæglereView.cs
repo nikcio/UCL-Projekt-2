@@ -43,6 +43,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             baseform.ShowForm(new Ejendomsmæglere(Models.Action.view, baseform, medarbejderNr));
         }
 
+
         private void VisEjendomsmægler(Ejendomsmægler ejendomsmægler) 
         {
             Panel panel1 = new System.Windows.Forms.Panel();
