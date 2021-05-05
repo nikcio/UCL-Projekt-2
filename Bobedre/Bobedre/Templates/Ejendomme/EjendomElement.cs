@@ -26,5 +26,10 @@ namespace Bobedre.Templates.Ejendomme
         {
 
         }
+
+        private void OpretButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

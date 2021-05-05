@@ -45,6 +45,18 @@ namespace Bobedre.Views.Ejendomme
 
                 case Models.Action.view:
                     LoadData(boligNr);
+                    BolignrTextbox.ReadOnly = true;
+                    AdresseBolig.ReadOnly = true;
+                    PrisTextBox.ReadOnly = true;
+                    BoligArealTextBox.ReadOnly = true;
+                    GrundArealBoligTextBox.ReadOnly = true;
+                    PostNrTextBox.ReadOnly = true;
+                    VæreslerBoligTextBox.ReadOnly = true;
+                    EtagerBoligTextbox.ReadOnly = true;
+                    TypeBoligTextBox.ReadOnly = true;
+                    ByggeårBoligTextBox.ReadOnly = true;
+                    HaveCheckBox.Enabled = false;
+
                     break;
             }
         }
@@ -168,6 +180,7 @@ namespace Bobedre.Views.Ejendomme
             FlowLayoutPanel Checkboxes = new System.Windows.Forms.FlowLayoutPanel();
             CheckBox BadeværelseCheckBox = new System.Windows.Forms.CheckBox();
             CheckBox AndetCheckBox = new System.Windows.Forms.CheckBox();
+            Button OpretButton = new System.Windows.Forms.Button();
             // 
             // ItemPanel
             // 
@@ -181,6 +194,16 @@ namespace Bobedre.Views.Ejendomme
             ItemPanel.Name = "ItemPanel";
             ItemPanel.Size = new System.Drawing.Size(373, 125);
             ItemPanel.TabIndex = 0;
+            // 
+            // OpretButton
+            // 
+            OpretButton.Location = new System.Drawing.Point(149, 68);
+            OpretButton.Name = "OpretButton";
+            OpretButton.Size = new System.Drawing.Size(78, 23);
+            OpretButton.TabIndex = 12;
+            OpretButton.Text = "Opret";
+            OpretButton.UseVisualStyleBackColor = true;
+            OpretButton.Click += new System.EventHandler((object sender, EventArgs e) => OpretButton_Click(renorvering.RenorveringsId));
             // 
             // SletButton
             // 
@@ -278,6 +301,10 @@ namespace Bobedre.Views.Ejendomme
         }
 
         private void SletButton_Click(int renorveringsId)
+        {
+            baseform.ShowForm(new Renorvering.Renorvering(Models.Action.delete, baseform, new Ejendomme(Models.Action.edit, baseform, int.Parse(BolignrTextbox.Text)), renorveringsId));
+        }
+        private void OpretButton_Click(int renorveringsId)
         {
             baseform.ShowForm(new Renorvering.Renorvering(Models.Action.delete, baseform, new Ejendomme(Models.Action.edit, baseform, int.Parse(BolignrTextbox.Text)), renorveringsId));
         }
