@@ -88,37 +88,6 @@ namespace BoBedre.Core.DataAccess
             int etager,
             string typeBolig,
             int byggeår,
-            int postNr,
-            bool renorvert,
-            bool køkken,
-            bool badeværelse,
-            bool andet,
-            int ombygningsÅr,
-            string detaljer
-            )
-        {
-            SqlCommand cmd = await CreateEjendomEntry(adresse, pris, boligAreal, grundAreal, have, værelser, etager, typeBolig, byggeår, postNr);
-
-            int boligNr = (int)await DBConnection.ExecuteScalar(cmd);
-
-            if (renorvert)
-            {
-                await CreateRenorvering(køkken, badeværelse, andet, ombygningsÅr, detaljer, boligNr);
-            }
-
-            return boligNr;
-        }
-
-        public static async Task<int> CreateEjendom(
-            string adresse,
-            int pris,
-            int boligAreal,
-            int grundAreal,
-            bool have,
-            int værelser,
-            int etager,
-            string typeBolig,
-            int byggeår,
             int postNr
             )
         {
@@ -153,7 +122,7 @@ namespace BoBedre.Core.DataAccess
             cmd.Parameters.AddWithValue("@PostNr", postNr);
             return cmd;
         }
-        public static async Task<string> SletBolig(int Bolignr)
+        public static async Task<string> DeleteEjendom(int Bolignr)
         {
             try
             {
