@@ -52,10 +52,47 @@ namespace BoBedre.Core.Test.DataAccess
             await EntryManagement.DeleteEjendomsmægler(medarbejderNr);
             Assert.IsNull(await Fetch.GetEjendomsmæglerByMedarbjederNr(medarbejderNr));
            
-        }    
- 
+        }
+
         #endregion
 
+        #region Kunde
+        [TestMethod]
+        public async Task CreateUpdateDeleteKundeTest()
+        {
+            //Create
+            string navn = "Navn";
+            string email = "Email";
+            string type = "Type";
 
+
+            var kundeNr = await EntryManagement.CreateKunde(navn, email, type);
+            var Kunde = await Fetch.GetKundeByKundeNr(kundeNr);
+
+            Assert.AreEqual(navn, Kunde.Navn , "the value is not equal to the expected");
+            Assert.AreEqual(email, Kunde.Email , "the value is not equal to the expected");
+            Assert.AreEqual(type, Kunde.Type , "the value is not equal to the expected");
+
+            //update
+            navn = "Update";
+            email = "Update";
+            type = "Update";
+
+            await EntryManagement.UpdateKunde (kundeNr, navn, email, type);
+            Kunde = await Fetch.GetKundeByKundeNr(kundeNr);
+
+            Assert.AreEqual(kundeNr, Kunde.KundeNr);
+            Assert.AreEqual(navn, Kunde.Navn, "the value is not equal to the expected");
+            Assert.AreEqual(email, Kunde.Email, "the value is not equal to the expected");
+            Assert.AreEqual(type, Kunde.Type, "the value is not equal to the expected");
+
+
+            //delete
+            await EntryManagement.DeleteKunde(kundeNr);
+            Assert.IsNull(await Fetch.GetKundeByKundeNr(kundeNr));
+
+        }
+
+        #endregion
     }
 }

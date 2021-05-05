@@ -16,5 +16,15 @@ namespace Bobedre.Templates.Kunder
         {
             InitializeComponent();
         }
+
+        private void RedigereKnap_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void VisKnap_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
