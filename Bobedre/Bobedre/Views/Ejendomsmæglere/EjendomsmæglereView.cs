@@ -30,10 +30,10 @@ namespace Bobedre.Views.Ejendomsmæglere
 
             foreach (var ejendomsmægler in ejendomsmæglere)
             {
-                M1(ejendomsmægler);
+                VisEjendomsmægler(ejendomsmægler);
             }
         } 
-        private void button1_Click(int medarbejderNr)
+        private void Redigere_click(int medarbejderNr)
         {
             baseform.ShowForm(new Ejendomsmæglere(Models.Action.edit, baseform, medarbejderNr));          
 
@@ -43,7 +43,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             baseform.ShowForm(new Ejendomsmæglere(Models.Action.view, baseform, medarbejderNr));
         }
 
-        private void M1(Ejendomsmægler ejendomsmægler) 
+        private void VisEjendomsmægler(Ejendomsmægler ejendomsmægler) 
         {
             Panel panel1 = new System.Windows.Forms.Panel();
             Label MedarbejderNrSvar = new System.Windows.Forms.Label();
@@ -118,7 +118,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             RedigereKnap.TabIndex = 8;
             RedigereKnap.Text = "Redigere";
             RedigereKnap.UseVisualStyleBackColor = true;
-            RedigereKnap.Click += new System.EventHandler((object sender, EventArgs e) => button1_Click(ejendomsmægler.MedarbejderNr));
+            RedigereKnap.Click += new System.EventHandler((object sender, EventArgs e) => Redigere_click(ejendomsmægler.MedarbejderNr));
             // 
             // EmailSvar
             // 
