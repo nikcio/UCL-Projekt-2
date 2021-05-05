@@ -8,7 +8,7 @@ namespace BoBedre.Core.Models
 {
     public class Sag
     {
-        public Sag(int sagNr, DateTime oprettelsesDato, DateTime? tilSalgDato, bool solgt, int? gebyr, int? salær, DateTime? overdragelsesDato, DateTime? afslutningsDato, int? boligNr, int sælgerNr, int? køberNr, int medarbejderNr)
+        public Sag(int sagNr, DateTime oprettelsesDato, DateTime? tilSalgDato, bool solgt, int? gebyr, int? salær, DateTime? overdragelsesDato, DateTime? afslutningsDato, int? boligNr, int? sælgerNr, int? køberNr, int medarbejderNr)
         {
             SagNr = sagNr;
             OprettelsesDato = oprettelsesDato;
@@ -33,7 +33,7 @@ namespace BoBedre.Core.Models
         public DateTime? OverdragelsesDato { get; set; }
         public DateTime? AfslutningsDato { get; set; }
         public int? BoligNr { get; set; }
-        public int SælgerNr { get; set; }
+        public int? SælgerNr { get; set; }
         public int? KøberNr { get; set; }
         public int MedarbejderNr { get; set; }
 

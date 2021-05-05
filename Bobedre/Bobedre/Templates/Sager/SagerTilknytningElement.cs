@@ -8,19 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Bobedre.Views.Sager
+namespace Bobedre.Templates.Sager
 {
-    public partial class SagerView : Form
+    public partial class SagerTilknytningElement : Form
     {
-        public Baseform baseform { get; set; }
-        public SagerView(Baseform _baseform)
+        public SagerTilknytningElement()
         {
             InitializeComponent();
-
-            baseform = _baseform;
         }
 
-        private void OpretSagButton_Click(object sender, EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OpretButton_Click(object sender, EventArgs e)
         {
 
         }
