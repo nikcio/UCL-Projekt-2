@@ -258,23 +258,45 @@ namespace BoBedre.Core.DataAccess
         /// <param name="zipcode"></param>
         /// <param name="cityName"></param>
         /// <returns>Success</returns>
-        public static async Task<bool> CreateBy(int zipcode, string cityName)
+        public static async Task CreateBy(int zipcode, string cityName)
         {
-            try
-            {
-                SqlCommand cmd = new("INSERT into [By] VALUES (@zipcode, @cityName)");
+            SqlCommand cmd = new("INSERT into [By] VALUES (@zipcode, @cityName)");
 
-                cmd.Parameters.AddWithValue("@zipcode", zipcode);
-                cmd.Parameters.AddWithValue("@cityname", cityName);
+            cmd.Parameters.AddWithValue("@zipcode", zipcode);
+            cmd.Parameters.AddWithValue("@cityname", cityName);
 
-                await DBConnection.ExecuteNonQuery(cmd);
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
 
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+        /// <summary>
+        /// Updates a By
+        /// </summary>
+        /// <param name="zipcode"></param>
+        /// <param name="cityName"></param>
+        /// <returns></returns>
+        public static async Task UpdateBy(int zipcode, string cityName, int zipcodeNewValue)
+        {
+            SqlCommand cmd = new("UPDATE [By] SET PostNr=@zipcodeNewValue, ByNavn=@cityName WHERE PostNr=@zipcode");
+
+            cmd.Parameters.AddWithValue("@zipcode", zipcode);
+            cmd.Parameters.AddWithValue("@zipcodeNewValue", zipcodeNewValue);
+            cmd.Parameters.AddWithValue("@cityname", cityName);
+
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
+
+        /// <summary>
+        /// Deletes a By
+        /// </summary>
+        /// <param name="zipcode"></param>
+        /// <returns></returns>
+        public static async Task DeleteBy(int zipcode)
+        {
+            SqlCommand cmd = new("DELETE FROM [By] WHERE PostNr=@zipcode");
+
+            cmd.Parameters.AddWithValue("@zipcode", zipcode);
+
+            await DBConnection.ExecuteNonQuery(cmd);
         }
         #endregion
 

@@ -128,5 +128,50 @@ namespace BoBedre.Core.Test.DataAccess
         }
         #endregion
 
+        #region By
+        [TestMethod]
+        public async Task CreateUpdateDeleteBy()
+        {
+            // Create
+            int zipcode = 100;
+            string cityName = "Test by";
+
+            // Make sure no by exists
+            By by = await Fetch.GetByByPostNr(zipcode);
+            if (by != null)
+            {
+                await EntryManagement.DeleteBy(zipcode);
+            }
+
+            await EntryManagement.CreateBy(zipcode, cityName);
+            by = await Fetch.GetByByPostNr(zipcode);
+
+            Assert.AreEqual(zipcode, by.PostNr);
+            Assert.AreEqual(cityName, by.ByNavn);
+
+            // Update
+            var zipcodeNewValue = 200;
+            cityName = "Test 2";
+
+            // Make sure nu by exists
+            by = await Fetch.GetByByPostNr(zipcodeNewValue);
+            if (by != null)
+            {
+                await EntryManagement.DeleteBy(zipcodeNewValue);
+            }
+
+            await EntryManagement.UpdateBy(zipcode, cityName, zipcodeNewValue);
+            by = await Fetch.GetByByPostNr(zipcodeNewValue);
+
+            Assert.AreEqual(zipcodeNewValue, by.PostNr);
+            Assert.AreEqual(cityName, by.ByNavn);
+
+            // Delete
+            await EntryManagement.DeleteBy(zipcodeNewValue);
+
+            Assert.IsNull(await Fetch.GetByByPostNr(zipcodeNewValue));
+        }
+        #endregion
+
     }
 }
