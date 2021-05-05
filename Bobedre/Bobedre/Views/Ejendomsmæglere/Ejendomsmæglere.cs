@@ -9,10 +9,23 @@ namespace Bobedre.Views.Ejendomsmæglere
 {
     public partial class Ejendomsmæglere : Form
     {
-        public Ejendomsmæglere(Models.Action action, Baseform baseform)
+
+        private int medarbejderNr { get; set; }
+        public Models.Action action { get; set; }
+        private Baseform baseform { get; set; }
+
+
+        public Ejendomsmæglere(Models.Action _action, Baseform _baseform, int _medarbejderNr = -1)
         {
             InitializeComponent();
+
+            baseform = _baseform;
+            action = _action;
+            medarbejderNr = _medarbejderNr;
+
         }
+
+
 
         /// <summary>
         /// Create an ejendomsmægler to the database
@@ -91,5 +104,60 @@ namespace Bobedre.Views.Ejendomsmæglere
 
         }
 
+        /// <summary>
+        /// Loading data from database
+        /// </summary>
+        /// <param name="medarbejderNr"></param>
+        private async void LoadData(int medarbejderNr)
+        {
+            if (medarbejderNr < 0)
+            {
+                throw new ArgumentOutOfRangeException("MedarbejderNr", "MedarbejderNr can not be under 0");
+            }
+
+            var ejendomsmægler = await Fetch.GetEjendomsmæglerByMedarbjederNr(medarbejderNr);
+
+            MedarbejderNrBox.Text = ejendomsmægler.MedarbejderNr.ToString();
+            Afdelingbox.Text = ejendomsmægler.Afdeling.ToString();
+            Mæglerfirmabox.Text = ejendomsmægler.Mæglerfirma.ToString();
+            NavnBox.Text = ejendomsmægler.Navn.ToString();
+            Emailbox.Text = ejendomsmægler.Email.ToString();
+
+        }
+
+        /// <summary>
+        /// Pushing data into view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Ejendomsmæglere_Load(object sender, EventArgs e)
+        {
+            switch (action)
+            {
+
+                case Models.Action.edit:
+                    LoadData(medarbejderNr);
+                    break;
+
+                case Models.Action.delete:
+                    LoadData(medarbejderNr);
+                    Afdelingbox.ReadOnly = true;
+                    Mæglerfirmabox.ReadOnly = true;
+                    NavnBox.ReadOnly = true;
+                    Emailbox.ReadOnly = true;
+                    break;
+
+                case Models.Action.view:
+                    LoadData(medarbejderNr);
+                    Afdelingbox.ReadOnly = true;
+                    Mæglerfirmabox.ReadOnly = true;
+                    NavnBox.ReadOnly = true;
+                    Emailbox.ReadOnly = true;
+                    Opretknap.Visible = false;
+                    Gemknap.Visible = false;
+                    Sletknap.Visible = false;
+                    break;
+            }
+        }
     }
 }
