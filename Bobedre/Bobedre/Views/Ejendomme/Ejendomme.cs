@@ -18,50 +18,26 @@ using Bobedre.Models;
 
 namespace Bobedre.Views.Ejendomme
 {
-    public partial class Ejendomme : DataForm
+    public partial class Ejendomme : Form
     {
         public Baseform baseform { get; set; }
 
-        public Ejendomme(Models.Action action, Baseform _baseform, int boligNr = -1)
+        public Models.Action action { get; set; }
+
+        public int boligNr { get; set; }
+
+        public Ejendomme(Models.Action _action, Baseform _baseform, int _boligNr = -1)
         {
             InitializeComponent();
 
             baseform = _baseform;
 
-            switch (action)
-            {
-                case Models.Action.create:
-                    RenorveringerFlow.Visible = false;
-                    AddRenorveringButton.Visible = false;
-                    break;
+            boligNr = _boligNr;
+            action = _action;
 
-                case Models.Action.edit:
-                    LoadData(boligNr);
-                    break;
-
-                case Models.Action.delete:
-                    LoadData(boligNr);
-                    break;
-
-                case Models.Action.view:
-                    LoadData(boligNr);
-                    BolignrTextbox.ReadOnly = true;
-                    AdresseBolig.ReadOnly = true;
-                    PrisTextBox.ReadOnly = true;
-                    BoligArealTextBox.ReadOnly = true;
-                    GrundArealBoligTextBox.ReadOnly = true;
-                    PostNrTextBox.ReadOnly = true;
-                    VæreslerBoligTextBox.ReadOnly = true;
-                    EtagerBoligTextbox.ReadOnly = true;
-                    TypeBoligTextBox.ReadOnly = true;
-                    ByggeårBoligTextBox.ReadOnly = true;
-                    HaveCheckBox.Enabled = false;
-
-                    break;
-            }
         }
 
-        public override async void LoadData(int boligNr)
+        public async void LoadData(int boligNr)
         {
             if(boligNr < 0)
             {
@@ -185,11 +161,11 @@ namespace Bobedre.Views.Ejendomme
             // ItemPanel
             // 
             ItemPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            ItemPanel.Controls.Add(Checkboxes);
             ItemPanel.Controls.Add(OmbygningsÅr);
             ItemPanel.Controls.Add(RenorveringsId);
             ItemPanel.Controls.Add(RedigerButton);
             ItemPanel.Controls.Add(SletButton);
+            ItemPanel.Controls.Add(Checkboxes);
             ItemPanel.Location = new System.Drawing.Point(12, 12);
             ItemPanel.Name = "ItemPanel";
             ItemPanel.Size = new System.Drawing.Size(373, 125);
@@ -207,6 +183,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // SletButton
             // 
+            SletButton.AutoSize = true;
             SletButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             SletButton.Location = new System.Drawing.Point(265, 82);
             SletButton.Name = "SletButton";
@@ -218,6 +195,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // RedigerButton
             // 
+            RedigerButton.AutoSize = true;
             RedigerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             RedigerButton.Location = new System.Drawing.Point(165, 82);
             RedigerButton.Name = "RedigerButton";
@@ -259,6 +237,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // Checkboxes
             // 
+            Checkboxes.AutoSize = true;
             Checkboxes.Controls.Add(KøkkenCheckBox);
             Checkboxes.Controls.Add(BadeværelseCheckBox);
             Checkboxes.Controls.Add(AndetCheckBox);
@@ -304,9 +283,46 @@ namespace Bobedre.Views.Ejendomme
         {
             baseform.ShowForm(new Renorvering.Renorvering(Models.Action.delete, baseform, new Ejendomme(Models.Action.edit, baseform, int.Parse(BolignrTextbox.Text)), renorveringsId));
         }
+
         private void OpretButton_Click(int renorveringsId)
         {
             baseform.ShowForm(new Renorvering.Renorvering(Models.Action.delete, baseform, new Ejendomme(Models.Action.edit, baseform, int.Parse(BolignrTextbox.Text)), renorveringsId));
+
+
+        private void Ejendomme_Load(object sender, EventArgs e)
+        {
+            switch (action)
+            {
+                case Models.Action.create:
+                    RenorveringerFlow.Visible = false;
+                    AddRenorveringButton.Visible = false;
+                    break;
+
+                case Models.Action.edit:
+                    LoadData(boligNr);
+                    break;
+
+                case Models.Action.delete:
+                    LoadData(boligNr);
+					
+                    break;
+
+                case Models.Action.view:
+                    LoadData(boligNr);
+					 BolignrTextbox.ReadOnly = true;
+                    AdresseBolig.ReadOnly = true;
+                    PrisTextBox.ReadOnly = true;
+                    BoligArealTextBox.ReadOnly = true;
+                    GrundArealBoligTextBox.ReadOnly = true;
+                    PostNrTextBox.ReadOnly = true;
+                    VæreslerBoligTextBox.ReadOnly = true;
+                    EtagerBoligTextbox.ReadOnly = true;
+                    TypeBoligTextBox.ReadOnly = true;
+                    ByggeårBoligTextBox.ReadOnly = true;
+                    HaveCheckBox.Enabled = false;
+                    break;
+            }
+
         }
     }
 

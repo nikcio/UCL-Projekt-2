@@ -30,20 +30,21 @@ namespace Bobedre.Templates.Renorveringer
         private void InitializeComponent()
         {
             this.ItemPanel = new System.Windows.Forms.Panel();
-            this.SletButton = new System.Windows.Forms.Button();
-            this.RedigerButton = new System.Windows.Forms.Button();
-            this.RenorveringsId = new System.Windows.Forms.Label();
-            this.OmbygningsÅr = new System.Windows.Forms.Label();
-            this.KøkkenCheckBox = new System.Windows.Forms.CheckBox();
             this.Checkboxes = new System.Windows.Forms.FlowLayoutPanel();
+            this.KøkkenCheckBox = new System.Windows.Forms.CheckBox();
             this.BadeværelseCheckBox = new System.Windows.Forms.CheckBox();
             this.AndetCheckBox = new System.Windows.Forms.CheckBox();
+            this.OmbygningsÅr = new System.Windows.Forms.Label();
+            this.RenorveringsId = new System.Windows.Forms.Label();
+            this.RedigerButton = new System.Windows.Forms.Button();
+            this.SletButton = new System.Windows.Forms.Button();
             this.ItemPanel.SuspendLayout();
             this.Checkboxes.SuspendLayout();
             this.SuspendLayout();
             // 
             // ItemPanel
             // 
+            this.ItemPanel.AutoSize = true;
             this.ItemPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ItemPanel.Controls.Add(this.Checkboxes);
             this.ItemPanel.Controls.Add(this.OmbygningsÅr);
@@ -55,45 +56,16 @@ namespace Bobedre.Templates.Renorveringer
             this.ItemPanel.Size = new System.Drawing.Size(373, 125);
             this.ItemPanel.TabIndex = 0;
             // 
-            // SletButton
+            // Checkboxes
             // 
-            this.SletButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SletButton.Location = new System.Drawing.Point(265, 82);
-            this.SletButton.Name = "SletButton";
-            this.SletButton.Size = new System.Drawing.Size(94, 29);
-            this.SletButton.TabIndex = 0;
-            this.SletButton.Text = "Slet";
-            this.SletButton.UseVisualStyleBackColor = true;
-            this.SletButton.Click += new System.EventHandler(this.SletButton_Click);
-            // 
-            // RedigerButton
-            // 
-            this.RedigerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RedigerButton.Location = new System.Drawing.Point(165, 82);
-            this.RedigerButton.Name = "RedigerButton";
-            this.RedigerButton.Size = new System.Drawing.Size(94, 29);
-            this.RedigerButton.TabIndex = 1;
-            this.RedigerButton.Text = "Rediger";
-            this.RedigerButton.UseVisualStyleBackColor = true;
-            this.RedigerButton.Click += new System.EventHandler(this.RedigerButton_Click);
-            // 
-            // RenorveringsId
-            // 
-            this.RenorveringsId.AutoSize = true;
-            this.RenorveringsId.Location = new System.Drawing.Point(9, 13);
-            this.RenorveringsId.Name = "RenorveringsId";
-            this.RenorveringsId.Size = new System.Drawing.Size(37, 20);
-            this.RenorveringsId.TabIndex = 2;
-            this.RenorveringsId.Text = "Id: 1";
-            // 
-            // OmbygningsÅr
-            // 
-            this.OmbygningsÅr.AutoSize = true;
-            this.OmbygningsÅr.Location = new System.Drawing.Point(9, 37);
-            this.OmbygningsÅr.Name = "OmbygningsÅr";
-            this.OmbygningsÅr.Size = new System.Drawing.Size(63, 20);
-            this.OmbygningsÅr.TabIndex = 3;
-            this.OmbygningsÅr.Text = "År: 2020";
+            this.Checkboxes.Controls.Add(this.KøkkenCheckBox);
+            this.Checkboxes.Controls.Add(this.BadeværelseCheckBox);
+            this.Checkboxes.Controls.Add(this.AndetCheckBox);
+            this.Checkboxes.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.Checkboxes.Location = new System.Drawing.Point(78, 13);
+            this.Checkboxes.Name = "Checkboxes";
+            this.Checkboxes.Size = new System.Drawing.Size(281, 63);
+            this.Checkboxes.TabIndex = 5;
             // 
             // KøkkenCheckBox
             // 
@@ -105,17 +77,6 @@ namespace Bobedre.Templates.Renorveringer
             this.KøkkenCheckBox.TabIndex = 4;
             this.KøkkenCheckBox.Text = "Køkken";
             this.KøkkenCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // Checkboxes
-            // 
-            this.Checkboxes.Controls.Add(this.KøkkenCheckBox);
-            this.Checkboxes.Controls.Add(this.BadeværelseCheckBox);
-            this.Checkboxes.Controls.Add(this.AndetCheckBox);
-            this.Checkboxes.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.Checkboxes.Location = new System.Drawing.Point(78, 13);
-            this.Checkboxes.Name = "Checkboxes";
-            this.Checkboxes.Size = new System.Drawing.Size(281, 63);
-            this.Checkboxes.TabIndex = 5;
             // 
             // BadeværelseCheckBox
             // 
@@ -139,6 +100,48 @@ namespace Bobedre.Templates.Renorveringer
             this.AndetCheckBox.Text = "Andet";
             this.AndetCheckBox.UseVisualStyleBackColor = true;
             // 
+            // OmbygningsÅr
+            // 
+            this.OmbygningsÅr.AutoSize = true;
+            this.OmbygningsÅr.Location = new System.Drawing.Point(9, 37);
+            this.OmbygningsÅr.Name = "OmbygningsÅr";
+            this.OmbygningsÅr.Size = new System.Drawing.Size(63, 20);
+            this.OmbygningsÅr.TabIndex = 3;
+            this.OmbygningsÅr.Text = "År: 2020";
+            // 
+            // RenorveringsId
+            // 
+            this.RenorveringsId.AutoSize = true;
+            this.RenorveringsId.Location = new System.Drawing.Point(9, 13);
+            this.RenorveringsId.Name = "RenorveringsId";
+            this.RenorveringsId.Size = new System.Drawing.Size(37, 20);
+            this.RenorveringsId.TabIndex = 2;
+            this.RenorveringsId.Text = "Id: 1";
+            // 
+            // RedigerButton
+            // 
+            this.RedigerButton.AutoSize = true;
+            this.RedigerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RedigerButton.Location = new System.Drawing.Point(165, 82);
+            this.RedigerButton.Name = "RedigerButton";
+            this.RedigerButton.Size = new System.Drawing.Size(94, 32);
+            this.RedigerButton.TabIndex = 1;
+            this.RedigerButton.Text = "Rediger";
+            this.RedigerButton.UseVisualStyleBackColor = true;
+            this.RedigerButton.Click += new System.EventHandler(this.RedigerButton_Click);
+            // 
+            // SletButton
+            // 
+            this.SletButton.AutoSize = true;
+            this.SletButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SletButton.Location = new System.Drawing.Point(265, 82);
+            this.SletButton.Name = "SletButton";
+            this.SletButton.Size = new System.Drawing.Size(94, 32);
+            this.SletButton.TabIndex = 0;
+            this.SletButton.Text = "Slet";
+            this.SletButton.UseVisualStyleBackColor = true;
+            this.SletButton.Click += new System.EventHandler(this.SletButton_Click);
+            // 
             // RenorveringerItemEjendomsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -153,6 +156,7 @@ namespace Bobedre.Templates.Renorveringer
             this.Checkboxes.ResumeLayout(false);
             this.Checkboxes.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

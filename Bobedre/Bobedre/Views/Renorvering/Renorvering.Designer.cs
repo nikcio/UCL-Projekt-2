@@ -54,7 +54,7 @@ namespace Bobedre.Views.Renorvering
             OmbygningsårBolig.Location = new System.Drawing.Point(11, 102);
             OmbygningsårBolig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             OmbygningsårBolig.Name = "OmbygningsårBolig";
-            OmbygningsårBolig.Size = new System.Drawing.Size(171, 32);
+            OmbygningsårBolig.Size = new System.Drawing.Size(142, 28);
             OmbygningsårBolig.TabIndex = 38;
             OmbygningsårBolig.Text = "Ombygningsår";
             // 
@@ -65,7 +65,7 @@ namespace Bobedre.Views.Renorvering
             this.Andetcheckbox.Location = new System.Drawing.Point(522, 233);
             this.Andetcheckbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Andetcheckbox.Name = "Andetcheckbox";
-            this.Andetcheckbox.Size = new System.Drawing.Size(104, 36);
+            this.Andetcheckbox.Size = new System.Drawing.Size(87, 32);
             this.Andetcheckbox.TabIndex = 46;
             this.Andetcheckbox.Text = "Andet";
             this.Andetcheckbox.UseVisualStyleBackColor = true;
@@ -78,7 +78,7 @@ namespace Bobedre.Views.Renorvering
             this.RenorveringsIdTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.RenorveringsIdTextbox.Name = "RenorveringsIdTextbox";
             this.RenorveringsIdTextbox.ReadOnly = true;
-            this.RenorveringsIdTextbox.Size = new System.Drawing.Size(313, 39);
+            this.RenorveringsIdTextbox.Size = new System.Drawing.Size(313, 34);
             this.RenorveringsIdTextbox.TabIndex = 45;
             // 
             // DetalijerTextbox
@@ -98,7 +98,7 @@ namespace Bobedre.Views.Renorvering
             this.OmbygningsårTextbox.Location = new System.Drawing.Point(183, 99);
             this.OmbygningsårTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.OmbygningsårTextbox.Name = "OmbygningsårTextbox";
-            this.OmbygningsårTextbox.Size = new System.Drawing.Size(313, 39);
+            this.OmbygningsårTextbox.Size = new System.Drawing.Size(313, 34);
             this.OmbygningsårTextbox.TabIndex = 43;
             // 
             // Badeværelsecheckbox
@@ -108,7 +108,7 @@ namespace Bobedre.Views.Renorvering
             this.Badeværelsecheckbox.Location = new System.Drawing.Point(522, 195);
             this.Badeværelsecheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.Badeværelsecheckbox.Name = "Badeværelsecheckbox";
-            this.Badeværelsecheckbox.Size = new System.Drawing.Size(175, 36);
+            this.Badeværelsecheckbox.Size = new System.Drawing.Size(144, 32);
             this.Badeværelsecheckbox.TabIndex = 42;
             this.Badeværelsecheckbox.Text = "Badeværelse";
             this.Badeværelsecheckbox.UseVisualStyleBackColor = true;
@@ -120,7 +120,7 @@ namespace Bobedre.Views.Renorvering
             this.KøkkenCheckbox.Location = new System.Drawing.Point(522, 159);
             this.KøkkenCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.KøkkenCheckbox.Name = "KøkkenCheckbox";
-            this.KøkkenCheckbox.Size = new System.Drawing.Size(119, 36);
+            this.KøkkenCheckbox.Size = new System.Drawing.Size(99, 32);
             this.KøkkenCheckbox.TabIndex = 41;
             this.KøkkenCheckbox.Text = "Køkken";
             this.KøkkenCheckbox.UseVisualStyleBackColor = true;
@@ -132,7 +132,7 @@ namespace Bobedre.Views.Renorvering
             this.RenoveringsIdBolig.Location = new System.Drawing.Point(11, 36);
             this.RenoveringsIdBolig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.RenoveringsIdBolig.Name = "RenoveringsIdBolig";
-            this.RenoveringsIdBolig.Size = new System.Drawing.Size(165, 32);
+            this.RenoveringsIdBolig.Size = new System.Drawing.Size(136, 28);
             this.RenoveringsIdBolig.TabIndex = 40;
             this.RenoveringsIdBolig.Text = "RenoveringsId";
             // 
@@ -143,7 +143,7 @@ namespace Bobedre.Views.Renorvering
             this.DetaljerLabel.Location = new System.Drawing.Point(11, 163);
             this.DetaljerLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DetaljerLabel.Name = "DetaljerLabel";
-            this.DetaljerLabel.Size = new System.Drawing.Size(97, 32);
+            this.DetaljerLabel.Size = new System.Drawing.Size(80, 28);
             this.DetaljerLabel.TabIndex = 39;
             this.DetaljerLabel.Text = "Detaljer";
             // 
@@ -212,7 +212,7 @@ namespace Bobedre.Views.Renorvering
             // 
             // Renorvering
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1169, 616);
@@ -230,6 +230,7 @@ namespace Bobedre.Views.Renorvering
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Renorvering";
             this.Text = "Renorvering";
+            this.Load += new System.EventHandler(this.Renorvering_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

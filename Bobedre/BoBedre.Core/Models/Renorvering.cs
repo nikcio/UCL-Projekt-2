@@ -26,5 +26,34 @@ namespace BoBedre.Core.Models
         public int Ombygningsår { get; set; }
         public string Detaljer { get; set; }
         public int BoligNr { get; set; }
+
+        /// <summary>
+        /// Create renorverings object from object data
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static Renorvering CreateRenorveringFromData(object[] values)
+        {
+            if (values == null)
+            {
+                return null;
+            }
+            else if (values.Length == typeof(Renorvering).GetProperties().Length)
+            {
+                return new Renorvering(
+                (int)values[0],
+                (bool)values[1],
+                (bool)values[2],
+                (bool)values[3],
+                (int)values[4],
+                (string)values[5],
+                (int)values[6]
+                );
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("values", "values datapoints don't match model");
+            }
+        }
     }
 }

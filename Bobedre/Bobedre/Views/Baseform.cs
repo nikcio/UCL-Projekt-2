@@ -82,7 +82,8 @@ namespace Bobedre.Views
 
         private void ejendomsmæglereButton_Click(object sender, EventArgs e)
         {
-            ShowForm(new Ejendomsmæglere.Ejendomsmæglere(Models.Action.view, this));
+            ShowForm(new Ejendomsmæglere.EjendomsmæglereView(this));
+            
         }
 
         private void sagerButton_Click(object sender, EventArgs e)
