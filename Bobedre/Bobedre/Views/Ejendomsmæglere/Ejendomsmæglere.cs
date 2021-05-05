@@ -36,9 +36,9 @@ namespace Bobedre.Views.Ejendomsmæglere
         /// <returns></returns>
         private async void Opretknap_Click(object sender, EventArgs e)
         {
-            if (RegexCheck.TextCheck(Afdelingbox.Text) && RegexCheck.TextCheck(Mæglerfirmabox.Text) && RegexCheck.TextCheck(NavnBox.Text) && RegexCheck.EmailCheck(Emailbox.Text))
+            if (RegexCheck.TextCheck(Afdelingbox.Text) && RegexCheck.TextCheck(StillingSvar.Text) && RegexCheck.TextCheck(Mæglerfirmabox.Text) && RegexCheck.TextCheck(NavnBox.Text) && RegexCheck.EmailCheck(Emailbox.Text))
             {
-                var message = await EntryManagement.CreateEjendomsmægler(Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text);
+                var message = await EntryManagement.CreateEjendomsmægler(Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text, StillingSvar.Text);
                 ClearForm.CleanForm(Controls);
                 
 
@@ -84,11 +84,11 @@ namespace Bobedre.Views.Ejendomsmæglere
         /// <returns></returns>
         private async void Gemknap_Click(object sender, EventArgs e)
         {
-            if (RegexCheck.TextCheck(Afdelingbox.Text) && RegexCheck.TextCheck(Mæglerfirmabox.Text) && RegexCheck.TextCheck(NavnBox.Text) && RegexCheck.EmailCheck(Emailbox.Text))
+            if (RegexCheck.TextCheck(Afdelingbox.Text) && RegexCheck.TextCheck(StillingSvar.Text) && RegexCheck.TextCheck(Mæglerfirmabox.Text) && RegexCheck.TextCheck(NavnBox.Text) && RegexCheck.EmailCheck(Emailbox.Text))
             {
                 if (int.TryParse(MedarbejderNrBox.Text, out int medarbejderNr))
                 {
-                    var message = await EntryManagement.UpdateEjendomsmægler(medarbejderNr, Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text);
+                    var message = await EntryManagement.UpdateEjendomsmægler(medarbejderNr, Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text, StillingSvar.Text);
                     ClearForm.CleanForm(Controls);
                     MessageBox.Show(message);
                 }
@@ -123,6 +123,7 @@ namespace Bobedre.Views.Ejendomsmæglere
             Mæglerfirmabox.Text = ejendomsmægler.Mæglerfirma.ToString();
             NavnBox.Text = ejendomsmægler.Navn.ToString();
             Emailbox.Text = ejendomsmægler.Email.ToString();
+            StillingSvar.Text = ejendomsmægler.Stilling.ToString();
 
         }
 
@@ -135,6 +136,9 @@ namespace Bobedre.Views.Ejendomsmæglere
         {
             switch (action)
             {
+                case Models.Action.create:                    
+                    break;
+
 
                 case Models.Action.edit:
                     LoadData(medarbejderNr);
@@ -147,6 +151,7 @@ namespace Bobedre.Views.Ejendomsmæglere
                     Mæglerfirmabox.ReadOnly = true;
                     NavnBox.ReadOnly = true;
                     Emailbox.ReadOnly = true;
+                    StillingSvar.ReadOnly = true;
                     Opretknap.Visible = false;
                     Gemknap.Visible = false;
                     Sletknap.Visible = false;

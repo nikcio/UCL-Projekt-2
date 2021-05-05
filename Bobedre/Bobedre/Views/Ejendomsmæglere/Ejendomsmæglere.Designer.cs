@@ -44,6 +44,8 @@ namespace Bobedre.Views.Ejendomsmæglere
             this.Gemknap = new System.Windows.Forms.Button();
             this.Sletknap = new System.Windows.Forms.Button();
             this.GåtilbageKnap = new System.Windows.Forms.Button();
+            this.Stillinglabel = new System.Windows.Forms.Label();
+            this.StillingSvar = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -183,11 +185,30 @@ namespace Bobedre.Views.Ejendomsmæglere
             this.GåtilbageKnap.UseVisualStyleBackColor = true;
             this.GåtilbageKnap.Click += new System.EventHandler(this.GåtilbageKnap_Click);
             // 
+            // Stillinglabel
+            // 
+            this.Stillinglabel.AutoSize = true;
+            this.Stillinglabel.Location = new System.Drawing.Point(24, 200);
+            this.Stillinglabel.Name = "Stillinglabel";
+            this.Stillinglabel.Size = new System.Drawing.Size(43, 15);
+            this.Stillinglabel.TabIndex = 11;
+            this.Stillinglabel.Text = "Stilling";
+            // 
+            // StillingSvar
+            // 
+            this.StillingSvar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.StillingSvar.Location = new System.Drawing.Point(131, 197);
+            this.StillingSvar.Name = "StillingSvar";
+            this.StillingSvar.Size = new System.Drawing.Size(100, 23);
+            this.StillingSvar.TabIndex = 12;
+            // 
             // Ejendomsmæglere
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 427);
+            this.Controls.Add(this.StillingSvar);
+            this.Controls.Add(this.Stillinglabel);
             this.Controls.Add(this.GåtilbageKnap);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.Mæglerfirmabox);
@@ -228,5 +249,7 @@ namespace Bobedre.Views.Ejendomsmæglere
         private System.Windows.Forms.Button Gemknap;
         private System.Windows.Forms.Button Sletknap;
         private System.Windows.Forms.Button GåtilbageKnap;
+        private System.Windows.Forms.Label Stillinglabel;
+        private System.Windows.Forms.TextBox StillingSvar;
     }
 }
