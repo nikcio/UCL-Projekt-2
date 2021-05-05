@@ -78,10 +78,10 @@ namespace Bobedre.Templates.Ejendomme
             this.panel1.Controls.Add(this.AdresseLabel);
             this.panel1.Controls.Add(this.VisBoligNr);
             this.panel1.Controls.Add(this.BoligNrLabel);
-            this.panel1.Location = new System.Drawing.Point(27, 14);
+            this.panel1.Location = new System.Drawing.Point(11, 40);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(272, 151);
+            this.panel1.Size = new System.Drawing.Size(272, 154);
             this.panel1.TabIndex = 1;
             // 
             // Visboligoplysninger
@@ -307,6 +307,7 @@ namespace Bobedre.Templates.Ejendomme
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "EjendomElement";
             this.Text = "EjendomElement";
+            this.Load += new System.EventHandler(this.EjendomElement_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

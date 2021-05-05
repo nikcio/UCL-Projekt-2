@@ -287,6 +287,7 @@ namespace Bobedre.Views.Ejendomme
         private void OpretButton_Click(int renorveringsId)
         {
             baseform.ShowForm(new Renorvering.Renorvering(Models.Action.delete, baseform, new Ejendomme(Models.Action.edit, baseform, int.Parse(BolignrTextbox.Text)), renorveringsId));
+        }
 
 
         private void Ejendomme_Load(object sender, EventArgs e)
@@ -296,20 +297,21 @@ namespace Bobedre.Views.Ejendomme
                 case Models.Action.create:
                     RenorveringerFlow.Visible = false;
                     AddRenorveringButton.Visible = false;
+                    SletButtonBolig.Visible = false;
+                    OpdaterBoligKnap.Visible = false;
                     break;
 
                 case Models.Action.edit:
+                    OpretBoligKnap.Visible = false;
+                    SletButtonBolig.Visible = false;
                     LoadData(boligNr);
                     break;
 
                 case Models.Action.delete:
-                    LoadData(boligNr);
-					
-                    break;
-
-                case Models.Action.view:
-                    LoadData(boligNr);
-					 BolignrTextbox.ReadOnly = true;
+                    OpdaterBoligKnap.Visible = false;
+                    OpretBoligKnap.Visible = false;
+                    AddRenorveringButton.Visible = false;
+                    BolignrTextbox.ReadOnly = true;
                     AdresseBolig.ReadOnly = true;
                     PrisTextBox.ReadOnly = true;
                     BoligArealTextBox.ReadOnly = true;
@@ -320,9 +322,37 @@ namespace Bobedre.Views.Ejendomme
                     TypeBoligTextBox.ReadOnly = true;
                     ByggeårBoligTextBox.ReadOnly = true;
                     HaveCheckBox.Enabled = false;
+                    LoadData(boligNr);
+                    
+                    break;
+
+                case Models.Action.view:
+                    LoadData(boligNr);
+					BolignrTextbox.ReadOnly = true;
+                    AdresseBolig.ReadOnly = true;
+                    PrisTextBox.ReadOnly = true;
+                    BoligArealTextBox.ReadOnly = true;
+                    GrundArealBoligTextBox.ReadOnly = true;
+                    PostNrTextBox.ReadOnly = true;
+                    VæreslerBoligTextBox.ReadOnly = true;
+                    EtagerBoligTextbox.ReadOnly = true;
+                    TypeBoligTextBox.ReadOnly = true;
+                    ByggeårBoligTextBox.ReadOnly = true;
+                    HaveCheckBox.Enabled = false;
+                    OpretBoligKnap.Visible = false;
+                    SletButtonBolig.Visible = false;
+                    OpdaterBoligKnap.Visible = false;
+                    AddRenorveringButton.Visible = false;
+                   
+                    
                     break;
             }
 
+        }
+
+        private void TilbageKnap_Click(object sender, EventArgs e)
+        {
+            baseform.ShowForm(new EjendommeView(baseform));
         }
     }
 
