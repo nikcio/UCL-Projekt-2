@@ -47,6 +47,7 @@ namespace Bobedre.Templates.Ejendomsmæglere
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.MedarbejderNrSvar);
             this.panel1.Controls.Add(this.MedarbejderNrLabel);
             this.panel1.Controls.Add(this.VisKnap);

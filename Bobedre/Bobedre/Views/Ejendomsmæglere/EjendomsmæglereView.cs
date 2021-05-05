@@ -58,10 +58,11 @@ namespace Bobedre.Views.Ejendomsmæglere
             Label MæglerFirmaLabel = new System.Windows.Forms.Label();
             Label AfdelingSvar = new System.Windows.Forms.Label();
             Label AfdelingLabel = new System.Windows.Forms.Label();
-            
+
             // 
             // panel1
             // 
+            panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             panel1.Controls.Add(MedarbejderNrSvar);
             panel1.Controls.Add(MedarbejderNrLabel);
             panel1.Controls.Add(VisKnap);
