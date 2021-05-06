@@ -10,16 +10,17 @@ namespace BoBedre.Core.DataAccess
     {
 
         #region Ejendomsmægler
-        public static async Task<string> UpdateEjendomsmægler(int medarbejderNr, string afdeling, string mæglerfirma, string navn, string email)
+        public static async Task<string> UpdateEjendomsmægler(int medarbejderNr, string afdeling, string mæglerfirma, string navn, string email, string stilling)
         {
             try
             {
-                SqlCommand cmd = new("UPDATE Ejendomsmægler set Afdeling=@Afdeling, Mæglerfirma=@Mæglerfirma, Navn=@Navn, Email=@Email WHERE MedarbejderNr = @MedarbejderNr");
+                SqlCommand cmd = new("UPDATE Ejendomsmægler set Afdeling=@Afdeling, Mæglerfirma=@Mæglerfirma, Navn=@Navn, Email=@Email, Stilling=@Stilling WHERE MedarbejderNr = @MedarbejderNr");
                 cmd.Parameters.AddWithValue("@MedarbejderNr", medarbejderNr);
                 cmd.Parameters.AddWithValue("@Afdeling", afdeling);
                 cmd.Parameters.AddWithValue("@Mæglerfirma", mæglerfirma);
                 cmd.Parameters.AddWithValue("@Navn", navn);
                 cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Stilling", stilling);
 
                 await DBConnection.ExecuteNonQuery(cmd);
 
@@ -53,16 +54,17 @@ namespace BoBedre.Core.DataAccess
         }
 
 
-        public static async Task<int> CreateEjendomsmægler(string afdeling, string mæglerfirma, string navn, string email)
+        public static async Task<int> CreateEjendomsmægler(string afdeling, string mæglerfirma, string navn, string email, string stilling)
         {
             try
             {
-                SqlCommand cmd = new("INSERT into Ejendomsmægler(Afdeling, Mæglerfirma, Navn, Email) OUTPUT INSERTED.MedarbejderNr VALUES (@Afdeling, @Mæglerfirma, @Navn, @Email)");
+                SqlCommand cmd = new("INSERT into Ejendomsmægler(Afdeling, Mæglerfirma, Navn, Email, Stilling) OUTPUT INSERTED.MedarbejderNr VALUES (@Afdeling, @Mæglerfirma, @Navn, @Email, @Stilling)");
 
                 cmd.Parameters.AddWithValue("@Afdeling", afdeling);
                 cmd.Parameters.AddWithValue("@Mæglerfirma", mæglerfirma);
                 cmd.Parameters.AddWithValue("@Navn", navn);
                 cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Stilling", stilling);
 
                 int medarbejderNr = (int)await DBConnection.ExecuteScalar(cmd);
 
@@ -78,37 +80,6 @@ namespace BoBedre.Core.DataAccess
         #endregion
 
         #region Ejendomme
-        public static async Task<int> CreateEjendom(
-            string adresse,
-            int pris,
-            int boligAreal,
-            int grundAreal,
-            bool have,
-            int værelser,
-            int etager,
-            string typeBolig,
-            int byggeår,
-            int postNr,
-            bool renorvert,
-            bool køkken,
-            bool badeværelse,
-            bool andet,
-            int ombygningsÅr,
-            string detaljer
-            )
-        {
-            SqlCommand cmd = await CreateEjendomEntry(adresse, pris, boligAreal, grundAreal, have, værelser, etager, typeBolig, byggeår, postNr);
-
-            int boligNr = (int)await DBConnection.ExecuteScalar(cmd);
-
-            if (renorvert)
-            {
-                await CreateRenorvering(køkken, badeværelse, andet, ombygningsÅr, detaljer, boligNr);
-            }
-
-            return boligNr;
-        }
-
         public static async Task<int> CreateEjendom(
             string adresse,
             int pris,
@@ -153,7 +124,7 @@ namespace BoBedre.Core.DataAccess
             cmd.Parameters.AddWithValue("@PostNr", postNr);
             return cmd;
         }
-        public static async Task<string> SletBolig(int Bolignr)
+        public static async Task<string> DeleteEjendom(int Bolignr)
         {
             try
             {
@@ -289,23 +260,45 @@ namespace BoBedre.Core.DataAccess
         /// <param name="zipcode"></param>
         /// <param name="cityName"></param>
         /// <returns>Success</returns>
-        public static async Task<bool> CreateBy(int zipcode, string cityName)
+        public static async Task CreateBy(int zipcode, string cityName)
         {
-            try
-            {
-                SqlCommand cmd = new("INSERT into [By] VALUES (@zipcode, @cityName)");
+            SqlCommand cmd = new("INSERT into [By] VALUES (@zipcode, @cityName)");
 
-                cmd.Parameters.AddWithValue("@zipcode", zipcode);
-                cmd.Parameters.AddWithValue("@cityname", cityName);
+            cmd.Parameters.AddWithValue("@zipcode", zipcode);
+            cmd.Parameters.AddWithValue("@cityname", cityName);
 
-                await DBConnection.ExecuteNonQuery(cmd);
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
 
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+        /// <summary>
+        /// Updates a By
+        /// </summary>
+        /// <param name="zipcode"></param>
+        /// <param name="cityName"></param>
+        /// <returns></returns>
+        public static async Task UpdateBy(int zipcode, string cityName, int zipcodeNewValue)
+        {
+            SqlCommand cmd = new("UPDATE [By] SET PostNr=@zipcodeNewValue, ByNavn=@cityName WHERE PostNr=@zipcode");
+
+            cmd.Parameters.AddWithValue("@zipcode", zipcode);
+            cmd.Parameters.AddWithValue("@zipcodeNewValue", zipcodeNewValue);
+            cmd.Parameters.AddWithValue("@cityname", cityName);
+
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
+
+        /// <summary>
+        /// Deletes a By
+        /// </summary>
+        /// <param name="zipcode"></param>
+        /// <returns></returns>
+        public static async Task DeleteBy(int zipcode)
+        {
+            SqlCommand cmd = new("DELETE FROM [By] WHERE PostNr=@zipcode");
+
+            cmd.Parameters.AddWithValue("@zipcode", zipcode);
+
+            await DBConnection.ExecuteNonQuery(cmd);
         }
         #endregion
 
