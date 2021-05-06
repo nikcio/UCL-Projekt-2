@@ -10,7 +10,7 @@ namespace BoBedre.Core.DataAccess
     {
 
         #region Ejendomsmægler
-        public static async Task<string> UpdateEjendomsmægler(int medarbejderNr, string stilling, string afdeling, string mæglerfirma, string navn, string email)
+        public static async Task<string> UpdateEjendomsmægler(int medarbejderNr, string afdeling, string mæglerfirma, string navn, string email, string stilling)
         {
             try
             {
