@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace BoBedre.Core.Test.DataAccess
 {
@@ -52,10 +53,125 @@ namespace BoBedre.Core.Test.DataAccess
             await EntryManagement.DeleteEjendomsmægler(medarbejderNr);
             Assert.IsNull(await Fetch.GetEjendomsmæglerByMedarbjederNr(medarbejderNr));
            
-        }    
- 
+        }
+
         #endregion
 
+        #region Renorvering
+        [TestMethod]
+        public async Task CreateUpdateDeleteRenorvering()
+        {
+            bool køkken = true;
+            bool badeværelse = false;
+            bool andet = true;
+            int ombygningsÅr = 2020;
+            string detaljer = "Dette er detaljer";
+            bool deleteEjendom = false; // Determins if we should delete the ejendom on exit
+            
+            Ejendom[] ejendomme = await Fetch.GetEjendomAll();
+            int? boligNr = ejendomme.FirstOrDefault()?.BoligNr;
+
+            // Create ejendom if none is avalible
+            if(boligNr == null)
+            {
+                string adresse = "addresse 1";
+                int pris = 100;
+                int boligAreal = 120;
+                int grundAreal = 200;
+                bool have = true;
+                int værelser = 2;
+                int etager = 1;
+                string typeBolig = "Lejlighed";
+                int byggeår = 2020;
+                int postNr = 7100;
+                deleteEjendom = true;
+
+                boligNr = await EntryManagement.CreateEjendom(adresse, pris, boligAreal, grundAreal, have, værelser, etager, typeBolig, byggeår, postNr);
+            }
+
+            // Create
+            int renorveringsId = await EntryManagement.CreateRenorvering(køkken, badeværelse, andet, ombygningsÅr, detaljer, boligNr.GetValueOrDefault());
+            Renorvering renorvering = await Fetch.GetRenorveringByRenorveringsId(renorveringsId);
+
+            Assert.AreEqual(køkken, renorvering.Køkken, "Values does not match");
+            Assert.AreEqual(badeværelse, renorvering.Badeværelse, "Values does not match");
+            Assert.AreEqual(andet, renorvering.Andet, "Values does not match");
+            Assert.AreEqual(ombygningsÅr, renorvering.Ombygningsår, "Values does not match");
+            Assert.AreEqual(detaljer, renorvering.Detaljer, "Values does not match");
+
+            // Update
+            køkken = false;
+            badeværelse = true;
+            andet = false;
+            ombygningsÅr = 1020;
+            detaljer = "Update Update update";
+
+            await EntryManagement.UpdateRenorvering(køkken, badeværelse, andet, ombygningsÅr, detaljer, renorveringsId);
+            renorvering = await Fetch.GetRenorveringByRenorveringsId(renorveringsId);
+
+            Assert.AreEqual(køkken, renorvering.Køkken, "Values does not match");
+            Assert.AreEqual(badeværelse, renorvering.Badeværelse, "Values does not match");
+            Assert.AreEqual(andet, renorvering.Andet, "Values does not match");
+            Assert.AreEqual(ombygningsÅr, renorvering.Ombygningsår, "Values does not match");
+            Assert.AreEqual(detaljer, renorvering.Detaljer, "Values does not match");
+
+            // Delete
+            await EntryManagement.DeleteRenorvering(renorveringsId);
+
+            Assert.IsNull(await Fetch.GetRenorveringByRenorveringsId(renorveringsId), "Renorvering should be null");
+
+            // Clean up
+            if (deleteEjendom)
+            {
+                await EntryManagement.DeleteEjendom(boligNr.GetValueOrDefault());
+            }
+        }
+        #endregion
+
+        #region By
+        [TestMethod]
+        public async Task CreateUpdateDeleteBy()
+        {
+            // Create
+            int zipcode = 100;
+            string cityName = "Test by";
+
+            // Make sure no by exists
+            By by = await Fetch.GetByByPostNr(zipcode);
+            if (by != null)
+            {
+                await EntryManagement.DeleteBy(zipcode);
+            }
+
+            await EntryManagement.CreateBy(zipcode, cityName);
+            by = await Fetch.GetByByPostNr(zipcode);
+
+            Assert.AreEqual(zipcode, by.PostNr);
+            Assert.AreEqual(cityName, by.ByNavn);
+
+            // Update
+            var zipcodeNewValue = 200;
+            cityName = "Test 2";
+
+            // Make sure nu by exists
+            by = await Fetch.GetByByPostNr(zipcodeNewValue);
+            if (by != null)
+            {
+                await EntryManagement.DeleteBy(zipcodeNewValue);
+            }
+
+            await EntryManagement.UpdateBy(zipcode, cityName, zipcodeNewValue);
+            by = await Fetch.GetByByPostNr(zipcodeNewValue);
+
+            Assert.AreEqual(zipcodeNewValue, by.PostNr);
+            Assert.AreEqual(cityName, by.ByNavn);
+
+            // Delete
+            await EntryManagement.DeleteBy(zipcodeNewValue);
+
+            Assert.IsNull(await Fetch.GetByByPostNr(zipcodeNewValue));
+        }
+        #endregion
 
     }
 }
