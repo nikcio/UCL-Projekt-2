@@ -8,7 +8,7 @@ namespace BoBedre.Core.Models
 {
     public class Ejendomsmægler : IPerson
     {
-        public Ejendomsmægler(int medarbejderNr, string stilling, string afdeling, string mæglerfirma, string navn, string email)
+        public Ejendomsmægler(int medarbejderNr, string afdeling, string mæglerfirma, string navn, string email, string stilling)
         {
             
             MedarbejderNr = medarbejderNr;
