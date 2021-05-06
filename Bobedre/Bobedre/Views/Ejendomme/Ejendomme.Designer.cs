@@ -64,7 +64,7 @@ namespace Bobedre.Views.Ejendomme
             // EtagerBolig
             // 
             EtagerBolig.AutoSize = true;
-            EtagerBolig.Location = new System.Drawing.Point(223, 118);
+            EtagerBolig.Location = new System.Drawing.Point(222, 205);
             EtagerBolig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             EtagerBolig.Name = "EtagerBolig";
             EtagerBolig.Size = new System.Drawing.Size(40, 15);
@@ -86,7 +86,7 @@ namespace Bobedre.Views.Ejendomme
             // Bolignr
             // 
             this.Bolignr.AutoSize = true;
-            this.Bolignr.Location = new System.Drawing.Point(8, 22);
+            this.Bolignr.Location = new System.Drawing.Point(8, 28);
             this.Bolignr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Bolignr.Name = "Bolignr";
             this.Bolignr.Size = new System.Drawing.Size(47, 15);
@@ -104,7 +104,7 @@ namespace Bobedre.Views.Ejendomme
             // BoligAdresse
             // 
             this.BoligAdresse.AutoSize = true;
-            this.BoligAdresse.Location = new System.Drawing.Point(8, 58);
+            this.BoligAdresse.Location = new System.Drawing.Point(8, 88);
             this.BoligAdresse.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.BoligAdresse.Name = "BoligAdresse";
             this.BoligAdresse.Size = new System.Drawing.Size(48, 15);
@@ -114,7 +114,7 @@ namespace Bobedre.Views.Ejendomme
             // PrisBolig
             // 
             this.PrisBolig.AutoSize = true;
-            this.PrisBolig.Location = new System.Drawing.Point(10, 86);
+            this.PrisBolig.Location = new System.Drawing.Point(11, 147);
             this.PrisBolig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PrisBolig.Name = "PrisBolig";
             this.PrisBolig.Size = new System.Drawing.Size(26, 15);
@@ -123,7 +123,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // AdresseBolig
             // 
-            this.AdresseBolig.Location = new System.Drawing.Point(76, 52);
+            this.AdresseBolig.Location = new System.Drawing.Point(76, 80);
             this.AdresseBolig.Margin = new System.Windows.Forms.Padding(2);
             this.AdresseBolig.Name = "AdresseBolig";
             this.AdresseBolig.Size = new System.Drawing.Size(106, 23);
@@ -131,7 +131,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // PrisTextBox
             // 
-            this.PrisTextBox.Location = new System.Drawing.Point(76, 82);
+            this.PrisTextBox.Location = new System.Drawing.Point(76, 139);
             this.PrisTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.PrisTextBox.Name = "PrisTextBox";
             this.PrisTextBox.Size = new System.Drawing.Size(106, 23);
@@ -140,7 +140,7 @@ namespace Bobedre.Views.Ejendomme
             // BoligAreal
             // 
             this.BoligAreal.AutoSize = true;
-            this.BoligAreal.Location = new System.Drawing.Point(8, 118);
+            this.BoligAreal.Location = new System.Drawing.Point(8, 205);
             this.BoligAreal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.BoligAreal.Name = "BoligAreal";
             this.BoligAreal.Size = new System.Drawing.Size(61, 15);
@@ -149,7 +149,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // BoligArealTextBox
             // 
-            this.BoligArealTextBox.Location = new System.Drawing.Point(76, 116);
+            this.BoligArealTextBox.Location = new System.Drawing.Point(76, 197);
             this.BoligArealTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.BoligArealTextBox.Name = "BoligArealTextBox";
             this.BoligArealTextBox.Size = new System.Drawing.Size(106, 23);
@@ -158,7 +158,7 @@ namespace Bobedre.Views.Ejendomme
             // GrundAreal
             // 
             this.GrundAreal.AutoSize = true;
-            this.GrundAreal.Location = new System.Drawing.Point(223, 22);
+            this.GrundAreal.Location = new System.Drawing.Point(223, 28);
             this.GrundAreal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.GrundAreal.Name = "GrundAreal";
             this.GrundAreal.Size = new System.Drawing.Size(67, 15);
@@ -167,7 +167,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // GrundArealBoligTextBox
             // 
-            this.GrundArealBoligTextBox.Location = new System.Drawing.Point(309, 20);
+            this.GrundArealBoligTextBox.Location = new System.Drawing.Point(309, 19);
             this.GrundArealBoligTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.GrundArealBoligTextBox.Name = "GrundArealBoligTextBox";
             this.GrundArealBoligTextBox.Size = new System.Drawing.Size(106, 23);
@@ -175,7 +175,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // VæreslerBoligTextBox
             // 
-            this.VæreslerBoligTextBox.Location = new System.Drawing.Point(309, 82);
+            this.VæreslerBoligTextBox.Location = new System.Drawing.Point(309, 139);
             this.VæreslerBoligTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.VæreslerBoligTextBox.Name = "VæreslerBoligTextBox";
             this.VæreslerBoligTextBox.Size = new System.Drawing.Size(106, 23);
@@ -183,7 +183,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // EtagerBoligTextbox
             // 
-            this.EtagerBoligTextbox.Location = new System.Drawing.Point(309, 116);
+            this.EtagerBoligTextbox.Location = new System.Drawing.Point(309, 197);
             this.EtagerBoligTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.EtagerBoligTextbox.Name = "EtagerBoligTextbox";
             this.EtagerBoligTextbox.Size = new System.Drawing.Size(106, 23);
@@ -192,7 +192,7 @@ namespace Bobedre.Views.Ejendomme
             // VærelserBolig
             // 
             this.VærelserBolig.AutoSize = true;
-            this.VærelserBolig.Location = new System.Drawing.Point(223, 84);
+            this.VærelserBolig.Location = new System.Drawing.Point(223, 147);
             this.VærelserBolig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.VærelserBolig.Name = "VærelserBolig";
             this.VærelserBolig.Size = new System.Drawing.Size(51, 15);
@@ -202,7 +202,7 @@ namespace Bobedre.Views.Ejendomme
             // TypeBolig
             // 
             this.TypeBolig.AutoSize = true;
-            this.TypeBolig.Location = new System.Drawing.Point(437, 22);
+            this.TypeBolig.Location = new System.Drawing.Point(437, 28);
             this.TypeBolig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TypeBolig.Name = "TypeBolig";
             this.TypeBolig.Size = new System.Drawing.Size(31, 15);
@@ -213,7 +213,7 @@ namespace Bobedre.Views.Ejendomme
             // ByggeÅrBolig
             // 
             this.ByggeÅrBolig.AutoSize = true;
-            this.ByggeÅrBolig.Location = new System.Drawing.Point(437, 56);
+            this.ByggeÅrBolig.Location = new System.Drawing.Point(437, 88);
             this.ByggeÅrBolig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ByggeÅrBolig.Name = "ByggeÅrBolig";
             this.ByggeÅrBolig.Size = new System.Drawing.Size(50, 15);
@@ -222,7 +222,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // TypeBoligTextBox
             // 
-            this.TypeBoligTextBox.Location = new System.Drawing.Point(504, 20);
+            this.TypeBoligTextBox.Location = new System.Drawing.Point(504, 19);
             this.TypeBoligTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.TypeBoligTextBox.Name = "TypeBoligTextBox";
             this.TypeBoligTextBox.Size = new System.Drawing.Size(106, 23);
@@ -230,7 +230,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // ByggeårBoligTextBox
             // 
-            this.ByggeårBoligTextBox.Location = new System.Drawing.Point(504, 56);
+            this.ByggeårBoligTextBox.Location = new System.Drawing.Point(504, 78);
             this.ByggeårBoligTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.ByggeårBoligTextBox.Name = "ByggeårBoligTextBox";
             this.ByggeårBoligTextBox.Size = new System.Drawing.Size(106, 23);
@@ -274,7 +274,7 @@ namespace Bobedre.Views.Ejendomme
             // HaveCheckBox
             // 
             this.HaveCheckBox.AutoSize = true;
-            this.HaveCheckBox.Location = new System.Drawing.Point(437, 82);
+            this.HaveCheckBox.Location = new System.Drawing.Point(437, 143);
             this.HaveCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.HaveCheckBox.Name = "HaveCheckBox";
             this.HaveCheckBox.Size = new System.Drawing.Size(53, 19);
@@ -287,7 +287,7 @@ namespace Bobedre.Views.Ejendomme
             // PostNrLabel
             // 
             this.PostNrLabel.AutoSize = true;
-            this.PostNrLabel.Location = new System.Drawing.Point(222, 50);
+            this.PostNrLabel.Location = new System.Drawing.Point(221, 88);
             this.PostNrLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PostNrLabel.Name = "PostNrLabel";
             this.PostNrLabel.Size = new System.Drawing.Size(41, 15);
@@ -296,7 +296,7 @@ namespace Bobedre.Views.Ejendomme
             // 
             // PostNrTextBox
             // 
-            this.PostNrTextBox.Location = new System.Drawing.Point(309, 48);
+            this.PostNrTextBox.Location = new System.Drawing.Point(309, 78);
             this.PostNrTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.PostNrTextBox.Name = "PostNrTextBox";
             this.PostNrTextBox.Size = new System.Drawing.Size(106, 23);

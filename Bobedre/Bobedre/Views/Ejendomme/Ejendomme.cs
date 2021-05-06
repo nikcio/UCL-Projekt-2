@@ -83,7 +83,7 @@ namespace Bobedre.Views.Ejendomme
                         TypeBoligTextBox.Text,
                         int.Parse(ByggeårBoligTextBox.Text),
                         int.Parse(PostNrTextBox.Text));
-                MessageBox.Show("Boligen er nu gemt2");
+                MessageBox.Show("Boligen er nu gemt");
             }
             else
             {
@@ -132,7 +132,7 @@ namespace Bobedre.Views.Ejendomme
             }
             else
             {
-                MessageBox.Show("Boligens oplysninger blev ikke opdateret pgf. forkerte oplysninger");
+                MessageBox.Show("Boligens oplysninger blev ikke opdateret pga. forkerte oplysninger");
             }
         }
 
