@@ -10,16 +10,17 @@ namespace BoBedre.Core.DataAccess
     {
 
         #region Ejendomsmægler
-        public static async Task<string> UpdateEjendomsmægler(int medarbejderNr, string afdeling, string mæglerfirma, string navn, string email)
+        public static async Task<string> UpdateEjendomsmægler(int medarbejderNr, string afdeling, string mæglerfirma, string navn, string email, string stilling)
         {
             try
             {
-                SqlCommand cmd = new("UPDATE Ejendomsmægler set Afdeling=@Afdeling, Mæglerfirma=@Mæglerfirma, Navn=@Navn, Email=@Email WHERE MedarbejderNr = @MedarbejderNr");
+                SqlCommand cmd = new("UPDATE Ejendomsmægler set Afdeling=@Afdeling, Mæglerfirma=@Mæglerfirma, Navn=@Navn, Email=@Email, Stilling=@Stilling WHERE MedarbejderNr = @MedarbejderNr");
                 cmd.Parameters.AddWithValue("@MedarbejderNr", medarbejderNr);
                 cmd.Parameters.AddWithValue("@Afdeling", afdeling);
                 cmd.Parameters.AddWithValue("@Mæglerfirma", mæglerfirma);
                 cmd.Parameters.AddWithValue("@Navn", navn);
                 cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Stilling", stilling);
 
                 await DBConnection.ExecuteNonQuery(cmd);
 
@@ -53,16 +54,17 @@ namespace BoBedre.Core.DataAccess
         }
 
 
-        public static async Task<int> CreateEjendomsmægler(string afdeling, string mæglerfirma, string navn, string email)
+        public static async Task<int> CreateEjendomsmægler(string afdeling, string mæglerfirma, string navn, string email, string stilling)
         {
             try
             {
-                SqlCommand cmd = new("INSERT into Ejendomsmægler(Afdeling, Mæglerfirma, Navn, Email) OUTPUT INSERTED.MedarbejderNr VALUES (@Afdeling, @Mæglerfirma, @Navn, @Email)");
+                SqlCommand cmd = new("INSERT into Ejendomsmægler(Afdeling, Mæglerfirma, Navn, Email, Stilling) OUTPUT INSERTED.MedarbejderNr VALUES (@Afdeling, @Mæglerfirma, @Navn, @Email, @Stilling)");
 
                 cmd.Parameters.AddWithValue("@Afdeling", afdeling);
                 cmd.Parameters.AddWithValue("@Mæglerfirma", mæglerfirma);
                 cmd.Parameters.AddWithValue("@Navn", navn);
                 cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Stilling", stilling);
 
                 int medarbejderNr = (int)await DBConnection.ExecuteScalar(cmd);
 

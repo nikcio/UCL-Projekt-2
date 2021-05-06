@@ -39,10 +39,12 @@ namespace Bobedre.Views.Ejendomme
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoScroll = true;
+
             this.flowLayoutPanel1.Location = new System.Drawing.Point(8, 36);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1006, 419);
+
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // TilføjBoligKnap
@@ -60,7 +62,9 @@ namespace Bobedre.Views.Ejendomme
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1023, 462);
+
             this.Controls.Add(this.TilføjBoligKnap);
+
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
