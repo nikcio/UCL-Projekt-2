@@ -61,6 +61,80 @@ namespace BoBedre.Core.Test.DataAccess
 
         #endregion
 
+        #region Ejendomme
+        [TestMethod]
+        public async Task CreateUpdateDeleteEjendomme()
+        {
+            
+            //Create
+            string Adresse = "Adresse";
+            int pris = 0;
+            int BoligAreal = 0;
+            int GrundAreal = 0;
+            bool have = true;
+            int Værelser = 0;
+            int Etager = 0;
+            int Byggeår = 0;
+            string Type = "Type";
+            int postNr = 7000;
+
+
+
+            var Bolignr = await EntryManagement.CreateEjendom(Adresse, pris, BoligAreal, GrundAreal, have, Værelser,Etager, Type, Byggeår,postNr);
+            var ejendom = await Fetch.GetEjendomByBoligNr(Bolignr);
+
+            Assert.AreEqual(Adresse, ejendom.Adresse , "the value is not equal to the expected");
+            Assert.AreEqual(pris, ejendom.Pris, "the value is not equal to the expected");
+            Assert.AreEqual(BoligAreal, ejendom.BoligAreal, "the value is not equal to the expected");
+            Assert.AreEqual(GrundAreal, ejendom.GrundAreal, "the value is not equal to the expected");
+            Assert.AreEqual(have, ejendom.Have, "the value is not equal to the expected");
+            Assert.AreEqual(Værelser, ejendom.Værelser, "the value is not equal to the expected");
+            Assert.AreEqual(Etager, ejendom.Etager, "the value is not equal to the expected");
+            Assert.AreEqual(Type, ejendom.Type, "the value is not equal to the expected");
+            Assert.AreEqual(Byggeår, ejendom.Byggeår, "the value is not equal to the expected");
+            Assert.AreEqual(postNr,ejendom.PostNr, "the value is not equal to the expected");
+
+
+
+            ////update
+            Adresse = "Updateny";
+            pris = 5;
+            BoligAreal = 2;
+            GrundAreal = 5;
+            have = false;
+            Værelser = 2;
+            Etager = 15;
+            Type = "hus";
+            Byggeår = 2912;
+            postNr = 7100;
+
+           await EntryManagement.OpdaterEjendom(Adresse, pris, BoligAreal, GrundAreal, have, Værelser,Etager,Type,Byggeår,postNr,Bolignr);
+           ejendom = await Fetch.GetEjendomByBoligNr(Bolignr);
+
+            Assert.AreEqual(Adresse, ejendom.Adresse, "the value is not equal to the expected");
+            Assert.AreEqual(pris, ejendom.Pris, "the value is not equal to the expected");
+            Assert.AreEqual(BoligAreal, ejendom.BoligAreal, "the value is not equal to the expected");
+            Assert.AreEqual(GrundAreal, ejendom.GrundAreal, "the value is not equal to the expected");
+            Assert.AreEqual(have, ejendom.Have, "the value is not equal to the expected");
+            Assert.AreEqual(Værelser, ejendom.Værelser, "the value is not equal to the expected");
+            Assert.AreEqual(Etager, ejendom.Etager, "the value is not equal to the expected");
+            Assert.AreEqual(Type, ejendom.Type, "the value is not equal to the expected");
+            Assert.AreEqual(Byggeår, ejendom.Byggeår, "the value is not equal to the expected");
+            Assert.AreEqual(postNr, ejendom.PostNr, "the value is not equal to the expected");
+
+
+
+            //delete
+            await EntryManagement.DeleteEjendom(Bolignr);
+            Assert.IsNull(await Fetch.GetEjendomByBoligNr(Bolignr));
+
+        }
+
+
+
+        #endregion
+
+
         #region Renorvering
         [TestMethod]
         public async Task CreateUpdateDeleteRenorvering()
