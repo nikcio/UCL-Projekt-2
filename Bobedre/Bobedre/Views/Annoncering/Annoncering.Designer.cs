@@ -181,6 +181,7 @@ namespace Bobedre.Views.Annoncering
             this.GåtilbageKnap.TabIndex = 25;
             this.GåtilbageKnap.Text = "Gå tilbage";
             this.GåtilbageKnap.UseVisualStyleBackColor = true;
+            this.GåtilbageKnap.Click += new System.EventHandler(this.GåtilbageKnap_Click);
             // 
             // Annoncering
             // 

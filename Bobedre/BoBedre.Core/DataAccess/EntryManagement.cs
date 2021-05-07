@@ -323,7 +323,7 @@ namespace BoBedre.Core.DataAccess
                 "VALUES (@Type, @StartDato, @SlutDato, @SagNr)");
 
             cmd.Parameters.AddWithValue("@Type", type);
-            cmd.Parameters.AddWithValue("@StarDato", startDato);
+            cmd.Parameters.AddWithValue("@StartDato", startDato);
             cmd.Parameters.AddWithValue("@SlutDato", slutDato);
             cmd.Parameters.AddWithValue("@Sagnr", sagNr);
 

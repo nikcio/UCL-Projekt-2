@@ -19,7 +19,7 @@ namespace Bobedre.Views.Annoncering
         private Form prevForm { get; set; }
        
         public Models.Action action { get; set; }
-        public int annonceringsNr { get; set; }
+        private int annonceringsNr { get; set; }
         public Annoncering(Models.Action _action, Baseform _baseform, int _annonceringsNr = -1)
         {
             InitializeComponent();
@@ -32,17 +32,17 @@ namespace Bobedre.Views.Annoncering
         /// Loading data into textboxes from database
         /// </summary>
         /// <param name="nr"></param>
-        private async void LoadData(int nr)
+        private async void LoadData(int annonceringsNr)
         {
-            if (nr < 0)
+            if (annonceringsNr < 0)
             {
-                throw new ArgumentOutOfRangeException("nr", "nr can not be under 0");
+                throw new ArgumentOutOfRangeException("annonceringsNr", "AnnonceringsNr can not be under 0");
             }
 
-            var annoncering = await Fetch.GetAnnonceringByAnnonceringsNr(nr);
+            var annoncering = await Fetch.GetAnnonceringByAnnonceringsNr(annonceringsNr);
 
             AnnonceringsNrBox.Text = annoncering.AnnonceringsNr.ToString();
-            TypeBox.Text = annoncering.Type;
+            TypeBox.Text = annoncering.Type.ToString();
             StartDatoPicker.Value = annoncering.StartDato;
             StartDatoPicker.Value = annoncering.SlutDato;
             SagNrBox.Text = annoncering.SagNr.ToString();
@@ -65,6 +65,8 @@ namespace Bobedre.Views.Annoncering
                     LoadData(annonceringsNr);
                     TypeBox.ReadOnly = true;              
                     SagNrBox.ReadOnly = true;
+                    StartDatoPicker.Enabled = false;
+                    SlutDatoPicker.Enabled = false;
                     Opretknap.Visible = false;
                     Gemknap.Visible = false;
                     Sletknap.Visible = false;
@@ -75,7 +77,7 @@ namespace Bobedre.Views.Annoncering
         {
             if (RegexCheck.TextCheck(TypeBox.Text))
             {
-                var message = await EntryManagement.CreateAnnoncering(TypeBox.Text, StartDatoPicker.Value, SlutDatoPicker.Value, int.Parse(SagNrBox.Text));
+                var message = await EntryManagement.CreateAnnoncering(TypeBox.Text, StartDatoPicker.Value, SlutDatoPicker.Value, int.Parse(SagNrBox.Text)) ;
                 ClearForm.CleanForm(Controls);
 
 
@@ -126,6 +128,11 @@ namespace Bobedre.Views.Annoncering
                 AnnonceringsNrBox.ResetText();
                 MessageBox.Show("AnnonceringsNr skal være et nummer");
             }
+        }
+
+        private void GåtilbageKnap_Click(object sender, EventArgs e)
+        {
+            baseform.ShowForm(new AnnonceringView(baseform));
         }
     }
 }

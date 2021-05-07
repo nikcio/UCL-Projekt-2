@@ -2,9 +2,6 @@
 using BoBedre.Core.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BoBedre.Core.Test.DataAccess
@@ -55,9 +52,54 @@ namespace BoBedre.Core.Test.DataAccess
             //delete
             await EntryManagement.DeleteEjendomsmægler(medarbejderNr);
             Assert.IsNull(await Fetch.GetEjendomsmæglerByMedarbjederNr(medarbejderNr));
-           
-        }    
- 
+
+        }
+
+        #endregion
+
+        #region Annonceringer
+        public async Task CreateUpdateDeleteAnnonceringTest()
+        {
+            //Create
+            string type = "type";
+            DateTime start = DateTime.Now;
+            DateTime slut = DateTime.Now;
+            int sagsnr = 1;
+            
+
+            var annoncenr = await EntryManagement.CreateAnnoncering(type, start, slut, sagsnr);
+            var annonce = await Fetch.GetAnnonceringByAnnonceringsNr(annoncenr);
+
+            Assert.AreEqual(type, annonce.Type, "the value is not equal to the expected");
+            Assert.AreEqual(start, annonce.StartDato, "the value is not equal to the expected");
+            Assert.AreEqual(slut, annonce.SlutDato, "the value is not equal to the expected");
+            Assert.AreEqual(sagsnr, annonce.SagNr, "the value is not equal to the expected");
+            
+
+
+            //update
+            type = "Updateny";
+            start = DateTime.Today;
+            slut = DateTime.Today;
+            sagsnr = 2;
+            
+
+            await EntryManagement.UpdateAnnoncering(type, start, slut, sagsnr, annoncenr);
+            annonce = await Fetch.GetAnnonceringByAnnonceringsNr(annoncenr);
+
+            Assert.AreEqual(annoncenr, annonce.AnnonceringsNr, "the value is not equal to the expected");
+            Assert.AreEqual(type, annonce.Type, "the value is not equal to the expected");
+            Assert.AreEqual(start, annonce.StartDato, "the value is not equal to the expected");
+            Assert.AreEqual(slut, annonce.SlutDato, "the value is not equal to the expected");
+            Assert.AreEqual(sagsnr, annonce.SagNr, "the value is not equal to the expected");
+
+
+
+            //delete
+            await EntryManagement.DeleteAnnoncering(annoncenr);
+            Assert.IsNull(await Fetch.GetAnnonceringByAnnonceringsNr(annoncenr));
+
+        }
         #endregion
 
 

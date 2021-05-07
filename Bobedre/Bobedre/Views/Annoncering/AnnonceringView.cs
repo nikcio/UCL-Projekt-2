@@ -132,7 +132,7 @@ namespace Bobedre.Views.Annoncering
             SlutDatoSvar.Name = "SlutDatoSvar";
             SlutDatoSvar.Size = new System.Drawing.Size(13, 15);
             SlutDatoSvar.TabIndex = 3;
-            SlutDatoSvar.Text = annonceringer.SlutDato.ToString();
+            SlutDatoSvar.Text = annonceringer.SlutDato.ToShortDateString();
             // 
             // SlutDatoLabel
             // 
@@ -150,7 +150,7 @@ namespace Bobedre.Views.Annoncering
             StartDatoSvar.Name = "StartDatoSvar";
             StartDatoSvar.Size = new System.Drawing.Size(13, 15);
             StartDatoSvar.TabIndex = 1;
-            StartDatoSvar.Text = annonceringer.StartDato.ToString();
+            StartDatoSvar.Text = annonceringer.StartDato.ToShortDateString();
             // 
             // StartDatoLabel
             // 
@@ -190,12 +190,12 @@ namespace Bobedre.Views.Annoncering
 
         private void RedigereKnap_Click(int annonceringsNr)
         {
-            baseform.ShowForm(new Annoncering(Models.Action.edit, baseform));
+            baseform.ShowForm(new Annoncering(Models.Action.edit, baseform, annonceringsNr));
         }
 
         private void VisKnap_Click(int annonceringsNr)
         {
-            baseform.ShowForm(new Annoncering(Models.Action.view, baseform));
+            baseform.ShowForm(new Annoncering(Models.Action.view, baseform, annonceringsNr));
         }
 
       

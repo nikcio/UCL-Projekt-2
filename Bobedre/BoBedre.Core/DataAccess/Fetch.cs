@@ -218,8 +218,8 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         public static async Task<Annoncering> GetAnnonceringByAnnonceringsNr(int annonceringNr)
         {
-            var sqlCommand = new SqlCommand("SELECT * FROM Annoncering WHERE AnnonceringNr=@annonceringNr");
-            sqlCommand.Parameters.AddWithValue("@annonceringNr", annonceringNr);
+            var sqlCommand = new SqlCommand("SELECT * FROM Annoncering WHERE AnnonceringsNr=@annonceringsNr");
+            sqlCommand.Parameters.AddWithValue("@annonceringsNr", annonceringNr);
             return Annoncering.CreateAnnonceringFromData(await DBConnection.ReadElement(sqlCommand));
         }
 
