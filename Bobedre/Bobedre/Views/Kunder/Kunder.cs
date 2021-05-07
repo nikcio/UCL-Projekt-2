@@ -9,10 +9,19 @@ namespace Bobedre.Views.Kunder
 {
     public partial class Kunder : Form
     {
-       
-        public Kunder(Models.Action action, Baseform baseform)
+
+        private int kundeNr { get; set; }
+        public Models.Action action { get; set; }
+        private Baseform baseform { get; set; }
+
+        public Kunder(Models.Action _action, Baseform _baseform, int _kundeNr = -1)
         {
             InitializeComponent();
+
+            baseform = _baseform;
+            action = _action;
+            kundeNr = _kundeNr;
+
         }
 
         /// <summary>
@@ -22,7 +31,7 @@ namespace Bobedre.Views.Kunder
         /// <param name="e"></param>
         private async void KundeOpretKnap_Click(object sender, EventArgs e)
         {
-            
+
             if ((RegexCheck.TextCheck(KundeNavnBox.Text)) && RegexCheck.EmailCheck(KundeEmailBox.Text) && KundeTypeComboBox.SelectedItem != null)
             {
                 var KundeType = KundeTypeComboBox.SelectedItem.ToString();
@@ -47,8 +56,8 @@ namespace Bobedre.Views.Kunder
             if (int.TryParse(KundeNrBox.Text, out int KundeNr))
             {
                 var message = await EntryManagement.DeleteKunde(KundeNr);
-                ClearForm.CleanForm(Controls);
 
+                ClearForm.CleanForm(Controls);
                 MessageBox.Show(message);
             }
             else
@@ -89,15 +98,74 @@ namespace Bobedre.Views.Kunder
             }
         }
 
+        /// <summary>
+        /// Loading data from database
+        /// </summary>
+        /// <param name="kundeNr"></param>
+        private async void LoadData(int kundeNr)
+        {
+            if (kundeNr < 0)
+            {
+                throw new ArgumentOutOfRangeException("KundeNr", "KundeNr can not be under 0");
+            }
+
+            var kunde = await Fetch.GetKundeByKundeNr(kundeNr);
+
+            KundeNrBox.Text = kunde.KundeNr.ToString();
+            KundeNavnBox.Text = kunde.Navn.ToString();
+            KundeEmailBox.Text = kunde.Email.ToString();
+            KundeTypeComboBox.Text = kunde.Type.ToString();
+        }
+
+
         private void KundeTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void KundeNrBox_TextChanged(object sender, EventArgs e)
         {
 
         }
-    }
 
+        private void GåtilbageKnap_Click(object sender, EventArgs e)
+        {
+            baseform.ShowForm(new KunderView(baseform));
+        }
+
+        private void Kunder_Load(object sender, EventArgs e)
+        {
+        switch (action)
+        {
+            case Models.Action.create:
+                KundeNrBox.ReadOnly = true;
+                KundeGemKnap.Visible = false;
+                KundeSletKnap.Visible = false;
+                break;
+
+            case Models.Action.edit:
+                LoadData(kundeNr);
+                KundeNrBox.ReadOnly = true;
+                KundeOpretKnap.Visible = false;
+                break;
+
+            case Models.Action.delete:
+                LoadData(kundeNr);
+                KundeNavnBox.ReadOnly = true;
+                KundeEmailBox.ReadOnly = true;
+                break;
+
+            case Models.Action.view:
+                LoadData(kundeNr);
+                KundeNrBox.ReadOnly = true;
+                KundeNavnBox.ReadOnly = true;
+                KundeEmailBox.ReadOnly = true;
+                KundeTypeComboBox.Enabled = false;
+                KundeOpretKnap.Visible = false;
+                KundeGemKnap.Visible = false;
+                KundeSletKnap.Visible = false;
+                break;
+        }
+        }
+    }
 }
