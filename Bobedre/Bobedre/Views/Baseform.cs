@@ -88,7 +88,7 @@ namespace Bobedre.Views
 
         private void sagerButton_Click(object sender, EventArgs e)
         {
-            ShowForm(new Sager.Sager(Models.Action.view, this));
+            ShowForm(new Sager.SagerView(this));
         }
 
         private void statistikButton_Click(object sender, EventArgs e)

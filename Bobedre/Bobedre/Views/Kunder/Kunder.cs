@@ -9,7 +9,6 @@ namespace Bobedre.Views.Kunder
 {
     public partial class Kunder : Form
     {
-
         private int kundeNr { get; set; }
         public Models.Action action { get; set; }
         private Baseform baseform { get; set; }
