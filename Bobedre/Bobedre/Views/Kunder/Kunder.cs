@@ -139,6 +139,8 @@ namespace Bobedre.Views.Kunder
         {
             case Models.Action.create:
                 KundeNrBox.ReadOnly = true;
+                KundeGemKnap.Visible = false;
+                KundeSletKnap.Visible = false;
                 break;
 
             case Models.Action.edit:

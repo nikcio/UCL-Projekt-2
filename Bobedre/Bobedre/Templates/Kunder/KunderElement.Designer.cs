@@ -73,6 +73,7 @@ namespace Bobedre.Templates.Kunder
             // KundeNrLabel
             // 
             this.KundeNrLabel.AutoSize = true;
+            this.KundeNrLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.KundeNrLabel.Location = new System.Drawing.Point(21, 25);
             this.KundeNrLabel.Name = "KundeNrLabel";
             this.KundeNrLabel.Size = new System.Drawing.Size(54, 15);
@@ -113,6 +114,7 @@ namespace Bobedre.Templates.Kunder
             // KundeTypeLabel
             // 
             this.KundeTypeLabel.AutoSize = true;
+            this.KundeTypeLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.KundeTypeLabel.Location = new System.Drawing.Point(21, 124);
             this.KundeTypeLabel.Name = "KundeTypeLabel";
             this.KundeTypeLabel.Size = new System.Drawing.Size(31, 15);
@@ -131,6 +133,7 @@ namespace Bobedre.Templates.Kunder
             // KundeEmailLabel
             // 
             this.KundeEmailLabel.AutoSize = true;
+            this.KundeEmailLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.KundeEmailLabel.Location = new System.Drawing.Point(21, 93);
             this.KundeEmailLabel.Name = "KundeEmailLabel";
             this.KundeEmailLabel.Size = new System.Drawing.Size(36, 15);
@@ -149,6 +152,7 @@ namespace Bobedre.Templates.Kunder
             // KundeNavnLabel
             // 
             this.KundeNavnLabel.AutoSize = true;
+            this.KundeNavnLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.KundeNavnLabel.Location = new System.Drawing.Point(21, 61);
             this.KundeNavnLabel.Name = "KundeNavnLabel";
             this.KundeNavnLabel.Size = new System.Drawing.Size(35, 15);

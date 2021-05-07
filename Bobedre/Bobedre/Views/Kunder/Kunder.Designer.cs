@@ -57,6 +57,7 @@ namespace Bobedre.Views.Kunder
             // 
             // KundeOpretKnap
             // 
+            this.KundeOpretKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.KundeOpretKnap.Location = new System.Drawing.Point(3, 3);
             this.KundeOpretKnap.Name = "KundeOpretKnap";
             this.KundeOpretKnap.Size = new System.Drawing.Size(168, 49);
@@ -67,6 +68,7 @@ namespace Bobedre.Views.Kunder
             // 
             // KundeGemKnap
             // 
+            this.KundeGemKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.KundeGemKnap.Location = new System.Drawing.Point(177, 3);
             this.KundeGemKnap.Name = "KundeGemKnap";
             this.KundeGemKnap.Size = new System.Drawing.Size(168, 49);
@@ -77,6 +79,7 @@ namespace Bobedre.Views.Kunder
             // 
             // KundeSletKnap
             // 
+            this.KundeSletKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.KundeSletKnap.Location = new System.Drawing.Point(351, 3);
             this.KundeSletKnap.Name = "KundeSletKnap";
             this.KundeSletKnap.Size = new System.Drawing.Size(168, 49);
@@ -88,6 +91,7 @@ namespace Bobedre.Views.Kunder
             // KundeNr
             // 
             this.KundeNr.AutoSize = true;
+            this.KundeNr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.KundeNr.Location = new System.Drawing.Point(12, 33);
             this.KundeNr.Name = "KundeNr";
             this.KundeNr.Size = new System.Drawing.Size(57, 15);
@@ -105,6 +109,7 @@ namespace Bobedre.Views.Kunder
             // KundeNavn
             // 
             this.KundeNavn.AutoSize = true;
+            this.KundeNavn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.KundeNavn.Location = new System.Drawing.Point(15, 85);
             this.KundeNavn.Name = "KundeNavn";
             this.KundeNavn.Size = new System.Drawing.Size(38, 15);
@@ -121,6 +126,7 @@ namespace Bobedre.Views.Kunder
             // KundeEmail
             // 
             this.KundeEmail.AutoSize = true;
+            this.KundeEmail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.KundeEmail.Location = new System.Drawing.Point(15, 142);
             this.KundeEmail.Name = "KundeEmail";
             this.KundeEmail.Size = new System.Drawing.Size(39, 15);
@@ -137,6 +143,7 @@ namespace Bobedre.Views.Kunder
             // KundeType
             // 
             this.KundeType.AutoSize = true;
+            this.KundeType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.KundeType.Location = new System.Drawing.Point(289, 33);
             this.KundeType.Name = "KundeType";
             this.KundeType.Size = new System.Drawing.Size(68, 15);
@@ -145,6 +152,7 @@ namespace Bobedre.Views.Kunder
             // 
             // KundeTypeComboBox
             // 
+            this.KundeTypeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.KundeTypeComboBox.FormattingEnabled = true;
             this.KundeTypeComboBox.Items.AddRange(new object[] {
             "Køber",
