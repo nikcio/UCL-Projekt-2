@@ -307,11 +307,11 @@ namespace BoBedre.Core.DataAccess
         {
             try
             {
-                SqlCommand cmd = new("INSERT into Kunde(Navn, Email, Type) VALUES (@Navn, @Email, @Type)");
+                SqlCommand cmd = new("INSERT into Kunde(Navn, Email, Type) OUTPUT INSERTED.KundeNr VALUES (@Navn, @Email, @Type)");
 
-                cmd.Parameters.AddWithValue("@Navn", navn);
-                cmd.Parameters.AddWithValue("@Email", email);
-               cmd.Parameters.AddWithValue("@Type", KundeType );
+               cmd.Parameters.AddWithValue("@Navn", navn);
+               cmd.Parameters.AddWithValue("@Email", email);
+               cmd.Parameters.AddWithValue("@Type", KundeType);
 
                 return (int)await DBConnection.ExecuteScalar(cmd);
 
