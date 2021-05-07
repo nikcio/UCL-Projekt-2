@@ -105,6 +105,11 @@ namespace Bobedre.Views
         {
             ShowForm(new ÅbentHus.ÅbentHus(Models.Action.view, this));
         }
+        
+        private void AnnonceringerButton_Click(object sender, EventArgs e)
+        {
+            ShowForm(new Annoncering.AnnonceringView(this));
+        }
         #endregion
     }
 }

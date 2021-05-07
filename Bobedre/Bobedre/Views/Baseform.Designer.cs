@@ -39,6 +39,7 @@ namespace Bobedre.Views
             this.søgningButton = new System.Windows.Forms.Button();
             this.åbenhusButton = new System.Windows.Forms.Button();
             this.content = new System.Windows.Forms.Panel();
+            this.AnnonceringerButton = new System.Windows.Forms.Button();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +53,7 @@ namespace Bobedre.Views
             this.menu.Controls.Add(this.kunderButton);
             this.menu.Controls.Add(this.ejendommeButton);
             this.menu.Controls.Add(this.ejendomsmæglereButton);
+            this.menu.Controls.Add(this.AnnonceringerButton);
             this.menu.Controls.Add(this.sagerButton);
             this.menu.Controls.Add(this.statistikButton);
             this.menu.Controls.Add(this.søgningButton);
@@ -69,10 +71,10 @@ namespace Bobedre.Views
             this.menuButton.AutoSize = true;
             this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.menuButton.Location = new System.Drawing.Point(932, 4);
+            this.menuButton.Location = new System.Drawing.Point(952, 4);
             this.menuButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.menuButton.Name = "menuButton";
-            this.menuButton.Size = new System.Drawing.Size(88, 32);
+            this.menuButton.Size = new System.Drawing.Size(68, 32);
             this.menuButton.TabIndex = 0;
             this.menuButton.Text = "Menu";
             this.menuButton.UseVisualStyleBackColor = true;
@@ -85,10 +87,10 @@ namespace Bobedre.Views
             this.kunderButton.Enabled = false;
             this.kunderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.kunderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.kunderButton.Location = new System.Drawing.Point(826, 4);
+            this.kunderButton.Location = new System.Drawing.Point(866, 4);
             this.kunderButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.kunderButton.Name = "kunderButton";
-            this.kunderButton.Size = new System.Drawing.Size(88, 32);
+            this.kunderButton.Size = new System.Drawing.Size(68, 32);
             this.kunderButton.TabIndex = 1;
             this.kunderButton.Text = "Kunder";
             this.kunderButton.UseVisualStyleBackColor = true;
@@ -102,10 +104,10 @@ namespace Bobedre.Views
             this.ejendommeButton.Enabled = false;
             this.ejendommeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ejendommeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ejendommeButton.Location = new System.Drawing.Point(695, 4);
+            this.ejendommeButton.Location = new System.Drawing.Point(755, 4);
             this.ejendommeButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.ejendommeButton.Name = "ejendommeButton";
-            this.ejendommeButton.Size = new System.Drawing.Size(113, 32);
+            this.ejendommeButton.Size = new System.Drawing.Size(93, 32);
             this.ejendommeButton.TabIndex = 2;
             this.ejendommeButton.Text = "Ejendomme";
             this.ejendommeButton.UseVisualStyleBackColor = true;
@@ -119,10 +121,10 @@ namespace Bobedre.Views
             this.ejendomsmæglereButton.Enabled = false;
             this.ejendomsmæglereButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ejendomsmæglereButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ejendomsmæglereButton.Location = new System.Drawing.Point(511, 4);
+            this.ejendomsmæglereButton.Location = new System.Drawing.Point(591, 4);
             this.ejendomsmæglereButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.ejendomsmæglereButton.Name = "ejendomsmæglereButton";
-            this.ejendomsmæglereButton.Size = new System.Drawing.Size(166, 32);
+            this.ejendomsmæglereButton.Size = new System.Drawing.Size(146, 32);
             this.ejendomsmæglereButton.TabIndex = 3;
             this.ejendomsmæglereButton.Text = "Ejendomsmæglere";
             this.ejendomsmæglereButton.UseVisualStyleBackColor = true;
@@ -136,10 +138,10 @@ namespace Bobedre.Views
             this.sagerButton.Enabled = false;
             this.sagerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sagerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.sagerButton.Location = new System.Drawing.Point(405, 4);
+            this.sagerButton.Location = new System.Drawing.Point(388, 4);
             this.sagerButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.sagerButton.Name = "sagerButton";
-            this.sagerButton.Size = new System.Drawing.Size(88, 32);
+            this.sagerButton.Size = new System.Drawing.Size(68, 32);
             this.sagerButton.TabIndex = 5;
             this.sagerButton.Text = "Sager";
             this.sagerButton.UseVisualStyleBackColor = true;
@@ -153,10 +155,10 @@ namespace Bobedre.Views
             this.statistikButton.Enabled = false;
             this.statistikButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.statistikButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.statistikButton.Location = new System.Drawing.Point(299, 4);
+            this.statistikButton.Location = new System.Drawing.Point(302, 4);
             this.statistikButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.statistikButton.Name = "statistikButton";
-            this.statistikButton.Size = new System.Drawing.Size(88, 32);
+            this.statistikButton.Size = new System.Drawing.Size(68, 32);
             this.statistikButton.TabIndex = 4;
             this.statistikButton.Text = "Statistik";
             this.statistikButton.UseVisualStyleBackColor = true;
@@ -170,10 +172,10 @@ namespace Bobedre.Views
             this.søgningButton.Enabled = false;
             this.søgningButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.søgningButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.søgningButton.Location = new System.Drawing.Point(193, 4);
+            this.søgningButton.Location = new System.Drawing.Point(216, 4);
             this.søgningButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.søgningButton.Name = "søgningButton";
-            this.søgningButton.Size = new System.Drawing.Size(88, 32);
+            this.søgningButton.Size = new System.Drawing.Size(68, 32);
             this.søgningButton.TabIndex = 6;
             this.søgningButton.Text = "Søgning";
             this.søgningButton.UseVisualStyleBackColor = true;
@@ -187,10 +189,10 @@ namespace Bobedre.Views
             this.åbenhusButton.Enabled = false;
             this.åbenhusButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.åbenhusButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.åbenhusButton.Location = new System.Drawing.Point(77, 4);
+            this.åbenhusButton.Location = new System.Drawing.Point(120, 4);
             this.åbenhusButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.åbenhusButton.Name = "åbenhusButton";
-            this.åbenhusButton.Size = new System.Drawing.Size(98, 32);
+            this.åbenhusButton.Size = new System.Drawing.Size(78, 32);
             this.åbenhusButton.TabIndex = 7;
             this.åbenhusButton.Text = "Åbent hus";
             this.åbenhusButton.UseVisualStyleBackColor = true;
@@ -208,6 +210,23 @@ namespace Bobedre.Views
             this.content.Name = "content";
             this.content.Size = new System.Drawing.Size(1029, 462);
             this.content.TabIndex = 1;
+            // 
+            // AnnonceringerButton
+            // 
+            this.AnnonceringerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AnnonceringerButton.AutoSize = true;
+            this.AnnonceringerButton.Enabled = false;
+            this.AnnonceringerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AnnonceringerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AnnonceringerButton.Location = new System.Drawing.Point(474, 4);
+            this.AnnonceringerButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
+            this.AnnonceringerButton.Name = "AnnonceringerButton";
+            this.AnnonceringerButton.Size = new System.Drawing.Size(99, 32);
+            this.AnnonceringerButton.TabIndex = 8;
+            this.AnnonceringerButton.Text = "Annonceringer";
+            this.AnnonceringerButton.UseVisualStyleBackColor = true;
+            this.AnnonceringerButton.Visible = false;
+            this.AnnonceringerButton.Click += new System.EventHandler(this.AnnonceringerButton_Click);
             // 
             // Baseform
             // 
@@ -238,6 +257,7 @@ namespace Bobedre.Views
         private System.Windows.Forms.Button statistikButton;
         private System.Windows.Forms.Button søgningButton;
         private System.Windows.Forms.Button åbenhusButton;
+        private System.Windows.Forms.Button AnnonceringerButton;
     }
 }
 
