@@ -26,5 +26,20 @@ namespace Bobedre.Templates.Ejendomme
         {
 
         }
+
+        private void OpretButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TilføjBoligbutton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EjendomElement_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
