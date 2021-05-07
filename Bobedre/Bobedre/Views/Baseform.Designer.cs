@@ -57,9 +57,10 @@ namespace Bobedre.Views
             this.menu.Controls.Add(this.søgningButton);
             this.menu.Controls.Add(this.åbenhusButton);
             this.menu.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.menu.Location = new System.Drawing.Point(12, 12);
+            this.menu.Location = new System.Drawing.Point(10, 9);
+            this.menu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1176, 54);
+            this.menu.Size = new System.Drawing.Size(1029, 40);
             this.menu.TabIndex = 0;
             // 
             // menuButton
@@ -67,11 +68,11 @@ namespace Bobedre.Views
             this.menuButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.menuButton.AutoSize = true;
             this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.menuButton.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.menuButton.Location = new System.Drawing.Point(1066, 5);
-            this.menuButton.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.menuButton.Location = new System.Drawing.Point(932, 4);
+            this.menuButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.menuButton.Name = "menuButton";
-            this.menuButton.Size = new System.Drawing.Size(100, 40);
+            this.menuButton.Size = new System.Drawing.Size(88, 32);
             this.menuButton.TabIndex = 0;
             this.menuButton.Text = "Menu";
             this.menuButton.UseVisualStyleBackColor = true;
@@ -83,11 +84,11 @@ namespace Bobedre.Views
             this.kunderButton.AutoSize = true;
             this.kunderButton.Enabled = false;
             this.kunderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.kunderButton.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.kunderButton.Location = new System.Drawing.Point(946, 5);
-            this.kunderButton.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.kunderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.kunderButton.Location = new System.Drawing.Point(826, 4);
+            this.kunderButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.kunderButton.Name = "kunderButton";
-            this.kunderButton.Size = new System.Drawing.Size(100, 40);
+            this.kunderButton.Size = new System.Drawing.Size(88, 32);
             this.kunderButton.TabIndex = 1;
             this.kunderButton.Text = "Kunder";
             this.kunderButton.UseVisualStyleBackColor = true;
@@ -100,11 +101,11 @@ namespace Bobedre.Views
             this.ejendommeButton.AutoSize = true;
             this.ejendommeButton.Enabled = false;
             this.ejendommeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ejendommeButton.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ejendommeButton.Location = new System.Drawing.Point(797, 5);
-            this.ejendommeButton.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.ejendommeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ejendommeButton.Location = new System.Drawing.Point(695, 4);
+            this.ejendommeButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.ejendommeButton.Name = "ejendommeButton";
-            this.ejendommeButton.Size = new System.Drawing.Size(129, 40);
+            this.ejendommeButton.Size = new System.Drawing.Size(113, 32);
             this.ejendommeButton.TabIndex = 2;
             this.ejendommeButton.Text = "Ejendomme";
             this.ejendommeButton.UseVisualStyleBackColor = true;
@@ -117,11 +118,11 @@ namespace Bobedre.Views
             this.ejendomsmæglereButton.AutoSize = true;
             this.ejendomsmæglereButton.Enabled = false;
             this.ejendomsmæglereButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ejendomsmæglereButton.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ejendomsmæglereButton.Location = new System.Drawing.Point(587, 5);
-            this.ejendomsmæglereButton.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.ejendomsmæglereButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ejendomsmæglereButton.Location = new System.Drawing.Point(511, 4);
+            this.ejendomsmæglereButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.ejendomsmæglereButton.Name = "ejendomsmæglereButton";
-            this.ejendomsmæglereButton.Size = new System.Drawing.Size(190, 40);
+            this.ejendomsmæglereButton.Size = new System.Drawing.Size(166, 32);
             this.ejendomsmæglereButton.TabIndex = 3;
             this.ejendomsmæglereButton.Text = "Ejendomsmæglere";
             this.ejendomsmæglereButton.UseVisualStyleBackColor = true;
@@ -134,11 +135,11 @@ namespace Bobedre.Views
             this.sagerButton.AutoSize = true;
             this.sagerButton.Enabled = false;
             this.sagerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.sagerButton.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.sagerButton.Location = new System.Drawing.Point(467, 5);
-            this.sagerButton.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.sagerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.sagerButton.Location = new System.Drawing.Point(405, 4);
+            this.sagerButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.sagerButton.Name = "sagerButton";
-            this.sagerButton.Size = new System.Drawing.Size(100, 40);
+            this.sagerButton.Size = new System.Drawing.Size(88, 32);
             this.sagerButton.TabIndex = 5;
             this.sagerButton.Text = "Sager";
             this.sagerButton.UseVisualStyleBackColor = true;
@@ -151,11 +152,11 @@ namespace Bobedre.Views
             this.statistikButton.AutoSize = true;
             this.statistikButton.Enabled = false;
             this.statistikButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.statistikButton.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.statistikButton.Location = new System.Drawing.Point(347, 5);
-            this.statistikButton.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.statistikButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.statistikButton.Location = new System.Drawing.Point(299, 4);
+            this.statistikButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.statistikButton.Name = "statistikButton";
-            this.statistikButton.Size = new System.Drawing.Size(100, 40);
+            this.statistikButton.Size = new System.Drawing.Size(88, 32);
             this.statistikButton.TabIndex = 4;
             this.statistikButton.Text = "Statistik";
             this.statistikButton.UseVisualStyleBackColor = true;
@@ -168,11 +169,11 @@ namespace Bobedre.Views
             this.søgningButton.AutoSize = true;
             this.søgningButton.Enabled = false;
             this.søgningButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.søgningButton.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.søgningButton.Location = new System.Drawing.Point(227, 5);
-            this.søgningButton.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.søgningButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.søgningButton.Location = new System.Drawing.Point(193, 4);
+            this.søgningButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.søgningButton.Name = "søgningButton";
-            this.søgningButton.Size = new System.Drawing.Size(100, 40);
+            this.søgningButton.Size = new System.Drawing.Size(88, 32);
             this.søgningButton.TabIndex = 6;
             this.søgningButton.Text = "Søgning";
             this.søgningButton.UseVisualStyleBackColor = true;
@@ -185,11 +186,11 @@ namespace Bobedre.Views
             this.åbenhusButton.AutoSize = true;
             this.åbenhusButton.Enabled = false;
             this.åbenhusButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.åbenhusButton.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.åbenhusButton.Location = new System.Drawing.Point(95, 5);
-            this.åbenhusButton.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.åbenhusButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.åbenhusButton.Location = new System.Drawing.Point(77, 4);
+            this.åbenhusButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.åbenhusButton.Name = "åbenhusButton";
-            this.åbenhusButton.Size = new System.Drawing.Size(112, 40);
+            this.åbenhusButton.Size = new System.Drawing.Size(98, 32);
             this.åbenhusButton.TabIndex = 7;
             this.åbenhusButton.Text = "Åbent hus";
             this.åbenhusButton.UseVisualStyleBackColor = true;
@@ -202,18 +203,20 @@ namespace Bobedre.Views
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.content.AutoScroll = true;
-            this.content.Location = new System.Drawing.Point(12, 72);
+            this.content.Location = new System.Drawing.Point(10, 54);
+            this.content.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.content.Name = "content";
-            this.content.Size = new System.Drawing.Size(1176, 616);
+            this.content.Size = new System.Drawing.Size(1029, 462);
             this.content.TabIndex = 1;
             // 
             // Baseform
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 700);
+            this.ClientSize = new System.Drawing.Size(1050, 525);
             this.Controls.Add(this.content);
             this.Controls.Add(this.menu);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Baseform";
             this.Text = "BoBedre mæglere A/S";
             this.menu.ResumeLayout(false);
