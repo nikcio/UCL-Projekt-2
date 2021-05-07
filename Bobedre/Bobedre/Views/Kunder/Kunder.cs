@@ -10,7 +10,7 @@ namespace Bobedre.Views.Kunder
     public partial class Kunder : Form
     {
        
-        public Kunder(Models.Action action, Baseform baseform)
+        public Kunder(Models.Action action, Baseform baseform, int id)
         {
             InitializeComponent();
         }

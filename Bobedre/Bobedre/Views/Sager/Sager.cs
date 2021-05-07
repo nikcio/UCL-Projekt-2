@@ -1,5 +1,6 @@
 ﻿using BoBedre.Core.DataAccess;
 using BoBedre.Core.Models;
+using BoBedre.Core.TextChecking;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,14 +28,25 @@ namespace Bobedre.Views.Sager
             sagNr = _sagNr;
         }
 
-        private void GemButton_Click(object sender, EventArgs e)
+        private async void GemButton_Click(object sender, EventArgs e)
         {
-            
+            if (RegexCheck.TalCheck(GebyrTextBox.Text) && RegexCheck.TalCheck(SalærTextBox.Text))
+            {
+                GetDates(out DateTime oprettelsesDato, out DateTime? tilSalgDato, out DateTime? overdragelsesDato, out DateTime? afslutningsDato);
+                var sag = await Fetch.GetSagBySagNr(sagNr);
+                await EntryManagement.UpdateSag(sagNr, oprettelsesDato, tilSalgDato, SolgtCheckBox.Checked, int.Parse(GebyrTextBox.Text), int.Parse(SalærTextBox.Text), overdragelsesDato, afslutningsDato, sag.BoligNr, sag.SælgerNr, sag.KøberNr, sag.MedarbejderNr);
+                baseform.ShowForm(new SagerView(baseform));
+            }
+            else
+            {
+                MessageBox.Show("Der er fejl i værdierne");
+            }
         }
 
-        private void SletButton_Click(object sender, EventArgs e)
+        private async void SletButton_Click(object sender, EventArgs e)
         {
-
+            await EntryManagement.DeleteSag(sagNr);
+            baseform.ShowForm(new SagerView(baseform));
         }
 
         private void LukButton_Click(object sender, EventArgs e)
@@ -127,7 +139,7 @@ namespace Bobedre.Views.Sager
             RedigerButton.TabIndex = 5;
             RedigerButton.Text = "Rediger";
             RedigerButton.UseVisualStyleBackColor = true;
-            RedigerButton.Click += new EventHandler((object sender, EventArgs e) => RedigerButton_Click());
+            RedigerButton.Click += new EventHandler((object sender, EventArgs e) => RedigerButton_Click(id, type));
             // 
             // label3
             // 
@@ -148,7 +160,7 @@ namespace Bobedre.Views.Sager
             VisButton.TabIndex = 7;
             VisButton.Text = "Vis";
             VisButton.UseVisualStyleBackColor = true;
-            VisButton.Click += new EventHandler((object sender, EventArgs e) => VisButton_Click());
+            VisButton.Click += new EventHandler((object sender, EventArgs e) => VisButton_Click(id, type));
 
             TilknytningerFlowLayoutPanel.Controls.Add(panel1);
         }
@@ -186,28 +198,46 @@ namespace Bobedre.Views.Sager
             return output;
         }
 
-        private void RedigerButton_Click()
+        private void RedigerButton_Click(int id, Type type)
         {
-
+            if(type == typeof(Kunde)){
+                baseform.ShowForm(new Kunder.Kunder(Models.Action.edit, baseform, id));
+            }else if (type == typeof(Ejendom))
+            {
+                baseform.ShowForm(new Ejendomme.Ejendomme(Models.Action.edit, baseform, id));
+            }else if(type == typeof(Ejendomsmægler))
+            {
+                baseform.ShowForm(new Ejendomsmæglere.Ejendomsmæglere(Models.Action.edit, baseform, id));
+            }
+            
         }
 
-        private void VisButton_Click()
+        private void VisButton_Click(int id, Type type)
         {
-
+            if (type == typeof(Kunde))
+            {
+                baseform.ShowForm(new Kunder.Kunder(Models.Action.view, baseform, id));
+            }
+            else if (type == typeof(Ejendom))
+            {
+                baseform.ShowForm(new Ejendomme.Ejendomme(Models.Action.view, baseform, id));
+            }
+            else if (type == typeof(Ejendomsmægler))
+            {
+                baseform.ShowForm(new Ejendomsmæglere.Ejendomsmæglere(Models.Action.view, baseform, id));
+            }
         }
 
         private void VisTilkyntningsMulighed(Type type, string altName = null)
         {
             FlowLayoutPanel flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             Button AddButton = new System.Windows.Forms.Button();
-            Button OpretButton = new System.Windows.Forms.Button();
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoSize = true;
             flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             flowLayoutPanel1.Controls.Add(AddButton);
-            flowLayoutPanel1.Controls.Add(OpretButton);
             flowLayoutPanel1.Location = new System.Drawing.Point(139, 83);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(25, 0, 25, 0);
@@ -217,7 +247,7 @@ namespace Bobedre.Views.Sager
             // AddButton
             // 
             AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            AddButton.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AddButton.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             AddButton.Location = new System.Drawing.Point(40, 15);
             AddButton.Margin = new System.Windows.Forms.Padding(15);
             AddButton.Name = "AddButton";
@@ -225,32 +255,48 @@ namespace Bobedre.Views.Sager
             AddButton.TabIndex = 0;
             AddButton.Text = "Tilføj eksiterende " + (altName == null ? type.Name : altName);
             AddButton.UseVisualStyleBackColor = true;
-            AddButton.Click += new System.EventHandler((object sender, EventArgs e) => AddButton_Click());
-            // 
-            // OpretButton
-            // 
-            OpretButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            OpretButton.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            OpretButton.Location = new System.Drawing.Point(218, 15);
-            OpretButton.Margin = new System.Windows.Forms.Padding(15);
-            OpretButton.Name = "OpretButton";
-            OpretButton.Size = new System.Drawing.Size(148, 70);
-            OpretButton.TabIndex = 1;
-            OpretButton.Text = "Opret ny " + (altName == null ? type.Name : altName);
-            OpretButton.UseVisualStyleBackColor = true;
-            OpretButton.Click += new System.EventHandler((object sender, EventArgs e) => OpretButton_Click());
+            AddButton.Click += new System.EventHandler((object sender, EventArgs e) => AddButton_Click(flowLayoutPanel1, type, altName));
 
             TilknytningerFlowLayoutPanel.Controls.Add(flowLayoutPanel1);
         }
 
-        private void OpretButton_Click()
+        private async void AddButton_Click(FlowLayoutPanel panel, Type type, string altName = null)
         {
+            var dialog = new SagerDialog(type, altName);
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                TilknytningerFlowLayoutPanel.Controls.Remove(panel);
+                var sag = await Fetch.GetSagBySagNr(sagNr);
+                var id = ((KeyValuePair<string, int>)dialog.comboBox1.SelectedItem).Value;
+                if(type == typeof(Kunde) && altName == "Sælger")
+                {
+                    await EntryManagement.UpdateSag(sagNr, sag.OprettelsesDato, sag.TilSalgDato, sag.Solgt, sag.Gebyr, sag.Salær, sag.OverdragelsesDato, sag.AfslutningsDato, sag.BoligNr, id, sag.KøberNr, sag.MedarbejderNr);
+                }
+                else if(type == typeof(Kunde) && altName == "Køber")
+                {
+                    await EntryManagement.UpdateSag(sagNr, sag.OprettelsesDato, sag.TilSalgDato, sag.Solgt, sag.Gebyr, sag.Salær, sag.OverdragelsesDato, sag.AfslutningsDato, sag.BoligNr, sag.SælgerNr, id, sag.MedarbejderNr);
+                }
+                else if(type == typeof(Ejendomsmægler))
+                {
+                    await EntryManagement.UpdateSag(sagNr, sag.OprettelsesDato, sag.TilSalgDato, sag.Solgt, sag.Gebyr, sag.Salær, sag.OverdragelsesDato, sag.AfslutningsDato, sag.BoligNr, sag.SælgerNr, sag.KøberNr, id);
+                }
+                else if(type == typeof(Ejendom))
+                {
+                    await EntryManagement.UpdateSag(sagNr, sag.OprettelsesDato, sag.TilSalgDato, sag.Solgt, sag.Gebyr, sag.Salær, sag.OverdragelsesDato, sag.AfslutningsDato, id, sag.SælgerNr, sag.KøberNr, sag.MedarbejderNr);
+                }
+
+                VisTilKnytning(type, id);
+            }
 
         }
 
-        private void AddButton_Click()
+        private void GetDates(out DateTime oprettelsesDato, out DateTime? tilSalgDato, out DateTime? overdragelsesDato, out DateTime? afslutningsDato)
         {
-
+            var defaultValue = new DateTime(9998, 12, 31);
+            oprettelsesDato = OprettelsesDato.Value;
+            tilSalgDato = TilSalgDato.Value != defaultValue ? TilSalgDato.Value : null;
+            overdragelsesDato = OverdragelsesDato.Value != defaultValue ? OverdragelsesDato.Value : null;
+            afslutningsDato = AfsllutningsDato.Value != defaultValue ? AfsllutningsDato.Value : null;
         }
 
         private async void LoadData(Models.Action action)

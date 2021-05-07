@@ -302,7 +302,6 @@ namespace BoBedre.Core.DataAccess
         }
         #endregion
 
-
         #region Kunde
         public static async Task<int> CreateKunde(string navn, string email, string KundeType)
         {
@@ -364,5 +363,64 @@ namespace BoBedre.Core.DataAccess
 
         #endregion
 
+        #region Sag
+        public static async Task<int> CreateSag(
+            DateTime oprettelsesDato,
+            int medarbejderNr)
+        {
+            SqlCommand cmd = new("INSERT INTO Sag (OprettelsesDato, Solgt, MedarbejderNr) " +
+                "OUTPUT INSERTED.SagNr " +
+                "VALUES (@oprettelsesDato, @solgt, @medarbejderNr)");
+
+            cmd.Parameters.AddWithValue("@oprettelsesDato", oprettelsesDato);
+            cmd.Parameters.AddWithValue("@solgt", false);
+            cmd.Parameters.AddWithValue("@medarbejderNr", medarbejderNr);
+
+            return (int)await DBConnection.ExecuteScalar(cmd);
+        }
+
+        public static async Task UpdateSag(
+            int sagNr,
+            DateTime oprettelsesDato,
+            DateTime? tilSalgDato,
+            bool solgt,
+            int? gebyr,
+            int? salær,
+            DateTime? overdragelsesDato,
+            DateTime? afslutningsDato,
+            int? boligNr,
+            int? sælgerNr,
+            int? køberNr,
+            int medarbejderNr)
+        {
+            SqlCommand cmd = new("UPDATE Sag " +
+                "SET OprettelsesDato=@oprettelsesDato, TilSalgDato=@tilSalgDato, Solgt=@solgt, Gebyr=@gebyr, Salær=@salær, OverdragelsesDato=@overdragelsesDato, AfslutningsDato=@afslutningsDato, BoligNr=@boligNr, SælgerNr=@sælgerNr, KøberNr=@køberNr, MedarbejderNr=@medarbejderNr " +
+                "WHERE SagNr=@sagNr");
+            
+            cmd.Parameters.AddWithValue("@oprettelsesDato", oprettelsesDato);
+            cmd.Parameters.AddWithValue("@tilSalgDato", tilSalgDato != null ? tilSalgDato : DBNull.Value);
+            cmd.Parameters.AddWithValue("@solgt", solgt);
+            cmd.Parameters.AddWithValue("@gebyr", gebyr != null ? gebyr : DBNull.Value);
+            cmd.Parameters.AddWithValue("@salær", salær != null ? salær : DBNull.Value);
+            cmd.Parameters.AddWithValue("@overdragelsesDato", overdragelsesDato != null ? overdragelsesDato : DBNull.Value);
+            cmd.Parameters.AddWithValue("@afslutningsDato", afslutningsDato != null ? afslutningsDato : DBNull.Value);
+            cmd.Parameters.AddWithValue("@boligNr", boligNr != null ? boligNr : DBNull.Value);
+            cmd.Parameters.AddWithValue("@sælgerNr", sælgerNr != null ? sælgerNr : DBNull.Value);
+            cmd.Parameters.AddWithValue("@køberNr", køberNr != null ? køberNr : DBNull.Value);
+            cmd.Parameters.AddWithValue("@medarbejderNr", medarbejderNr);
+            cmd.Parameters.AddWithValue("@sagNr", sagNr);
+
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
+
+        public static async Task DeleteSag(int sagNr)
+        {
+            SqlCommand cmd = new("DELETE FROM Sag WHERE SagNr=@sagNr");
+
+            cmd.Parameters.AddWithValue("@sagNr", sagNr);
+
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
+        #endregion
     }
 }

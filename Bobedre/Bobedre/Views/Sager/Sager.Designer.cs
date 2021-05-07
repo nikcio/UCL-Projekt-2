@@ -40,6 +40,15 @@ namespace Bobedre.Views.Sager
             this.GemButton = new System.Windows.Forms.Button();
             this.SletButton = new System.Windows.Forms.Button();
             this.LukButton = new System.Windows.Forms.Button();
+            this.OprettelsesDato = new System.Windows.Forms.DateTimePicker();
+            this.TilSalgDato = new System.Windows.Forms.DateTimePicker();
+            this.OverdragelsesDato = new System.Windows.Forms.DateTimePicker();
+            this.AfsllutningsDato = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.SolgtCheckBox = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,17 +63,17 @@ namespace Bobedre.Views.Sager
             // 
             // SagNrTextBox
             // 
-            this.SagNrTextBox.Location = new System.Drawing.Point(88, 21);
+            this.SagNrTextBox.Location = new System.Drawing.Point(163, 21);
             this.SagNrTextBox.Name = "SagNrTextBox";
             this.SagNrTextBox.ReadOnly = true;
-            this.SagNrTextBox.Size = new System.Drawing.Size(144, 23);
+            this.SagNrTextBox.Size = new System.Drawing.Size(200, 23);
             this.SagNrTextBox.TabIndex = 1;
             // 
             // GebyrTextBox
             // 
-            this.GebyrTextBox.Location = new System.Drawing.Point(88, 50);
+            this.GebyrTextBox.Location = new System.Drawing.Point(163, 50);
             this.GebyrTextBox.Name = "GebyrTextBox";
-            this.GebyrTextBox.Size = new System.Drawing.Size(144, 23);
+            this.GebyrTextBox.Size = new System.Drawing.Size(200, 23);
             this.GebyrTextBox.TabIndex = 3;
             // 
             // Gebyr
@@ -78,9 +87,9 @@ namespace Bobedre.Views.Sager
             // 
             // SalærTextBox
             // 
-            this.SalærTextBox.Location = new System.Drawing.Point(88, 79);
+            this.SalærTextBox.Location = new System.Drawing.Point(163, 79);
             this.SalærTextBox.Name = "SalærTextBox";
-            this.SalærTextBox.Size = new System.Drawing.Size(144, 23);
+            this.SalærTextBox.Size = new System.Drawing.Size(200, 23);
             this.SalærTextBox.TabIndex = 5;
             // 
             // Salær
@@ -96,7 +105,6 @@ namespace Bobedre.Views.Sager
             // 
             this.TilknytningerFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TilknytningerFlowLayoutPanel.AutoScroll = true;
-            this.TilknytningerFlowLayoutPanel.AutoSize = true;
             this.TilknytningerFlowLayoutPanel.Location = new System.Drawing.Point(467, 21);
             this.TilknytningerFlowLayoutPanel.Name = "TilknytningerFlowLayoutPanel";
             this.TilknytningerFlowLayoutPanel.Size = new System.Drawing.Size(534, 394);
@@ -147,11 +155,98 @@ namespace Bobedre.Views.Sager
             this.LukButton.UseVisualStyleBackColor = true;
             this.LukButton.Click += new System.EventHandler(this.LukButton_Click);
             // 
+            // OprettelsesDato
+            // 
+            this.OprettelsesDato.Location = new System.Drawing.Point(163, 108);
+            this.OprettelsesDato.Name = "OprettelsesDato";
+            this.OprettelsesDato.Size = new System.Drawing.Size(200, 23);
+            this.OprettelsesDato.TabIndex = 8;
+            this.OprettelsesDato.Value = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            // 
+            // TilSalgDato
+            // 
+            this.TilSalgDato.Location = new System.Drawing.Point(163, 137);
+            this.TilSalgDato.Name = "TilSalgDato";
+            this.TilSalgDato.Size = new System.Drawing.Size(200, 23);
+            this.TilSalgDato.TabIndex = 9;
+            this.TilSalgDato.Value = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            // 
+            // OverdragelsesDato
+            // 
+            this.OverdragelsesDato.Location = new System.Drawing.Point(163, 166);
+            this.OverdragelsesDato.Name = "OverdragelsesDato";
+            this.OverdragelsesDato.Size = new System.Drawing.Size(200, 23);
+            this.OverdragelsesDato.TabIndex = 10;
+            this.OverdragelsesDato.Value = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            // 
+            // AfsllutningsDato
+            // 
+            this.AfsllutningsDato.Location = new System.Drawing.Point(163, 195);
+            this.AfsllutningsDato.Name = "AfsllutningsDato";
+            this.AfsllutningsDato.Size = new System.Drawing.Size(200, 23);
+            this.AfsllutningsDato.TabIndex = 11;
+            this.AfsllutningsDato.Value = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(43, 114);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 15);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Oprettelses dato";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(43, 143);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 15);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Til salg dato";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(46, 172);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(108, 15);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Overdragelses dato";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(46, 201);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 15);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Afslutnings dato";
+            // 
+            // SolgtCheckBox
+            // 
+            this.SolgtCheckBox.AutoSize = true;
+            this.SolgtCheckBox.Location = new System.Drawing.Point(163, 247);
+            this.SolgtCheckBox.Name = "SolgtCheckBox";
+            this.SolgtCheckBox.Size = new System.Drawing.Size(53, 19);
+            this.SolgtCheckBox.TabIndex = 16;
+            this.SolgtCheckBox.Text = "Solgt";
+            this.SolgtCheckBox.UseVisualStyleBackColor = true;
+            // 
             // Sager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 427);
+            this.Controls.Add(this.SolgtCheckBox);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.AfsllutningsDato);
+            this.Controls.Add(this.OverdragelsesDato);
+            this.Controls.Add(this.TilSalgDato);
+            this.Controls.Add(this.OprettelsesDato);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.TilknytningerFlowLayoutPanel);
             this.Controls.Add(this.SalærTextBox);
@@ -184,5 +279,14 @@ namespace Bobedre.Views.Sager
         private System.Windows.Forms.Button GemButton;
         private System.Windows.Forms.Button SletButton;
         private System.Windows.Forms.Button LukButton;
+        private System.Windows.Forms.DateTimePicker OprettelsesDato;
+        private System.Windows.Forms.DateTimePicker TilSalgDato;
+        private System.Windows.Forms.DateTimePicker OverdragelsesDato;
+        private System.Windows.Forms.DateTimePicker AfsllutningsDato;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox SolgtCheckBox;
     }
 }

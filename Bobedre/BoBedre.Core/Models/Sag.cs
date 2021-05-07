@@ -53,15 +53,15 @@ namespace BoBedre.Core.Models
                 return new Sag(
                                 (int)values[0],
                                 (DateTime)values[1],
-                                (DateTime)values[2],
+                                Convert.IsDBNull(values[2]) ? null : (DateTime?)values[2],
                                 (bool)values[3],
-                                (int)values[4],
-                                (int)values[5],
-                                (DateTime)values[6],
-                                (DateTime)values[7],
-                                (int?)values[8],
-                                (int)values[9],
-                                (int?)values[10],
+                                Convert.IsDBNull(values[4]) ? null : (int?)values[4],
+                                Convert.IsDBNull(values[5]) ? null : (int?)values[5],
+                                Convert.IsDBNull(values[6]) ? null : (DateTime?)values[6],
+                                Convert.IsDBNull(values[7]) ? null : (DateTime?)values[7],
+                                Convert.IsDBNull(values[8]) ? null : (int?)values[8],
+                                Convert.IsDBNull(values[9]) ? null : (int?)values[9],
+                                Convert.IsDBNull(values[10]) ? null : (int?)values[10],
                                 (int)values[11]
                                 );
             }

@@ -72,7 +72,7 @@ namespace Bobedre.Views
 
         private void kunderButton_Click(object sender, EventArgs e)
         {
-            ShowForm(new Kunder.Kunder(Models.Action.view, this));
+            ShowForm(new Kunder.KunderView());
         }
 
         private void ejendommeButton_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using BoBedre.Core.DataAccess;
+using BoBedre.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,13 +22,26 @@ namespace Bobedre.Views.Sager
             baseform = _baseform;
         }
 
-        private void OpretSagButton_Click(object sender, EventArgs e)
+        private async void OpretSagButton_Click(object sender, EventArgs e)
         {
-
+            if(MedarbjederComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Vælg en medarbejder først");
+            }
+            else
+            {
+                var sagNr = await EntryManagement.CreateSag(DateTime.Now, ((KeyValuePair<string, int>)MedarbjederComboBox.SelectedItem).Value);
+                baseform.ShowForm(new Sager(Models.Action.edit, baseform, sagNr));
+            }
         }
 
-        private void ShowSag()
+        private async void ShowSag(Sag sag)
         {
+            // Get info:
+            var sælger = await Fetch.GetKundeByKundeNr(sag.SælgerNr.GetValueOrDefault());
+            var medarbejder = await Fetch.GetEjendomsmæglerByMedarbjederNr(sag.MedarbejderNr);
+            
+
             Panel panel1 = new System.Windows.Forms.Panel();
             Label Sælger = new System.Windows.Forms.Label();
             Label Medarbejder = new System.Windows.Forms.Label();
@@ -60,7 +74,7 @@ namespace Bobedre.Views.Sager
             Sælger.Name = "Sælger";
             Sælger.Size = new System.Drawing.Size(77, 15);
             Sælger.TabIndex = 2;
-            Sælger.Text = "Navn: Sælger";
+            Sælger.Text = sælger != null ? $"{sælger.Navn} (Sælger)" : "";
             // 
             // Medarbejder
             // 
@@ -69,7 +83,7 @@ namespace Bobedre.Views.Sager
             Medarbejder.Name = "Medarbejder";
             Medarbejder.Size = new System.Drawing.Size(74, 15);
             Medarbejder.TabIndex = 1;
-            Medarbejder.Text = "Medarbejder";
+            Medarbejder.Text = $"Medarbejder: {medarbejder.Navn}";
             // 
             // SagNr
             // 
@@ -78,7 +92,7 @@ namespace Bobedre.Views.Sager
             SagNr.Name = "SagNr";
             SagNr.Size = new System.Drawing.Size(39, 15);
             SagNr.TabIndex = 0;
-            SagNr.Text = "SagNr";
+            SagNr.Text = $"SagNr: {sag.SagNr}";
             // 
             // BoligNr
             // 
@@ -87,7 +101,7 @@ namespace Bobedre.Views.Sager
             BoligNr.Name = "BoligNr";
             BoligNr.Size = new System.Drawing.Size(47, 15);
             BoligNr.TabIndex = 3;
-            BoligNr.Text = "BoligNr";
+            BoligNr.Text = sag.BoligNr != null ? $"BoligNr: {sag.BoligNr}" : "";
             // 
             // OprrettelsesDato
             // 
@@ -96,7 +110,7 @@ namespace Bobedre.Views.Sager
             OprrettelsesDato.Name = "OprrettelsesDato";
             OprrettelsesDato.Size = new System.Drawing.Size(32, 15);
             OprrettelsesDato.TabIndex = 4;
-            OprrettelsesDato.Text = "Dato";
+            OprrettelsesDato.Text = $"Dato: {sag.OprettelsesDato.ToShortDateString()}";
             // 
             // RedigerButton
             // 
@@ -106,7 +120,7 @@ namespace Bobedre.Views.Sager
             RedigerButton.TabIndex = 5;
             RedigerButton.Text = "Rediger";
             RedigerButton.UseVisualStyleBackColor = true;
-            RedigerButton.Click += new EventHandler((object sender, EventArgs e) => RedigerButton_Click());
+            RedigerButton.Click += new EventHandler((object sender, EventArgs e) => RedigerButton_Click(sag.SagNr));
             // 
             // VisButton
             // 
@@ -116,24 +130,38 @@ namespace Bobedre.Views.Sager
             VisButton.TabIndex = 6;
             VisButton.Text = "Vis";
             VisButton.UseVisualStyleBackColor = true;
-            VisButton.Click += new EventHandler((object sender, EventArgs e) => Visbutton_Click());
+            VisButton.Click += new EventHandler((object sender, EventArgs e) => Visbutton_Click(sag.SagNr));
+
+            flowLayoutPanel1.Controls.Add(panel1);
         }
 
-        private void RedigerButton_Click()
+        private void RedigerButton_Click(int sagNr)
         {
-
+            baseform.ShowForm(new Sager(Models.Action.edit, baseform, sagNr));
         }
 
-        private void Visbutton_Click()
+        private void Visbutton_Click(int sagNr)
         {
-
+            baseform.ShowForm(new Sager(Models.Action.view, baseform, sagNr));
         }
 
         private async void SagerView_Load(object sender, EventArgs e)
         {
             var ejendomsmæglere = await Fetch.GetEjendomsmæglerAll();
 
-            MedarbjederComboBox.Items.AddRange(ejendomsmæglere.Select(item => item.Navn + " MedarbejderNr: " + item.MedarbejderNr).ToArray());
+            Dictionary<string, int> values = ejendomsmæglere.ToDictionary(item => "Navn: " + item.Navn + " Nr: " + item.MedarbejderNr, item => item.MedarbejderNr);
+
+            MedarbjederComboBox.DataSource = values.ToList();
+            MedarbjederComboBox.ValueMember = "Key";
+            MedarbjederComboBox.SelectedText = "Value";
+            MedarbjederComboBox.SelectedIndex = 0;
+
+            var sager = await Fetch.GetSagAll();
+
+            foreach(var sag in sager)
+            {
+                ShowSag(sag);
+            }
         }
     }
 }

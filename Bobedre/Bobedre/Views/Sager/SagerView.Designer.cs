@@ -60,7 +60,10 @@ namespace Bobedre.Views.Sager
             // 
             // MedarbjederComboBox
             // 
+            this.MedarbjederComboBox.DropDownHeight = 200;
+            this.MedarbjederComboBox.DropDownWidth = 200;
             this.MedarbjederComboBox.FormattingEnabled = true;
+            this.MedarbjederComboBox.IntegralHeight = false;
             this.MedarbjederComboBox.Location = new System.Drawing.Point(12, 12);
             this.MedarbjederComboBox.Name = "MedarbjederComboBox";
             this.MedarbjederComboBox.Size = new System.Drawing.Size(121, 23);
