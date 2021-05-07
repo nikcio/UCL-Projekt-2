@@ -43,7 +43,6 @@ namespace Bobedre.Views.Ejendomsmæglere
             baseform.ShowForm(new Ejendomsmæglere(Models.Action.view, baseform, medarbejderNr));
         }
 
-
         private void VisEjendomsmægler(Ejendomsmægler ejendomsmægler) 
         {
             Panel panel1 = new System.Windows.Forms.Panel();
@@ -59,15 +58,11 @@ namespace Bobedre.Views.Ejendomsmæglere
             Label MæglerFirmaLabel = new System.Windows.Forms.Label();
             Label AfdelingSvar = new System.Windows.Forms.Label();
             Label AfdelingLabel = new System.Windows.Forms.Label();
-            Label StillingLabel = new System.Windows.Forms.Label();
-            Label StillingSvar = new System.Windows.Forms.Label();
 
             // 
             // panel1
             // 
             panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            panel1.Controls.Add(StillingSvar);
-            panel1.Controls.Add(StillingLabel);
             panel1.Controls.Add(MedarbejderNrSvar);
             panel1.Controls.Add(MedarbejderNrLabel);
             panel1.Controls.Add(VisKnap);
@@ -82,8 +77,9 @@ namespace Bobedre.Views.Ejendomsmæglere
             panel1.Controls.Add(AfdelingLabel);
             panel1.Location = new System.Drawing.Point(12, 23);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(369, 223);
+            panel1.Size = new System.Drawing.Size(377, 189);
             panel1.TabIndex = 0;
+            // 
             // MedarbejderNrSvar
             // 
             MedarbejderNrSvar.AutoSize = true;
@@ -195,32 +191,12 @@ namespace Bobedre.Views.Ejendomsmæglere
             AfdelingLabel.Size = new System.Drawing.Size(52, 15);
             AfdelingLabel.TabIndex = 0;
             AfdelingLabel.Text = "Afdeling";
-            // 
-            // StillingLabel
-            // 
-            StillingLabel.AutoSize = true;
-            StillingLabel.Location = new System.Drawing.Point(21, 185);
-            StillingLabel.Name = "StillingLabel";
-            StillingLabel.Size = new System.Drawing.Size(43, 15);
-            StillingLabel.TabIndex = 12;
-            StillingLabel.Text = "Stilling";
-            // 
-            // StillingSvar
-            // 
-            StillingSvar.AutoSize = true;
-            StillingSvar.Location = new System.Drawing.Point(132, 185);
-            StillingSvar.Name = "StillingSvar";
-            StillingSvar.Size = new System.Drawing.Size(13, 15);
-            StillingSvar.TabIndex = 13;
-            StillingSvar.Text = ejendomsmægler.Stilling.ToString();
-
+            
 
             flowLayoutPanel1.Controls.Add(panel1);
         }
+      
+       
 
-        private void TilføjKnap_Click(object sender, EventArgs e)
-        {
-            baseform.ShowForm(new Ejendomsmæglere(Models.Action.create, baseform));
-        }
     }
 }

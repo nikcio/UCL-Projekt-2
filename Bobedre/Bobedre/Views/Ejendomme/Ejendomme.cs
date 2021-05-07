@@ -93,7 +93,7 @@ namespace Bobedre.Views.Ejendomme
         {
             if (int.TryParse(BolignrTextbox.Text, out int Bolignr))
             {
-                var message = await EntryManagement.DeleteEjendom(Bolignr);
+                var message = await EntryManagement.SletBolig(Bolignr);
 
                 ClearForm.CleanForm(Controls);
                 MessageBox.Show(message);

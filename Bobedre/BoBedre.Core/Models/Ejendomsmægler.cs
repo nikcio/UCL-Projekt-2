@@ -8,15 +8,13 @@ namespace BoBedre.Core.Models
 {
     public class Ejendomsmægler : IPerson
     {
-        public Ejendomsmægler(int medarbejderNr, string afdeling, string mæglerfirma, string navn, string email, string stilling)
+        public Ejendomsmægler(int medarbejderNr, string afdeling, string mæglerfirma, string navn, string email)
         {
-            
             MedarbejderNr = medarbejderNr;
             Afdeling = afdeling;
             Mæglerfirma = mæglerfirma;
             Navn = navn;
             Email = email;
-            Stilling = stilling;
         }
 
         public int MedarbejderNr { get; set; }
@@ -24,7 +22,6 @@ namespace BoBedre.Core.Models
         public string Mæglerfirma { get; set; }
         public string Navn { get; set; }
         public string Email { get; set; }
-        public string Stilling { get; set; }
 
         /// <summary>
         /// Creates a ejendomsmægler object from object data
@@ -44,8 +41,7 @@ namespace BoBedre.Core.Models
                                 (string)values[1],
                                 (string)values[2],
                                 (string)values[3],
-                                (string)values[4],
-                                (string)values[5]
+                                (string)values[4]
                                 );
             }
             else

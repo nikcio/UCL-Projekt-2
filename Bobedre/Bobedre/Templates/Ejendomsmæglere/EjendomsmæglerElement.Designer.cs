@@ -30,8 +30,6 @@ namespace Bobedre.Templates.Ejendomsmæglere
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.StillingSvar = new System.Windows.Forms.Label();
-            this.StillingLabel = new System.Windows.Forms.Label();
             this.MedarbejderNrSvar = new System.Windows.Forms.Label();
             this.MedarbejderNrLabel = new System.Windows.Forms.Label();
             this.VisKnap = new System.Windows.Forms.Button();
@@ -50,8 +48,6 @@ namespace Bobedre.Templates.Ejendomsmæglere
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.StillingSvar);
-            this.panel1.Controls.Add(this.StillingLabel);
             this.panel1.Controls.Add(this.MedarbejderNrSvar);
             this.panel1.Controls.Add(this.MedarbejderNrLabel);
             this.panel1.Controls.Add(this.VisKnap);
@@ -66,26 +62,8 @@ namespace Bobedre.Templates.Ejendomsmæglere
             this.panel1.Controls.Add(this.AfdelingLabel);
             this.panel1.Location = new System.Drawing.Point(12, 23);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(369, 223);
+            this.panel1.Size = new System.Drawing.Size(354, 178);
             this.panel1.TabIndex = 0;
-            // 
-            // StillingSvar
-            // 
-            this.StillingSvar.AutoSize = true;
-            this.StillingSvar.Location = new System.Drawing.Point(132, 185);
-            this.StillingSvar.Name = "StillingSvar";
-            this.StillingSvar.Size = new System.Drawing.Size(13, 15);
-            this.StillingSvar.TabIndex = 13;
-            this.StillingSvar.Text = "1";
-            // 
-            // StillingLabel
-            // 
-            this.StillingLabel.AutoSize = true;
-            this.StillingLabel.Location = new System.Drawing.Point(21, 185);
-            this.StillingLabel.Name = "StillingLabel";
-            this.StillingLabel.Size = new System.Drawing.Size(43, 15);
-            this.StillingLabel.TabIndex = 12;
-            this.StillingLabel.Text = "Stilling";
             // 
             // MedarbejderNrSvar
             // 
@@ -230,7 +208,5 @@ namespace Bobedre.Templates.Ejendomsmæglere
         private System.Windows.Forms.Button VisKnap;
         private System.Windows.Forms.Label MedarbejderNrSvar;
         private System.Windows.Forms.Label MedarbejderNrLabel;
-        private System.Windows.Forms.Label StillingSvar;
-        private System.Windows.Forms.Label StillingLabel;
     }
 }
