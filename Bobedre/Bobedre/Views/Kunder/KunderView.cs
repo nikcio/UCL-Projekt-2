@@ -40,7 +40,7 @@ namespace Bobedre.Views.Kunder
 
         private void VisKnap_Click(int kundeNr)
         {
-            baseform.ShowForm(new Kunder(Models.Action.edit, baseform, kundeNr));
+            baseform.ShowForm(new Kunder(Models.Action.view, baseform, kundeNr));
         }
 
         private void VisKunde(Kunde kunde)
@@ -115,7 +115,7 @@ namespace Bobedre.Views.Kunder
             RedigereKnap.TabIndex = 8;
             RedigereKnap.Text = "Redigere";
             RedigereKnap.UseVisualStyleBackColor = true;
-            RedigereKnap.Click += new System.EventHandler((object sender, EventArgs e) => VisKnap_Click(kunde.KundeNr));
+            RedigereKnap.Click += new System.EventHandler((object sender, EventArgs e) => RedigereKnap_Click(kunde.KundeNr));
             // 
             // KundeTypeSvar
             // 
@@ -172,6 +172,11 @@ namespace Bobedre.Views.Kunder
             KundeNavnLabel.Text = "Navn";
 
             flowLayoutPanel1.Controls.Add(panel1);
+        }
+
+        private void TilføjKnap_Click(object sender, EventArgs e)
+        {
+            baseform.ShowForm(new Kunder(Models.Action.create, baseform));
         }
     }
 }

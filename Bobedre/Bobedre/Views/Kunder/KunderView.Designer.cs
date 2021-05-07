@@ -30,6 +30,7 @@ namespace Bobedre.Views.Kunder
         private void InitializeComponent()
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.TilføjKnap = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -38,16 +39,28 @@ namespace Bobedre.Views.Kunder
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(13, 13);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(13, 46);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(998, 437);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(999, 405);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // TilføjKnap
+            // 
+            this.TilføjKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TilføjKnap.Location = new System.Drawing.Point(13, 12);
+            this.TilføjKnap.Name = "TilføjKnap";
+            this.TilføjKnap.Size = new System.Drawing.Size(172, 26);
+            this.TilføjKnap.TabIndex = 2;
+            this.TilføjKnap.Text = "Tilføj Kunde";
+            this.TilføjKnap.UseVisualStyleBackColor = true;
+            this.TilføjKnap.Click += new System.EventHandler(this.TilføjKnap_Click);
             // 
             // KunderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1023, 462);
+            this.Controls.Add(this.TilføjKnap);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -60,5 +73,6 @@ namespace Bobedre.Views.Kunder
         #endregion
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button TilføjKnap;
     }
 }

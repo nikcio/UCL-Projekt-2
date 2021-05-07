@@ -41,6 +41,7 @@ namespace Bobedre.Views.Kunder
             this.KundeEmailBox = new System.Windows.Forms.TextBox();
             this.KundeType = new System.Windows.Forms.Label();
             this.KundeTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.GåtilbageKnap = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,12 +155,24 @@ namespace Bobedre.Views.Kunder
             this.KundeTypeComboBox.TabIndex = 18;
             this.KundeTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.KundeTypeComboBox_SelectedIndexChanged);
             // 
+            // GåtilbageKnap
+            // 
+            this.GåtilbageKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.GåtilbageKnap.Location = new System.Drawing.Point(840, 30);
+            this.GåtilbageKnap.Name = "GåtilbageKnap";
+            this.GåtilbageKnap.Size = new System.Drawing.Size(75, 23);
+            this.GåtilbageKnap.TabIndex = 19;
+            this.GåtilbageKnap.Text = "Gå tilbage";
+            this.GåtilbageKnap.UseVisualStyleBackColor = true;
+            this.GåtilbageKnap.Click += new System.EventHandler(this.GåtilbageKnap_Click);
+            // 
             // Kunder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1029, 462);
+            this.Controls.Add(this.GåtilbageKnap);
             this.Controls.Add(this.KundeTypeComboBox);
             this.Controls.Add(this.KundeType);
             this.Controls.Add(this.KundeEmailBox);
@@ -173,6 +186,7 @@ namespace Bobedre.Views.Kunder
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Kunder";
             this.Text = "Kunder";
+            this.Load += new System.EventHandler(this.Kunder_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -193,5 +207,6 @@ namespace Bobedre.Views.Kunder
         private System.Windows.Forms.TextBox KundeEmailBox;
         private System.Windows.Forms.Label KundeType;
         private System.Windows.Forms.ComboBox KundeTypeComboBox;
+        private System.Windows.Forms.Button GåtilbageKnap;
     }
 }

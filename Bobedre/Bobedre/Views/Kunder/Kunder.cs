@@ -56,8 +56,8 @@ namespace Bobedre.Views.Kunder
             if (int.TryParse(KundeNrBox.Text, out int KundeNr))
             {
                 var message = await EntryManagement.DeleteKunde(KundeNr);
-                ClearForm.CleanForm(Controls);
 
+                ClearForm.CleanForm(Controls);
                 MessageBox.Show(message);
             }
             else
@@ -116,40 +116,6 @@ namespace Bobedre.Views.Kunder
             KundeEmailBox.Text = kunde.Email.ToString();
             KundeTypeComboBox.Text = kunde.Type.ToString();
         }
-        /// <summary>
-        /// Pushing data into view
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Kunde_Load(object sender, EventArgs e)
-        {
-            switch (action)
-            {
-
-                case Models.Action.edit:
-                    LoadData(kundeNr);
-                    break;
-
-                case Models.Action.delete:
-                    LoadData(kundeNr);
-                    KundeNavnBox.ReadOnly = true;
-                    KundeEmailBox.ReadOnly = true;
-                    break;
-
-                case Models.Action.view:
-                    LoadData(kundeNr);
-
-                    KundeNavnBox.ReadOnly = true;
-                    KundeEmailBox.ReadOnly = true;
-                    KundeOpretKnap.Visible = false;
-                    KundeGemKnap.Visible = false;
-                    KundeSletKnap.Visible = false;
-                    break;
-            }
-        }
-
-
-
 
 
         private void KundeTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -162,5 +128,42 @@ namespace Bobedre.Views.Kunder
 
         }
 
+        private void GåtilbageKnap_Click(object sender, EventArgs e)
+        {
+            baseform.ShowForm(new KunderView(baseform));
+        }
+
+        private void Kunder_Load(object sender, EventArgs e)
+        {
+        switch (action)
+        {
+            case Models.Action.create:
+                KundeNrBox.ReadOnly = true;
+                break;
+
+            case Models.Action.edit:
+                LoadData(kundeNr);
+                KundeNrBox.ReadOnly = true;
+                KundeOpretKnap.Visible = false;
+                break;
+
+            case Models.Action.delete:
+                LoadData(kundeNr);
+                KundeNavnBox.ReadOnly = true;
+                KundeEmailBox.ReadOnly = true;
+                break;
+
+            case Models.Action.view:
+                LoadData(kundeNr);
+                KundeNrBox.ReadOnly = true;
+                KundeNavnBox.ReadOnly = true;
+                KundeEmailBox.ReadOnly = true;
+                KundeTypeComboBox.Enabled = false;
+                KundeOpretKnap.Visible = false;
+                KundeGemKnap.Visible = false;
+                KundeSletKnap.Visible = false;
+                break;
+        }
+        }
     }
 }
