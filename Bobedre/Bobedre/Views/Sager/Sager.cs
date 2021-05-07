@@ -30,11 +30,11 @@ namespace Bobedre.Views.Sager
 
         private async void GemButton_Click(object sender, EventArgs e)
         {
-            if (RegexCheck.TalCheck(GebyrTextBox.Text) && RegexCheck.TalCheck(SalærTextBox.Text))
+            if ((RegexCheck.TalCheck(GebyrTextBox.Text) || GebyrTextBox.Text == "") && (RegexCheck.TalCheck(SalærTextBox.Text) || SalærTextBox.Text == ""))
             {
                 GetDates(out DateTime oprettelsesDato, out DateTime? tilSalgDato, out DateTime? overdragelsesDato, out DateTime? afslutningsDato);
                 var sag = await Fetch.GetSagBySagNr(sagNr);
-                await EntryManagement.UpdateSag(sagNr, oprettelsesDato, tilSalgDato, SolgtCheckBox.Checked, int.Parse(GebyrTextBox.Text), int.Parse(SalærTextBox.Text), overdragelsesDato, afslutningsDato, sag.BoligNr, sag.SælgerNr, sag.KøberNr, sag.MedarbejderNr);
+                await EntryManagement.UpdateSag(sagNr, oprettelsesDato, tilSalgDato, SolgtCheckBox.Checked, GebyrTextBox.Text == "" ? null : int.Parse(GebyrTextBox.Text), SalærTextBox.Text == "" ? null : int.Parse(SalærTextBox.Text), overdragelsesDato, afslutningsDato, sag.BoligNr, sag.SælgerNr, sag.KøberNr, sag.MedarbejderNr);
                 baseform.ShowForm(new SagerView(baseform));
             }
             else
@@ -54,7 +54,7 @@ namespace Bobedre.Views.Sager
             baseform.ShowForm(new SagerView(baseform));
         }
 
-        private async void VisTilKnytning(Type type, int id)
+        private async void VisTilKnytning(Type type, int id, string altName = null)
         {
             var data = await GetData(type, id);
 
@@ -91,7 +91,7 @@ namespace Bobedre.Views.Sager
             TypeLabel.Name = "TypeLabel";
             TypeLabel.Size = new System.Drawing.Size(73, 15);
             TypeLabel.TabIndex = 0;
-            TypeLabel.Text = "Type: Sælger";
+            TypeLabel.Text = altName == null ? $"Type: {type.Name}" : $"Type: {altName}";
             // 
             // NrLabel
             // 
@@ -191,7 +191,7 @@ namespace Bobedre.Views.Sager
                     "BoligNr: " + ejendom.BoligNr.ToString(), 
                     "Adresse: " + ejendom.Adresse, 
                     "BoligAreal: " + ejendom.BoligAreal.ToString(), 
-                    "ByggeÅr" + ejendom.Byggeår.ToString(), 
+                    "ByggeÅr: " + ejendom.Byggeår.ToString(), 
                     "Pris: " + ejendom.Pris.ToString() };
             }
 
@@ -307,11 +307,25 @@ namespace Bobedre.Views.Sager
             GebyrTextBox.Text = sag.Gebyr.ToString();
             SalærTextBox.Text = sag.Salær.ToString();
 
+            OprettelsesDato.Value = sag.OprettelsesDato;
+            if(sag.TilSalgDato != null)
+            {
+                TilSalgDato.Value = sag.TilSalgDato.GetValueOrDefault();
+            }
+            if(sag.OverdragelsesDato != null)
+            {
+                OverdragelsesDato.Value = sag.OverdragelsesDato.GetValueOrDefault();
+            }
+            if(sag.AfslutningsDato != null)
+            {
+                AfsllutningsDato.Value = sag.AfslutningsDato.GetValueOrDefault();
+            }
+
             VisTilKnytning(typeof(Ejendomsmægler), sag.MedarbejderNr);
 
             if (sag.SælgerNr != null)
             {
-                VisTilKnytning(typeof(Kunde), sag.SælgerNr.GetValueOrDefault());
+                VisTilKnytning(typeof(Kunde), sag.SælgerNr.GetValueOrDefault(), "Sælger");
             }
             else if(action == Models.Action.edit)
             {
@@ -320,7 +334,7 @@ namespace Bobedre.Views.Sager
 
             if (sag.KøberNr != null)
             {
-                VisTilKnytning(typeof(Kunde), sag.KøberNr.GetValueOrDefault());
+                VisTilKnytning(typeof(Kunde), sag.KøberNr.GetValueOrDefault(), "Køber");
             }
             else if (action == Models.Action.edit)
             {
@@ -349,6 +363,11 @@ namespace Bobedre.Views.Sager
                     GebyrTextBox.Enabled = false;
                     SalærTextBox.Enabled = false;
                     GemButton.Visible = false;
+                    OprettelsesDato.Enabled = false;
+                    OverdragelsesDato.Enabled = false;
+                    TilSalgDato.Enabled = false;
+                    AfsllutningsDato.Enabled = false;
+                    SolgtCheckBox.Enabled = false;
                     break;
             }
 
