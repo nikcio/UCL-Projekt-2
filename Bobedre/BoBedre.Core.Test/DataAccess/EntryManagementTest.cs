@@ -63,39 +63,83 @@ namespace BoBedre.Core.Test.DataAccess
         {
             //Create
             string type = "type";
-            DateTime start = DateTime.Now;
-            DateTime slut = DateTime.Now;
-            int sagsnr = 1;
-            
+            DateTime start = DateTime.Now.Date;
+            DateTime slut = DateTime.Now.Date;
+            bool deleteSag = false;
+            bool deleteSag2 = false;
+            bool deleteEjendomsmægler = false;
+            int? medarbejderNr = null;
+            var sager = await Fetch.GetSagAll();
+            int? sagnr = sager.FirstOrDefault()?.SagNr;
+            if(sagnr == null)
+            {
+                deleteSag = true;
+                var oprettelsesDato = DateTime.Now.Date;
+                var medarbejdere = await Fetch.GetEjendomsmæglerAll();
+                medarbejderNr = medarbejdere.FirstOrDefault()?.MedarbejderNr;
+                if(medarbejderNr == null)
+                {
+                    deleteEjendomsmægler = true;
+                    string afdeling = "testAfdeling";
+                    string mæglerfirma = "mæglerfirma 1";
+                    string navn = "mit navn";
+                    string email = "email@email.com";
+                    string stilling = "Stilling 1";
+                    medarbejderNr = await EntryManagement.CreateEjendomsmægler(afdeling, mæglerfirma, navn, email, stilling);
+                }
 
-            var annoncenr = await EntryManagement.CreateAnnoncering(type, start, slut, sagsnr);
+                sagnr = await EntryManagement.CreateSag(oprettelsesDato, medarbejderNr.GetValueOrDefault());
+            }
+
+            var annoncenr = await EntryManagement.CreateAnnoncering(type, start, slut, sagnr.GetValueOrDefault());
             var annonce = await Fetch.GetAnnonceringByAnnonceringsNr(annoncenr);
 
             Assert.AreEqual(type, annonce.Type, "the value is not equal to the expected");
             Assert.AreEqual(start, annonce.StartDato, "the value is not equal to the expected");
             Assert.AreEqual(slut, annonce.SlutDato, "the value is not equal to the expected");
-            Assert.AreEqual(sagsnr, annonce.SagNr, "the value is not equal to the expected");
+            Assert.AreEqual(sagnr.GetValueOrDefault(), annonce.SagNr, "the value is not equal to the expected");
             
 
 
             //update
             type = "Updateny";
-            start = DateTime.Today;
-            slut = DateTime.Today;
-            sagsnr = 2;
-            
+            start = DateTime.Now.Date.AddDays(2);
+            slut = DateTime.Now.Date.AddDays(2);
 
-            await EntryManagement.UpdateAnnoncering(annoncenr, type, start,slut,sagsnr);
+            sager = await Fetch.GetSagAll();
+            int? sagnr2 = sager.FirstOrDefault(item => item.SagNr != sagnr)?.SagNr;
+            if(sagnr2 == null)
+            {
+                deleteSag2 = true;
+                DateTime oprettelsesDato = DateTime.Now.Date;
+                sagnr2 = await EntryManagement.CreateSag(oprettelsesDato, medarbejderNr.GetValueOrDefault());
+            }
+
+            await EntryManagement.UpdateAnnoncering(annoncenr, type, start,slut, sagnr2.GetValueOrDefault());
             annonce = await Fetch.GetAnnonceringByAnnonceringsNr(annoncenr);
 
             Assert.AreEqual(annoncenr, annonce.AnnonceringsNr, "the value is not equal to the expected");
             Assert.AreEqual(type, annonce.Type, "the value is not equal to the expected");
             Assert.AreEqual(start, annonce.StartDato, "the value is not equal to the expected");
             Assert.AreEqual(slut, annonce.SlutDato, "the value is not equal to the expected");
-            Assert.AreEqual(sagsnr, annonce.SagNr, "the value is not equal to the expected");
+            Assert.AreEqual(sagnr2.GetValueOrDefault(), annonce.SagNr, "the value is not equal to the expected");
           
             await EntryManagement.DeleteAnnoncering(annoncenr);
             Assert.IsNull(await Fetch.GetAnnonceringByAnnonceringsNr(annoncenr));
+
+            //Clean up
+            if(deleteSag == true)
+            {
+                await EntryManagement.DeleteSag(sagnr.GetValueOrDefault());
+            }
+            if(deleteSag2 == true)
+            {
+                await EntryManagement.DeleteSag(sagnr2.GetValueOrDefault());
+            }
+            if(deleteEjendomsmægler == true)
+            {
+                await EntryManagement.DeleteEjendomsmægler(medarbejderNr.GetValueOrDefault());
+            }
 
         }
         #endregion

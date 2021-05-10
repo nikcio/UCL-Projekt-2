@@ -69,7 +69,19 @@ namespace BoBedre.Core.Test.DataAccess
         [TestMethod]
         public async Task GetKundeAll_NotNull()
         {
-            Assert.IsNotNull(await Fetch.GetKundeAll(), "GetKundeAll should not return null but a empty array if no element are in the database");
+            Assert.IsNotNull(await Fetch.GetKundeAll(), "GetKundeAll should not return null but a empty array if no elements are in the database");
+        }
+
+        [TestMethod]
+        public async Task GetSælgerAll_NotNull()
+        {
+            Assert.IsNotNull(await Fetch.GetSælgerAll(), "GetSælgerAll should not return null but a empty array if no elements are in the database");
+        }
+
+        [TestMethod]
+        public async Task GetKøberAll_NotNull()
+        {
+            Assert.IsNotNull(await Fetch.GetKøberAll(), "GetKøberAll should not return null but a empty array if no elements are in the database");
         }
         #endregion
 
@@ -80,6 +92,14 @@ namespace BoBedre.Core.Test.DataAccess
             int renorveringsId = int.MaxValue;
 
             Assert.IsNull(await Fetch.GetRenorveringByRenorveringsId(renorveringsId), "Renorvering does not exist and should return null");
+        }
+
+        [TestMethod]
+        public async Task GetRenorveringerByBoligNr_NotNull()
+        {
+            int boligNr = int.MaxValue;
+
+            Assert.IsNotNull(await Fetch.GetRenorveringerByBoligNr(boligNr), "GetRenorveringerByBoligNr should not return null but a empty array if no elements are in the database");
         }
 
         [TestMethod]
@@ -102,6 +122,22 @@ namespace BoBedre.Core.Test.DataAccess
         public async Task GetSagAll_NotNull()
         {
             Assert.IsNotNull(await Fetch.GetSagAll(), "GetSagAll Should not return null but a empty array if no elements are in the database");
+        }
+        #endregion
+
+        #region Annoncering
+        [TestMethod]
+        public async Task GetAnnonceringByAnnonceringsNr_NULL()
+        {
+            int annonceringsNr = int.MaxValue;
+
+            Assert.IsNull(await Fetch.GetAnnonceringByAnnonceringsNr(annonceringsNr), "Annoncering does not exist and should return null");
+        }
+
+        [TestMethod]
+        public async Task GetAnnonceringAll_NotNull()
+        {
+            Assert.IsNotNull(await Fetch.GetAnnonceringAll(), "GetAnnonceringAll should not return null but a empty array if no elements are in the database");
         }
         #endregion
     }
