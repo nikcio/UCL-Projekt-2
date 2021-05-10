@@ -327,36 +327,42 @@ namespace BoBedre.Core.DataAccess
             cmd.Parameters.AddWithValue("@SlutDato", slutDato);
             cmd.Parameters.AddWithValue("@Sagnr", sagNr);
 
-            return (int)await DBConnection.ExecuteScalar(cmd);
+            int annonceringsnr = (int)await DBConnection.ExecuteScalar(cmd);
+            return annonceringsnr;
         }
 
-        public static async Task UpdateAnnoncering(
+        public static async Task<string> UpdateAnnoncering(
+            int annonceringsNr,
             string type,
             DateTime startDato,
             DateTime slutDato,
-            int sagNr,
-            int annonceringsNr)
+            int sagNr)
+            
         {
             SqlCommand cmd = new("UPDATE Annoncering " +
-                "SET Type=@Type, StartDato=@StartDato, SlutDato=@SlutDato, SagNr=@SagNrer" +
+                "SET Type=@Type, StartDato=@StartDato, SlutDato=@SlutDato, SagNr=@SagNr " +
                 "WHERE AnnonceringsNr=@AnnonceringsNr");
-
+            cmd.Parameters.AddWithValue("@AnnonceringsNr", annonceringsNr);
             cmd.Parameters.AddWithValue("@Type",type);
             cmd.Parameters.AddWithValue("@StartDato", startDato);
             cmd.Parameters.AddWithValue("@SlutDato", slutDato);
             cmd.Parameters.AddWithValue("@SagNr", sagNr);
-            cmd.Parameters.AddWithValue("@AnnonceringsNr",annonceringsNr);
+            
 
             await DBConnection.ExecuteNonQuery(cmd);
+
+            return "Annonceringen er blevet opdateret";
         }
 
-        public static async Task DeleteAnnoncering(int annonceringsNr)
+        public static async Task<string> DeleteAnnoncering(int annonceringsNr)
         {
             SqlCommand cmd = new("DELETE FROM Annoncering WHERE AnnonceringsNr=@AnnonceringsNr");
 
             cmd.Parameters.AddWithValue("@AnnonceringsNr", annonceringsNr);
 
             await DBConnection.ExecuteNonQuery(cmd);
+
+            return "Annoncen er blevet slettet";
         }
         #endregion
         #region Kunde
