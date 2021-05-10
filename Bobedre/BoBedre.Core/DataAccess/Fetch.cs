@@ -30,8 +30,31 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         public static async Task<Ejendom[]> GetEjendomAll()
         {
-            var sqlCpmmand = new SqlCommand("SELECT * FROM Ejendom");
-            var ejendomme = await DBConnection.ReadElements(sqlCpmmand);
+            var sqlCommand = new SqlCommand("SELECT * FROM Ejendom");
+            var ejendomme = await DBConnection.ReadElements(sqlCommand);
+            var output = new List<Ejendom>();
+            foreach (var ejendom in ejendomme)
+            {
+                output.Add(Ejendom.CreateEjendomFromData(ejendom));
+            }
+            return output.ToArray();
+        }
+
+        public static async Task<Ejendom[]> GetEjenommeByBoligNr(int[] boligNr)
+        {
+            if(boligNr.Length < 1)
+            {
+                return new Ejendom[0];
+            }
+
+            var sqlCommand = new SqlCommand($"SELECT * FROM Ejendom WHERE BoligNr IN {($"({string.Join(",", boligNr.Select(item => $"@Index{item}"))})")}");
+
+            foreach(var item in boligNr)
+            {
+                sqlCommand.Parameters.AddWithValue($"@Index{item}", item);
+            }
+
+            var ejendomme = await DBConnection.ReadElements(sqlCommand);
             var output = new List<Ejendom>();
             foreach (var ejendom in ejendomme)
             {

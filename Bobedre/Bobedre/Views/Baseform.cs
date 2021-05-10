@@ -95,7 +95,7 @@ namespace Bobedre.Views
 
         private void statistikButton_Click(object sender, EventArgs e)
         {
-            ShowForm(new Statistik.Statistik(Models.Action.view, this));
+            ShowForm(new Statistik.Statistik());
         }
 
         private void søgningButton_Click(object sender, EventArgs e)
