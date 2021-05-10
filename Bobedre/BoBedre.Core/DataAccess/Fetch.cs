@@ -129,6 +129,38 @@ namespace BoBedre.Core.DataAccess
             }
             return output.ToArray();
         }
+
+        /// <summary>
+        /// Gets all kunder
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<Kunde[]> GetSælgerAll()
+        {
+            var sqlCpmmand = new SqlCommand("SELECT * FROM Kunde WHERE type='Sælger'");
+            var kunder = await DBConnection.ReadElements(sqlCpmmand);
+            var output = new List<Kunde>();
+            foreach (var kunde in kunder)
+            {
+                output.Add(Kunde.CreateKundeFromData(kunde));
+            }
+            return output.ToArray();
+        }
+
+        /// <summary>
+        /// Gets all kunder
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<Kunde[]> GetKøberAll()
+        {
+            var sqlCpmmand = new SqlCommand("SELECT * FROM Kunde WHERE type='Køber'");
+            var kunder = await DBConnection.ReadElements(sqlCpmmand);
+            var output = new List<Kunde>();
+            foreach (var kunde in kunder)
+            {
+                output.Add(Kunde.CreateKundeFromData(kunde));
+            }
+            return output.ToArray();
+        }
         #endregion
 
         #region Renorvering

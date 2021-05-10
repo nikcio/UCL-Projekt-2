@@ -31,8 +31,10 @@ namespace Bobedre.Views.Ejendomme
             InitializeComponent();
 
             baseform = _baseform;
+
             boligNr = _boligNr;
             action = _action;
+
         }
 
         public async void LoadData(int boligNr)
@@ -81,7 +83,7 @@ namespace Bobedre.Views.Ejendomme
                         TypeBoligTextBox.Text,
                         int.Parse(ByggeårBoligTextBox.Text),
                         int.Parse(PostNrTextBox.Text));
-                MessageBox.Show("Boligen er nu gemt2");
+                MessageBox.Show("Boligen er nu gemt");
             }
             else
             {
@@ -93,7 +95,7 @@ namespace Bobedre.Views.Ejendomme
         {
             if (int.TryParse(BolignrTextbox.Text, out int Bolignr))
             {
-                var message = await EntryManagement.SletBolig(Bolignr);
+                var message = await EntryManagement.DeleteEjendom(Bolignr);
 
                 ClearForm.CleanForm(Controls);
                 MessageBox.Show(message);
@@ -130,7 +132,7 @@ namespace Bobedre.Views.Ejendomme
             }
             else
             {
-                MessageBox.Show("Boligens oplysninger blev ikke opdateret pgf. forkerte oplysninger");
+                MessageBox.Show("Boligens oplysninger blev ikke opdateret pga. forkerte oplysninger");
             }
         }
 
@@ -154,6 +156,7 @@ namespace Bobedre.Views.Ejendomme
             FlowLayoutPanel Checkboxes = new System.Windows.Forms.FlowLayoutPanel();
             CheckBox BadeværelseCheckBox = new System.Windows.Forms.CheckBox();
             CheckBox AndetCheckBox = new System.Windows.Forms.CheckBox();
+            Button OpretButton = new System.Windows.Forms.Button();
             // 
             // ItemPanel
             // 
@@ -167,6 +170,16 @@ namespace Bobedre.Views.Ejendomme
             ItemPanel.Name = "ItemPanel";
             ItemPanel.Size = new System.Drawing.Size(373, 125);
             ItemPanel.TabIndex = 0;
+            // 
+            // OpretButton
+            // 
+            OpretButton.Location = new System.Drawing.Point(149, 68);
+            OpretButton.Name = "OpretButton";
+            OpretButton.Size = new System.Drawing.Size(78, 23);
+            OpretButton.TabIndex = 12;
+            OpretButton.Text = "Opret";
+            OpretButton.UseVisualStyleBackColor = true;
+            OpretButton.Click += new System.EventHandler((object sender, EventArgs e) => OpretButton_Click(renorvering.RenorveringsId));
             // 
             // SletButton
             // 
@@ -271,6 +284,12 @@ namespace Bobedre.Views.Ejendomme
             baseform.ShowForm(new Renorvering.Renorvering(Models.Action.delete, baseform, new Ejendomme(Models.Action.edit, baseform, int.Parse(BolignrTextbox.Text)), renorveringsId));
         }
 
+        private void OpretButton_Click(int renorveringsId)
+        {
+            baseform.ShowForm(new Renorvering.Renorvering(Models.Action.delete, baseform, new Ejendomme(Models.Action.edit, baseform, int.Parse(BolignrTextbox.Text)), renorveringsId));
+        }
+
+
         private void Ejendomme_Load(object sender, EventArgs e)
         {
             switch (action)
@@ -278,20 +297,62 @@ namespace Bobedre.Views.Ejendomme
                 case Models.Action.create:
                     RenorveringerFlow.Visible = false;
                     AddRenorveringButton.Visible = false;
+                    SletButtonBolig.Visible = false;
+                    OpdaterBoligKnap.Visible = false;
                     break;
 
                 case Models.Action.edit:
+                    OpretBoligKnap.Visible = false;
+                    SletButtonBolig.Visible = false;
                     LoadData(boligNr);
                     break;
 
                 case Models.Action.delete:
+                    OpdaterBoligKnap.Visible = false;
+                    OpretBoligKnap.Visible = false;
+                    AddRenorveringButton.Visible = false;
+                    BolignrTextbox.ReadOnly = true;
+                    AdresseBolig.ReadOnly = true;
+                    PrisTextBox.ReadOnly = true;
+                    BoligArealTextBox.ReadOnly = true;
+                    GrundArealBoligTextBox.ReadOnly = true;
+                    PostNrTextBox.ReadOnly = true;
+                    VæreslerBoligTextBox.ReadOnly = true;
+                    EtagerBoligTextbox.ReadOnly = true;
+                    TypeBoligTextBox.ReadOnly = true;
+                    ByggeårBoligTextBox.ReadOnly = true;
+                    HaveCheckBox.Enabled = false;
                     LoadData(boligNr);
+                    
                     break;
 
                 case Models.Action.view:
                     LoadData(boligNr);
+					BolignrTextbox.ReadOnly = true;
+                    AdresseBolig.ReadOnly = true;
+                    PrisTextBox.ReadOnly = true;
+                    BoligArealTextBox.ReadOnly = true;
+                    GrundArealBoligTextBox.ReadOnly = true;
+                    PostNrTextBox.ReadOnly = true;
+                    VæreslerBoligTextBox.ReadOnly = true;
+                    EtagerBoligTextbox.ReadOnly = true;
+                    TypeBoligTextBox.ReadOnly = true;
+                    ByggeårBoligTextBox.ReadOnly = true;
+                    HaveCheckBox.Enabled = false;
+                    OpretBoligKnap.Visible = false;
+                    SletButtonBolig.Visible = false;
+                    OpdaterBoligKnap.Visible = false;
+                    AddRenorveringButton.Visible = false;
+                   
+                    
                     break;
             }
+
+        }
+
+        private void TilbageKnap_Click(object sender, EventArgs e)
+        {
+            baseform.ShowForm(new EjendommeView(baseform));
         }
     }
 

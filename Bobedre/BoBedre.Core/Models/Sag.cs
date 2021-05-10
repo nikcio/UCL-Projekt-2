@@ -8,13 +8,9 @@ namespace BoBedre.Core.Models
 {
     public class Sag
     {
-        public Sag(int sagNr, int? boligNr, int sælgerNr, int? køberNr, int medarbejderNr, DateTime oprettelsesDato, DateTime? tilSalgDato, bool solgt, int? gebyr, int? salær, DateTime? overdragelsesDato, DateTime? afslutningsDato)
+        public Sag(int sagNr, DateTime oprettelsesDato, DateTime? tilSalgDato, bool solgt, int? gebyr, int? salær, DateTime? overdragelsesDato, DateTime? afslutningsDato, int? boligNr, int? sælgerNr, int? køberNr, int medarbejderNr)
         {
             SagNr = sagNr;
-            BoligNr = boligNr;
-            SælgerNr = sælgerNr;
-            KøberNr = køberNr;
-            MedarbejderNr = medarbejderNr;
             OprettelsesDato = oprettelsesDato;
             TilSalgDato = tilSalgDato;
             Solgt = solgt;
@@ -22,13 +18,13 @@ namespace BoBedre.Core.Models
             Salær = salær;
             OverdragelsesDato = overdragelsesDato;
             AfslutningsDato = afslutningsDato;
+            BoligNr = boligNr;
+            SælgerNr = sælgerNr;
+            KøberNr = køberNr;
+            MedarbejderNr = medarbejderNr;
         }
 
         public int SagNr { get; set; }
-        public int? BoligNr { get; set; }
-        public int SælgerNr { get; set; }
-        public int? KøberNr { get; set; }
-        public int MedarbejderNr { get; set; }
         public DateTime OprettelsesDato { get; set; }
         public DateTime? TilSalgDato { get; set; }
         public bool Solgt { get; set; }
@@ -36,6 +32,10 @@ namespace BoBedre.Core.Models
         public int? Salær { get; set; }
         public DateTime? OverdragelsesDato { get; set; }
         public DateTime? AfslutningsDato { get; set; }
+        public int? BoligNr { get; set; }
+        public int? SælgerNr { get; set; }
+        public int? KøberNr { get; set; }
+        public int MedarbejderNr { get; set; }
 
         /// <summary>
         /// Create sag object from object data
@@ -52,17 +52,17 @@ namespace BoBedre.Core.Models
             {
                 return new Sag(
                                 (int)values[0],
-                                (int?)values[1],
-                                (int)values[2],
-                                (int?)values[3],
-                                (int)values[4],
-                                (DateTime)values[5],
-                                (DateTime)values[6],
-                                (bool)values[7],
-                                (int)values[8],
-                                (int)values[9],
-                                (DateTime)values[10],
-                                (DateTime)values[11]
+                                (DateTime)values[1],
+                                Convert.IsDBNull(values[2]) ? null : (DateTime?)values[2],
+                                (bool)values[3],
+                                Convert.IsDBNull(values[4]) ? null : (int?)values[4],
+                                Convert.IsDBNull(values[5]) ? null : (int?)values[5],
+                                Convert.IsDBNull(values[6]) ? null : (DateTime?)values[6],
+                                Convert.IsDBNull(values[7]) ? null : (DateTime?)values[7],
+                                Convert.IsDBNull(values[8]) ? null : (int?)values[8],
+                                Convert.IsDBNull(values[9]) ? null : (int?)values[9],
+                                Convert.IsDBNull(values[10]) ? null : (int?)values[10],
+                                (int)values[11]
                                 );
             }
             else

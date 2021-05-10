@@ -90,37 +90,6 @@ namespace BoBedre.Core.DataAccess
             int etager,
             string typeBolig,
             int byggeår,
-            int postNr,
-            bool renorvert,
-            bool køkken,
-            bool badeværelse,
-            bool andet,
-            int ombygningsÅr,
-            string detaljer
-            )
-        {
-            SqlCommand cmd = await CreateEjendomEntry(adresse, pris, boligAreal, grundAreal, have, værelser, etager, typeBolig, byggeår, postNr);
-
-            int boligNr = (int)await DBConnection.ExecuteScalar(cmd);
-
-            if (renorvert)
-            {
-                await CreateRenorvering(køkken, badeværelse, andet, ombygningsÅr, detaljer, boligNr);
-            }
-
-            return boligNr;
-        }
-
-        public static async Task<int> CreateEjendom(
-            string adresse,
-            int pris,
-            int boligAreal,
-            int grundAreal,
-            bool have,
-            int værelser,
-            int etager,
-            string typeBolig,
-            int byggeår,
             int postNr
             )
         {
@@ -155,7 +124,7 @@ namespace BoBedre.Core.DataAccess
             cmd.Parameters.AddWithValue("@PostNr", postNr);
             return cmd;
         }
-        public static async Task<string> SletBolig(int Bolignr)
+        public static async Task<string> DeleteEjendom(int Bolignr)
         {
             try
             {
@@ -291,26 +260,48 @@ namespace BoBedre.Core.DataAccess
         /// <param name="zipcode"></param>
         /// <param name="cityName"></param>
         /// <returns>Success</returns>
-        public static async Task<bool> CreateBy(int zipcode, string cityName)
+        public static async Task CreateBy(int zipcode, string cityName)
         {
-            try
-            {
-                SqlCommand cmd = new("INSERT into [By] VALUES (@zipcode, @cityName)");
+            SqlCommand cmd = new("INSERT into [By] VALUES (@zipcode, @cityName)");
 
-                cmd.Parameters.AddWithValue("@zipcode", zipcode);
-                cmd.Parameters.AddWithValue("@cityname", cityName);
+            cmd.Parameters.AddWithValue("@zipcode", zipcode);
+            cmd.Parameters.AddWithValue("@cityname", cityName);
 
-                await DBConnection.ExecuteNonQuery(cmd);
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
 
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+        /// <summary>
+        /// Updates a By
+        /// </summary>
+        /// <param name="zipcode"></param>
+        /// <param name="cityName"></param>
+        /// <returns></returns>
+        public static async Task UpdateBy(int zipcode, string cityName, int zipcodeNewValue)
+        {
+            SqlCommand cmd = new("UPDATE [By] SET PostNr=@zipcodeNewValue, ByNavn=@cityName WHERE PostNr=@zipcode");
+
+            cmd.Parameters.AddWithValue("@zipcode", zipcode);
+            cmd.Parameters.AddWithValue("@zipcodeNewValue", zipcodeNewValue);
+            cmd.Parameters.AddWithValue("@cityname", cityName);
+
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
+      
+        /// <summary>
+        /// Deletes a By
+        /// </summary>
+        /// <param name="zipcode"></param>
+        /// <returns></returns>
+        public static async Task DeleteBy(int zipcode)
+        {
+            SqlCommand cmd = new("DELETE FROM [By] WHERE PostNr=@zipcode");
+
+            cmd.Parameters.AddWithValue("@zipcode", zipcode);
+
+            await DBConnection.ExecuteNonQuery(cmd);
         }
         #endregion
-
+          
         #region Annoncering
         public static async Task<int> CreateAnnoncering(
             string type,
@@ -365,16 +356,17 @@ namespace BoBedre.Core.DataAccess
             return "Annoncen er blevet slettet";
         }
         #endregion
+          
         #region Kunde
         public static async Task<int> CreateKunde(string navn, string email, string KundeType)
         {
             try
             {
-                SqlCommand cmd = new("INSERT into Kunde(Navn, Email, Type) VALUES (@Navn, @Email, @Type)");
+                SqlCommand cmd = new("INSERT into Kunde(Navn, Email, Type) OUTPUT INSERTED.KundeNr VALUES (@Navn, @Email, @Type)");
 
-                cmd.Parameters.AddWithValue("@Navn", navn);
-                cmd.Parameters.AddWithValue("@Email", email);
-               cmd.Parameters.AddWithValue("@Type", KundeType );
+               cmd.Parameters.AddWithValue("@Navn", navn);
+               cmd.Parameters.AddWithValue("@Email", email);
+               cmd.Parameters.AddWithValue("@Type", KundeType);
 
                 return (int)await DBConnection.ExecuteScalar(cmd);
 
@@ -426,5 +418,64 @@ namespace BoBedre.Core.DataAccess
 
         #endregion
 
+        #region Sag
+        public static async Task<int> CreateSag(
+            DateTime oprettelsesDato,
+            int medarbejderNr)
+        {
+            SqlCommand cmd = new("INSERT INTO Sag (OprettelsesDato, Solgt, MedarbejderNr) " +
+                "OUTPUT INSERTED.SagNr " +
+                "VALUES (@oprettelsesDato, @solgt, @medarbejderNr)");
+
+            cmd.Parameters.AddWithValue("@oprettelsesDato", oprettelsesDato);
+            cmd.Parameters.AddWithValue("@solgt", false);
+            cmd.Parameters.AddWithValue("@medarbejderNr", medarbejderNr);
+
+            return (int)await DBConnection.ExecuteScalar(cmd);
+        }
+
+        public static async Task UpdateSag(
+            int sagNr,
+            DateTime oprettelsesDato,
+            DateTime? tilSalgDato,
+            bool solgt,
+            int? gebyr,
+            int? salær,
+            DateTime? overdragelsesDato,
+            DateTime? afslutningsDato,
+            int? boligNr,
+            int? sælgerNr,
+            int? køberNr,
+            int medarbejderNr)
+        {
+            SqlCommand cmd = new("UPDATE Sag " +
+                "SET OprettelsesDato=@oprettelsesDato, TilSalgDato=@tilSalgDato, Solgt=@solgt, Gebyr=@gebyr, Salær=@salær, OverdragelsesDato=@overdragelsesDato, AfslutningsDato=@afslutningsDato, BoligNr=@boligNr, SælgerNr=@sælgerNr, KøberNr=@køberNr, MedarbejderNr=@medarbejderNr " +
+                "WHERE SagNr=@sagNr");
+            
+            cmd.Parameters.AddWithValue("@oprettelsesDato", oprettelsesDato);
+            cmd.Parameters.AddWithValue("@tilSalgDato", tilSalgDato != null ? tilSalgDato : DBNull.Value);
+            cmd.Parameters.AddWithValue("@solgt", solgt);
+            cmd.Parameters.AddWithValue("@gebyr", gebyr != null ? gebyr : DBNull.Value);
+            cmd.Parameters.AddWithValue("@salær", salær != null ? salær : DBNull.Value);
+            cmd.Parameters.AddWithValue("@overdragelsesDato", overdragelsesDato != null ? overdragelsesDato : DBNull.Value);
+            cmd.Parameters.AddWithValue("@afslutningsDato", afslutningsDato != null ? afslutningsDato : DBNull.Value);
+            cmd.Parameters.AddWithValue("@boligNr", boligNr != null ? boligNr : DBNull.Value);
+            cmd.Parameters.AddWithValue("@sælgerNr", sælgerNr != null ? sælgerNr : DBNull.Value);
+            cmd.Parameters.AddWithValue("@køberNr", køberNr != null ? køberNr : DBNull.Value);
+            cmd.Parameters.AddWithValue("@medarbejderNr", medarbejderNr);
+            cmd.Parameters.AddWithValue("@sagNr", sagNr);
+
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
+
+        public static async Task DeleteSag(int sagNr)
+        {
+            SqlCommand cmd = new("DELETE FROM Sag WHERE SagNr=@sagNr");
+
+            cmd.Parameters.AddWithValue("@sagNr", sagNr);
+
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
+        #endregion
     }
 }
