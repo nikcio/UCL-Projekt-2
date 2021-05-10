@@ -8,23 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Bobedre.Templates.Kunder
+namespace Bobedre.Templates.Sager
 {
-    public partial class KunderElement : Form
+    public partial class SagerTilknyttetElement : Form
     {
-        public KunderElement()
+        public SagerTilknyttetElement()
         {
             InitializeComponent();
-        }
-
-        private void RedigereKnap_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void VisKnap_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
