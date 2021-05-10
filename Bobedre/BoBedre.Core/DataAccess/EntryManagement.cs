@@ -286,7 +286,7 @@ namespace BoBedre.Core.DataAccess
 
             await DBConnection.ExecuteNonQuery(cmd);
         }
-
+      
         /// <summary>
         /// Deletes a By
         /// </summary>
@@ -301,7 +301,56 @@ namespace BoBedre.Core.DataAccess
             await DBConnection.ExecuteNonQuery(cmd);
         }
         #endregion
+          
+        #region Annoncering
+        public static async Task<int> CreateAnnoncering(
+            string type,
+            DateTime startDato,
+            DateTime slutDato,
+            int sagNr)
+        {
+            SqlCommand cmd = new("INSERT INTO Annoncering (Type, StartDato, SlutDato, SagNr) " +
+                "OUTPUT INSERTED.AnnonceringsNr " +
+                "VALUES (@Type, @StartDato, @SlutDato, @SagNr)");
 
+            cmd.Parameters.AddWithValue("@Type", type);
+            cmd.Parameters.AddWithValue("@StartDato", startDato);
+            cmd.Parameters.AddWithValue("@SlutDato", slutDato);
+            cmd.Parameters.AddWithValue("@Sagnr", sagNr);
+
+            return (int)await DBConnection.ExecuteScalar(cmd);
+        }
+      
+        public static async Task UpdateAnnoncering(
+            string type,
+            DateTime startDato,
+            DateTime slutDato,
+            int sagNr,
+            int annonceringsNr)
+        {
+            SqlCommand cmd = new("UPDATE Annoncering " +
+                "SET Type=@Type, StartDato=@StartDato, SlutDato=@SlutDato, SagNr=@SagNrer" +
+                "WHERE AnnonceringsNr=@AnnonceringsNr");
+
+            cmd.Parameters.AddWithValue("@Type",type);
+            cmd.Parameters.AddWithValue("@StartDato", startDato);
+            cmd.Parameters.AddWithValue("@SlutDato", slutDato);
+            cmd.Parameters.AddWithValue("@SagNr", sagNr);
+            cmd.Parameters.AddWithValue("@AnnonceringsNr",annonceringsNr);
+
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
+
+        public static async Task DeleteAnnoncering(int annonceringsNr)
+        {
+            SqlCommand cmd = new("DELETE FROM Annoncering WHERE AnnonceringsNr=@AnnonceringsNr");
+
+            cmd.Parameters.AddWithValue("@AnnonceringsNr", annonceringsNr);
+
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
+        #endregion
+          
         #region Kunde
         public static async Task<int> CreateKunde(string navn, string email, string KundeType)
         {

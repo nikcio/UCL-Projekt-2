@@ -59,6 +59,7 @@ namespace Bobedre.Views
             statistikButton.Enabled = !statistikButton.Enabled;
             søgningButton.Enabled = !søgningButton.Enabled;
             åbenhusButton.Enabled = !åbenhusButton.Enabled;
+            AnnonceringerButton.Enabled = !AnnonceringerButton.Enabled;
 
             // Hide/Unhide buttons
             kunderButton.Visible = !kunderButton.Visible;
@@ -68,6 +69,7 @@ namespace Bobedre.Views
             statistikButton.Visible = !statistikButton.Visible;
             søgningButton.Visible = !søgningButton.Visible;
             åbenhusButton.Visible = !åbenhusButton.Visible;
+            AnnonceringerButton.Visible = !AnnonceringerButton.Visible;
         }
 
         private void kunderButton_Click(object sender, EventArgs e)
@@ -104,6 +106,11 @@ namespace Bobedre.Views
         private void åbenhusButton_Click(object sender, EventArgs e)
         {
             ShowForm(new ÅbentHus.ÅbentHus(Models.Action.view, this));
+        }
+        
+        private void AnnonceringerButton_Click(object sender, EventArgs e)
+        {
+            ShowForm(new Annoncering.AnnonceringView(this));
         }
         #endregion
     }

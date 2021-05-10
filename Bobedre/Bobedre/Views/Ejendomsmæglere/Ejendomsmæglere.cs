@@ -127,11 +127,7 @@ namespace Bobedre.Views.Ejendomsmæglere
 
         }
 
-        /// <summary>
-        /// Pushing data into view
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+      
         private void Ejendomsmæglere_Load(object sender, EventArgs e)
         {
             switch (action)
