@@ -64,13 +64,13 @@ namespace Bobedre.Views.Sager
             panel1.Location = new System.Drawing.Point(29, 31);
             panel1.Margin = new System.Windows.Forms.Padding(10);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(185, 158);
+            panel1.Size = new System.Drawing.Size(225, 188);
             panel1.TabIndex = 0;
             // 
             // Sælger
             // 
             Sælger.AutoSize = true;
-            Sælger.Location = new System.Drawing.Point(11, 69);
+            Sælger.Location = new System.Drawing.Point(11, 79);
             Sælger.Name = "Sælger";
             Sælger.Size = new System.Drawing.Size(77, 15);
             Sælger.TabIndex = 2;
@@ -79,7 +79,7 @@ namespace Bobedre.Views.Sager
             // Medarbejder
             // 
             Medarbejder.AutoSize = true;
-            Medarbejder.Location = new System.Drawing.Point(11, 39);
+            Medarbejder.Location = new System.Drawing.Point(11, 49);
             Medarbejder.Name = "Medarbejder";
             Medarbejder.Size = new System.Drawing.Size(74, 15);
             Medarbejder.TabIndex = 1;
@@ -97,7 +97,7 @@ namespace Bobedre.Views.Sager
             // BoligNr
             // 
             BoligNr.AutoSize = true;
-            BoligNr.Location = new System.Drawing.Point(103, 11);
+            BoligNr.Location = new System.Drawing.Point(123, 11);
             BoligNr.Name = "BoligNr";
             BoligNr.Size = new System.Drawing.Size(47, 15);
             BoligNr.TabIndex = 3;
@@ -106,7 +106,7 @@ namespace Bobedre.Views.Sager
             // OprrettelsesDato
             // 
             OprrettelsesDato.AutoSize = true;
-            OprrettelsesDato.Location = new System.Drawing.Point(11, 125);
+            OprrettelsesDato.Location = new System.Drawing.Point(11, 155);
             OprrettelsesDato.Name = "OprrettelsesDato";
             OprrettelsesDato.Size = new System.Drawing.Size(32, 15);
             OprrettelsesDato.TabIndex = 4;
@@ -114,7 +114,9 @@ namespace Bobedre.Views.Sager
             // 
             // RedigerButton
             // 
-            RedigerButton.Location = new System.Drawing.Point(11, 99);
+            RedigerButton.FlatStyle = FlatStyle.Flat;
+            RedigerButton.AutoSize = true;
+            RedigerButton.Location = new System.Drawing.Point(11, 109);
             RedigerButton.Name = "RedigerButton";
             RedigerButton.Size = new System.Drawing.Size(75, 23);
             RedigerButton.TabIndex = 5;
@@ -124,7 +126,9 @@ namespace Bobedre.Views.Sager
             // 
             // VisButton
             // 
-            VisButton.Location = new System.Drawing.Point(92, 99);
+            VisButton.FlatStyle = FlatStyle.Flat;
+            VisButton.AutoSize = true;
+            VisButton.Location = new System.Drawing.Point(92, 109);
             VisButton.Name = "VisButton";
             VisButton.Size = new System.Drawing.Size(75, 23);
             VisButton.TabIndex = 6;

@@ -246,8 +246,9 @@ namespace Bobedre.Views.Sager
             // 
             // AddButton
             // 
+            AddButton.AutoSize = true;
             AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            AddButton.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AddButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             AddButton.Location = new System.Drawing.Point(40, 15);
             AddButton.Margin = new System.Windows.Forms.Padding(15);
             AddButton.Name = "AddButton";
