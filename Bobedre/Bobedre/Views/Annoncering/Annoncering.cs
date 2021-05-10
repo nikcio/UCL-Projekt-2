@@ -97,7 +97,7 @@ namespace Bobedre.Views.Annoncering
             {
                 if (int.TryParse(AnnonceringsNrBox.Text, out int annonceringsNr))
                 {
-                    await EntryManagement.UpdateAnnoncering(TypeBox.Text, StartDatoPicker.Value, SlutDatoPicker.Value, int.Parse(SagNrBox.Text), annonceringsNr);
+                    await EntryManagement.UpdateAnnoncering(annonceringsNr,TypeBox.Text, StartDatoPicker.Value, SlutDatoPicker.Value, int.Parse(SagNrBox.Text));
                     ClearForm.CleanForm(Controls);
                     MessageBox.Show("Annonceringen er gemt");
                 }

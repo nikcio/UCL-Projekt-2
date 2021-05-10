@@ -58,6 +58,7 @@ namespace BoBedre.Core.Test.DataAccess
         #endregion
 
         #region Annonceringer
+        [TestMethod]
         public async Task CreateUpdateDeleteAnnonceringTest()
         {
             //Create
@@ -84,7 +85,7 @@ namespace BoBedre.Core.Test.DataAccess
             sagsnr = 2;
             
 
-            await EntryManagement.UpdateAnnoncering(type, start, slut, sagsnr, annoncenr);
+            await EntryManagement.UpdateAnnoncering(annoncenr, type, start,slut,sagsnr);
             annonce = await Fetch.GetAnnonceringByAnnonceringsNr(annoncenr);
 
             Assert.AreEqual(annoncenr, annonce.AnnonceringsNr, "the value is not equal to the expected");
