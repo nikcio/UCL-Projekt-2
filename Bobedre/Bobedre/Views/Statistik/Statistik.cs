@@ -2,6 +2,7 @@
 using BoBedre.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -35,10 +36,28 @@ namespace Bobedre.Views.Statistik
                 OpretTemplate(item);
             }
         }
-
+        /// <summary>
+        /// Save data from Statistik as txt-document. Default save at MyDocuments at your computer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GemButton_Click(object sender, EventArgs e)
         {
-
+            StreamWriter file = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"/Salgsoversigt.txt");
+            
+            foreach (var item in ejendommeStatisk)
+            {
+                file.WriteLine($"BoligNr: {item.BoligNr}");
+                file.WriteLine($"Pris: {item.Pris}");
+                file.WriteLine($"Addresse: {item.Adresse}");                
+                file.WriteLine($"GrundAreal: {item.GrundAreal}");
+                file.WriteLine($"Etager: {item.Etager}");
+                file.WriteLine($"Have: {item.Have}");
+                file.WriteLine($"Værelser: {item.Værelser}");
+                file.WriteLine($"Type: {item.Type}");
+                file.WriteLine($"Byggeår: {item.Byggeår}");
+            }                
+            file.Close();
         }
 
         private async void Statistik_Load(object sender, EventArgs e)
