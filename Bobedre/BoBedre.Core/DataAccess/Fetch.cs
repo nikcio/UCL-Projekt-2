@@ -30,8 +30,31 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         public static async Task<Ejendom[]> GetEjendomAll()
         {
-            var sqlCpmmand = new SqlCommand("SELECT * FROM Ejendom");
-            var ejendomme = await DBConnection.ReadElements(sqlCpmmand);
+            var sqlCommand = new SqlCommand("SELECT * FROM Ejendom");
+            var ejendomme = await DBConnection.ReadElements(sqlCommand);
+            var output = new List<Ejendom>();
+            foreach (var ejendom in ejendomme)
+            {
+                output.Add(Ejendom.CreateEjendomFromData(ejendom));
+            }
+            return output.ToArray();
+        }
+
+        public static async Task<Ejendom[]> GetEjenommeByBoligNr(int[] boligNr)
+        {
+            if(boligNr.Length < 1)
+            {
+                return new Ejendom[0];
+            }
+
+            var sqlCommand = new SqlCommand($"SELECT * FROM Ejendom WHERE BoligNr IN {($"({string.Join(",", boligNr.Select(item => $"@Index{item}"))})")}");
+
+            foreach(var item in boligNr)
+            {
+                sqlCommand.Parameters.AddWithValue($"@Index{item}", item);
+            }
+
+            var ejendomme = await DBConnection.ReadElements(sqlCommand);
             var output = new List<Ejendom>();
             foreach (var ejendom in ejendomme)
             {
@@ -129,6 +152,38 @@ namespace BoBedre.Core.DataAccess
             }
             return output.ToArray();
         }
+
+        /// <summary>
+        /// Gets all kunder
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<Kunde[]> GetSælgerAll()
+        {
+            var sqlCpmmand = new SqlCommand("SELECT * FROM Kunde WHERE type='Sælger'");
+            var kunder = await DBConnection.ReadElements(sqlCpmmand);
+            var output = new List<Kunde>();
+            foreach (var kunde in kunder)
+            {
+                output.Add(Kunde.CreateKundeFromData(kunde));
+            }
+            return output.ToArray();
+        }
+
+        /// <summary>
+        /// Gets all kunder
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<Kunde[]> GetKøberAll()
+        {
+            var sqlCpmmand = new SqlCommand("SELECT * FROM Kunde WHERE type='Køber'");
+            var kunder = await DBConnection.ReadElements(sqlCpmmand);
+            var output = new List<Kunde>();
+            foreach (var kunde in kunder)
+            {
+                output.Add(Kunde.CreateKundeFromData(kunde));
+            }
+            return output.ToArray();
+        }
         #endregion
 
         #region Renorvering
@@ -218,8 +273,8 @@ namespace BoBedre.Core.DataAccess
         /// <returns></returns>
         public static async Task<Annoncering> GetAnnonceringByAnnonceringsNr(int annonceringNr)
         {
-            var sqlCommand = new SqlCommand("SELECT * FROM Annoncering WHERE AnnonceringNr=@annonceringNr");
-            sqlCommand.Parameters.AddWithValue("@annonceringNr", annonceringNr);
+            var sqlCommand = new SqlCommand("SELECT * FROM Annoncering WHERE AnnonceringsNr=@annonceringsNr");
+            sqlCommand.Parameters.AddWithValue("@annonceringsNr", annonceringNr);
             return Annoncering.CreateAnnonceringFromData(await DBConnection.ReadElement(sqlCommand));
         }
 

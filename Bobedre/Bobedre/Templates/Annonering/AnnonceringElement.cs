@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Bobedre.Templates.Kunder
+namespace Bobedre.Templates.Annonering
 {
-    public partial class KunderElement : Form
+    public partial class AnnonceringElement : Form
     {
-        public KunderElement()
+        public AnnonceringElement()
         {
             InitializeComponent();
         }

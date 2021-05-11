@@ -59,6 +59,7 @@ namespace Bobedre.Views
             statistikButton.Enabled = !statistikButton.Enabled;
             søgningButton.Enabled = !søgningButton.Enabled;
             åbenhusButton.Enabled = !åbenhusButton.Enabled;
+            AnnonceringerButton.Enabled = !AnnonceringerButton.Enabled;
 
             // Hide/Unhide buttons
             kunderButton.Visible = !kunderButton.Visible;
@@ -68,11 +69,12 @@ namespace Bobedre.Views
             statistikButton.Visible = !statistikButton.Visible;
             søgningButton.Visible = !søgningButton.Visible;
             åbenhusButton.Visible = !åbenhusButton.Visible;
+            AnnonceringerButton.Visible = !AnnonceringerButton.Visible;
         }
 
         private void kunderButton_Click(object sender, EventArgs e)
         {
-            ShowForm(new Kunder.Kunder(Models.Action.view, this));
+            ShowForm(new Kunder.KunderView(this));
         }
 
         private void ejendommeButton_Click(object sender, EventArgs e)
@@ -88,12 +90,12 @@ namespace Bobedre.Views
 
         private void sagerButton_Click(object sender, EventArgs e)
         {
-            ShowForm(new Sager.Sager(Models.Action.view, this));
+            ShowForm(new Sager.SagerView(this));
         }
 
         private void statistikButton_Click(object sender, EventArgs e)
         {
-            ShowForm(new Statistik.Statistik(Models.Action.view, this));
+            ShowForm(new Statistik.Statistik());
         }
 
         private void søgningButton_Click(object sender, EventArgs e)
@@ -104,6 +106,11 @@ namespace Bobedre.Views
         private void åbenhusButton_Click(object sender, EventArgs e)
         {
             ShowForm(new ÅbentHus.ÅbentHus(Models.Action.view, this));
+        }
+        
+        private void AnnonceringerButton_Click(object sender, EventArgs e)
+        {
+            ShowForm(new Annoncering.AnnonceringView(this));
         }
         #endregion
     }

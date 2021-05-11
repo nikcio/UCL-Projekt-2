@@ -286,7 +286,7 @@ namespace BoBedre.Core.DataAccess
 
             await DBConnection.ExecuteNonQuery(cmd);
         }
-
+      
         /// <summary>
         /// Deletes a By
         /// </summary>
@@ -301,18 +301,72 @@ namespace BoBedre.Core.DataAccess
             await DBConnection.ExecuteNonQuery(cmd);
         }
         #endregion
+          
+        #region Annoncering
+        public static async Task<int> CreateAnnoncering(
+            string type,
+            DateTime startDato,
+            DateTime slutDato,
+            int sagNr)
+        {
+            SqlCommand cmd = new("INSERT INTO Annoncering (Type, StartDato, SlutDato, SagNr) " +
+                "OUTPUT INSERTED.AnnonceringsNr " +
+                "VALUES (@Type, @StartDato, @SlutDato, @SagNr)");
 
+            cmd.Parameters.AddWithValue("@Type", type);
+            cmd.Parameters.AddWithValue("@StartDato", startDato);
+            cmd.Parameters.AddWithValue("@SlutDato", slutDato);
+            cmd.Parameters.AddWithValue("@Sagnr", sagNr);
 
+            int annonceringsnr = (int)await DBConnection.ExecuteScalar(cmd);
+            return annonceringsnr;
+        }
+
+        public static async Task<string> UpdateAnnoncering(
+            int annonceringsNr,
+            string type,
+            DateTime startDato,
+            DateTime slutDato,
+            int sagNr)
+            
+        {
+            SqlCommand cmd = new("UPDATE Annoncering " +
+                "SET Type=@Type, StartDato=@StartDato, SlutDato=@SlutDato, SagNr=@SagNr " +
+                "WHERE AnnonceringsNr=@AnnonceringsNr");
+            cmd.Parameters.AddWithValue("@AnnonceringsNr", annonceringsNr);
+            cmd.Parameters.AddWithValue("@Type",type);
+            cmd.Parameters.AddWithValue("@StartDato", startDato);
+            cmd.Parameters.AddWithValue("@SlutDato", slutDato);
+            cmd.Parameters.AddWithValue("@SagNr", sagNr);
+            
+
+            await DBConnection.ExecuteNonQuery(cmd);
+
+            return "Annonceringen er blevet opdateret";
+        }
+
+        public static async Task<string> DeleteAnnoncering(int annonceringsNr)
+        {
+            SqlCommand cmd = new("DELETE FROM Annoncering WHERE AnnonceringsNr=@AnnonceringsNr");
+
+            cmd.Parameters.AddWithValue("@AnnonceringsNr", annonceringsNr);
+
+            await DBConnection.ExecuteNonQuery(cmd);
+
+            return "Annoncen er blevet slettet";
+        }
+        #endregion
+          
         #region Kunde
         public static async Task<int> CreateKunde(string navn, string email, string KundeType)
         {
             try
             {
-                SqlCommand cmd = new("INSERT into Kunde(Navn, Email, Type) VALUES (@Navn, @Email, @Type)");
+                SqlCommand cmd = new("INSERT into Kunde(Navn, Email, Type) OUTPUT INSERTED.KundeNr VALUES (@Navn, @Email, @Type)");
 
-                cmd.Parameters.AddWithValue("@Navn", navn);
-                cmd.Parameters.AddWithValue("@Email", email);
-               cmd.Parameters.AddWithValue("@Type", KundeType );
+               cmd.Parameters.AddWithValue("@Navn", navn);
+               cmd.Parameters.AddWithValue("@Email", email);
+               cmd.Parameters.AddWithValue("@Type", KundeType);
 
                 return (int)await DBConnection.ExecuteScalar(cmd);
 
@@ -364,5 +418,64 @@ namespace BoBedre.Core.DataAccess
 
         #endregion
 
+        #region Sag
+        public static async Task<int> CreateSag(
+            DateTime oprettelsesDato,
+            int medarbejderNr)
+        {
+            SqlCommand cmd = new("INSERT INTO Sag (OprettelsesDato, Solgt, MedarbejderNr) " +
+                "OUTPUT INSERTED.SagNr " +
+                "VALUES (@oprettelsesDato, @solgt, @medarbejderNr)");
+
+            cmd.Parameters.AddWithValue("@oprettelsesDato", oprettelsesDato);
+            cmd.Parameters.AddWithValue("@solgt", false);
+            cmd.Parameters.AddWithValue("@medarbejderNr", medarbejderNr);
+
+            return (int)await DBConnection.ExecuteScalar(cmd);
+        }
+
+        public static async Task UpdateSag(
+            int sagNr,
+            DateTime oprettelsesDato,
+            DateTime? tilSalgDato,
+            bool solgt,
+            int? gebyr,
+            int? salær,
+            DateTime? overdragelsesDato,
+            DateTime? afslutningsDato,
+            int? boligNr,
+            int? sælgerNr,
+            int? køberNr,
+            int medarbejderNr)
+        {
+            SqlCommand cmd = new("UPDATE Sag " +
+                "SET OprettelsesDato=@oprettelsesDato, TilSalgDato=@tilSalgDato, Solgt=@solgt, Gebyr=@gebyr, Salær=@salær, OverdragelsesDato=@overdragelsesDato, AfslutningsDato=@afslutningsDato, BoligNr=@boligNr, SælgerNr=@sælgerNr, KøberNr=@køberNr, MedarbejderNr=@medarbejderNr " +
+                "WHERE SagNr=@sagNr");
+            
+            cmd.Parameters.AddWithValue("@oprettelsesDato", oprettelsesDato);
+            cmd.Parameters.AddWithValue("@tilSalgDato", tilSalgDato != null ? tilSalgDato : DBNull.Value);
+            cmd.Parameters.AddWithValue("@solgt", solgt);
+            cmd.Parameters.AddWithValue("@gebyr", gebyr != null ? gebyr : DBNull.Value);
+            cmd.Parameters.AddWithValue("@salær", salær != null ? salær : DBNull.Value);
+            cmd.Parameters.AddWithValue("@overdragelsesDato", overdragelsesDato != null ? overdragelsesDato : DBNull.Value);
+            cmd.Parameters.AddWithValue("@afslutningsDato", afslutningsDato != null ? afslutningsDato : DBNull.Value);
+            cmd.Parameters.AddWithValue("@boligNr", boligNr != null ? boligNr : DBNull.Value);
+            cmd.Parameters.AddWithValue("@sælgerNr", sælgerNr != null ? sælgerNr : DBNull.Value);
+            cmd.Parameters.AddWithValue("@køberNr", køberNr != null ? køberNr : DBNull.Value);
+            cmd.Parameters.AddWithValue("@medarbejderNr", medarbejderNr);
+            cmd.Parameters.AddWithValue("@sagNr", sagNr);
+
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
+
+        public static async Task DeleteSag(int sagNr)
+        {
+            SqlCommand cmd = new("DELETE FROM Sag WHERE SagNr=@sagNr");
+
+            cmd.Parameters.AddWithValue("@sagNr", sagNr);
+
+            await DBConnection.ExecuteNonQuery(cmd);
+        }
+        #endregion
     }
 }

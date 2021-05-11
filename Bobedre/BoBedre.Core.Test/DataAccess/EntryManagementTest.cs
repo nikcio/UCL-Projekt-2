@@ -2,11 +2,8 @@
 using BoBedre.Core.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace BoBedre.Core.Test.DataAccess
 {
@@ -56,11 +53,97 @@ namespace BoBedre.Core.Test.DataAccess
             //delete
             await EntryManagement.DeleteEjendomsmægler(medarbejderNr);
             Assert.IsNull(await Fetch.GetEjendomsmæglerByMedarbjederNr(medarbejderNr));
-           
         }
 
         #endregion
 
+        #region Annonceringer
+        [TestMethod]
+        public async Task CreateUpdateDeleteAnnonceringTest()
+        {
+            //Create
+            string type = "type";
+            DateTime start = DateTime.Now.Date;
+            DateTime slut = DateTime.Now.Date;
+            bool deleteSag = false;
+            bool deleteSag2 = false;
+            bool deleteEjendomsmægler = false;
+            int? medarbejderNr = null;
+            var sager = await Fetch.GetSagAll();
+            int? sagnr = sager.FirstOrDefault()?.SagNr;
+            if(sagnr == null)
+            {
+                deleteSag = true;
+                var oprettelsesDato = DateTime.Now.Date;
+                var medarbejdere = await Fetch.GetEjendomsmæglerAll();
+                medarbejderNr = medarbejdere.FirstOrDefault()?.MedarbejderNr;
+                if(medarbejderNr == null)
+                {
+                    deleteEjendomsmægler = true;
+                    string afdeling = "testAfdeling";
+                    string mæglerfirma = "mæglerfirma 1";
+                    string navn = "mit navn";
+                    string email = "email@email.com";
+                    string stilling = "Stilling 1";
+                    medarbejderNr = await EntryManagement.CreateEjendomsmægler(afdeling, mæglerfirma, navn, email, stilling);
+                }
+
+                sagnr = await EntryManagement.CreateSag(oprettelsesDato, medarbejderNr.GetValueOrDefault());
+            }
+
+            var annoncenr = await EntryManagement.CreateAnnoncering(type, start, slut, sagnr.GetValueOrDefault());
+            var annonce = await Fetch.GetAnnonceringByAnnonceringsNr(annoncenr);
+
+            Assert.AreEqual(type, annonce.Type, "the value is not equal to the expected");
+            Assert.AreEqual(start, annonce.StartDato, "the value is not equal to the expected");
+            Assert.AreEqual(slut, annonce.SlutDato, "the value is not equal to the expected");
+            Assert.AreEqual(sagnr.GetValueOrDefault(), annonce.SagNr, "the value is not equal to the expected");
+            
+
+
+            //update
+            type = "Updateny";
+            start = DateTime.Now.Date.AddDays(2);
+            slut = DateTime.Now.Date.AddDays(2);
+
+            sager = await Fetch.GetSagAll();
+            int? sagnr2 = sager.FirstOrDefault(item => item.SagNr != sagnr)?.SagNr;
+            if(sagnr2 == null)
+            {
+                deleteSag2 = true;
+                DateTime oprettelsesDato = DateTime.Now.Date;
+                sagnr2 = await EntryManagement.CreateSag(oprettelsesDato, medarbejderNr.GetValueOrDefault());
+            }
+
+            await EntryManagement.UpdateAnnoncering(annoncenr, type, start,slut, sagnr2.GetValueOrDefault());
+            annonce = await Fetch.GetAnnonceringByAnnonceringsNr(annoncenr);
+
+            Assert.AreEqual(annoncenr, annonce.AnnonceringsNr, "the value is not equal to the expected");
+            Assert.AreEqual(type, annonce.Type, "the value is not equal to the expected");
+            Assert.AreEqual(start, annonce.StartDato, "the value is not equal to the expected");
+            Assert.AreEqual(slut, annonce.SlutDato, "the value is not equal to the expected");
+            Assert.AreEqual(sagnr2.GetValueOrDefault(), annonce.SagNr, "the value is not equal to the expected");
+          
+            await EntryManagement.DeleteAnnoncering(annoncenr);
+            Assert.IsNull(await Fetch.GetAnnonceringByAnnonceringsNr(annoncenr));
+
+            //Clean up
+            if(deleteSag == true)
+            {
+                await EntryManagement.DeleteSag(sagnr.GetValueOrDefault());
+            }
+            if(deleteSag2 == true)
+            {
+                await EntryManagement.DeleteSag(sagnr2.GetValueOrDefault());
+            }
+            if(deleteEjendomsmægler == true)
+            {
+                await EntryManagement.DeleteEjendomsmægler(medarbejderNr.GetValueOrDefault());
+            }
+
+        }
+        #endregion
+          
         #region Ejendomme
         [TestMethod]
         public async Task CreateUpdateDeleteEjendomme()
@@ -122,15 +205,11 @@ namespace BoBedre.Core.Test.DataAccess
             Assert.AreEqual(Byggeår, ejendom.Byggeår, "the value is not equal to the expected");
             Assert.AreEqual(postNr, ejendom.PostNr, "the value is not equal to the expected");
 
-
-
             //delete
             await EntryManagement.DeleteEjendom(Bolignr);
             Assert.IsNull(await Fetch.GetEjendomByBoligNr(Bolignr));
 
         }
-
-
 
         #endregion
 
@@ -251,5 +330,44 @@ namespace BoBedre.Core.Test.DataAccess
         }
         #endregion
 
+
+        #region Kunde
+        [TestMethod]
+        public async Task CreateUpdateDeleteKundeTest()
+        {
+            //Create
+            string navn = "Navn";
+            string email = "Email";
+            string type = "Type";
+
+
+            var kundeNr = await EntryManagement.CreateKunde(navn, email, type);
+            var Kunde = await Fetch.GetKundeByKundeNr(kundeNr);
+
+            Assert.AreEqual(navn, Kunde.Navn, "the value is not equal to the expected");
+            Assert.AreEqual(email, Kunde.Email, "the value is not equal to the expected");
+            Assert.AreEqual(type, Kunde.Type, "the value is not equal to the expected");
+
+            //update
+            navn = "Update";
+            email = "Update";
+            type = "Update";
+
+            await EntryManagement.UpdateKunde(kundeNr, navn, email, type);
+            Kunde = await Fetch.GetKundeByKundeNr(kundeNr);
+
+            Assert.AreEqual(kundeNr, Kunde.KundeNr);
+            Assert.AreEqual(navn, Kunde.Navn, "the value is not equal to the expected");
+            Assert.AreEqual(email, Kunde.Email, "the value is not equal to the expected");
+            Assert.AreEqual(type, Kunde.Type, "the value is not equal to the expected");
+
+
+            //delete
+            await EntryManagement.DeleteKunde(kundeNr);
+            Assert.IsNull(await Fetch.GetKundeByKundeNr(kundeNr));
+
+        }
+
+        #endregion
     }
 }
