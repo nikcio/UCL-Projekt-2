@@ -161,8 +161,6 @@ namespace BoBedre.Core.Test.DataAccess
             string Type = "Type";
             int postNr = 7000;
 
-
-
             var Bolignr = await EntryManagement.CreateEjendom(Adresse, pris, BoligAreal, GrundAreal, have, Værelser,Etager, Type, Byggeår,postNr);
             var ejendom = await Fetch.GetEjendomByBoligNr(Bolignr);
 
@@ -365,6 +363,152 @@ namespace BoBedre.Core.Test.DataAccess
             //delete
             await EntryManagement.DeleteKunde(kundeNr);
             Assert.IsNull(await Fetch.GetKundeByKundeNr(kundeNr));
+
+        }
+
+        #endregion
+
+        #region sag
+        [TestMethod]
+        public async Task CreateUpdateDeleteSagTest()
+        {
+            // Create
+            DateTime oprettelsesDato = DateTime.Now.Date;
+
+            var medarbejdere = await Fetch.GetEjendomsmæglerAll();
+            int? medarbejderNr = medarbejdere.FirstOrDefault()?.MedarbejderNr;
+            bool deleteMedarbejder = false;
+            bool deleteMedarbejder2 = false;
+
+            if(medarbejderNr == null)
+            {
+                string afdeling = "afdeling";
+                string mæglerfirma = "mæglerfirma";
+                string navn = "mægler navn";
+                string email = "email@email.com";
+                string stilling = "stilling";
+                deleteMedarbejder = true;
+
+                medarbejderNr = await EntryManagement.CreateEjendomsmægler(afdeling, mæglerfirma, navn, email, stilling);
+            }
+
+            var sagsnr = await EntryManagement.CreateSag(oprettelsesDato, medarbejderNr.GetValueOrDefault());
+            var sag = await Fetch.GetSagBySagNr(sagsnr);
+
+            Assert.AreEqual(oprettelsesDato, sag.OprettelsesDato, "the value is not equal to the expected");
+            Assert.AreEqual(medarbejderNr, sag.MedarbejderNr, "the value is not equal to the expected");
+
+
+            // Update
+
+            oprettelsesDato = DateTime.Now.Date.AddDays(5);
+            DateTime TilsalgsDato = DateTime.Now.Date;
+            bool solgt = true;
+            int gebyr = 20000;
+            int salær = 1230;
+            DateTime OverdragelsesDato = DateTime.Now.Date.AddDays(20);
+            DateTime AfslutningsDato = DateTime.Now.Date.AddDays(45);
+            
+            medarbejdere = await Fetch.GetEjendomsmæglerAll();
+            int? medarbejderNr2 = medarbejdere.FirstOrDefault(item => item.MedarbejderNr == medarbejderNr.GetValueOrDefault())?.MedarbejderNr;
+            if (medarbejderNr2 == null)
+            {
+                string afdeling = "afdeling";
+                string mæglerfirma = "mæglerfirma";
+                string navn = "mægler2 navn";
+                string email = "email@email.com";
+                string stilling = "stilling";
+                deleteMedarbejder = true;
+
+                medarbejderNr2 = await EntryManagement.CreateEjendomsmægler(afdeling, mæglerfirma, navn, email, stilling);
+            }
+
+            var ejendomme = await Fetch.GetEjendomAll();
+            int? bolignr = ejendomme.FirstOrDefault()?.BoligNr;
+            bool deleteBolig = false;
+            if(bolignr == null)
+            {
+                //Create
+                string adresse = "Adresse";
+                int pris = 0;
+                int boligAreal = 0;
+                int grundAreal = 0;
+                bool have = true;
+                int værelser = 0;
+                int etager = 0;
+                int byggeår = 0;
+                string type = "Type";
+                int postNr = 7000;
+                deleteBolig = true;
+
+                bolignr = await EntryManagement.CreateEjendom(adresse, pris, boligAreal, grundAreal, have, værelser, etager, type, byggeår, postNr);
+            }
+
+            var sælgere = await Fetch.GetSælgerAll();
+            int? sælgernr = sælgere.FirstOrDefault()?.KundeNr;
+            bool deleteSælger = false;
+            if(sælgernr == null)
+            {
+                string navn = "Navn";
+                string email = "Email";
+                string type = "Sælger";
+                deleteSælger = true;
+
+                sælgernr = await EntryManagement.CreateKunde(navn, email, type);
+            }
+
+            var købere = await Fetch.GetKøberAll();
+            int? købernr = købere.FirstOrDefault()?.KundeNr;
+            bool deleteKøber = false;
+            if(købernr == null)
+            {
+                string navn = "Navn";
+                string email = "Email";
+                string type = "Køber";
+                deleteKøber = true;
+
+                købernr = await EntryManagement.CreateKunde(navn, email, type);
+            }
+
+            await EntryManagement.UpdateSag(sagsnr, oprettelsesDato, TilsalgsDato, solgt, gebyr, salær, OverdragelsesDato, AfslutningsDato, bolignr, sælgernr, købernr, medarbejderNr2.GetValueOrDefault());     
+            sag = await Fetch.GetSagBySagNr(sagsnr);
+
+            Assert.AreEqual(oprettelsesDato, sag.OprettelsesDato, "the value is not equal to the expected");
+            Assert.AreEqual(medarbejderNr, sag.MedarbejderNr, "the value is not equal to the expected");
+            Assert.AreEqual(solgt, sag.Solgt, "the value is not equal to the expected");
+            Assert.AreEqual(gebyr, sag.Gebyr, "the value is not equal to the expected");
+            Assert.AreEqual(salær, sag.Salær, "the value is not equal to the expected");
+            Assert.AreEqual(OverdragelsesDato, sag.OverdragelsesDato, "the value is not equal to the expected");
+            Assert.AreEqual(AfslutningsDato, sag.AfslutningsDato, "the value is not equal to the expected");
+            Assert.AreEqual(bolignr, sag.BoligNr, "the value is not equal to the expected");
+            Assert.AreEqual(sælgernr, sag.SælgerNr, "the value is not equal to the expected");
+            Assert.AreEqual(købernr, sag.KøberNr, "the value is not equal to the expected");
+
+            // Delete
+            await EntryManagement.DeleteSag(sagsnr);
+            Assert.IsNull(await Fetch.GetSagBySagNr(sagsnr));
+
+            // Clean up
+            if (deleteMedarbejder)
+            {
+                await EntryManagement.DeleteEjendomsmægler(medarbejderNr.GetValueOrDefault());
+            }
+            if (deleteMedarbejder2)
+            {
+                await EntryManagement.DeleteEjendomsmægler(medarbejderNr2.GetValueOrDefault());
+            }
+            if (deleteBolig)
+            {
+                await EntryManagement.DeleteEjendom(bolignr.GetValueOrDefault());
+            }
+            if (deleteKøber)
+            {
+                await EntryManagement.DeleteKunde(købernr.GetValueOrDefault());
+            }
+            if (deleteSælger)
+            {
+                await EntryManagement.DeleteKunde(sælgernr.GetValueOrDefault());
+            }
 
         }
 
