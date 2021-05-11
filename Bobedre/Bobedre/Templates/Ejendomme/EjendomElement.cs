@@ -41,5 +41,10 @@ namespace Bobedre.Templates.Ejendomme
         {
 
         }
+
+        private void PrisLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
