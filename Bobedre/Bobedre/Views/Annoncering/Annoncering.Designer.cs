@@ -31,7 +31,6 @@ namespace Bobedre.Views.Annoncering
         {
             this.SlutDatolabel = new System.Windows.Forms.Label();
             this.StartDatoLabel = new System.Windows.Forms.Label();
-            this.TypeBox = new System.Windows.Forms.TextBox();
             this.TypeLabel = new System.Windows.Forms.Label();
             this.AnnonceringsnrLabel = new System.Windows.Forms.Label();
             this.AnnonceringsNrBox = new System.Windows.Forms.TextBox();
@@ -44,6 +43,7 @@ namespace Bobedre.Views.Annoncering
             this.Sletknap = new System.Windows.Forms.Button();
             this.GåtilbageKnap = new System.Windows.Forms.Button();
             this.SagsNrCombobox = new System.Windows.Forms.ComboBox();
+            this.TypeComboBox = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,13 +64,6 @@ namespace Bobedre.Views.Annoncering
             this.StartDatoLabel.Size = new System.Drawing.Size(56, 15);
             this.StartDatoLabel.TabIndex = 18;
             this.StartDatoLabel.Text = "StartDato";
-            // 
-            // TypeBox
-            // 
-            this.TypeBox.Location = new System.Drawing.Point(130, 103);
-            this.TypeBox.Name = "TypeBox";
-            this.TypeBox.Size = new System.Drawing.Size(100, 23);
-            this.TypeBox.TabIndex = 14;
             // 
             // TypeLabel
             // 
@@ -183,11 +176,24 @@ namespace Bobedre.Views.Annoncering
             this.SagsNrCombobox.Size = new System.Drawing.Size(121, 23);
             this.SagsNrCombobox.TabIndex = 26;
             // 
+            // TypeComboBox
+            // 
+            this.TypeComboBox.FormattingEnabled = true;
+            this.TypeComboBox.Items.AddRange(new object[] {
+            "Hjemmeside",
+            "Boligaviser",
+            "Boligtillæg"});
+            this.TypeComboBox.Location = new System.Drawing.Point(130, 103);
+            this.TypeComboBox.Name = "TypeComboBox";
+            this.TypeComboBox.Size = new System.Drawing.Size(121, 23);
+            this.TypeComboBox.TabIndex = 27;
+            // 
             // Annoncering
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 427);
+            this.Controls.Add(this.TypeComboBox);
             this.Controls.Add(this.SagsNrCombobox);
             this.Controls.Add(this.GåtilbageKnap);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -196,7 +202,6 @@ namespace Bobedre.Views.Annoncering
             this.Controls.Add(this.SagNrLabel);
             this.Controls.Add(this.SlutDatolabel);
             this.Controls.Add(this.StartDatoLabel);
-            this.Controls.Add(this.TypeBox);
             this.Controls.Add(this.TypeLabel);
             this.Controls.Add(this.AnnonceringsnrLabel);
             this.Controls.Add(this.AnnonceringsNrBox);
@@ -213,7 +218,6 @@ namespace Bobedre.Views.Annoncering
         #endregion
         private System.Windows.Forms.Label SlutDatolabel;
         private System.Windows.Forms.Label StartDatoLabel;
-        private System.Windows.Forms.TextBox TypeBox;
         private System.Windows.Forms.Label TypeLabel;
         private System.Windows.Forms.Label AnnonceringsnrLabel;
         private System.Windows.Forms.TextBox AnnonceringsNrBox;
@@ -226,5 +230,6 @@ namespace Bobedre.Views.Annoncering
         private System.Windows.Forms.Button Sletknap;
         private System.Windows.Forms.Button GåtilbageKnap;
         private System.Windows.Forms.ComboBox SagsNrCombobox;
+        private System.Windows.Forms.ComboBox TypeComboBox;
     }
 }
