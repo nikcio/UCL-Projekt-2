@@ -29,7 +29,6 @@ namespace Bobedre.Views.Annoncering
         /// </summary>
         private void InitializeComponent()
         {
-            this.SagNrBox = new System.Windows.Forms.TextBox();
             this.SlutDatolabel = new System.Windows.Forms.Label();
             this.StartDatoLabel = new System.Windows.Forms.Label();
             this.TypeBox = new System.Windows.Forms.TextBox();
@@ -44,16 +43,9 @@ namespace Bobedre.Views.Annoncering
             this.Gemknap = new System.Windows.Forms.Button();
             this.Sletknap = new System.Windows.Forms.Button();
             this.GåtilbageKnap = new System.Windows.Forms.Button();
+            this.SagsNrCombobox = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // SagNrBox
-            // 
-            this.SagNrBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.SagNrBox.Location = new System.Drawing.Point(130, 261);
-            this.SagNrBox.Name = "SagNrBox";
-            this.SagNrBox.Size = new System.Drawing.Size(100, 23);
-            this.SagNrBox.TabIndex = 20;
             // 
             // SlutDatolabel
             // 
@@ -183,17 +175,25 @@ namespace Bobedre.Views.Annoncering
             this.GåtilbageKnap.UseVisualStyleBackColor = true;
             this.GåtilbageKnap.Click += new System.EventHandler(this.GåtilbageKnap_Click);
             // 
+            // SagsNrCombobox
+            // 
+            this.SagsNrCombobox.FormattingEnabled = true;
+            this.SagsNrCombobox.Location = new System.Drawing.Point(130, 265);
+            this.SagsNrCombobox.Name = "SagsNrCombobox";
+            this.SagsNrCombobox.Size = new System.Drawing.Size(121, 23);
+            this.SagsNrCombobox.TabIndex = 26;
+            // 
             // Annoncering
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 427);
+            this.Controls.Add(this.SagsNrCombobox);
             this.Controls.Add(this.GåtilbageKnap);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.SlutDatoPicker);
             this.Controls.Add(this.StartDatoPicker);
             this.Controls.Add(this.SagNrLabel);
-            this.Controls.Add(this.SagNrBox);
             this.Controls.Add(this.SlutDatolabel);
             this.Controls.Add(this.StartDatoLabel);
             this.Controls.Add(this.TypeBox);
@@ -211,8 +211,6 @@ namespace Bobedre.Views.Annoncering
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox SagNrBox;
         private System.Windows.Forms.Label SlutDatolabel;
         private System.Windows.Forms.Label StartDatoLabel;
         private System.Windows.Forms.TextBox TypeBox;
@@ -227,5 +225,6 @@ namespace Bobedre.Views.Annoncering
         private System.Windows.Forms.Button Gemknap;
         private System.Windows.Forms.Button Sletknap;
         private System.Windows.Forms.Button GåtilbageKnap;
+        private System.Windows.Forms.ComboBox SagsNrCombobox;
     }
 }
