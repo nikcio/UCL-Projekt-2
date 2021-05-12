@@ -46,7 +46,6 @@ namespace Bobedre.Views.Ejendomme
             this.VærelserBolig = new System.Windows.Forms.Label();
             this.TypeBolig = new System.Windows.Forms.Label();
             this.ByggeÅrBolig = new System.Windows.Forms.Label();
-            this.TypeBoligTextBox = new System.Windows.Forms.TextBox();
             this.ByggeårBoligTextBox = new System.Windows.Forms.TextBox();
             this.SletButtonBolig = new System.Windows.Forms.Button();
             this.OpdaterBoligKnap = new System.Windows.Forms.Button();
@@ -57,6 +56,7 @@ namespace Bobedre.Views.Ejendomme
             this.RenorveringerFlow = new System.Windows.Forms.FlowLayoutPanel();
             this.AddRenorveringButton = new System.Windows.Forms.Button();
             this.TilbageKnap = new System.Windows.Forms.Button();
+            this.TypeComboBox = new System.Windows.Forms.ComboBox();
             EtagerBolig = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -220,14 +220,6 @@ namespace Bobedre.Views.Ejendomme
             this.ByggeÅrBolig.TabIndex = 17;
             this.ByggeÅrBolig.Text = "Byggeår";
             // 
-            // TypeBoligTextBox
-            // 
-            this.TypeBoligTextBox.Location = new System.Drawing.Point(504, 19);
-            this.TypeBoligTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.TypeBoligTextBox.Name = "TypeBoligTextBox";
-            this.TypeBoligTextBox.Size = new System.Drawing.Size(106, 23);
-            this.TypeBoligTextBox.TabIndex = 18;
-            // 
             // ByggeårBoligTextBox
             // 
             this.ByggeårBoligTextBox.Location = new System.Drawing.Point(504, 78);
@@ -336,12 +328,38 @@ namespace Bobedre.Views.Ejendomme
             this.TilbageKnap.UseVisualStyleBackColor = true;
             this.TilbageKnap.Click += new System.EventHandler(this.TilbageKnap_Click);
             // 
+            // TypeComboBox
+            // 
+            this.TypeComboBox.DropDownWidth = 156;
+            this.TypeComboBox.FormattingEnabled = true;
+            this.TypeComboBox.Items.AddRange(new object[] {
+            "Ejerlejlighed",
+            "Andelsbolig",
+            "Lejebolig",
+            "Kontor",
+            "Sommerhus",
+            "Enfamiliehus",
+            "Ideelle anpart (tofamiliehus)",
+            "Ungdomsbolig",
+            "UngdomsLejlighed",
+            "Villa",
+            "Helårsgrund",
+            "Villalejlighed",
+            "Rækkehus",
+            "Landejendom",
+            "Fritidsgrund"});
+            this.TypeComboBox.Location = new System.Drawing.Point(504, 18);
+            this.TypeComboBox.Name = "TypeComboBox";
+            this.TypeComboBox.Size = new System.Drawing.Size(106, 23);
+            this.TypeComboBox.TabIndex = 44;
+            // 
             // Ejendomme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1023, 462);
+            this.Controls.Add(this.TypeComboBox);
             this.Controls.Add(this.TilbageKnap);
             this.Controls.Add(this.AddRenorveringButton);
             this.Controls.Add(this.RenorveringerFlow);
@@ -350,7 +368,6 @@ namespace Bobedre.Views.Ejendomme
             this.Controls.Add(this.HaveCheckBox);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.ByggeårBoligTextBox);
-            this.Controls.Add(this.TypeBoligTextBox);
             this.Controls.Add(this.ByggeÅrBolig);
             this.Controls.Add(this.TypeBolig);
             this.Controls.Add(EtagerBolig);
@@ -398,7 +415,6 @@ namespace Bobedre.Views.Ejendomme
         private System.Windows.Forms.Label VærelserBolig;
         private System.Windows.Forms.Label TypeBolig;
         private System.Windows.Forms.Label ByggeÅrBolig;
-        private System.Windows.Forms.TextBox TypeBoligTextBox;
         private System.Windows.Forms.TextBox ByggeårBoligTextBox;
         private System.Windows.Forms.Button SletButtonBolig;
         private System.Windows.Forms.Button OpdaterBoligKnap;
@@ -409,5 +425,6 @@ namespace Bobedre.Views.Ejendomme
         private System.Windows.Forms.FlowLayoutPanel RenorveringerFlow;
         private System.Windows.Forms.Button AddRenorveringButton;
         private System.Windows.Forms.Button TilbageKnap;
+        private System.Windows.Forms.ComboBox TypeComboBox;
     }
 }
