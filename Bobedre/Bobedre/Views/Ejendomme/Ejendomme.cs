@@ -54,7 +54,7 @@ namespace Bobedre.Views.Ejendomme
             HaveCheckBox.Checked = ejendom.Have;
             VæreslerBoligTextBox.Text = ejendom.Værelser.ToString();
             EtagerBoligTextbox.Text = ejendom.Etager.ToString();
-            TypeBoligTextBox.Text = ejendom.Type;
+            TypeComboBox.SelectedItem = ejendom.Type;
             ByggeårBoligTextBox.Text = ejendom.Byggeår.ToString();
             PostNrTextBox.Text = ejendom.PostNr.ToString();
 
@@ -70,7 +70,7 @@ namespace Bobedre.Views.Ejendomme
         private async void OpretBoligKnap_Click(object sender, EventArgs e)
         {
             if ((RegexCheck.TextCheck(AdresseBolig.Text) && RegexCheck.TalCheck(PrisTextBox.Text) && RegexCheck.TalCheck(BoligArealTextBox.Text) && RegexCheck.TalCheck(GrundArealBoligTextBox.Text) && (HaveCheckBox.Checked)
-             && RegexCheck.TalCheck(VæreslerBoligTextBox.Text) && RegexCheck.TextCheck(TypeBoligTextBox.Text) && RegexCheck.TalCheck(ByggeårBoligTextBox.Text)))
+             && RegexCheck.TalCheck(VæreslerBoligTextBox.Text) && RegexCheck.TextCheck(TypeComboBox.SelectedItem.ToString()) && RegexCheck.TalCheck(ByggeårBoligTextBox.Text)))
             {
                 await EntryManagement.CreateEjendom(
                         AdresseBolig.Text,
@@ -80,7 +80,7 @@ namespace Bobedre.Views.Ejendomme
                         HaveCheckBox.Checked,
                         int.Parse(VæreslerBoligTextBox.Text),
                         int.Parse(EtagerBoligTextbox.Text),
-                        TypeBoligTextBox.Text,
+                        TypeComboBox.SelectedItem.ToString(),
                         int.Parse(ByggeårBoligTextBox.Text),
                         int.Parse(PostNrTextBox.Text));
                 MessageBox.Show("Boligen er nu gemt");
@@ -111,7 +111,7 @@ namespace Bobedre.Views.Ejendomme
         private async void OpdaterBoligKnap_Click(object sender, EventArgs e)
         {
             if (RegexCheck.TalCheck(BolignrTextbox.Text) && RegexCheck.TextCheck(AdresseBolig.Text) && RegexCheck.TalCheck(PrisTextBox.Text) && RegexCheck.TalCheck(BoligArealTextBox.Text) && RegexCheck.TalCheck(GrundArealBoligTextBox.Text) && (HaveCheckBox.Checked)
-             && RegexCheck.TalCheck(VæreslerBoligTextBox.Text) && RegexCheck.TextCheck(TypeBoligTextBox.Text) && RegexCheck.TalCheck(ByggeårBoligTextBox.Text))
+             && RegexCheck.TalCheck(VæreslerBoligTextBox.Text) && RegexCheck.TextCheck(TypeComboBox.SelectedItem.ToString()) && RegexCheck.TalCheck(ByggeårBoligTextBox.Text))
             {
                 await EntryManagement.OpdaterEjendom(
                 AdresseBolig.Text,
@@ -121,7 +121,7 @@ namespace Bobedre.Views.Ejendomme
                 HaveCheckBox.Checked,
                 int.Parse(VæreslerBoligTextBox.Text),
                 int.Parse(EtagerBoligTextbox.Text),
-                TypeBoligTextBox.Text,
+                TypeComboBox.SelectedItem.ToString(),
                 int.Parse(ByggeårBoligTextBox.Text),
                 int.Parse(PostNrTextBox.Text),
                 int.Parse(BolignrTextbox.Text));
@@ -295,6 +295,7 @@ namespace Bobedre.Views.Ejendomme
             switch (action)
             {
                 case Models.Action.create:
+                    BolignrTextbox.ReadOnly = true;
                     RenorveringerFlow.Visible = false;
                     AddRenorveringButton.Visible = false;
                     SletButtonBolig.Visible = false;
@@ -302,6 +303,7 @@ namespace Bobedre.Views.Ejendomme
                     break;
 
                 case Models.Action.edit:
+                    BolignrTextbox.ReadOnly = true;
                     OpretBoligKnap.Visible = false;
                     SletButtonBolig.Visible = false;
                     LoadData(boligNr);
@@ -319,7 +321,7 @@ namespace Bobedre.Views.Ejendomme
                     PostNrTextBox.ReadOnly = true;
                     VæreslerBoligTextBox.ReadOnly = true;
                     EtagerBoligTextbox.ReadOnly = true;
-                    TypeBoligTextBox.ReadOnly = true;
+                    TypeComboBox.Enabled = true;
                     ByggeårBoligTextBox.ReadOnly = true;
                     HaveCheckBox.Enabled = false;
                     LoadData(boligNr);
@@ -336,7 +338,7 @@ namespace Bobedre.Views.Ejendomme
                     PostNrTextBox.ReadOnly = true;
                     VæreslerBoligTextBox.ReadOnly = true;
                     EtagerBoligTextbox.ReadOnly = true;
-                    TypeBoligTextBox.ReadOnly = true;
+                    TypeComboBox.Enabled = true;
                     ByggeårBoligTextBox.ReadOnly = true;
                     HaveCheckBox.Enabled = false;
                     OpretBoligKnap.Visible = false;

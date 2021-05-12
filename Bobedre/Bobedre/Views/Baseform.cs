@@ -106,5 +106,10 @@ namespace Bobedre.Views
             ShowForm(new Annoncering.AnnonceringView(this));
         }
         #endregion
+
+        private void Baseform_Load(object sender, EventArgs e)
+        {
+            ShowForm(new Fremvisning.Fremvisning());
+        }
     }
 }
