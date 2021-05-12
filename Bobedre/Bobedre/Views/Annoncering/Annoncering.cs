@@ -42,16 +42,26 @@ namespace Bobedre.Views.Annoncering
             var annoncering = await Fetch.GetAnnonceringByAnnonceringsNr(annonceringsNr);
 
             AnnonceringsNrBox.Text = annoncering.AnnonceringsNr.ToString();
-            TypeBox.Text = annoncering.Type.ToString();
+            TypeComboBox.Text = annoncering.Type.ToString();
             StartDatoPicker.Value = annoncering.StartDato;
             StartDatoPicker.Value = annoncering.SlutDato;
-            SagNrBox.Text = annoncering.SagNr.ToString();
+            SagsNrCombobox.Text = annoncering.SagNr.ToString();
 
         }
              
      
-        private void Annoncering_Load(object sender, EventArgs e)
+        private async void Annoncering_Load(object sender, EventArgs e)
         {
+            var sager = await Fetch.GetSagAll();
+
+            Dictionary<string, int> dictonary = sager.ToDictionary(item => "SagNr: " + item.SagNr, item => item.SagNr);
+
+            SagsNrCombobox.DataSource = dictonary.ToList();
+            SagsNrCombobox.ValueMember = "Key";
+            SagsNrCombobox.SelectedText = "Value";
+            SagsNrCombobox.SelectedIndex = 0;
+
+
             switch (action)
             {
                 case Models.Action.create:
@@ -63,8 +73,8 @@ namespace Bobedre.Views.Annoncering
 
                 case Models.Action.view:
                     LoadData(annonceringsNr);
-                    TypeBox.ReadOnly = true;              
-                    SagNrBox.ReadOnly = true;
+                    TypeComboBox.Visible = false;
+                    SagsNrCombobox.Visible = false;
                     StartDatoPicker.Enabled = false;
                     SlutDatoPicker.Enabled = false;
                     Opretknap.Visible = false;
@@ -75,9 +85,12 @@ namespace Bobedre.Views.Annoncering
         }
         private async void Opretknap_Click(object sender, EventArgs e)
         {
-            if (RegexCheck.TextCheck(TypeBox.Text))
+            if (TypeComboBox != null && SagsNrCombobox != null)
             {
-                var message = await EntryManagement.CreateAnnoncering(TypeBox.Text, StartDatoPicker.Value, SlutDatoPicker.Value, int.Parse(SagNrBox.Text)) ;
+                var type = TypeComboBox.SelectedItem.ToString();
+                var sagsNr = ((KeyValuePair<string, int>)SagsNrCombobox.SelectedItem).Value;
+
+                var message = await EntryManagement.CreateAnnoncering(type, StartDatoPicker.Value, SlutDatoPicker.Value, sagsNr);
                 ClearForm.CleanForm(Controls);
 
 
@@ -93,11 +106,13 @@ namespace Bobedre.Views.Annoncering
 
         private async void Gemknap_Click(object sender, EventArgs e)
         {
-            if (RegexCheck.TextCheck(TypeBox.Text))
+            if (TypeComboBox != null)
             {
                 if (int.TryParse(AnnonceringsNrBox.Text, out int annonceringsNr))
                 {
-                    await EntryManagement.UpdateAnnoncering(annonceringsNr,TypeBox.Text, StartDatoPicker.Value, SlutDatoPicker.Value, int.Parse(SagNrBox.Text));
+                    var type = TypeComboBox.SelectedItem.ToString();
+                    var sagsNr = ((KeyValuePair<string, int>)SagsNrCombobox.SelectedItem).Value;
+                    await EntryManagement.UpdateAnnoncering(annonceringsNr,type, StartDatoPicker.Value, SlutDatoPicker.Value, sagsNr);
                     ClearForm.CleanForm(Controls);
                     MessageBox.Show("Annonceringen er gemt");
                 }

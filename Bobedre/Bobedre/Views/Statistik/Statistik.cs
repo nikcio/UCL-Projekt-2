@@ -2,6 +2,7 @@
 using BoBedre.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -35,10 +36,14 @@ namespace Bobedre.Views.Statistik
                 OpretTemplate(item);
             }
         }
-
+        /// <summary>
+        /// Save data from Statistik as txt-document. Default save at MyDocuments at your computer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GemButton_Click(object sender, EventArgs e)
         {
-
+            BoBedre.Core.Logic.Statistik.SaveToDocument(ejendommeStatisk);
         }
 
         private async void Statistik_Load(object sender, EventArgs e)
