@@ -10,7 +10,7 @@ namespace BoBedre.Core.Logic
 {
     public static class Statistik
     {
-        public static async Task<IEnumerable<Ejendom>> GetEjendommeStatisk(int medarbejderNr, DateTime startDate, DateTime endDate, int postNr, int[] range)
+        public static async Task<List<Ejendom>> GetEjendommeStatisk(int medarbejderNr, DateTime startDate, DateTime endDate, int postNr, int[] range)
         {
             var sager = await Fetch.GetSagAll();
 
@@ -26,7 +26,7 @@ namespace BoBedre.Core.Logic
                 item.PostNr == postNr &&
                 ItemWithinPrice(item, range)
             );
-            return ejendommeStatisk;
+            return ejendommeStatisk.ToList();
         }
 
         private static bool ItemWitinDate(Sag sag, DateTime startDate, DateTime endDate)

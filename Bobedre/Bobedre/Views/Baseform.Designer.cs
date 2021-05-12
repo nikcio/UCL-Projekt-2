@@ -34,12 +34,11 @@ namespace Bobedre.Views
             this.kunderButton = new System.Windows.Forms.Button();
             this.ejendommeButton = new System.Windows.Forms.Button();
             this.ejendomsmæglereButton = new System.Windows.Forms.Button();
+            this.AnnonceringerButton = new System.Windows.Forms.Button();
             this.sagerButton = new System.Windows.Forms.Button();
             this.statistikButton = new System.Windows.Forms.Button();
-            this.søgningButton = new System.Windows.Forms.Button();
             this.åbenhusButton = new System.Windows.Forms.Button();
             this.content = new System.Windows.Forms.Panel();
-            this.AnnonceringerButton = new System.Windows.Forms.Button();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +55,6 @@ namespace Bobedre.Views
             this.menu.Controls.Add(this.AnnonceringerButton);
             this.menu.Controls.Add(this.sagerButton);
             this.menu.Controls.Add(this.statistikButton);
-            this.menu.Controls.Add(this.søgningButton);
             this.menu.Controls.Add(this.åbenhusButton);
             this.menu.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.menu.Location = new System.Drawing.Point(10, 9);
@@ -131,6 +129,23 @@ namespace Bobedre.Views
             this.ejendomsmæglereButton.Visible = false;
             this.ejendomsmæglereButton.Click += new System.EventHandler(this.ejendomsmæglereButton_Click);
             // 
+            // AnnonceringerButton
+            // 
+            this.AnnonceringerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AnnonceringerButton.AutoSize = true;
+            this.AnnonceringerButton.Enabled = false;
+            this.AnnonceringerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AnnonceringerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AnnonceringerButton.Location = new System.Drawing.Point(474, 4);
+            this.AnnonceringerButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
+            this.AnnonceringerButton.Name = "AnnonceringerButton";
+            this.AnnonceringerButton.Size = new System.Drawing.Size(99, 32);
+            this.AnnonceringerButton.TabIndex = 8;
+            this.AnnonceringerButton.Text = "Annonceringer";
+            this.AnnonceringerButton.UseVisualStyleBackColor = true;
+            this.AnnonceringerButton.Visible = false;
+            this.AnnonceringerButton.Click += new System.EventHandler(this.AnnonceringerButton_Click);
+            // 
             // sagerButton
             // 
             this.sagerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -165,23 +180,6 @@ namespace Bobedre.Views
             this.statistikButton.Visible = false;
             this.statistikButton.Click += new System.EventHandler(this.statistikButton_Click);
             // 
-            // søgningButton
-            // 
-            this.søgningButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.søgningButton.AutoSize = true;
-            this.søgningButton.Enabled = false;
-            this.søgningButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.søgningButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.søgningButton.Location = new System.Drawing.Point(216, 4);
-            this.søgningButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
-            this.søgningButton.Name = "søgningButton";
-            this.søgningButton.Size = new System.Drawing.Size(68, 32);
-            this.søgningButton.TabIndex = 6;
-            this.søgningButton.Text = "Søgning";
-            this.søgningButton.UseVisualStyleBackColor = true;
-            this.søgningButton.Visible = false;
-            this.søgningButton.Click += new System.EventHandler(this.søgningButton_Click);
-            // 
             // åbenhusButton
             // 
             this.åbenhusButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -189,7 +187,7 @@ namespace Bobedre.Views
             this.åbenhusButton.Enabled = false;
             this.åbenhusButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.åbenhusButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.åbenhusButton.Location = new System.Drawing.Point(120, 4);
+            this.åbenhusButton.Location = new System.Drawing.Point(206, 4);
             this.åbenhusButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
             this.åbenhusButton.Name = "åbenhusButton";
             this.åbenhusButton.Size = new System.Drawing.Size(78, 32);
@@ -210,23 +208,6 @@ namespace Bobedre.Views
             this.content.Name = "content";
             this.content.Size = new System.Drawing.Size(1029, 462);
             this.content.TabIndex = 1;
-            // 
-            // AnnonceringerButton
-            // 
-            this.AnnonceringerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AnnonceringerButton.AutoSize = true;
-            this.AnnonceringerButton.Enabled = false;
-            this.AnnonceringerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AnnonceringerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AnnonceringerButton.Location = new System.Drawing.Point(474, 4);
-            this.AnnonceringerButton.Margin = new System.Windows.Forms.Padding(9, 4, 9, 4);
-            this.AnnonceringerButton.Name = "AnnonceringerButton";
-            this.AnnonceringerButton.Size = new System.Drawing.Size(99, 32);
-            this.AnnonceringerButton.TabIndex = 8;
-            this.AnnonceringerButton.Text = "Annonceringer";
-            this.AnnonceringerButton.UseVisualStyleBackColor = true;
-            this.AnnonceringerButton.Visible = false;
-            this.AnnonceringerButton.Click += new System.EventHandler(this.AnnonceringerButton_Click);
             // 
             // Baseform
             // 
@@ -255,7 +236,6 @@ namespace Bobedre.Views
         private System.Windows.Forms.Button ejendomsmæglereButton;
         private System.Windows.Forms.Button sagerButton;
         private System.Windows.Forms.Button statistikButton;
-        private System.Windows.Forms.Button søgningButton;
         private System.Windows.Forms.Button åbenhusButton;
         private System.Windows.Forms.Button AnnonceringerButton;
     }

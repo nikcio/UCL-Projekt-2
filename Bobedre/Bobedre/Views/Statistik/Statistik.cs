@@ -10,7 +10,7 @@ namespace Bobedre.Views.Statistik
 {
     public partial class Statistik : Form
     {
-        private IEnumerable<Ejendom> ejendommeStatisk = null;
+        private List<Ejendom> ejendommeStatisk = null;
 
         public Statistik()
         {
