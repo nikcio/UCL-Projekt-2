@@ -43,21 +43,7 @@ namespace Bobedre.Views.Statistik
         /// <param name="e"></param>
         private void GemButton_Click(object sender, EventArgs e)
         {
-            StreamWriter file = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"/Salgsoversigt.txt");
-            
-            foreach (var item in ejendommeStatisk)
-            {
-                file.WriteLine($"BoligNr: {item.BoligNr}");
-                file.WriteLine($"Pris: {item.Pris}");
-                file.WriteLine($"Addresse: {item.Adresse}");                
-                file.WriteLine($"GrundAreal: {item.GrundAreal}");
-                file.WriteLine($"Etager: {item.Etager}");
-                file.WriteLine($"Have: {item.Have}");
-                file.WriteLine($"Værelser: {item.Værelser}");
-                file.WriteLine($"Type: {item.Type}");
-                file.WriteLine($"Byggeår: {item.Byggeår}");
-            }                
-            file.Close();
+            BoBedre.Core.Logic.Statistik.SaveToDocument(ejendommeStatisk);
         }
 
         private async void Statistik_Load(object sender, EventArgs e)
