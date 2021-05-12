@@ -57,7 +57,6 @@ namespace Bobedre.Views
             ejendomsmæglereButton.Enabled = !ejendomsmæglereButton.Enabled;
             sagerButton.Enabled = !sagerButton.Enabled;
             statistikButton.Enabled = !statistikButton.Enabled;
-            søgningButton.Enabled = !søgningButton.Enabled;
             åbenhusButton.Enabled = !åbenhusButton.Enabled;
             AnnonceringerButton.Enabled = !AnnonceringerButton.Enabled;
 
@@ -67,7 +66,6 @@ namespace Bobedre.Views
             ejendomsmæglereButton.Visible = !ejendomsmæglereButton.Visible;
             sagerButton.Visible = !sagerButton.Visible;
             statistikButton.Visible = !statistikButton.Visible;
-            søgningButton.Visible = !søgningButton.Visible;
             åbenhusButton.Visible = !åbenhusButton.Visible;
             AnnonceringerButton.Visible = !AnnonceringerButton.Visible;
         }
@@ -96,11 +94,6 @@ namespace Bobedre.Views
         private void statistikButton_Click(object sender, EventArgs e)
         {
             ShowForm(new Statistik.Statistik());
-        }
-
-        private void søgningButton_Click(object sender, EventArgs e)
-        {
-            ShowForm(new Søgning.Søgning(Models.Action.view, this));
         }
 
         private void åbenhusButton_Click(object sender, EventArgs e)
