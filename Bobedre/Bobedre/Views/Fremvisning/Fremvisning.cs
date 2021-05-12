@@ -24,11 +24,11 @@ namespace Bobedre.Views.Fremvisning
 
         private void LoadData(Ejendomsmægler ejendomsmægler)
         {
-            MedarbejderNavn.Text = ejendomsmægler.Navn;
-            MedarbjderNr.Text = ejendomsmægler.MedarbejderNr.ToString();
-            Afdeling.Text = ejendomsmægler.Afdeling;
-            MæglerFirma.Text = ejendomsmægler.Mæglerfirma;
-            Email.Text = ejendomsmægler.Email;
+            MedarbejderNavn.Text = $"Navn: {ejendomsmægler.Navn}";
+            MedarbjderNr.Text = $"MedarbejderNr: {ejendomsmægler.MedarbejderNr}";
+            Afdeling.Text = $"Afdeling: {ejendomsmægler.Afdeling}";
+            MæglerFirma.Text = $"Mæglerfirma: {ejendomsmægler.Mæglerfirma}";
+            Email.Text = $"Email: {ejendomsmægler.Email}";
             MedarbejderNavn.Visible = true;
             MedarbjderNr.Visible = true;
             Afdeling.Visible = true;
