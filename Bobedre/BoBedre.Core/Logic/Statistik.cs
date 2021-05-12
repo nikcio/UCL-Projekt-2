@@ -23,7 +23,7 @@ namespace BoBedre.Core.Logic
                 ItemWitinDate(item, startDate, endDate)
             );
 
-            var ejendomme = await Fetch.GetEjenommeByBoligNr(sagerSolgt.Select(item => item.BoligNr.GetValueOrDefault()).ToArray());
+            var ejendomme = await Fetch.GetEjendommeByBoligNr(sagerSolgt.Select(item => item.BoligNr.GetValueOrDefault()).ToArray());
 
             var ejendommeStatisk = ejendomme.Where(item =>
                 item.PostNr == postNr &&
