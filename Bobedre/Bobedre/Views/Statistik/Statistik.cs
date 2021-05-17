@@ -48,25 +48,27 @@ namespace Bobedre.Views.Statistik
 
         private async void Statistik_Load(object sender, EventArgs e)
         {
-            var byer = await Fetch.GetByAll();
+            try
+            {
+                var byer = await Fetch.GetByAll();
 
-            Dictionary<string, int> postnummerValues = byer.ToDictionary(item => $"{item.PostNr} - {item.ByNavn}", item => item.PostNr);
+                Dictionary<string, int> postnummerValues = byer.ToDictionary(item => $"{item.PostNr} - {item.ByNavn}", item => item.PostNr);
 
-            PostnummerComboBox.DataSource = postnummerValues.ToList();
-            PostnummerComboBox.ValueMember = "Key";
-            PostnummerComboBox.SelectedText = "Value";
-            PostnummerComboBox.SelectedIndex = 0;
+                PostnummerComboBox.DataSource = postnummerValues.ToList();
+                PostnummerComboBox.ValueMember = "Key";
+                PostnummerComboBox.SelectedText = "Value";
+                PostnummerComboBox.SelectedIndex = 0;
 
-            var medarbejdere = await Fetch.GetEjendomsmæglerAll();
+                var medarbejdere = await Fetch.GetEjendomsmæglerAll();
 
-            Dictionary<string, int> medarbejderValues = medarbejdere.ToDictionary(item => $"Navn: {item.Navn} - MedarbejderNr: {item.MedarbejderNr}", item => item.MedarbejderNr);
+                Dictionary<string, int> medarbejderValues = medarbejdere.ToDictionary(item => $"Navn: {item.Navn} - MedarbejderNr: {item.MedarbejderNr}", item => item.MedarbejderNr);
 
-            MedarbjederComboBox.DataSource = medarbejderValues.ToList();
-            MedarbjederComboBox.ValueMember = "Key";
-            MedarbjederComboBox.SelectedText = "Value";
-            MedarbjederComboBox.SelectedIndex = 0;
+                MedarbjederComboBox.DataSource = medarbejderValues.ToList();
+                MedarbjederComboBox.ValueMember = "Key";
+                MedarbjederComboBox.SelectedText = "Value";
+                MedarbjederComboBox.SelectedIndex = 0;
 
-            Dictionary<string, int[]> priser = new Dictionary<string, int[]> {
+                Dictionary<string, int[]> priser = new Dictionary<string, int[]> {
                 { "0 - 100.000 kr.", new int[] { 0, 100000 } },
                 { "100.000 - 1.000.000 kr.", new int[] { 100000, 1000000} },
                 { "1.000.000 - 1.500.000 kr.", new int[] { 1000000, 1500000 } },
@@ -78,14 +80,16 @@ namespace Bobedre.Views.Statistik
                 { "3.000.000+ kr.", new int[] { 3000000, int.MaxValue } }
             };
 
-            PrisComboBox.DataSource = priser.ToList();
-            PrisComboBox.ValueMember = "Key";
-            PrisComboBox.SelectedText = "Value";
-            PrisComboBox.SelectedIndex = 0;
+                PrisComboBox.DataSource = priser.ToList();
+                PrisComboBox.ValueMember = "Key";
+                PrisComboBox.SelectedText = "Value";
+                PrisComboBox.SelectedIndex = 0;
 
-            AntalLabel.Text = "";
+                AntalLabel.Text = "";
 
-            GemButton.Enabled = false;
+                GemButton.Enabled = false;
+            }
+            catch { }
         }
 
         private void OpretTemplate(Ejendom ejendom)

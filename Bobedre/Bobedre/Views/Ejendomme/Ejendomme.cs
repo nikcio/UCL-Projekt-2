@@ -69,7 +69,7 @@ namespace Bobedre.Views.Ejendomme
 
         private async void OpretBoligKnap_Click(object sender, EventArgs e)
         {
-            if ((RegexCheck.TextCheck(AdresseBolig.Text) && RegexCheck.TalCheck(PrisTextBox.Text) && RegexCheck.TalCheck(BoligArealTextBox.Text) && RegexCheck.TalCheck(GrundArealBoligTextBox.Text) && (HaveCheckBox.Checked)
+            if ((RegexCheck.TextCheck(AdresseBolig.Text) && RegexCheck.TalCheck(PrisTextBox.Text) && RegexCheck.TalCheck(BoligArealTextBox.Text) && RegexCheck.TalCheck(GrundArealBoligTextBox.Text)
              && RegexCheck.TalCheck(VæreslerBoligTextBox.Text) && RegexCheck.TextCheck(TypeComboBox.SelectedItem.ToString()) && RegexCheck.TalCheck(ByggeårBoligTextBox.Text)))
             {
                 await EntryManagement.CreateEjendom(
