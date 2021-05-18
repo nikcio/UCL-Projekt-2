@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BoBedre.Core.TextChecking;
 
-
-
-namespace BoBedre.Core.Test.DataAccess
+namespace BoBedre.Core.Test.TextChecking
 {
     [TestClass]
     public class RegExTest
@@ -24,7 +22,7 @@ namespace BoBedre.Core.Test.DataAccess
 
             Assert.IsTrue(test, "The value is not true");
 
-          
+
         }
         [TestMethod]
         public void TalCheckRegTest()
@@ -53,14 +51,6 @@ namespace BoBedre.Core.Test.DataAccess
         }
 
         #endregion
-
-
-
-
-
-
-
-
 
     }
 }

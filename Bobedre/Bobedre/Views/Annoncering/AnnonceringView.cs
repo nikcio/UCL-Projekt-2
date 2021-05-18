@@ -14,6 +14,7 @@ namespace Bobedre.Views.Annoncering
     public partial class AnnonceringView : Form
     {
         private Baseform baseform { get; set; }
+
         public AnnonceringView(Baseform _Baseform)
         {
             InitializeComponent();

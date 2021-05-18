@@ -20,11 +20,11 @@ namespace Bobedre.Views.Ejendomme
 {
     public partial class Ejendomme : Form
     {
-        public Baseform baseform { get; set; }
+        private Baseform baseform { get; set; }
 
-        public Models.Action action { get; set; }
+        private Models.Action action { get; set; }
 
-        public int boligNr { get; set; }
+        private int boligNr { get; set; }
 
         public Ejendomme(Models.Action _action, Baseform _baseform, int _boligNr = -1)
         {
