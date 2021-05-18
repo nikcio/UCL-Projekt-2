@@ -14,7 +14,7 @@ namespace Bobedre.Views.Ejendomme
 {
     public partial class EjendommeView : Form
     {
-        public Baseform baseform { get; set; }
+        private Baseform baseform { get; set; }
         public EjendommeView(Baseform _baseform)
         {
             InitializeComponent();
