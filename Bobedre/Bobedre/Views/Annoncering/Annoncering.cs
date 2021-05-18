@@ -17,7 +17,7 @@ namespace Bobedre.Views.Annoncering
     {
         private Baseform baseform { get; set; }
        
-        public Models.Action action { get; set; }
+        private Models.Action action { get; set; }
 
         private int annonceringsNr { get; set; }
 
