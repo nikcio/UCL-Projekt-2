@@ -192,7 +192,36 @@ namespace BoBedre.Core.DataAccess
             {
 
             }
+        }
 
+        public static async Task PrisBeregn(int pris,
+            int boligAreal,
+            int grundAreal,
+            bool have,
+            int værelser,
+            int etager,
+            string typeBolig,
+            int byggeår,
+            int postNr,
+            int bolignr)
+        {
+            SqlCommand cmd = new("UPDATE Ejendom set Pris=@Pris, Boligareal=@Boligareal, Grundareal=@Grundareal," +
+     "Have=@Have, Værelser=@Værelser, Etager=@Etager, Type=@Type, Byggeår=@Byggeår, Postnr=@Postnr WHERE Bolignr = @Bolignr");
+
+
+
+            cmd.Parameters.AddWithValue("@Pris", pris);
+            cmd.Parameters.AddWithValue("@Boligareal", boligAreal);
+            cmd.Parameters.AddWithValue("@Grundareal", grundAreal);
+            cmd.Parameters.AddWithValue("@Have", have);
+            cmd.Parameters.AddWithValue("@Værelser", værelser);
+            cmd.Parameters.AddWithValue("@Etager", etager);
+            cmd.Parameters.AddWithValue("@Type", typeBolig);
+            cmd.Parameters.AddWithValue("@Byggeår", byggeår);
+            cmd.Parameters.AddWithValue("@Postnr", postNr);
+            cmd.Parameters.AddWithValue("Bolignr", bolignr);
+
+            await DBConnection.ExecuteNonQuery(cmd);
         }
 
         #endregion

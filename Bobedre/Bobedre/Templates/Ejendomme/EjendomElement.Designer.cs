@@ -30,6 +30,7 @@ namespace Bobedre.Templates.Ejendomme
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.PrisBeregnKnap = new System.Windows.Forms.Button();
             this.OpdaterBoligoplsyninger = new System.Windows.Forms.Button();
             this.Boliggrundareal = new System.Windows.Forms.Label();
             this.VisGrundAreal = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@ namespace Bobedre.Templates.Ejendomme
             this.AdresseLabel = new System.Windows.Forms.Label();
             this.VisBoligNr = new System.Windows.Forms.Label();
             this.BoligNrLabel = new System.Windows.Forms.Label();
-            this.PrisBeregnKnap = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,15 +78,25 @@ namespace Bobedre.Templates.Ejendomme
             this.panel1.Controls.Add(this.VisBoligNr);
             this.panel1.Controls.Add(this.BoligNrLabel);
             this.panel1.Location = new System.Drawing.Point(27, 14);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(251, 137);
             this.panel1.TabIndex = 1;
             // 
+            // PrisBeregnKnap
+            // 
+            this.PrisBeregnKnap.Location = new System.Drawing.Point(149, 68);
+            this.PrisBeregnKnap.Name = "PrisBeregnKnap";
+            this.PrisBeregnKnap.Size = new System.Drawing.Size(78, 20);
+            this.PrisBeregnKnap.TabIndex = 12;
+            this.PrisBeregnKnap.Text = "Beregn Pris";
+            this.PrisBeregnKnap.UseVisualStyleBackColor = true;
+            this.PrisBeregnKnap.Click += new System.EventHandler(this.PrisBeregnKnap_Click);
+            // 
             // OpdaterBoligoplsyninger
             // 
             this.OpdaterBoligoplsyninger.Location = new System.Drawing.Point(149, 89);
-            this.OpdaterBoligoplsyninger.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OpdaterBoligoplsyninger.Margin = new System.Windows.Forms.Padding(2);
             this.OpdaterBoligoplsyninger.Name = "OpdaterBoligoplsyninger";
             this.OpdaterBoligoplsyninger.Size = new System.Drawing.Size(78, 20);
             this.OpdaterBoligoplsyninger.TabIndex = 11;
@@ -97,7 +107,7 @@ namespace Bobedre.Templates.Ejendomme
             // Boliggrundareal
             // 
             this.Boliggrundareal.AutoSize = true;
-            this.Boliggrundareal.Location = new System.Drawing.Point(-1, 46);
+            this.Boliggrundareal.Location = new System.Drawing.Point(0, 46);
             this.Boliggrundareal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Boliggrundareal.Name = "Boliggrundareal";
             this.Boliggrundareal.Size = new System.Drawing.Size(72, 15);
@@ -117,7 +127,7 @@ namespace Bobedre.Templates.Ejendomme
             // SletBoligKnap
             // 
             this.SletBoligKnap.Location = new System.Drawing.Point(149, 111);
-            this.SletBoligKnap.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SletBoligKnap.Margin = new System.Windows.Forms.Padding(2);
             this.SletBoligKnap.Name = "SletBoligKnap";
             this.SletBoligKnap.Size = new System.Drawing.Size(78, 20);
             this.SletBoligKnap.TabIndex = 10;
@@ -218,7 +228,7 @@ namespace Bobedre.Templates.Ejendomme
             // HaveBolig
             // 
             this.HaveBolig.AutoSize = true;
-            this.HaveBolig.Location = new System.Drawing.Point(0, 88);
+            this.HaveBolig.Location = new System.Drawing.Point(0, 89);
             this.HaveBolig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.HaveBolig.Name = "HaveBolig";
             this.HaveBolig.Size = new System.Drawing.Size(34, 15);
@@ -258,7 +268,7 @@ namespace Bobedre.Templates.Ejendomme
             // AdresseLabel
             // 
             this.AdresseLabel.AutoSize = true;
-            this.AdresseLabel.Location = new System.Drawing.Point(-3, 68);
+            this.AdresseLabel.Location = new System.Drawing.Point(0, 68);
             this.AdresseLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.AdresseLabel.Name = "AdresseLabel";
             this.AdresseLabel.Size = new System.Drawing.Size(48, 15);
@@ -285,16 +295,6 @@ namespace Bobedre.Templates.Ejendomme
             this.BoligNrLabel.Size = new System.Drawing.Size(47, 15);
             this.BoligNrLabel.TabIndex = 0;
             this.BoligNrLabel.Text = "BoligNr";
-            // 
-            // PrisBeregnKnap
-            // 
-            this.PrisBeregnKnap.Location = new System.Drawing.Point(149, 68);
-            this.PrisBeregnKnap.Name = "PrisBeregnKnap";
-            this.PrisBeregnKnap.Size = new System.Drawing.Size(78, 20);
-            this.PrisBeregnKnap.TabIndex = 12;
-            this.PrisBeregnKnap.Text = "Beregn Pris";
-            this.PrisBeregnKnap.UseVisualStyleBackColor = true;
-            this.PrisBeregnKnap.Click += new System.EventHandler(this.PrisBeregnKnap_Click);
             // 
             // EjendomElement
             // 

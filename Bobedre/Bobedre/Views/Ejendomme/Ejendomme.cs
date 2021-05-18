@@ -138,7 +138,7 @@ namespace Bobedre.Views.Ejendomme
         {
             if (RegexCheck.TalCheck(BoligArealTextBox.Text))
             {
-
+                await EntryManagement.PrisBeregn();
             }
 
         }
