@@ -26,5 +26,10 @@ namespace Bobedre.Templates.Ejendomme
         {
 
         }
+
+        private void PrisBeregnKnap_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

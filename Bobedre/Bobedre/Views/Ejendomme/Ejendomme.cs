@@ -134,6 +134,16 @@ namespace Bobedre.Views.Ejendomme
             }
         }
 
+        private async void PrisBeregnKnap_Click(object sender, EventArgs e)
+        {
+            if (RegexCheck.TalCheck(BoligArealTextBox.Text))
+            {
+
+            }
+
+        }
+
+
         private void AddRenorveringButton_Click(object sender, EventArgs e)
         {
             if (RegexCheck.TalCheck(BolignrTextbox.Text))
