@@ -16,10 +16,11 @@ namespace Bobedre.Views.Annoncering
     public partial class Annoncering : Form
     {
         private Baseform baseform { get; set; }
-        private Form prevForm { get; set; }
        
         public Models.Action action { get; set; }
+
         private int annonceringsNr { get; set; }
+
         public Annoncering(Models.Action _action, Baseform _baseform, int _annonceringsNr = -1)
         {
             InitializeComponent();
