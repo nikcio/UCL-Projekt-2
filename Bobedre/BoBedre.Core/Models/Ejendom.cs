@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BoBedre.Core.Models
 {
-    public class Ejendom
+    public class Ejendom : IComparable<Ejendom>
     {
         public Ejendom(int boligNr, string adresse, int pris, int boligAreal, int? grundAreal, int værelser, int? etager, int byggeår, bool have, string type, int postNr)
         {
@@ -65,6 +65,30 @@ namespace BoBedre.Core.Models
             else
             {
                 throw new ArgumentOutOfRangeException("values", "values datapoints don't match model");
+            }
+        }
+
+        public int CompareTo(Ejendom ejendom)
+        {
+            var compare = Adresse.CompareTo(ejendom.Adresse);
+            if( compare == 0)
+            {
+                if(Pris > ejendom.Pris)
+                {
+                    return 1;
+                }
+                else if(Pris == ejendom.Pris)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                return compare;
             }
         }
     }
