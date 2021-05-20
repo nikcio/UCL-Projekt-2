@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BoBedre.Core.Models;
 using Bobedre.Models;
+using BoBedre.Core.Logic;
 
 namespace Bobedre.Views.Ejendomme
 {
@@ -69,7 +70,7 @@ namespace Bobedre.Views.Ejendomme
 
         private async void OpretBoligKnap_Click(object sender, EventArgs e)
         {
-            if ((RegexCheck.TextCheck(AdresseBolig.Text) && RegexCheck.TalCheck(PrisTextBox.Text) && RegexCheck.TalCheck(BoligArealTextBox.Text) && RegexCheck.TalCheck(GrundArealBoligTextBox.Text)
+            if ((RegexCheck.TalCheck(PrisTextBox.Text) && RegexCheck.TalCheck(BoligArealTextBox.Text) && RegexCheck.TalCheck(GrundArealBoligTextBox.Text)
              && RegexCheck.TalCheck(VæreslerBoligTextBox.Text) && RegexCheck.TextCheck(TypeComboBox.SelectedItem.ToString()) && RegexCheck.TalCheck(ByggeårBoligTextBox.Text)))
             {
                 await EntryManagement.CreateEjendom(
@@ -110,7 +111,7 @@ namespace Bobedre.Views.Ejendomme
 
         private async void OpdaterBoligKnap_Click(object sender, EventArgs e)
         {
-            if (RegexCheck.TalCheck(BolignrTextbox.Text) && RegexCheck.TextCheck(AdresseBolig.Text) && RegexCheck.TalCheck(PrisTextBox.Text) && RegexCheck.TalCheck(BoligArealTextBox.Text) && RegexCheck.TalCheck(GrundArealBoligTextBox.Text) && (HaveCheckBox.Checked)
+            if (RegexCheck.TalCheck(BolignrTextbox.Text) && RegexCheck.TalCheck(PrisTextBox.Text) && RegexCheck.TalCheck(BoligArealTextBox.Text) && RegexCheck.TalCheck(GrundArealBoligTextBox.Text) && (HaveCheckBox.Checked)
              && RegexCheck.TalCheck(VæreslerBoligTextBox.Text) && RegexCheck.TextCheck(TypeComboBox.SelectedItem.ToString()) && RegexCheck.TalCheck(ByggeårBoligTextBox.Text))
             {
                 await EntryManagement.OpdaterEjendom(
@@ -355,6 +356,30 @@ namespace Bobedre.Views.Ejendomme
         private void TilbageKnap_Click(object sender, EventArgs e)
         {
             baseform.ShowForm(new EjendommeView(baseform));
+        }
+
+        private async void BeregnPrisButton_Click(object sender, EventArgs e)
+        {
+            if(RegexCheck.TalCheck(BoligArealTextBox.Text) && RegexCheck.TalCheck(GrundArealBoligTextBox.Text) && RegexCheck.TalCheck(PostNrTextBox.Text) && RegexCheck.TalCheck(VæreslerBoligTextBox.Text)
+                && RegexCheck.TalCheck(EtagerBoligTextbox.Text) && RegexCheck.TalCheck(ByggeårBoligTextBox.Text) && RegexCheck.TalCheck(BolignrTextbox.Text))
+            {
+                var vurderetPris = await PrisBeregning.Beregn(
+                    int.Parse(BoligArealTextBox.Text),
+                    int.Parse(GrundArealBoligTextBox.Text),
+                    int.Parse(PostNrTextBox.Text),
+                    int.Parse(VæreslerBoligTextBox.Text),
+                    int.Parse(EtagerBoligTextbox.Text),
+                    int.Parse(ByggeårBoligTextBox.Text),
+                    HaveCheckBox.Checked,
+                    await Fetch.GetRenorveringerByBoligNr(int.Parse(BolignrTextbox.Text))
+                );
+
+                PrisTextBox.Text = vurderetPris.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Fejl. Der er nogle af felterne som ikke har en ret format");
+            }
         }
     }
 
