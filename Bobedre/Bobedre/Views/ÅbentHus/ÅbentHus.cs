@@ -46,14 +46,28 @@ namespace Bobedre.Views.ÅbentHus
 
         private async void Show()
         {
+            string regex = GetRegex();
+
+            var items = await Fetch.GetEjendomAll();
+            var itemsFilter = items.Where(item => item.BoligAreal >= 145 && Regex.IsMatch(item.Adresse.Substring(0, 1), regex)).ToArray();
+            Array.Sort(itemsFilter);
+
+            foreach (var item in itemsFilter)
+            {
+                OpretTemplate(item);
+            }
+        }
+
+        private string GetRegex()
+        {
             var regex = "";
-            if(char.Parse(bogstav2comboBox.SelectedItem.ToString()) <= 'z')
+            if (char.Parse(bogstav2comboBox.SelectedItem.ToString()) <= 'z')
             {
                 regex = $"([{bogstav1comboBox.SelectedItem.ToString().ToUpper()}-{bogstav2comboBox.SelectedItem.ToString().ToUpper()}{bogstav1comboBox.SelectedItem.ToString().ToLower()}-{bogstav2comboBox.SelectedItem.ToString().ToLower()}]+)";
             }
             else
             {
-                if(char.Parse(bogstav1comboBox.SelectedItem.ToString()) < 'z')
+                if (char.Parse(bogstav1comboBox.SelectedItem.ToString()) < 'z')
                 {
                     if (char.Parse(bogstav1comboBox.SelectedItem.ToString()) == 'z')
                     {
@@ -89,11 +103,11 @@ namespace Bobedre.Views.ÅbentHus
                                 break;
                         }
                     }
-                    
+
                 }
                 else
                 {
-                    if(bogstav1comboBox.SelectedItem.ToString().ToLower() == "æ" && bogstav2comboBox.SelectedItem.ToString().ToLower() == "ø")
+                    if (bogstav1comboBox.SelectedItem.ToString().ToLower() == "æ" && bogstav2comboBox.SelectedItem.ToString().ToLower() == "ø")
                     {
                         regex = "([ÆæØø]+)";
                     }
@@ -106,16 +120,10 @@ namespace Bobedre.Views.ÅbentHus
                         regex = "([ÆæØøÅå]+)";
                     }
                 }
-                
+
             }
 
-            var items = await Fetch.GetEjendomAll();
-            var itemsFilter = items.Where(item => item.BoligAreal >= 145 && Regex.IsMatch(item.Adresse.Substring(0, 1), regex)).ToArray();
-            Array.Sort(itemsFilter);
-            foreach(var item in itemsFilter)
-            {
-                OpretTemplate(item);
-            }
+            return regex;
         }
 
         private void OpretTemplate(Ejendom ejendom)

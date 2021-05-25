@@ -51,23 +51,7 @@ namespace Bobedre.Views
         /// <param name="e"></param>
         private void menuButton_Click(object sender, EventArgs e)
         {
-            // Enable/disable buttons
-            kunderButton.Enabled = !kunderButton.Enabled;
-            ejendommeButton.Enabled = !ejendommeButton.Enabled;
-            ejendomsmæglereButton.Enabled = !ejendomsmæglereButton.Enabled;
-            sagerButton.Enabled = !sagerButton.Enabled;
-            statistikButton.Enabled = !statistikButton.Enabled;
-            åbenhusButton.Enabled = !åbenhusButton.Enabled;
-            AnnonceringerButton.Enabled = !AnnonceringerButton.Enabled;
-
-            // Hide/Unhide buttons
-            kunderButton.Visible = !kunderButton.Visible;
-            ejendommeButton.Visible = !ejendommeButton.Visible;
-            ejendomsmæglereButton.Visible = !ejendomsmæglereButton.Visible;
-            sagerButton.Visible = !sagerButton.Visible;
-            statistikButton.Visible = !statistikButton.Visible;
-            åbenhusButton.Visible = !åbenhusButton.Visible;
-            AnnonceringerButton.Visible = !AnnonceringerButton.Visible;
+            ShowForm(new Fremvisning.Fremvisning());
         }
 
         private void kunderButton_Click(object sender, EventArgs e)
