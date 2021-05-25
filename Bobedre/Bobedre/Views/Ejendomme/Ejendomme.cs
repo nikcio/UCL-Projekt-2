@@ -85,6 +85,7 @@ namespace Bobedre.Views.Ejendomme
                         int.Parse(ByggeårBoligTextBox.Text),
                         int.Parse(PostNrTextBox.Text));
                 MessageBox.Show("Boligen er nu gemt");
+                baseform.ShowForm(new Ejendomme(Models.Action.edit, baseform, boligNr));
             }
             else
             {
@@ -301,6 +302,7 @@ namespace Bobedre.Views.Ejendomme
                     AddRenorveringButton.Visible = false;
                     SletButtonBolig.Visible = false;
                     OpdaterBoligKnap.Visible = false;
+                    BeregnPrisButton.Visible = false;
                     break;
 
                 case Models.Action.edit:
@@ -325,6 +327,7 @@ namespace Bobedre.Views.Ejendomme
                     TypeComboBox.Enabled = true;
                     ByggeårBoligTextBox.ReadOnly = true;
                     HaveCheckBox.Enabled = false;
+                    BeregnPrisButton.Visible = false;
                     LoadData(boligNr);
                     
                     break;
@@ -346,7 +349,7 @@ namespace Bobedre.Views.Ejendomme
                     SletButtonBolig.Visible = false;
                     OpdaterBoligKnap.Visible = false;
                     AddRenorveringButton.Visible = false;
-                   
+                    BeregnPrisButton.Visible = false;
                     
                     break;
             }
