@@ -63,10 +63,10 @@ namespace Bobedre.Views.Ejendomsmæglere
 
             if (int.TryParse(MedarbejderNrBox.Text, out int medarbejderNr))
             {
-                var message = await EntryManagement.DeleteEjendomsmægler(medarbejderNr);
+                await EntryManagement.DeleteEjendomsmægler(medarbejderNr);
 
                 ClearForm.CleanForm(Controls);
-                MessageBox.Show(message);
+                MessageBox.Show("Ejendomsmægler slettet");
 
             }
             else
@@ -88,9 +88,9 @@ namespace Bobedre.Views.Ejendomsmæglere
             {
                 if (int.TryParse(MedarbejderNrBox.Text, out int medarbejderNr))
                 {
-                    var message = await EntryManagement.UpdateEjendomsmægler(medarbejderNr, Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text, StillingSvar.Text);
+                    await EntryManagement.UpdateEjendomsmægler(medarbejderNr, Afdelingbox.Text, Mæglerfirmabox.Text, NavnBox.Text, Emailbox.Text, StillingSvar.Text);
                     ClearForm.CleanForm(Controls);
-                    MessageBox.Show(message);
+                    MessageBox.Show("Ejendomsmægler er blevet opdateret");
                 }
                 else
                 {

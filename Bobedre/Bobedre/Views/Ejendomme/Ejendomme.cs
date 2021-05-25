@@ -96,16 +96,16 @@ namespace Bobedre.Views.Ejendomme
         {
             if (int.TryParse(BolignrTextbox.Text, out int Bolignr))
             {
-                var message = await EntryManagement.DeleteEjendom(Bolignr);
+                await EntryManagement.DeleteEjendom(Bolignr);
 
                 ClearForm.CleanForm(Controls);
-                MessageBox.Show(message);
+                MessageBox.Show("Ejendom er blevet slettet");
+                baseform.ShowForm(new EjendommeView(baseform));
 
             }
             else
             {
-                
-                MessageBox.Show("fejl skal være et Nr");
+                MessageBox.Show("Fejl boligNr skal være et Nr");
             }
         }
 

@@ -20,11 +20,15 @@ namespace BoBedre.Infrastructure
         /// <returns></returns>
         public static async Task ExecuteNonQuery(SqlCommand sqlCommand)
         {
-            SqlConnection Connection = new(ConnectionString);
-            sqlCommand.Connection = Connection;
-            await Connection.OpenAsync();
-            await sqlCommand.ExecuteNonQueryAsync();
-            await Connection.CloseAsync();
+            try
+            {
+                SqlConnection Connection = new(ConnectionString);
+                sqlCommand.Connection = Connection;
+                await Connection.OpenAsync();
+                await sqlCommand.ExecuteNonQueryAsync();
+                await Connection.CloseAsync();
+            }
+            catch { }
         }
 
         /// <summary>
@@ -34,13 +38,21 @@ namespace BoBedre.Infrastructure
         /// <returns></returns>
         public static async Task<object> ExecuteScalar(SqlCommand sqlCommand)
         {
-            SqlConnection Connection = new(ConnectionString);
-            sqlCommand.Connection = Connection;
-            await Connection.OpenAsync();
-            object value = await sqlCommand.ExecuteScalarAsync();
-            await Connection.CloseAsync();
+            try
+            {
+                SqlConnection Connection = new(ConnectionString);
+                sqlCommand.Connection = Connection;
+                await Connection.OpenAsync();
+                object value = await sqlCommand.ExecuteScalarAsync();
+                await Connection.CloseAsync();
 
-            return value;
+                return value;
+            }
+            catch
+            {
+                return null;
+            }
+            
         }
 
         /// <summary>
@@ -49,26 +61,31 @@ namespace BoBedre.Infrastructure
         /// <param name="sqlCommands"></param>
         /// <param name="isolationLevel"></param>
         /// <returns></returns>
-        public static async Task ExecuteTransaction(List<SqlCommand> sqlCommands, IsolationLevel isolationLevel = IsolationLevel.Snapshot)
+        public static async Task ExecuteTransaction(List<SqlCommand> sqlCommands, IsolationLevel isolationLevel = IsolationLevel.Serializable)
         {
-            SqlConnection Connection = new(ConnectionString);
-            await Connection.OpenAsync();
-            SqlTransaction transaction = (SqlTransaction)await Connection.BeginTransactionAsync(isolationLevel);
             try
             {
-                foreach (var command in sqlCommands)
+                SqlConnection Connection = new(ConnectionString);
+                await Connection.OpenAsync();
+                SqlTransaction transaction = (SqlTransaction)await Connection.BeginTransactionAsync(isolationLevel);
+                try
                 {
-                    command.Connection = Connection;
-                    command.Transaction = transaction;
-                    await command.ExecuteNonQueryAsync();
+                    foreach (var command in sqlCommands)
+                    {
+                        command.Connection = Connection;
+                        command.Transaction = transaction;
+                        await command.ExecuteNonQueryAsync();
+                    }
+                    transaction.Commit();
                 }
-                transaction.Commit();
+                catch
+                {
+                    transaction.Rollback();
+                }
+                await Connection.CloseAsync();
             }
-            catch
-            {
-                transaction.Rollback();
-            }
-            await Connection.CloseAsync();
+            catch { }
+            
         }
 
         /// <summary>
@@ -78,24 +95,32 @@ namespace BoBedre.Infrastructure
         /// <returns></returns>
         public static async Task<object[]> ReadElement(SqlCommand sqlCommand)
         {
-            SqlConnection Connection = new(ConnectionString);
-            object[] values = null;
-            sqlCommand.Connection = Connection;
-
-            await Connection.OpenAsync();
-
-            using (DbDataReader reader = await sqlCommand.ExecuteReaderAsync())
+            try
             {
-                while (await reader.ReadAsync())
+                SqlConnection Connection = new(ConnectionString);
+                object[] values = null;
+                sqlCommand.Connection = Connection;
+
+                await Connection.OpenAsync();
+
+                using (DbDataReader reader = await sqlCommand.ExecuteReaderAsync())
                 {
-                    values = new object[reader.FieldCount];
-                    reader.GetValues(values);
+                    while (await reader.ReadAsync())
+                    {
+                        values = new object[reader.FieldCount];
+                        reader.GetValues(values);
+                    }
                 }
+
+                await Connection.CloseAsync();
+
+                return values;
             }
-
-            await Connection.CloseAsync();
-
-            return values;
+            catch 
+            {
+                return null;
+            }
+            
         }
 
         /// <summary>
@@ -105,25 +130,33 @@ namespace BoBedre.Infrastructure
         /// <returns></returns>
         public static async Task<List<object[]>> ReadElements(SqlCommand sqlCommand)
         {
-            SqlConnection Connection = new(ConnectionString);
-            sqlCommand.Connection = Connection;
-            var valueList = new List<object[]>();
-
-            await Connection.OpenAsync();
-
-            using (DbDataReader reader = await sqlCommand.ExecuteReaderAsync())
+            try
             {
-                while (await reader.ReadAsync())
+                SqlConnection Connection = new(ConnectionString);
+                sqlCommand.Connection = Connection;
+                var valueList = new List<object[]>();
+
+                await Connection.OpenAsync();
+
+                using (DbDataReader reader = await sqlCommand.ExecuteReaderAsync())
                 {
-                    object[] values = new object[reader.FieldCount];
-                    reader.GetValues(values);
-                    valueList.Add(values);
+                    while (await reader.ReadAsync())
+                    {
+                        object[] values = new object[reader.FieldCount];
+                        reader.GetValues(values);
+                        valueList.Add(values);
+                    }
                 }
+
+                await Connection.CloseAsync();
+
+                return valueList;
             }
-
-            await Connection.CloseAsync();
-
-            return valueList;
+            catch
+            {
+                return null;
+            }
+            
         }
     }
 }

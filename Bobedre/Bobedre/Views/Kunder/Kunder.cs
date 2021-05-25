@@ -54,10 +54,10 @@ namespace Bobedre.Views.Kunder
         {
             if (int.TryParse(KundeNrBox.Text, out int KundeNr))
             {
-                var message = await EntryManagement.DeleteKunde(KundeNr);
+                await EntryManagement.DeleteKunde(KundeNr);
 
                 ClearForm.CleanForm(Controls);
-                MessageBox.Show(message);
+                MessageBox.Show("Kunde er slettet");
             }
             else
             {
@@ -79,10 +79,10 @@ namespace Bobedre.Views.Kunder
             {
                 if (int.TryParse(KundeNrBox.Text, out int KundeNr))
                 {
-                    var message = await EntryManagement.UpdateKunde(KundeNr, KundeNavnBox.Text, KundeEmailBox.Text, KundeType);
+                    await EntryManagement.UpdateKunde(KundeNr, KundeNavnBox.Text, KundeEmailBox.Text, KundeType);
                     ClearForm.CleanForm(Controls);
 
-                    MessageBox.Show(message);
+                    MessageBox.Show("Kunde er blevet gemt");
                 }
                 else
                 {
