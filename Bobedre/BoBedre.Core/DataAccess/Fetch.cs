@@ -40,7 +40,7 @@ namespace BoBedre.Core.DataAccess
             return output.ToArray();
         }
 
-        public static async Task<Ejendom[]> GetEjenommeByBoligNr(int[] boligNr)
+        public static async Task<Ejendom[]> GetEjendommeByBoligNr(int[] boligNr)
         {
             if(boligNr.Length < 1)
             {

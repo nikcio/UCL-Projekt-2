@@ -97,6 +97,7 @@ namespace Bobedre.Views.Kunder
             // 
             // VisKnap
             // 
+            VisKnap.AutoSize = true;
             VisKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             VisKnap.Location = new System.Drawing.Point(269, 57);
             VisKnap.Name = "VisKnap";
@@ -108,6 +109,7 @@ namespace Bobedre.Views.Kunder
             // 
             // RedigereKnap
             // 
+            RedigereKnap.AutoSize = true;
             RedigereKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             RedigereKnap.Location = new System.Drawing.Point(269, 25);
             RedigereKnap.Name = "RedigereKnap";

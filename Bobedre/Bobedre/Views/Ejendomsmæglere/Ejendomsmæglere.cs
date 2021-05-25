@@ -132,7 +132,9 @@ namespace Bobedre.Views.Ejendomsmæglere
         {
             switch (action)
             {
-                case Models.Action.create:                    
+                case Models.Action.create:
+                    Gemknap.Visible = false;
+                    Sletknap.Visible = false;
                     break;
 
 

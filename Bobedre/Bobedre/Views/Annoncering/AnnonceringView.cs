@@ -14,6 +14,7 @@ namespace Bobedre.Views.Annoncering
     public partial class AnnonceringView : Form
     {
         private Baseform baseform { get; set; }
+
         public AnnonceringView(Baseform _Baseform)
         {
             InitializeComponent();
@@ -87,6 +88,7 @@ namespace Bobedre.Views.Annoncering
             // 
             // VisKnap
             // 
+            VisKnap.AutoSize = true;
             VisKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             VisKnap.Location = new System.Drawing.Point(269, 57);
             VisKnap.Name = "VisKnap";
@@ -98,6 +100,7 @@ namespace Bobedre.Views.Annoncering
             // 
             // RedigereKnap
             // 
+            RedigereKnap.AutoSize = true;
             RedigereKnap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             RedigereKnap.Location = new System.Drawing.Point(269, 25);
             RedigereKnap.Name = "RedigereKnap";
