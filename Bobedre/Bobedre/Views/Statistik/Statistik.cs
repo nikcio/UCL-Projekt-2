@@ -44,6 +44,7 @@ namespace Bobedre.Views.Statistik
         private void GemButton_Click(object sender, EventArgs e)
         {
             BoBedre.Core.Logic.Statistik.SaveToDocument(ejendommeStatisk);
+            MessageBox.Show("Udskrift er gemt som salgsoversigt.txt ");
         }
 
         private async void Statistik_Load(object sender, EventArgs e)

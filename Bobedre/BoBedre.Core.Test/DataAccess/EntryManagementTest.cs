@@ -14,16 +14,20 @@ namespace BoBedre.Core.Test.DataAccess
         [TestMethod]
         public async Task CreateUpdateDeleteEjendomsmæglerTest()
         {
-            //Create
+            //CREATE
+
+            //ARRANGE
             string afdeling = "Afdeling";
             string mæglerFirma = "Mæglerfirma";
             string navn = "Navn";
             string email = "Email";
             string stilling = "Stilling";
 
+            //ACT
             var medarbejderNr = await EntryManagement.CreateEjendomsmægler(afdeling, mæglerFirma, navn, email, stilling);
             var Ejendomsmægler = await Fetch.GetEjendomsmæglerByMedarbjederNr(medarbejderNr);
 
+            // ASSERT
             Assert.AreEqual(afdeling, Ejendomsmægler.Afdeling, "the value is not equal to the expected");
             Assert.AreEqual(mæglerFirma, Ejendomsmægler.Mæglerfirma, "the value is not equal to the expected");
             Assert.AreEqual(navn, Ejendomsmægler.Navn, "the value is not equal to the expected");
@@ -32,15 +36,19 @@ namespace BoBedre.Core.Test.DataAccess
 
 
             //update
+
+            //ARRANGE
             afdeling = "Updateny";
             mæglerFirma = "Update";
             navn = "Update";
             email = "Update";
             stilling = "Update";
 
+            //ACT
             await EntryManagement.UpdateEjendomsmægler(medarbejderNr, afdeling, mæglerFirma, navn, email, stilling);
             Ejendomsmægler = await Fetch.GetEjendomsmæglerByMedarbjederNr(medarbejderNr);
 
+            // ASSERT
             Assert.AreEqual(medarbejderNr, Ejendomsmægler.MedarbejderNr, "the value is not equal to the expected");
             Assert.AreEqual(afdeling, Ejendomsmægler.Afdeling, "the value is not equal to the expected");
             Assert.AreEqual(mæglerFirma, Ejendomsmægler.Mæglerfirma, "the value is not equal to the expected");
@@ -48,10 +56,10 @@ namespace BoBedre.Core.Test.DataAccess
             Assert.AreEqual(email, Ejendomsmægler.Email, "the value is not equal to the expected");
             Assert.AreEqual(stilling, Ejendomsmægler.Stilling, "the value is not equal to the expected");
 
-
-
             //delete
+            //ACT
             await EntryManagement.DeleteEjendomsmægler(medarbejderNr);
+            //ASSERT
             Assert.IsNull(await Fetch.GetEjendomsmæglerByMedarbjederNr(medarbejderNr));
         }
 
