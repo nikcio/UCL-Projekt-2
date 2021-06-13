@@ -139,6 +139,7 @@ namespace Bobedre.Views.Ejendomsmæglere
 
 
                 case Models.Action.edit:
+                    Opretknap.Visible = false;
                     LoadData(medarbejderNr);
                     break;
                                     

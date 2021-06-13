@@ -73,7 +73,7 @@ namespace Bobedre.Views.Ejendomme
             if ((RegexCheck.TalCheck(PrisTextBox.Text) && RegexCheck.TalCheck(BoligArealTextBox.Text) && RegexCheck.TalCheck(GrundArealBoligTextBox.Text)
              && RegexCheck.TalCheck(VæreslerBoligTextBox.Text) && RegexCheck.TextCheck(TypeComboBox.SelectedItem.ToString()) && RegexCheck.TalCheck(ByggeårBoligTextBox.Text)))
             {
-                await EntryManagement.CreateEjendom(
+                var boligNr = await EntryManagement.CreateEjendom(
                         AdresseBolig.Text,
                         int.Parse(PrisTextBox.Text),
                         int.Parse(BoligArealTextBox.Text),

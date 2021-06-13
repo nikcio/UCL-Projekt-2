@@ -66,9 +66,11 @@ namespace Bobedre.Views.Annoncering
             switch (action)
             {
                 case Models.Action.create:
+                    Gemknap.Visible = false;
                     break;
 
                 case Models.Action.edit:
+                    Opretknap.Visible = false;
                     LoadData(annonceringsNr);
                     break;
 
