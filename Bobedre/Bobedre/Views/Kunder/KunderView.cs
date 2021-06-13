@@ -83,7 +83,6 @@ namespace Bobedre.Views.Kunder
             KundeNrSvar.Name = "KundeNrSvar";
             KundeNrSvar.Size = new System.Drawing.Size(13, 15);
             KundeNrSvar.TabIndex = 11;
-            KundeNrSvar.Text = "1";
             KundeNrSvar.Text = kunde.KundeNr.ToString();
             // 
             // KundeNrLabel
@@ -126,7 +125,7 @@ namespace Bobedre.Views.Kunder
             KundeTypeSvar.Name = "KundeTypeSvar";
             KundeTypeSvar.Size = new System.Drawing.Size(13, 15);
             KundeTypeSvar.TabIndex = 5;
-            KundeTypeSvar.Text = "1";
+            KundeTypeSvar.Text = kunde.Type;
             // 
             // KundeTypeLabel
             // 
@@ -144,7 +143,7 @@ namespace Bobedre.Views.Kunder
             KundeEmailSvar.Name = "KundeEmailSvar";
             KundeEmailSvar.Size = new System.Drawing.Size(13, 15);
             KundeEmailSvar.TabIndex = 3;
-            KundeEmailSvar.Text = "1";
+            KundeEmailSvar.Text = kunde.Email;
             // 
             // KundeEmailLabel
             // 
@@ -162,7 +161,7 @@ namespace Bobedre.Views.Kunder
             KundeNavnSvar.Name = "KundeNavnSvar";
             KundeNavnSvar.Size = new System.Drawing.Size(13, 15);
             KundeNavnSvar.TabIndex = 1;
-            KundeNavnSvar.Text = "1";
+            KundeNavnSvar.Text = kunde.Navn;
             // 
             // KundeNavnLabel
             // 
